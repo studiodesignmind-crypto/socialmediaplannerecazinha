@@ -6,8 +6,6 @@
     <title>Social Media Planner</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
@@ -70,26 +68,26 @@
 
         <nav class="space-y-2 flex-1">
             <button onclick="switchTab('kanban')" id="nav-kanban" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition text-bordo bg-bege">
-                <i data-lucide="layout-grid" class="w-5 h-5"></i>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
                 Planejador (Kanban)
             </button>
             <button onclick="switchTab('calendar')" id="nav-calendar" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
-                <i data-lucide="calendar" class="w-5 h-5"></i>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                 Calendário
             </button>
             <button onclick="switchTab('ideas')" id="nav-ideas" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
-                <i data-lucide="lightbulb" class="w-5 h-5"></i>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
                 Banco de Ideias
             </button>
         </nav>
 
         <div class="space-y-2 pt-4 border-t border-begeDark">
             <button onclick="importOldData()" class="w-full bg-bege hover:bg-begeDark text-bordo font-medium py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-2 transition">
-                <i data-lucide="download" class="w-4 h-4"></i>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                 Recuperar Dados Antigos
             </button>
             <button onclick="openModal()" class="w-full bg-vibrante hover:bg-bordo text-white font-medium py-3 px-4 rounded-xl shadow-lg flex items-center justify-center gap-2 transition duration-200">
-                <i data-lucide="plus" class="w-5 h-5"></i>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
                 Novo Conteúdo
             </button>
         </div>
@@ -111,10 +109,10 @@
         </div>
         <div class="flex gap-2">
             <button onclick="importOldData()" class="bg-bege text-bordo p-2.5 rounded-xl border border-begeDark" title="Recuperar Dados Antigos">
-                <i data-lucide="download" class="w-4 h-4"></i>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
             </button>
             <button onclick="openModal()" class="bg-vibrante text-white p-2.5 rounded-xl shadow">
-                <i data-lucide="plus" class="w-5 h-5"></i>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
             </button>
         </div>
     </header>
@@ -122,15 +120,15 @@
     <!-- Bottom Navigation (Mobile) -->
     <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-begeDark px-6 py-3 flex justify-around items-center z-30 shadow-lg">
         <button onclick="switchTab('kanban')" id="mob-nav-kanban" class="flex flex-col items-center gap-1 text-bordo">
-            <i data-lucide="layout-grid" class="w-5 h-5"></i>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
             <span class="text-[10px] font-medium">Kanban</span>
         </button>
         <button onclick="switchTab('calendar')" id="mob-nav-calendar" class="flex flex-col items-center gap-1 text-gray-400">
-            <i data-lucide="calendar" class="w-5 h-5"></i>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
             <span class="text-[10px] font-medium">Agenda</span>
         </button>
         <button onclick="switchTab('ideas')" id="mob-nav-ideas" class="flex flex-col items-center gap-1 text-gray-400">
-            <i data-lucide="lightbulb" class="w-5 h-5"></i>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
             <span class="text-[10px] font-medium">Ideias</span>
         </button>
     </nav>
@@ -219,7 +217,7 @@
             <div class="flex items-center justify-between mb-6">
                 <h3 id="modal-title" class="text-lg font-bold text-bordo">Novo Conteúdo</h3>
                 <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
-                    <i data-lucide="x" class="w-6 h-6"></i>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
 
@@ -306,7 +304,6 @@
                 posts.push({ id: doc.id, ...doc.data() });
             });
             renderPosts();
-            if (window.lucide) lucide.createIcons();
         });
 
         // Recuperar dados armazenados anteriormente no navegador local
@@ -417,7 +414,7 @@
             if (!dateStr) return '';
             const parts = dateStr.split('-');
             if (parts.length === 3) {
-                return `${parts[2]}/${parts[1]}/${parts[0]}`;
+                return parts[2] + '/' + parts[1] + '/' + parts[0];
             }
             return dateStr;
         }
@@ -439,28 +436,32 @@
                 const card = document.createElement('div');
                 card.className = "bg-white p-4 rounded-xl border border-begeDark shadow-sm hover:shadow-md transition space-y-3";
                 
-                const formattedDate = post.date ? formatDate(post.date) : '';
+                const formattedDate = formatDate(post.date);
 
-                card.innerHTML = `
-                    <div class="flex items-center justify-between">
-                        <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-bege text-bordo">${post.platform || 'Instagram'}</span>
-                        <span class="text-[10px] text-gray-400 font-medium">${post.format || 'Post'}</span>
-                    </div>
-                    <h4 class="font-bold text-sm text-gray-800 leading-snug">${post.title || 'Sem título'}</h4>
-                    ${formattedDate ? `<p class="text-xs text-rosa font-medium flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5"></i> \${formattedDate}</p>` : ''}
-                    <div class="flex items-center justify-between pt-2 border-t border-bege/50 text-gray-400">
-                        <select onchange="updateStatus('${post.id}', this.value)" class="text-[10px] border border-begeDark rounded px-1 py-0.5 bg-bege text-gray-600 focus:outline-none">
-                            <option value="ideia" ${post.status === 'ideia' ? 'selected' : ''}>Ideia</option>
-                            <option value="producao" ${post.status === 'producao' ? 'selected' : ''}>Produção</option>
-                            <option value="agendado" ${post.status === 'agendado' ? 'selected' : ''}>Agendado</option>
-                            <option value="publicado" ${post.status === 'publicado' ? 'selected' : ''}>Publicado</option>
-                        </select>
-                        <div class="flex gap-2">
-                            <button onclick='openModal(${JSON.stringify(post).replace(/'/g, "&apos;")})' class="hover:text-bordo"><i data-lucide="edit-2" class="w-4 h-4"></i></button>
-                            <button onclick="deletePost('${post.id}')" class="hover:text-vibrante"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
-                        </div>
-                    </div>
-                `;
+                let dateHTML = '';
+                if (formattedDate) {
+                    dateHTML = '<p class="text-xs text-rosa font-medium flex items-center gap-1"><svg class="w-3.5 h-3.5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> ' + formattedDate + '</p>';
+                }
+
+                card.innerHTML = 
+                    '<div class="flex items-center justify-between">' +
+                        '<span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-bege text-bordo">' + (post.platform || 'Instagram') + '</span>' +
+                        '<span class="text-[10px] text-gray-400 font-medium">' + (post.format || 'Post') + '</span>' +
+                    '</div>' +
+                    '<h4 class="font-bold text-sm text-gray-800 leading-snug">' + (post.title || 'Sem título') + '</h4>' +
+                    dateHTML +
+                    '<div class="flex items-center justify-between pt-2 border-t border-bege/50 text-gray-400">' +
+                        '<select onchange="updateStatus(\'' + post.id + '\', this.value)" class="text-[10px] border border-begeDark rounded px-1 py-0.5 bg-bege text-gray-600 focus:outline-none">' +
+                            '<option value="ideia" ' + (post.status === 'ideia' ? 'selected' : '') + '>Ideia</option>' +
+                            '<option value="producao" ' + (post.status === 'producao' ? 'selected' : '') + '>Produção</option>' +
+                            '<option value="agendado" ' + (post.status === 'agendado' ? 'selected' : '') + '>Agendado</option>' +
+                            '<option value="publicado" ' + (post.status === 'publicado' ? 'selected' : '') + '>Publicado</option>' +
+                        '</select>' +
+                        '<div class="flex gap-2">' +
+                            '<button onclick="openModalById(\'' + post.id + '\')" class="hover:text-bordo"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></button>' +
+                            '<button onclick="deletePost(\'' + post.id + '\')" class="hover:text-vibrante"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button>' +
+                        '</div>' +
+                    '</div>';
 
                 if (cols[post.status]) cols[post.status].appendChild(card);
             });
@@ -474,13 +475,18 @@
             renderIdeas();
         }
 
+        function openModalById(id) {
+            const post = posts.find(p => p.id === id);
+            if (post) openModal(post);
+        }
+
         function renderCalendar() {
             const calList = document.getElementById('calendar-list');
             calList.innerHTML = '';
             const datedPosts = posts.filter(p => p.date).sort((a,b) => new Date(a.date) - new Date(b.date));
 
             if (datedPosts.length === 0) {
-                calList.innerHTML = `<p class="text-xs text-gray-400 text-center py-4">Nenhum post agendado com data definida.</p>`;
+                calList.innerHTML = '<p class="text-xs text-gray-400 text-center py-4">Nenhum post agendado com data definida.</p>';
                 return;
             }
 
@@ -491,19 +497,18 @@
 
                 const item = document.createElement('div');
                 item.className = "flex items-center justify-between p-3 bg-bege/50 rounded-xl border border-begeDark";
-                item.innerHTML = `
-                    <div class="flex items-center gap-3">
-                        <div class="text-center font-bold text-bordo bg-white p-2 rounded-lg border border-begeDark min-w-[50px]">
-                            <span class="text-xs block uppercase">Mês ${month}</span>
-                            <span class="text-base leading-none">${day}</span>
-                        </div>
-                        <div>
-                            <h5 class="font-bold text-sm text-gray-800">${p.title}</h5>
-                            <span class="text-[10px] text-gray-500">${p.platform} • ${p.format}</span>
-                        </div>
-                    </div>
-                    <span class="text-xs font-semibold px-2 py-1 rounded-full ${p.status === 'publicado' ? 'bg-green-100 text-green-700' : 'bg-pink/10 text-pink'}">${p.status}</span>
-                `;
+                item.innerHTML = 
+                    '<div class="flex items-center gap-3">' +
+                        '<div class="text-center font-bold text-bordo bg-white p-2 rounded-lg border border-begeDark min-w-[50px]">' +
+                            '<span class="text-xs block uppercase">Mês ' + month + '</span>' +
+                            '<span class="text-base leading-none">' + day + '</span>' +
+                        '</div>' +
+                        '<div>' +
+                            '<h5 class="font-bold text-sm text-gray-800">' + (p.title || 'Sem título') + '</h5>' +
+                            '<span class="text-[10px] text-gray-500">' + (p.platform || '') + ' • ' + (p.format || '') + '</span>' +
+                        '</div>' +
+                    '</div>' +
+                    '<span class="text-xs font-semibold px-2 py-1 rounded-full ' + (p.status === 'publicado' ? 'bg-green-100 text-green-700' : 'bg-pink/10 text-pink') + '">' + p.status + '</span>';
                 calList.appendChild(item);
             });
         }
@@ -514,26 +519,22 @@
             const ideaPosts = posts.filter(p => p.status === 'ideia');
 
             if (ideaPosts.length === 0) {
-                ideasGrid.innerHTML = `<p class="text-xs text-gray-400 col-span-3 text-center py-4">Sua caixa de ideias está vazia.</p>`;
+                ideasGrid.innerHTML = '<p class="text-xs text-gray-400 col-span-3 text-center py-4">Sua caixa de ideias está vazia.</p>';
                 return;
             }
 
             ideaPosts.forEach(p => {
                 const card = document.createElement('div');
                 card.className = "bg-white p-4 rounded-xl border border-begeDark shadow-sm space-y-2";
-                card.innerHTML = `
-                    <h5 class="font-bold text-sm text-bordo">${p.title}</h5>
-                    <p class="text-xs text-gray-600 line-clamp-3">${p.caption || 'Sem descrição.'}</p>
-                    <div class="pt-2 flex justify-end">
-                        <button onclick='openModal(${JSON.stringify(p).replace(/'/g, "&apos;")})' class="text-xs text-vibrante font-semibold">Editar / Promover</button>
-                    </div>
-                `;
+                card.innerHTML = 
+                    '<h5 class="font-bold text-sm text-bordo">' + (p.title || 'Sem título') + '</h5>' +
+                    '<p class="text-xs text-gray-600 line-clamp-3">' + (p.caption || 'Sem descrição.') + '</p>' +
+                    '<div class="pt-2 flex justify-end">' +
+                        '<button onclick="openModalById(\'' + p.id + '\')" class="text-xs text-vibrante font-semibold">Editar / Promover</button>' +
+                    '</div>';
                 ideasGrid.appendChild(card);
             });
         }
-
-        // Inicializar
-        if (window.lucide) lucide.createIcons();
     </script>
 </body>
 </html>
