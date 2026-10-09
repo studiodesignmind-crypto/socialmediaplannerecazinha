@@ -44,11 +44,25 @@
         @media (min-width: 768px) {
             body { padding-bottom: 0; }
         }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F7F2E7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #EFE8D8;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #F265A1;
+        }
     </style>
 </head>
 <body class="text-gray-800 min-h-screen flex flex-col md:flex-row">
 
-    <!-- Sidebar (Desktop) -->
     <aside class="hidden md:flex flex-col w-64 bg-white border-r border-begeDark p-6 flex-shrink-0 min-h-screen sticky top-0 h-screen">
         <div class="flex items-center gap-3 mb-6">
             <div class="w-10 h-10 rounded-xl bg-bordo flex items-center justify-center text-white font-bold text-xl shadow-md">
@@ -66,14 +80,18 @@
             <span>Nuvem Ativa (Firebase)</span>
         </div>
 
-        <nav class="space-y-2 flex-1">
+        <nav class="space-y-2 flex-1 overflow-y-auto">
             <button onclick="switchTab('kanban')" id="nav-kanban" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition text-bordo bg-bege">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
                 Planejador (Kanban)
             </button>
+            <button onclick="switchTab('platforms')" id="nav-platforms" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                Por Plataforma
+            </button>
             <button onclick="switchTab('calendar')" id="nav-calendar" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                Calendário
+                Calendário Mensal
             </button>
             <button onclick="switchTab('ideas')" id="nav-ideas" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
@@ -93,7 +111,6 @@
         </div>
     </aside>
 
-    <!-- Header Mobile -->
     <header class="md:hidden bg-white border-b border-begeDark p-4 flex items-center justify-between sticky top-0 z-20">
         <div class="flex items-center gap-3">
             <div class="w-9 h-9 rounded-lg bg-bordo flex items-center justify-center text-white font-bold text-lg">
@@ -118,10 +135,14 @@
     </header>
 
     <!-- Bottom Navigation (Mobile) -->
-    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-begeDark px-6 py-3 flex justify-around items-center z-30 shadow-lg">
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-begeDark px-4 py-2 flex justify-around items-center z-30 shadow-lg">
         <button onclick="switchTab('kanban')" id="mob-nav-kanban" class="flex flex-col items-center gap-1 text-bordo">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
             <span class="text-[10px] font-medium">Kanban</span>
+        </button>
+        <button onclick="switchTab('platforms')" id="mob-nav-platforms" class="flex flex-col items-center gap-1 text-gray-400">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+            <span class="text-[10px] font-medium">Redes</span>
         </button>
         <button onclick="switchTab('calendar')" id="mob-nav-calendar" class="flex flex-col items-center gap-1 text-gray-400">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
@@ -133,7 +154,6 @@
         </button>
     </nav>
 
-    <!-- Main Content Area -->
     <main class="flex-1 p-4 md:p-8 overflow-y-auto max-w-7xl mx-auto w-full">
 
         <!-- TAB 1: KANBAN BOARD -->
@@ -141,7 +161,7 @@
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                     <h2 class="text-xl md:text-2xl font-bold text-bordo">Fluxo de Produção</h2>
-                    <p class="text-sm text-gray-500">Gerencie suas publicações em tempo real</p>
+                    <p class="text-sm text-gray-500">Gerencie suas publicações por etapas</p>
                 </div>
             </div>
 
@@ -189,18 +209,97 @@
             </div>
         </section>
 
-        <!-- TAB 2: CALENDAR -->
-        <section id="tab-calendar" class="hidden space-y-6">
+        <!-- TAB 2: PLATFORM CATEGORY VIEW -->
+        <section id="tab-platforms" class="hidden space-y-6">
             <div>
-                <h2 class="text-xl md:text-2xl font-bold text-bordo">Agenda de Publicações</h2>
-                <p class="text-sm text-gray-500">Visualize seus posts organizados por data</p>
+                <h2 class="text-xl md:text-2xl font-bold text-bordo">Visão por Plataforma</h2>
+                <p class="text-sm text-gray-500">Acompanhe e filtre o planejamento por rede social</p>
             </div>
-            <div class="bg-white rounded-2xl p-6 border border-begeDark shadow-sm">
-                <div id="calendar-list" class="space-y-4"></div>
+
+            <!-- Platform Columns Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <!-- Instagram -->
+                <div class="bg-white/80 rounded-2xl p-4 border border-begeDark flex flex-col">
+                    <div class="flex items-center justify-between mb-4 pb-2 border-b border-begeDark">
+                        <span class="font-bold text-sm text-bordo flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-pink"></span> Instagram
+                        </span>
+                        <span id="count-plat-instagram" class="bg-bege text-xs font-semibold px-2 py-1 rounded-full text-gray-600">0</span>
+                    </div>
+                    <div id="plat-col-instagram" class="space-y-3 flex-1 min-h-[150px]"></div>
+                </div>
+
+                <!-- TikTok -->
+                <div class="bg-white/80 rounded-2xl p-4 border border-begeDark flex flex-col">
+                    <div class="flex items-center justify-between mb-4 pb-2 border-b border-begeDark">
+                        <span class="font-bold text-sm text-gray-900 flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-gray-900"></span> TikTok
+                        </span>
+                        <span id="count-plat-tiktok" class="bg-bege text-xs font-semibold px-2 py-1 rounded-full text-gray-600">0</span>
+                    </div>
+                    <div id="plat-col-tiktok" class="space-y-3 flex-1 min-h-[150px]"></div>
+                </div>
+
+                <!-- YouTube -->
+                <div class="bg-white/80 rounded-2xl p-4 border border-begeDark flex flex-col">
+                    <div class="flex items-center justify-between mb-4 pb-2 border-b border-begeDark">
+                        <span class="font-bold text-sm text-vibrante flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-vibrante"></span> YouTube
+                        </span>
+                        <span id="count-plat-youtube" class="bg-bege text-xs font-semibold px-2 py-1 rounded-full text-gray-600">0</span>
+                    </div>
+                    <div id="plat-col-youtube" class="space-y-3 flex-1 min-h-[150px]"></div>
+                </div>
+
+                <!-- Pinterest -->
+                <div class="bg-white/80 rounded-2xl p-4 border border-begeDark flex flex-col">
+                    <div class="flex items-center justify-between mb-4 pb-2 border-b border-begeDark">
+                        <span class="font-bold text-sm text-red-700 flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-red-600"></span> Pinterest
+                        </span>
+                        <span id="count-plat-pinterest" class="bg-bege text-xs font-semibold px-2 py-1 rounded-full text-gray-600">0</span>
+                    </div>
+                    <div id="plat-col-pinterest" class="space-y-3 flex-1 min-h-[150px]"></div>
+                </div>
             </div>
         </section>
 
-        <!-- TAB 3: IDEAS BANK -->
+        <!-- TAB 3: MONTHLY CALENDAR GRID VIEW -->
+        <section id="tab-calendar" class="hidden space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-xl md:text-2xl font-bold text-bordo">Calendário Mensal</h2>
+                    <p class="text-sm text-gray-500">Clique em qualquer dia para ver os conteúdos ou agendar um novo post</p>
+                </div>
+                <div class="flex items-center gap-3 bg-white px-4 py-2 rounded-xl border border-begeDark shadow-sm self-start sm:self-auto">
+                    <button onclick="changeMonth(-1)" class="p-1 hover:bg-bege rounded-lg text-bordo font-bold">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <span id="calendar-month-title" class="font-bold text-bordo text-sm md:text-base min-w-[130px] text-center uppercase tracking-wide">Mês</span>
+                    <button onclick="changeMonth(1)" class="p-1 hover:bg-bege rounded-lg text-bordo font-bold">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Calendar Container -->
+            <div class="bg-white rounded-2xl border border-begeDark p-3 md:p-6 shadow-sm">
+                <!-- Days of week header -->
+                <div class="grid grid-cols-7 gap-1 text-center font-bold text-xs text-bordo border-b border-begeDark pb-3 mb-2">
+                    <div>DOM</div>
+                    <div>SEG</div>
+                    <div>TER</div>
+                    <div>QUA</div>
+                    <div>QUI</div>
+                    <div>SEX</div>
+                    <div>SÁB</div>
+                </div>
+                <!-- Grid Days -->
+                <div id="calendar-grid" class="grid grid-cols-7 gap-1 md:gap-2"></div>
+            </div>
+        </section>
+
+        <!-- TAB 4: IDEAS BANK -->
         <section id="tab-ideas" class="hidden space-y-6">
             <div>
                 <h2 class="text-xl md:text-2xl font-bold text-bordo">Banco de Ideias</h2>
@@ -210,6 +309,7 @@
         </section>
 
     </main>
+
 
     <!-- Modal Adicionar/Editar Post -->
     <div id="modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
@@ -229,29 +329,40 @@
                     <input type="text" id="post-title" required class="w-full px-4 py-2.5 rounded-xl border border-begeDark focus:ring-2 focus:ring-vibrante focus:outline-none text-sm" placeholder="Ex: Lançamento do Produto">
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Plataforma</label>
-                        <select id="post-platform" class="w-full px-4 py-2.5 rounded-xl border border-begeDark focus:ring-2 focus:ring-vibrante focus:outline-none text-sm">
-                            <option value="Instagram">Instagram</option>
-                            <option value="TikTok">TikTok</option>
-                            <option value="YouTube">YouTube</option>
-                            <option value="Pinterest">Pinterest</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Formato</label>
-                        <select id="post-format" class="w-full px-4 py-2.5 rounded-xl border border-begeDark focus:ring-2 focus:ring-vibrante focus:outline-none text-sm">
-                            <option value="Carrossel">Carrossel</option>
-                            <option value="Reels">Reels / Video</option>
-                            <option value="Estático">Foto Estática</option>
-                            <option value="Stories">Stories</option>
-                        </select>
+                <!-- Multi-Platform Checkboxes -->
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-2">Plataformas (Selecione uma ou mais)</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="flex items-center gap-2 p-2.5 rounded-xl border border-begeDark hover:bg-bege cursor-pointer text-xs font-semibold text-gray-700">
+                            <input type="checkbox" name="platform-choice" value="Instagram" class="w-4 h-4 text-vibrante rounded accent-vibrante">
+                            <span>Instagram</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2.5 rounded-xl border border-begeDark hover:bg-bege cursor-pointer text-xs font-semibold text-gray-700">
+                            <input type="checkbox" name="platform-choice" value="TikTok" class="w-4 h-4 text-vibrante rounded accent-vibrante">
+                            <span>TikTok</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2.5 rounded-xl border border-begeDark hover:bg-bege cursor-pointer text-xs font-semibold text-gray-700">
+                            <input type="checkbox" name="platform-choice" value="YouTube" class="w-4 h-4 text-vibrante rounded accent-vibrante">
+                            <span>YouTube</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2.5 rounded-xl border border-begeDark hover:bg-bege cursor-pointer text-xs font-semibold text-gray-700">
+                            <input type="checkbox" name="platform-choice" value="Pinterest" class="w-4 h-4 text-vibrante rounded accent-vibrante">
+                            <span>Pinterest</span>
+                        </label>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Formato</label>
+                        <select id="post-format" class="w-full px-4 py-2.5 rounded-xl border border-begeDark focus:ring-2 focus:ring-vibrante focus:outline-none text-sm">
+                            <option value="Carrossel">Carrossel</option>
+                            <option value="Reels">Reels / Vídeo</option>
+                            <option value="Estático">Foto Estática</option>
+                            <option value="Stories">Stories</option>
+                        </select>
+                    </div>
+
                     <div>
                         <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Status</label>
                         <select id="post-status" class="w-full px-4 py-2.5 rounded-xl border border-begeDark focus:ring-2 focus:ring-vibrante focus:outline-none text-sm">
@@ -261,11 +372,11 @@
                             <option value="publicado">Publicado</option>
                         </select>
                     </div>
+                </div>
 
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Data de Publicação</label>
-                        <input type="date" id="post-date" class="w-full px-4 py-2.5 rounded-xl border border-begeDark focus:ring-2 focus:ring-vibrante focus:outline-none text-sm">
-                    </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Data de Publicação</label>
+                    <input type="date" id="post-date" class="w-full px-4 py-2.5 rounded-xl border border-begeDark focus:ring-2 focus:ring-vibrante focus:outline-none text-sm">
                 </div>
 
                 <div>
@@ -281,7 +392,28 @@
         </div>
     </div>
 
-    <!-- APP SCRIPT WITH FIREBASE -->
+    <!-- Modal Ver / Expandir Dia do Calendário -->
+    <div id="day-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between mb-4 border-b border-begeDark pb-3">
+                <div>
+                    <h3 id="day-modal-title" class="text-lg font-bold text-bordo">Posts do Dia</h3>
+                    <p id="day-modal-subtitle" class="text-xs text-gray-500"></p>
+                </div>
+                <button onclick="closeDayModal()" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <div id="day-modal-posts-list" class="space-y-3 mb-6"></div>
+
+            <button onclick="addPostForSelectedDate()" class="w-full bg-vibrante hover:bg-bordo text-white font-medium py-2.5 px-4 rounded-xl shadow text-sm flex items-center justify-center gap-2 transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                Agendar Novo Post Neste Dia
+            </button>
+        </div>
+    </div>
+
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyBtIr-5hhOKmGawG2Xhw2vIqRtNUivm4Cc",
@@ -296,6 +428,8 @@
         const db = firebase.firestore();
 
         let posts = [];
+        let currentDate = new Date();
+        let selectedDayDateStr = '';
 
         // Escutar alterações do Firebase em tempo real
         db.collection("posts").onSnapshot((snapshot) => {
@@ -303,8 +437,15 @@
             snapshot.forEach((doc) => {
                 posts.push({ id: doc.id, ...doc.data() });
             });
-            renderPosts();
+            renderAllViews();
         });
+
+        function renderAllViews() {
+            renderKanban();
+            renderPlatformsView();
+            renderMonthlyCalendar();
+            renderIdeas();
+        }
 
         // Recuperar dados armazenados anteriormente no navegador local
         function importOldData() {
@@ -316,6 +457,10 @@
                         if (confirm(`Encontrados ${parsed.length} posts salvos no navegador. Deseja enviá-los para a nuvem?`)) {
                             parsed.forEach(p => {
                                 delete p.id;
+                                // Se o post antigo tinha plataforma como string, convertemos em array
+                                if (p.platform && !Array.isArray(p.platforms)) {
+                                    p.platforms = [p.platform];
+                                }
                                 db.collection("posts").add(p);
                             });
                             alert("Posts recuperados e salvos na nuvem com sucesso!");
@@ -333,19 +478,21 @@
 
         // Alternar abas
         function switchTab(tab) {
-            document.getElementById('tab-kanban').classList.add('hidden');
-            document.getElementById('tab-calendar').classList.add('hidden');
-            document.getElementById('tab-ideas').classList.add('hidden');
+            ['kanban', 'platforms', 'calendar', 'ideas'].forEach(t => {
+                const el = document.getElementById(`tab-${t}`);
+                if (el) el.classList.add('hidden');
+            });
+
             document.getElementById(`tab-${tab}`).classList.remove('hidden');
 
-            ['kanban', 'calendar', 'ideas'].forEach(t => {
+            ['kanban', 'platforms', 'calendar', 'ideas'].forEach(t => {
                 const btn = document.getElementById(`nav-${t}`);
                 if (btn) {
                     btn.className = t === tab ? "w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition text-bordo bg-bege" : "w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege";
                 }
             });
 
-            ['kanban', 'calendar', 'ideas'].forEach(t => {
+            ['kanban', 'platforms', 'calendar', 'ideas'].forEach(t => {
                 const btn = document.getElementById(`mob-nav-${t}`);
                 if (btn) {
                     btn.className = t === tab ? "flex flex-col items-center gap-1 text-bordo" : "flex flex-col items-center gap-1 text-gray-400";
@@ -353,16 +500,27 @@
             });
         }
 
-        function openModal(post = null) {
+        // Abrir Modal de Criação/Edição
+        function openModal(post = null, defaultDate = null) {
             const modal = document.getElementById('modal');
             const form = document.getElementById('post-form');
             modal.classList.remove('hidden');
+
+            // Reset checkboxes
+            const checkboxes = document.querySelectorAll('input[name="platform-choice"]');
+            checkboxes.forEach(cb => cb.checked = false);
 
             if (post) {
                 document.getElementById('modal-title').innerText = 'Editar Conteúdo';
                 document.getElementById('post-id').value = post.id;
                 document.getElementById('post-title').value = post.title || '';
-                document.getElementById('post-platform').value = post.platform || 'Instagram';
+                
+                // Marcar plataformas salvas
+                const activePlatforms = post.platforms || (post.platform ? [post.platform] : ['Instagram']);
+                checkboxes.forEach(cb => {
+                    if (activePlatforms.includes(cb.value)) cb.checked = true;
+                });
+
                 document.getElementById('post-format').value = post.format || 'Carrossel';
                 document.getElementById('post-status').value = post.status || 'ideia';
                 document.getElementById('post-date').value = post.date || '';
@@ -371,6 +529,16 @@
                 document.getElementById('modal-title').innerText = 'Novo Conteúdo';
                 form.reset();
                 document.getElementById('post-id').value = '';
+                
+                // Instagram marcado como padrão para novos posts
+                checkboxes.forEach(cb => {
+                    if (cb.value === 'Instagram') cb.checked = true;
+                });
+
+                if (defaultDate) {
+                    document.getElementById('post-date').value = defaultDate;
+                    document.getElementById('post-status').value = 'agendado';
+                }
             }
         }
 
@@ -381,9 +549,21 @@
         function savePost(e) {
             e.preventDefault();
             const id = document.getElementById('post-id').value;
+
+            // Obter plataformas selecionadas
+            const selectedPlatforms = [];
+            const checkboxes = document.querySelectorAll('input[name="platform-choice"]:checked');
+            checkboxes.forEach(cb => selectedPlatforms.push(cb.value));
+
+            if (selectedPlatforms.length === 0) {
+                alert('Por favor, selecione pelo menos uma plataforma!');
+                return;
+            }
+
             const postData = {
                 title: document.getElementById('post-title').value,
-                platform: document.getElementById('post-platform').value,
+                platforms: selectedPlatforms,
+                platform: selectedPlatforms[0], // Compatibilidade com chamadas simples
                 format: document.getElementById('post-format').value,
                 status: document.getElementById('post-status').value,
                 date: document.getElementById('post-date').value,
@@ -398,6 +578,7 @@
             }
 
             closeModal();
+            closeDayModal();
         }
 
         function updateStatus(id, newStatus) {
@@ -407,6 +588,7 @@
         function deletePost(id) {
             if (confirm("Deseja mesmo excluir este post?")) {
                 db.collection("posts").doc(id).delete();
+                closeDayModal();
             }
         }
 
@@ -419,7 +601,20 @@
             return dateStr;
         }
 
-        function renderPosts() {
+        // Renderiza Badges de Plataforma
+        function getPlatformsBadgesHTML(post) {
+            const list = post.platforms || (post.platform ? [post.platform] : ['Instagram']);
+            return list.map(p => {
+                let badgeStyle = 'bg-bege text-bordo';
+                if (p === 'TikTok') badgeStyle = 'bg-gray-900 text-white';
+                if (p === 'YouTube') badgeStyle = 'bg-red-100 text-vibrante';
+                if (p === 'Pinterest') badgeStyle = 'bg-red-50 text-red-600';
+                if (p === 'Instagram') badgeStyle = 'bg-pink-100 text-pink';
+                return `<span class="text-[9px] font-bold px-1.5 py-0.5 rounded ${badgeStyle}">${p}</span>`;
+            }).join(' ');
+        }
+
+        function renderKanban() {
             const cols = {
                 ideia: document.getElementById('col-ideia'),
                 producao: document.getElementById('col-producao'),
@@ -444,8 +639,8 @@
                 }
 
                 card.innerHTML = 
-                    '<div class="flex items-center justify-between">' +
-                        '<span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-bege text-bordo">' + (post.platform || 'Instagram') + '</span>' +
+                    '<div class="flex flex-wrap items-center justify-between gap-1">' +
+                        '<div class="flex flex-wrap gap-1">' + getPlatformsBadgesHTML(post) + '</div>' +
                         '<span class="text-[10px] text-gray-400 font-medium">' + (post.format || 'Post') + '</span>' +
                     '</div>' +
                     '<h4 class="font-bold text-sm text-gray-800 leading-snug">' + (post.title || 'Sem título') + '</h4>' +
@@ -470,9 +665,175 @@
             document.getElementById('count-producao').innerText = counts.producao;
             document.getElementById('count-agendado').innerText = counts.agendado;
             document.getElementById('count-publicado').innerText = counts.publicado;
+        }
 
-            renderCalendar();
-            renderIdeas();
+        // Renderiza Visão por Plataforma
+        function renderPlatformsView() {
+            const platCols = {
+                Instagram: document.getElementById('plat-col-instagram'),
+                TikTok: document.getElementById('plat-col-tiktok'),
+                YouTube: document.getElementById('plat-col-youtube'),
+                Pinterest: document.getElementById('plat-col-pinterest')
+            };
+
+            Object.values(platCols).forEach(col => { if(col) col.innerHTML = ''; });
+            const platCounts = { Instagram: 0, TikTok: 0, YouTube: 0, Pinterest: 0 };
+
+            posts.forEach(post => {
+                const plist = post.platforms || (post.platform ? [post.platform] : ['Instagram']);
+                
+                plist.forEach(pName => {
+                    if (platCols[pName]) {
+                        platCounts[pName]++;
+
+                        const card = document.createElement('div');
+                        card.className = "bg-white p-3.5 rounded-xl border border-begeDark shadow-sm space-y-2";
+                        
+                        let statusBadge = 'bg-amarelo/20 text-yellow-800';
+                        if (post.status === 'producao') statusBadge = 'bg-azul/20 text-blue-800';
+                        if (post.status === 'agendado') statusBadge = 'bg-rosa/20 text-pink-800';
+                        if (post.status === 'publicado') statusBadge = 'bg-verde/20 text-green-800';
+
+                        const formattedDate = formatDate(post.date);
+
+                        card.innerHTML = 
+                            '<div class="flex items-center justify-between">' +
+                                '<span class="text-[9px] font-bold uppercase px-2 py-0.5 rounded-full ' + statusBadge + '">' + post.status + '</span>' +
+                                '<span class="text-[10px] text-gray-400 font-medium">' + (post.format || 'Post') + '</span>' +
+                            '</div>' +
+                            '<h4 class="font-bold text-sm text-gray-800 leading-snug">' + (post.title || 'Sem título') + '</h4>' +
+                            (formattedDate ? '<p class="text-[11px] text-rosa font-medium">📅 ' + formattedDate + '</p>' : '') +
+                            '<div class="pt-1 flex justify-end gap-2 border-t border-begeDark/50 text-gray-400">' +
+                                '<button onclick="openModalById(\'' + post.id + '\')" class="hover:text-bordo text-xs flex items-center gap-1 font-medium"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg> Editar</button>' +
+                            '</div>';
+
+                        platCols[pName].appendChild(card);
+                    }
+                });
+            });
+
+            document.getElementById('count-plat-instagram').innerText = platCounts.Instagram;
+            document.getElementById('count-plat-tiktok').innerText = platCounts.TikTok;
+            document.getElementById('count-plat-youtube').innerText = platCounts.YouTube;
+            document.getElementById('count-plat-pinterest').innerText = platCounts.Pinterest;
+        }
+
+        function changeMonth(offset) {
+            currentDate.setMonth(currentDate.getMonth() + offset);
+            renderMonthlyCalendar();
+        }
+
+        function renderMonthlyCalendar() {
+            const calendarGrid = document.getElementById('calendar-grid');
+            if (!calendarGrid) return;
+            calendarGrid.innerHTML = '';
+
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+
+            const monthNames = [
+                "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", 
+                "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+            ];
+
+            document.getElementById('calendar-month-title').innerText = `${monthNames[month]} ${year}`;
+
+            const firstDayIndex = new Date(year, month, 1).getDay();
+            const totalDaysInMonth = new Date(year, month + 1, 0).getDate();
+            const prevMonthTotalDays = new Date(year, month, 0).getDate();
+
+            // Dias do mês anterior
+            for (let x = firstDayIndex; x > 0; x--) {
+                const dayDiv = document.createElement('div');
+                dayDiv.className = "bg-bege/30 text-gray-300 min-h-[70px] md:min-h-[90px] p-1 md:p-2 rounded-xl text-xs flex flex-col opacity-60";
+                dayDiv.innerHTML = `<span class="font-bold">${prevMonthTotalDays - x + 1}</span>`;
+                calendarGrid.appendChild(dayDiv);
+            }
+
+            // Dias do mês atual
+            const todayStr = new Date().toISOString().split('T')[0];
+
+            for (let day = 1; day <= totalDaysInMonth; day++) {
+                const dayString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                
+                const isToday = dayString === todayStr;
+                const dayPosts = posts.filter(p => p.date === dayString);
+
+                const dayDiv = document.createElement('div');
+                dayDiv.onclick = () => openDayModal(dayString, dayPosts);
+                
+                dayDiv.className = `min-h-[70px] md:min-h-[95px] p-1.5 md:p-2 rounded-xl border text-xs flex flex-col justify-between cursor-pointer transition hover:border-vibrante hover:shadow-sm ${
+                    isToday ? 'bg-amber-50 border-vibrante text-bordo font-bold' : 'bg-white border-begeDark text-gray-700'
+                }`;
+
+                let postsPillsHTML = '';
+                if (dayPosts.length > 0) {
+                    postsPillsHTML = '<div class="space-y-1 my-1 overflow-hidden max-h-[55px]">';
+                    dayPosts.slice(0, 2).forEach(p => {
+                        let statusColor = 'bg-rosa text-white';
+                        if (p.status === 'publicado') statusColor = 'bg-verde text-white';
+                        postsPillsHTML += `<div class="text-[9px] px-1.5 py-0.5 rounded ${statusColor} truncate font-medium">${p.title}</div>`;
+                    });
+                    if (dayPosts.length > 2) {
+                        postsPillsHTML += `<div class="text-[9px] text-gray-400 font-bold text-center">+${dayPosts.length - 2} mais</div>`;
+                    }
+                    postsPillsHTML += '</div>';
+                }
+
+                dayDiv.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <span class="${isToday ? 'bg-vibrante text-white px-1.5 py-0.5 rounded-full text-[10px]' : 'font-bold'}">${day}</span>
+                        ${dayPosts.length > 0 ? `<span class="text-[9px] bg-bege text-bordo font-bold px-1 rounded-full">${dayPosts.length}</span>` : ''}
+                    </div>
+                    ${postsPillsHTML}
+                `;
+
+                calendarGrid.appendChild(dayDiv);
+            }
+        }
+
+        // Expanded Day Modal logic
+        function openDayModal(dateStr, dayPosts) {
+            selectedDayDateStr = dateStr;
+            const dayModal = document.getElementById('day-modal');
+            const listContainer = document.getElementById('day-modal-posts-list');
+            
+            document.getElementById('day-modal-title').innerText = `Posts para ${formatDate(dateStr)}`;
+            document.getElementById('day-modal-subtitle').innerText = `${dayPosts.length} conteúdo(s) programado(s)`;
+
+            listContainer.innerHTML = '';
+
+            if (dayPosts.length === 0) {
+                listContainer.innerHTML = '<p class="text-xs text-gray-400 text-center py-6">Nenhum post agendado para este dia.</p>';
+            } else {
+                dayPosts.forEach(p => {
+                    const item = document.createElement('div');
+                    item.className = "p-3 bg-bege/50 rounded-xl border border-begeDark space-y-2";
+                    item.innerHTML = `
+                        <div class="flex items-center justify-between">
+                            <div class="flex gap-1">${getPlatformsBadgesHTML(p)}</div>
+                            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase ${p.status === 'publicado' ? 'bg-verde/20 text-green-800' : 'bg-rosa/20 text-pink-800'}">${p.status}</span>
+                        </div>
+                        <h5 class="font-bold text-sm text-gray-800">${p.title}</h5>
+                        <p class="text-xs text-gray-600 line-clamp-2">${p.caption || 'Sem legenda'}</p>
+                        <div class="flex justify-end gap-2 pt-1">
+                            <button onclick="openModalById('${p.id}')" class="text-xs text-bordo font-bold">Editar</button>
+                            <button onclick="deletePost('${p.id}')" class="text-xs text-vibrante font-bold">Excluir</button>
+                        </div>
+                    `;
+                    listContainer.appendChild(item);
+                });
+            }
+
+            dayModal.classList.remove('hidden');
+        }
+
+        function closeDayModal() {
+            document.getElementById('day-modal').classList.add('hidden');
+        }
+
+        function addPostForSelectedDate() {
+            openModal(null, selectedDayDateStr);
         }
 
         function openModalById(id) {
@@ -480,41 +841,9 @@
             if (post) openModal(post);
         }
 
-        function renderCalendar() {
-            const calList = document.getElementById('calendar-list');
-            calList.innerHTML = '';
-            const datedPosts = posts.filter(p => p.date).sort((a,b) => new Date(a.date) - new Date(b.date));
-
-            if (datedPosts.length === 0) {
-                calList.innerHTML = '<p class="text-xs text-gray-400 text-center py-4">Nenhum post agendado com data definida.</p>';
-                return;
-            }
-
-            datedPosts.forEach(p => {
-                const parts = p.date.split('-');
-                const day = parts[2] || '';
-                const month = parts[1] || '';
-
-                const item = document.createElement('div');
-                item.className = "flex items-center justify-between p-3 bg-bege/50 rounded-xl border border-begeDark";
-                item.innerHTML = 
-                    '<div class="flex items-center gap-3">' +
-                        '<div class="text-center font-bold text-bordo bg-white p-2 rounded-lg border border-begeDark min-w-[50px]">' +
-                            '<span class="text-xs block uppercase">Mês ' + month + '</span>' +
-                            '<span class="text-base leading-none">' + day + '</span>' +
-                        '</div>' +
-                        '<div>' +
-                            '<h5 class="font-bold text-sm text-gray-800">' + (p.title || 'Sem título') + '</h5>' +
-                            '<span class="text-[10px] text-gray-500">' + (p.platform || '') + ' • ' + (p.format || '') + '</span>' +
-                        '</div>' +
-                    '</div>' +
-                    '<span class="text-xs font-semibold px-2 py-1 rounded-full ' + (p.status === 'publicado' ? 'bg-green-100 text-green-700' : 'bg-pink/10 text-pink') + '">' + p.status + '</span>';
-                calList.appendChild(item);
-            });
-        }
-
         function renderIdeas() {
             const ideasGrid = document.getElementById('ideas-grid');
+            if (!ideasGrid) return;
             ideasGrid.innerHTML = '';
             const ideaPosts = posts.filter(p => p.status === 'ideia');
 
@@ -527,6 +856,7 @@
                 const card = document.createElement('div');
                 card.className = "bg-white p-4 rounded-xl border border-begeDark shadow-sm space-y-2";
                 card.innerHTML = 
+                    '<div class="flex gap-1 mb-1">' + getPlatformsBadgesHTML(p) + '</div>' +
                     '<h5 class="font-bold text-sm text-bordo">' + (p.title || 'Sem título') + '</h5>' +
                     '<p class="text-xs text-gray-600 line-clamp-3">' + (p.caption || 'Sem descrição.') + '</p>' +
                     '<div class="pt-2 flex justify-end">' +
