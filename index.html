@@ -48,7 +48,7 @@
 </head>
 <body class="text-gray-800 min-h-screen flex flex-col md:flex-row">
 
-    <!-- Sidebar (Desktop) -->
+    <!-- Barra Lateral (Desktop) -->
     <aside class="hidden md:flex flex-col w-64 bg-white border-r border-begeDark p-6 flex-shrink-0 min-h-screen sticky top-0 h-screen overflow-y-auto">
         <div class="flex items-center gap-3 mb-6">
             <div class="w-10 h-10 rounded-xl bg-bordo flex items-center justify-center text-white font-bold text-xl shadow-md">
@@ -105,7 +105,7 @@
         </div>
     </aside>
 
-    <!-- Header Mobile -->
+    <!-- Cabeçalho Mobile -->
     <header class="md:hidden bg-white border-b border-begeDark p-4 flex items-center justify-between sticky top-0 z-20">
         <div class="flex items-center gap-3">
             <div class="w-9 h-9 rounded-lg bg-bordo flex items-center justify-center text-white font-bold text-lg">
@@ -129,7 +129,7 @@
         </div>
     </header>
 
-    <!-- Bottom Navigation (Mobile) -->
+    <!-- Navegação Inferior (Mobile) -->
     <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-begeDark px-2 py-2 flex justify-around items-center z-30 shadow-lg overflow-x-auto">
         <button onclick="switchTab('kanban')" id="mob-nav-kanban" class="flex flex-col items-center gap-1 text-bordo px-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
@@ -288,7 +288,7 @@
         <section id="tab-seasonal" class="hidden space-y-6">
             <div>
                 <h2 class="text-xl md:text-2xl font-bold text-bordo">Datas Sazonais & Comemorativas</h2>
-                <p class="text-sm text-gray-500">Planeie conteúdos estratégicos vinculados a eventos importantes do ano</p>
+                <p class="text-sm text-gray-500">Planeje conteúdos estratégicos vinculados a eventos importantes do ano</p>
             </div>
 
             <div class="bg-white p-6 rounded-2xl border border-begeDark space-y-4">
@@ -297,32 +297,71 @@
             </div>
         </section>
 
-        <!-- TAB 6: ESTRATÉGIA & SEO -->
+        <!-- TAB 6: ESTRATÉGIA & SEO (BANCO INTERATIVO DE TAGS) -->
         <section id="tab-strategy" class="hidden space-y-6">
             <div>
                 <h2 class="text-xl md:text-2xl font-bold text-bordo">Central de Estratégia & SEO</h2>
-                <p class="text-sm text-gray-500">Bancos de palavras-chave do nicho e análise de distribuição de objetivos</p>
+                <p class="text-sm text-gray-500">Gerencie termos por categorias e copie palavras-chave/hashtags em 1 clique</p>
             </div>
 
+            <!-- Adicionar Nova Tag / Categoria -->
+            <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3">
+                <h3 class="font-bold text-bordo text-sm">Adicionar Novo Termo / Hashtag ao Banco</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <input type="text" id="new-tag-text" class="px-3 py-2 rounded-xl border border-begeDark text-xs" placeholder="Ex: velas aromáticas ou #velasartesanais">
+                    <select id="new-tag-category" class="px-3 py-2 rounded-xl border border-begeDark text-xs">
+                        <option value="Marca & Nicho">Marca & Nicho</option>
+                        <option value="Produtos">Produtos</option>
+                        <option value="Intenção & Estilo de Vida">Intenção & Estilo de Vida</option>
+                        <option value="Hashtags do Bloco">Hashtags do Bloco</option>
+                    </select>
+                    <button onclick="addSeoTag()" class="bg-vibrante text-white text-xs font-semibold py-2 px-4 rounded-xl hover:bg-bordo transition">Adicionar Tag</button>
+                </div>
+            </div>
+
+            <!-- Categorias de Tags -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Banco Central de Keywords -->
-                <div class="bg-white p-6 rounded-2xl border border-begeDark space-y-4">
-                    <h3 class="font-bold text-bordo text-base flex items-center justify-between">
-                        <span>Banco de Palavras-Chave & Hashtags Frequentes</span>
-                    </h3>
-                    <p class="text-xs text-gray-500">Copie e cole os seus termos principais para manter consistência nos algoritmos.</p>
-                    
-                    <div class="space-y-2">
-                        <textarea id="global-keywords-input" rows="4" class="w-full p-3 rounded-xl border border-begeDark text-xs" placeholder="#decoracao #casaorganizada #arquitetura #dicasdecasa"></textarea>
-                        <button onclick="saveGlobalKeywords()" class="bg-vibrante text-white text-xs font-semibold px-4 py-2 rounded-xl hover:bg-bordo">Salvar Banco de SEO</button>
+                <!-- Marca & Nicho -->
+                <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3">
+                    <div class="flex justify-between items-center border-b border-begeDark pb-2">
+                        <h4 class="font-bold text-bordo text-xs uppercase">🏷️ Marca & Nicho</h4>
+                        <button onclick="copyCategoryTags('Marca & Nicho')" class="text-[10px] bg-bege hover:bg-begeDark text-bordo font-bold px-2.5 py-1 rounded-lg">Copiar Todos</button>
                     </div>
+                    <div id="tags-container-Marca & Nicho" class="flex flex-wrap gap-1.5 min-h-[50px]"></div>
                 </div>
 
-                <!-- Resumo dos Objetivos -->
-                <div class="bg-white p-6 rounded-2xl border border-begeDark space-y-4">
-                    <h3 class="font-bold text-bordo text-base">Distribuição por Objetivo de Conteúdo</h3>
-                    <div id="strategy-goals-summary" class="space-y-2 text-xs"></div>
+                <!-- Produtos -->
+                <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3">
+                    <div class="flex justify-between items-center border-b border-begeDark pb-2">
+                        <h4 class="font-bold text-bordo text-xs uppercase">📦 Produtos</h4>
+                        <button onclick="copyCategoryTags('Produtos')" class="text-[10px] bg-bege hover:bg-begeDark text-bordo font-bold px-2.5 py-1 rounded-lg">Copiar Todos</button>
+                    </div>
+                    <div id="tags-container-Produtos" class="flex flex-wrap gap-1.5 min-h-[50px]"></div>
                 </div>
+
+                <!-- Intenção & Estilo de Vida -->
+                <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3">
+                    <div class="flex justify-between items-center border-b border-begeDark pb-2">
+                        <h4 class="font-bold text-bordo text-xs uppercase">✨ Intenção & Estilo de Vida</h4>
+                        <button onclick="copyCategoryTags('Intenção & Estilo de Vida')" class="text-[10px] bg-bege hover:bg-begeDark text-bordo font-bold px-2.5 py-1 rounded-lg">Copiar Todos</button>
+                    </div>
+                    <div id="tags-container-Intenção & Estilo de Vida" class="flex flex-wrap gap-1.5 min-h-[50px]"></div>
+                </div>
+
+                <!-- Hashtags do Bloco -->
+                <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3">
+                    <div class="flex justify-between items-center border-b border-begeDark pb-2">
+                        <h4 class="font-bold text-bordo text-xs uppercase">#️⃣ Hashtags do Bloco</h4>
+                        <button onclick="copyCategoryTags('Hashtags do Bloco')" class="text-[10px] bg-bege hover:bg-begeDark text-bordo font-bold px-2.5 py-1 rounded-lg">Copiar Todos</button>
+                    </div>
+                    <div id="tags-container-Hashtags do Bloco" class="flex flex-wrap gap-1.5 min-h-[50px]"></div>
+                </div>
+            </div>
+
+            <!-- Resumo dos Objetivos -->
+            <div class="bg-white p-6 rounded-2xl border border-begeDark space-y-4">
+                <h3 class="font-bold text-bordo text-base">Distribuição por Objetivo de Conteúdo</h3>
+                <div id="strategy-goals-summary" class="space-y-2 text-xs"></div>
             </div>
         </section>
 
@@ -437,9 +476,12 @@
                     </div>
                 </div>
 
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Palavras-Chave & SEO do Post</label>
-                    <input type="text" id="post-keywords" class="w-full px-4 py-2 rounded-xl border border-begeDark text-xs" placeholder="Ex: #dicasdecoracao #mesaposta #organizacao">
+                <!-- Palavras-Chave do Post com Seleção Rápida de Tags do Banco -->
+                <div class="space-y-1.5">
+                    <label class="block text-xs font-bold text-gray-700 uppercase">Palavras-Chave & SEO do Post</label>
+                    <input type="text" id="post-keywords" class="w-full px-4 py-2 rounded-xl border border-begeDark text-xs" placeholder="Termos do post (Ex: #velasaromaticas #mesaposta)">
+                    <p class="text-[10px] text-gray-500 font-medium">Clique nas tags do seu banco abaixo para incluir diretamente neste post:</p>
+                    <div id="modal-quick-tags" class="flex flex-wrap gap-1 p-2 bg-bege/50 rounded-xl border border-begeDark/50 max-h-24 overflow-y-auto"></div>
                 </div>
 
                 <div>
@@ -470,9 +512,10 @@
         const db = firebase.firestore();
 
         let posts = [];
+        let seoTags = [];
         let currentCalendarDate = new Date();
 
-        // Escutar alterações do Firebase em tempo real
+        // Escutar alterações dos Posts do Firebase em tempo real
         db.collection("posts").onSnapshot((snapshot) => {
             posts = [];
             snapshot.forEach((doc) => {
@@ -481,17 +524,111 @@
             renderAllViews();
         });
 
-        // Carregar Banco de Keywords Globais
-        db.collection("settings").doc("seo").get().then((doc) => {
-            if (doc.exists && doc.data().keywords) {
-                document.getElementById('global-keywords-input').value = doc.data().keywords;
+        // Escutar alterações do Banco de Tags SEO em tempo real
+        db.collection("settings").doc("seo_tags").onSnapshot((doc) => {
+            if (doc.exists && doc.data().list) {
+                seoTags = doc.data().list;
+            } else {
+                seoTags = [
+                    { id: '1', text: 'velas aromáticas', category: 'Marca & Nicho' },
+                    { id: '2', text: 'porta velas', category: 'Produtos' },
+                    { id: '3', text: 'autocuidado', category: 'Intenção & Estilo de Vida' },
+                    { id: '4', text: '#velasaromaticas #decoracao', category: 'Hashtags do Bloco' }
+                ];
             }
+            renderSeoTags();
+            renderModalQuickTags();
         });
 
-        function saveGlobalKeywords() {
-            const text = document.getElementById('global-keywords-input').value;
-            db.collection("settings").doc("seo").set({ keywords: text });
-            alert("Banco de SEO atualizado com sucesso!");
+        function saveSeoTagsToFirebase() {
+            db.collection("settings").doc("seo_tags").set({ list: seoTags });
+        }
+
+        function addSeoTag() {
+            const input = document.getElementById('new-tag-text');
+            const categorySelect = document.getElementById('new-tag-category');
+            const text = input.value.trim();
+            const category = categorySelect.value;
+
+            if (!text) return;
+
+            const newTag = {
+                id: Date.now().toString(),
+                text: text,
+                category: category
+            };
+
+            seoTags.push(newTag);
+            saveSeoTagsToFirebase();
+            input.value = '';
+        }
+
+        function removeSeoTag(tagId) {
+            seoTags = seoTags.filter(t => t.id !== tagId);
+            saveSeoTagsToFirebase();
+        }
+
+        function copyCategoryTags(category) {
+            const catTags = seoTags.filter(t => t.category === category).map(t => t.text).join(' ');
+            if (catTags) {
+                navigator.clipboard.writeText(catTags);
+                alert(`Tags da categoria "${category}" copiadas para a área de transferência!`);
+            } else {
+                alert('Nenhuma tag cadastrada nesta categoria.');
+            }
+        }
+
+        function appendTagToPostInput(text) {
+            const field = document.getElementById('post-keywords');
+            if (field.value.trim() === '') {
+                field.value = text;
+            } else {
+                field.value = field.value.trim() + ' ' + text;
+            }
+        }
+
+        function renderSeoTags() {
+            const categories = ['Marca & Nicho', 'Produtos', 'Intenção & Estilo de Vida', 'Hashtags do Bloco'];
+            categories.forEach(cat => {
+                const container = document.getElementById(`tags-container-${cat}`);
+                if (!container) return;
+                container.innerHTML = '';
+
+                const catTags = seoTags.filter(t => t.category === cat);
+                if (catTags.length === 0) {
+                    container.innerHTML = '<span class="text-[10px] text-gray-400 italic">Nenhum termo cadastrado.</span>';
+                    return;
+                }
+
+                catTags.forEach(t => {
+                    const tagEl = document.createElement('div');
+                    tagEl.className = "bg-bege hover:bg-begeDark border border-begeDark rounded-lg px-2.5 py-1 text-xs text-bordo flex items-center gap-1.5 shadow-2xs";
+                    tagEl.innerHTML = 
+                        `<span class="font-medium cursor-pointer" onclick="navigator.clipboard.writeText('${t.text}'); alert('Copiado: ${t.text}');" title="Clique para copiar">${t.text}</span>` +
+                        `<button onclick="removeSeoTag('${t.id}')" class="text-gray-400 hover:text-vibrante font-bold text-xs">×</button>`;
+                    container.appendChild(tagEl);
+                });
+            });
+        }
+
+        function renderModalQuickTags() {
+            const container = document.getElementById('modal-quick-tags');
+            if (!container) return;
+            container.innerHTML = '';
+
+            if (seoTags.length === 0) {
+                container.innerHTML = '<span class="text-[10px] text-gray-400">Nenhuma tag cadastrada no Banco de SEO.</span>';
+                return;
+            }
+
+            seoTags.forEach(t => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = "bg-white hover:bg-bordo hover:text-white border border-begeDark px-2 py-0.5 rounded text-[10px] text-bordo font-medium transition";
+                btn.innerText = `+ ${t.text}`;
+                btn.onclick = () => appendTagToPostInput(t.text);
+                container.appendChild(btn);
+            });
         }
 
         function importOldData() {
@@ -553,7 +690,6 @@
             const form = document.getElementById('post-form');
             modal.classList.remove('hidden');
 
-            // Reset checkboxes
             document.querySelectorAll('input[name="platform"]').forEach(cb => cb.checked = false);
 
             if (post) {
@@ -590,6 +726,8 @@
                 }
                 toggleSeasonalInput();
             }
+
+            renderModalQuickTags();
         }
 
         function closeModal() {
@@ -711,7 +849,6 @@
             document.getElementById('count-publicado').innerText = counts.publicado;
         }
 
-        // Calendário Mensal
         function changeMonth(delta) {
             currentCalendarDate.setMonth(currentCalendarDate.getMonth() + delta);
             renderMonthlyCalendar();
