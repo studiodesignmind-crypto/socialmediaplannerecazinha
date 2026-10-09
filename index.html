@@ -7,7 +7,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -44,6 +44,21 @@
         @media (min-width: 768px) {
             body { padding-bottom: 0; }
         }
+        /* Custom Scrollbar for smooth experience */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F7F2E7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #EFE8D8;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8C1D24;
+        }
     </style>
 </head>
 <body class="text-gray-800 min-h-screen flex flex-col md:flex-row">
@@ -66,34 +81,38 @@
             <span>Nuvem Ativa (Firebase)</span>
         </div>
 
-        <nav class="space-y-1.5 flex-1">
-            <button onclick="switchTab('kanban')" id="nav-kanban" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-bordo bg-bege">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+        <nav class="space-y-1 flex-1">
+            <button onclick="switchTab('kanban')" id="nav-kanban" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-xs transition text-bordo bg-bege">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
                 Planejador (Kanban)
             </button>
-            <button onclick="switchTab('calendar')" id="nav-calendar" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            <button onclick="switchTab('calendar')" id="nav-calendar" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-xs transition text-gray-500 hover:bg-bege">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                 Calendário Mensal
             </button>
-            <button onclick="switchTab('platforms')" id="nav-platforms" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            <button onclick="switchTab('platforms')" id="nav-platforms" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-xs transition text-gray-500 hover:bg-bege">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                 Plataformas
             </button>
-            <button onclick="switchTab('ideas')" id="nav-ideas" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+            <button onclick="switchTab('ideas')" id="nav-ideas" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-xs transition text-gray-500 hover:bg-bege">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
                 Banco de Ideias
             </button>
-            <button onclick="switchTab('brandmural')" id="nav-brandmural" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+            <button onclick="switchTab('brandmural')" id="nav-brandmural" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-xs transition text-gray-500 hover:bg-bege">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
                 Mural da Marca
             </button>
-            <button onclick="switchTab('seasonal')" id="nav-seasonal" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+            <button onclick="switchTab('seasonal')" id="nav-seasonal" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-xs transition text-gray-500 hover:bg-bege">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
                 Datas Sazonais
             </button>
-            <button onclick="switchTab('strategy')" id="nav-strategy" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path></svg>
+            <button onclick="switchTab('strategy')" id="nav-strategy" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-xs transition text-gray-500 hover:bg-bege">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path></svg>
                 Estratégia & SEO
+            </button>
+            <button onclick="switchTab('metrics')" id="nav-metrics" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-bold text-xs transition text-rosa bg-pink/10 hover:bg-pink/20 border border-pink/20">
+                <svg class="w-4 h-4 text-pink" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                Métricas & Resultados
             </button>
         </nav>
 
@@ -135,29 +154,29 @@
 
     <!-- Navegação Inferior (Mobile) -->
     <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-begeDark px-2 py-2 flex justify-around items-center z-30 shadow-lg overflow-x-auto">
-        <button onclick="switchTab('kanban')" id="mob-nav-kanban" class="flex flex-col items-center gap-1 text-bordo px-2">
+        <button onclick="switchTab('kanban')" id="mob-nav-kanban" class="flex flex-col items-center gap-1 text-bordo px-2 flex-shrink-0">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
             <span class="text-[9px] font-medium">Kanban</span>
         </button>
-        <button onclick="switchTab('calendar')" id="mob-nav-calendar" class="flex flex-col items-center gap-1 text-gray-400 px-2">
+        <button onclick="switchTab('calendar')" id="mob-nav-calendar" class="flex flex-col items-center gap-1 text-gray-400 px-2 flex-shrink-0">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
             <span class="text-[9px] font-medium">Agenda</span>
         </button>
-        <button onclick="switchTab('ideas')" id="mob-nav-ideas" class="flex flex-col items-center gap-1 text-gray-400 px-2">
+        <button onclick="switchTab('ideas')" id="mob-nav-ideas" class="flex flex-col items-center gap-1 text-gray-400 px-2 flex-shrink-0">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
             <span class="text-[9px] font-medium">Ideias</span>
         </button>
-        <button onclick="switchTab('brandmural')" id="mob-nav-brandmural" class="flex flex-col items-center gap-1 text-gray-400 px-2">
+        <button onclick="switchTab('brandmural')" id="mob-nav-brandmural" class="flex flex-col items-center gap-1 text-gray-400 px-2 flex-shrink-0">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
             <span class="text-[9px] font-medium">Mural</span>
         </button>
-        <button onclick="switchTab('seasonal')" id="mob-nav-seasonal" class="flex flex-col items-center gap-1 text-gray-400 px-2">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
-            <span class="text-[9px] font-medium">Datas</span>
-        </button>
-        <button onclick="switchTab('strategy')" id="mob-nav-strategy" class="flex flex-col items-center gap-1 text-gray-400 px-2">
+        <button onclick="switchTab('strategy')" id="mob-nav-strategy" class="flex flex-col items-center gap-1 text-gray-400 px-2 flex-shrink-0">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path></svg>
             <span class="text-[9px] font-medium">SEO</span>
+        </button>
+        <button onclick="switchTab('metrics')" id="mob-nav-metrics" class="flex flex-col items-center gap-1 text-pink font-bold px-2 flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+            <span class="text-[9px]">Métricas</span>
         </button>
     </nav>
 
@@ -214,7 +233,7 @@
             </div>
         </section>
 
-        <!-- TAB 2: CALENDÁRIO MENSAL INTERATIVO -->
+        <!-- TAB 2: CALENDÁRIO MENSAL -->
         <section id="tab-calendar" class="hidden space-y-6">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
@@ -232,7 +251,6 @@
                 </div>
             </div>
 
-            <!-- Grade do Mês -->
             <div class="bg-white rounded-2xl p-4 md:p-6 border border-begeDark shadow-sm">
                 <div class="grid grid-cols-7 gap-1 md:gap-2 mb-2 text-center text-xs font-bold text-bordo uppercase">
                     <div>Dom</div><div>Seg</div><div>Ter</div><div>Qua</div><div>Qui</div><div>Sex</div><div>Sáb</div>
@@ -241,7 +259,7 @@
             </div>
         </section>
 
-        <!-- TAB 3: VISUALIZAÇÃO POR PLATAFORMAS -->
+        <!-- TAB 3: PLATAFORMAS -->
         <section id="tab-platforms" class="hidden space-y-6">
             <div>
                 <h2 class="text-xl md:text-2xl font-bold text-bordo">Organização por Rede Social</h2>
@@ -279,7 +297,7 @@
             </div>
         </section>
 
-        <!-- TAB 4: BANCO DE IDEIAS (DE POSTS) -->
+        <!-- TAB 4: BANCO DE IDEIAS -->
         <section id="tab-ideas" class="hidden space-y-6">
             <div>
                 <h2 class="text-xl md:text-2xl font-bold text-bordo">Banco de Ideias de Posts</h2>
@@ -288,21 +306,21 @@
             <div id="ideas-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
         </section>
 
-        <!-- TAB 5: MURAL DA MARCA (ANOTAÇÕES LIVRES E INSIGHTS GERAIS) -->
+        <!-- TAB 5: MURAL DA MARCA -->
         <section id="tab-brandmural" class="hidden space-y-6">
             <div>
                 <h2 class="text-xl md:text-2xl font-bold text-bordo">Mural da Marca & Caderno Vivo</h2>
-                <p class="text-sm text-gray-500">Espaço para descarregar ideias soltas, novos produtos, embalagens, feedbacks e lembretes gerais</p>
+                <p class="text-sm text-gray-500">Espaço livre para descarregar ideias soltas, produtos, embalagens, feedbacks e lembretes gerais</p>
             </div>
 
             <!-- Criador de Nota Rápida -->
             <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3 shadow-sm">
                 <h3 class="font-bold text-bordo text-sm">📝 Anotar Ideia ou Insight Rápido</h3>
-                <textarea id="brand-note-text" rows="2" class="w-full p-3 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Digite aqui qualquer pensamento sobre a marca (ex: testar essência de flor de laranjeira, ideia de brinde para novos clientes, ajustar fotos do site)..."></textarea>
+                <textarea id="brand-note-text" rows="2" class="w-full p-3 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Digite qualquer pensamento sobre a marca (ex: testar essência de flor de laranjeira, brinde especial para clientes)..."></textarea>
                 
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
                     <div class="space-y-1">
-                        <span class="text-[10px] font-bold text-gray-600 uppercase block">Categorias (Selecione quantas desejar):</span>
+                        <span class="text-[10px] font-bold text-gray-600 uppercase block">Categorias (Múltipla Escolha):</span>
                         <div class="flex flex-wrap gap-2 text-xs">
                             <label class="flex items-center gap-1 bg-bege px-2.5 py-1 rounded-lg border border-begeDark cursor-pointer">
                                 <input type="checkbox" name="brand-note-cat" value="Produtos & Essências" class="accent-bordo"> 📦 Produtos & Essências
@@ -339,14 +357,14 @@
             </div>
         </section>
 
-        <!-- TAB 7: ESTRATÉGIA & SEO (BANCO INTERATIVO DE TAGS COM MÚLTIPLAS CATEGORIAS) -->
+        <!-- TAB 7: ESTRATÉGIA & SEO -->
         <section id="tab-strategy" class="hidden space-y-6">
             <div>
                 <h2 class="text-xl md:text-2xl font-bold text-bordo">Central de Estratégia & SEO</h2>
                 <p class="text-sm text-gray-500">Gerencie termos por categorias e copie palavras-chave/hashtags em 1 clique</p>
             </div>
 
-            <!-- Adicionar Nova Tag com Múltiplas Categorias -->
+            <!-- Adicionar Nova Tag -->
             <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3">
                 <h3 class="font-bold text-bordo text-sm">Adicionar Novo Termo / Hashtag ao Banco</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -378,7 +396,6 @@
 
             <!-- Categorias de Tags -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Marca & Nicho -->
                 <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3">
                     <div class="flex justify-between items-center border-b border-begeDark pb-2">
                         <h4 class="font-bold text-bordo text-xs uppercase">🏷️ Marca & Nicho</h4>
@@ -387,7 +404,6 @@
                     <div id="tags-container-Marca & Nicho" class="flex flex-wrap gap-1.5 min-h-[50px]"></div>
                 </div>
 
-                <!-- Produtos -->
                 <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3">
                     <div class="flex justify-between items-center border-b border-begeDark pb-2">
                         <h4 class="font-bold text-bordo text-xs uppercase">📦 Produtos</h4>
@@ -396,7 +412,6 @@
                     <div id="tags-container-Produtos" class="flex flex-wrap gap-1.5 min-h-[50px]"></div>
                 </div>
 
-                <!-- Intenção & Estilo de Vida -->
                 <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3">
                     <div class="flex justify-between items-center border-b border-begeDark pb-2">
                         <h4 class="font-bold text-bordo text-xs uppercase">✨ Intenção & Estilo de Vida</h4>
@@ -405,7 +420,6 @@
                     <div id="tags-container-Intenção & Estilo de Vida" class="flex flex-wrap gap-1.5 min-h-[50px]"></div>
                 </div>
 
-                <!-- Hashtags do Bloco -->
                 <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3">
                     <div class="flex justify-between items-center border-b border-begeDark pb-2">
                         <h4 class="font-bold text-bordo text-xs uppercase">#️⃣ Hashtags do Bloco</h4>
@@ -415,16 +429,99 @@
                 </div>
             </div>
 
-            <!-- Resumo dos Objetivos -->
             <div class="bg-white p-6 rounded-2xl border border-begeDark space-y-4">
-                <h3 class="font-bold text-bordo text-base">Distribuição por Objetivo de Conteúdo</h3>
+                <h3 class="font-bold text-bordo text-base">Distribuição de Conteúdo por Objetivo</h3>
                 <div id="strategy-goals-summary" class="space-y-2 text-xs"></div>
+            </div>
+        </section>
+
+        <!-- TAB 8: MÉTRICAS & RESULTADOS (NOVO!) -->
+        <section id="tab-metrics" class="hidden space-y-6">
+            <div>
+                <h2 class="text-xl md:text-2xl font-bold text-bordo flex items-center gap-2">
+                    📊 Métricas & Análise de Desempenho
+                </h2>
+                <p class="text-sm text-gray-500">Acompanhe os resultados dos seus posts publicados para otimizar sua estratégia</p>
+            </div>
+
+            <!-- KPIs Principais -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white p-5 rounded-2xl border border-begeDark shadow-2xs space-y-1">
+                    <p class="text-[10px] font-bold uppercase text-gray-500">Alcance Total</p>
+                    <h3 id="metric-kpi-reach" class="text-xl md:text-2xl font-bold text-bordo">0</h3>
+                    <p class="text-[10px] text-gray-400">Contas alcançadas acumuladas</p>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-begeDark shadow-2xs space-y-1">
+                    <p class="text-[10px] font-bold uppercase text-gray-500">Engajamento Médio</p>
+                    <h3 id="metric-kpi-engagement" class="text-xl md:text-2xl font-bold text-rosa">0%</h3>
+                    <p class="text-[10px] text-gray-400">Reações / Alcance médio</p>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-begeDark shadow-2xs space-y-1">
+                    <p class="text-[10px] font-bold uppercase text-gray-500">Vendas / Cliques</p>
+                    <h3 id="metric-kpi-conversions" class="text-xl md:text-2xl font-bold text-verde">0</h3>
+                    <p class="text-[10px] text-gray-400">Ações diretas geradas</p>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-begeDark shadow-2xs space-y-1">
+                    <p class="text-[10px] font-bold uppercase text-gray-500">Top Post Destaque</p>
+                    <h3 id="metric-kpi-top-post" class="text-xs font-bold text-bordo line-clamp-1">Nenhum ainda</h3>
+                    <p id="metric-kpi-top-sub" class="text-[10px] text-rosa font-medium">Cadastre métricas nos posts</p>
+                </div>
+            </div>
+
+            <!-- Comparativo por Pilar & Plataforma -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Desempenho por Pilar -->
+                <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-4">
+                    <h3 class="font-bold text-bordo text-sm flex items-center justify-between">
+                        <span>🎯 Desempenho por Pilar de Conteúdo</span>
+                        <span class="text-[10px] text-gray-400 font-normal">Média de Engajamento</span>
+                    </h3>
+                    <div id="pillar-metrics-chart" class="space-y-3"></div>
+                </div>
+
+                <!-- Comparativo por Plataforma -->
+                <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-4">
+                    <h3 class="font-bold text-bordo text-sm">📱 Total de Interações por Plataforma</h3>
+                    <div id="platform-metrics-chart" class="space-y-3"></div>
+                </div>
+            </div>
+
+            <!-- Tabela / Registro Completo de Métricas -->
+            <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-4">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+                    <h3 class="font-bold text-bordo text-sm">📋 Registro de Métricas dos Posts Publicados</h3>
+                    <div class="flex items-center gap-2">
+                        <label class="text-xs text-gray-500 font-medium">Ordenar por:</label>
+                        <select id="metrics-sort-by" onchange="renderMetricsTable()" class="text-xs border border-begeDark rounded-xl px-2.5 py-1.5 bg-bege text-bordo font-medium">
+                            <option value="date">Data de Publicação</option>
+                            <option value="reach">Maior Alcance</option>
+                            <option value="likes">Mais Curtidas</option>
+                            <option value="conversions">Mais Vendas/Cliques</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead>
+                            <tr class="border-b border-begeDark text-bordo uppercase font-bold text-[10px] bg-bege/50">
+                                <th class="p-2.5">Post / Data</th>
+                                <th class="p-2.5">Rede & Pilar</th>
+                                <th class="p-2.5 text-center">Alcance</th>
+                                <th class="p-2.5 text-center">Interações (❤️💬↗️💾)</th>
+                                <th class="p-2.5 text-center">Vendas/Cliques</th>
+                                <th class="p-2.5 text-right">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody id="metrics-table-body" class="divide-y divide-begeDark/50"></tbody>
+                    </table>
+                </div>
             </div>
         </section>
 
     </main>
 
-    <!-- Modal Adicionar/Editar Post -->
+    <!-- Modal Adicionar/Editar Post e Métricas -->
     <div id="modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-xl max-h-[90vh] overflow-y-auto">
             <div class="flex items-center justify-between mb-6 border-b border-begeDark pb-3">
@@ -442,7 +539,7 @@
                     <input type="text" id="post-title" required class="w-full px-4 py-2.5 rounded-xl border border-begeDark focus:ring-2 focus:ring-vibrante focus:outline-none text-sm" placeholder="Ex: Lançamento do Produto X">
                 </div>
 
-                <!-- Múltiplas Plataformas (Checkboxes) -->
+                <!-- Múltiplas Plataformas -->
                 <div>
                     <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Plataformas</label>
                     <div class="flex flex-wrap gap-2 text-xs">
@@ -474,7 +571,7 @@
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Status</label>
-                        <select id="post-status" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
+                        <select id="post-status" onchange="toggleMetricsFormFields()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs font-semibold text-bordo">
                             <option value="ideia">Ideia</option>
                             <option value="producao">Em Produção</option>
                             <option value="agendado">Agendado</option>
@@ -522,6 +619,43 @@
                     </div>
                 </div>
 
+                <!-- BLOCO DE MÉTRICAS (VISÍVEL SE PUBLICADO OU PREENCHIDO) -->
+                <div id="metrics-input-box" class="bg-pink/5 border border-pink/30 p-4 rounded-xl space-y-3">
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-bold text-xs text-bordo uppercase flex items-center gap-1.5">
+                            📈 Métricas do Post (Registrar após publicação)
+                        </h4>
+                        <span class="text-[10px] text-rosa font-medium">Opcional</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
+                        <div>
+                            <label class="block text-[10px] text-gray-600 font-semibold mb-0.5">Alcance (Contas)</label>
+                            <input type="number" id="post-metric-reach" min="0" class="w-full px-2.5 py-1.5 rounded-lg border border-begeDark" placeholder="Ex: 1250">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-gray-600 font-semibold mb-0.5">Impressões</label>
+                            <input type="number" id="post-metric-impressions" min="0" class="w-full px-2.5 py-1.5 rounded-lg border border-begeDark" placeholder="Ex: 1800">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-gray-600 font-semibold mb-0.5">Vendas / Cliques no Link</label>
+                            <input type="number" id="post-metric-conversions" min="0" class="w-full px-2.5 py-1.5 rounded-lg border border-begeDark" placeholder="Ex: 12">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-gray-600 font-semibold mb-0.5">Curtidas ❤️</label>
+                            <input type="number" id="post-metric-likes" min="0" class="w-full px-2.5 py-1.5 rounded-lg border border-begeDark" placeholder="Ex: 85">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-gray-600 font-semibold mb-0.5">Comentários 💬</label>
+                            <input type="number" id="post-metric-comments" min="0" class="w-full px-2.5 py-1.5 rounded-lg border border-begeDark" placeholder="Ex: 14">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-gray-600 font-semibold mb-0.5">Compartilhamentos / Saves ↗️💾</label>
+                            <input type="number" id="post-metric-shares" min="0" class="w-full px-2.5 py-1.5 rounded-lg border border-begeDark" placeholder="Ex: 22">
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Conteúdo Sazonal Toggle -->
                 <div class="bg-bege/60 p-3 rounded-xl space-y-2 border border-begeDark">
                     <label class="flex items-center gap-2 text-xs font-bold text-bordo cursor-pointer">
@@ -533,7 +667,7 @@
                     </div>
                 </div>
 
-                <!-- Palavras-Chave do Post com Seleção Rápida de Tags do Banco -->
+                <!-- Palavras-Chave do Post -->
                 <div class="space-y-1.5">
                     <label class="block text-xs font-bold text-gray-700 uppercase">Palavras-Chave & SEO do Post</label>
                     <input type="text" id="post-keywords" class="w-full px-4 py-2 rounded-xl border border-begeDark text-xs" placeholder="Termos do post (Ex: #velasaromaticas #mesaposta)">
@@ -554,7 +688,7 @@
         </div>
     </div>
 
-    <!-- SCRIPT DA APLICAÇÃO COM FIREBASE -->
+    <!-- SCRIPT DA APLICAÇÃO COM FIREBASE & MÉTRICAS -->
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyBtIr-5hhOKmGawG2Xhw2vIqRtNUivm4Cc",
@@ -792,26 +926,27 @@
         }
 
         function switchTab(tab) {
-            ['kanban', 'calendar', 'platforms', 'ideas', 'brandmural', 'seasonal', 'strategy'].forEach(t => {
+            ['kanban', 'calendar', 'platforms', 'ideas', 'brandmural', 'seasonal', 'strategy', 'metrics'].forEach(t => {
                 const el = document.getElementById(`tab-${t}`);
                 if (el) el.classList.add('hidden');
 
                 const btnDesk = document.getElementById(`nav-${t}`);
                 if (btnDesk) {
                     btnDesk.className = t === tab 
-                        ? "w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-bordo bg-bege" 
-                        : "w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege";
+                        ? (t === 'metrics' ? "w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-bold text-xs transition text-white bg-pink shadow" : "w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-xs transition text-bordo bg-bege")
+                        : (t === 'metrics' ? "w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-bold text-xs transition text-pink bg-pink/10 hover:bg-pink/20 border border-pink/20" : "w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-xs transition text-gray-500 hover:bg-bege");
                 }
 
                 const btnMob = document.getElementById(`mob-nav-${t}`);
                 if (btnMob) {
                     btnMob.className = t === tab 
-                        ? "flex flex-col items-center gap-1 text-bordo px-2" 
-                        : "flex flex-col items-center gap-1 text-gray-400 px-2";
+                        ? "flex flex-col items-center gap-1 text-bordo px-2 flex-shrink-0 font-bold" 
+                        : "flex flex-col items-center gap-1 text-gray-400 px-2 flex-shrink-0";
                 }
             });
 
             document.getElementById(`tab-${tab}`).classList.remove('hidden');
+            if (tab === 'metrics') renderMetricsView();
         }
 
         function toggleSeasonalInput() {
@@ -819,6 +954,14 @@
             const container = document.getElementById('seasonal-extra-field');
             if (chk.checked) container.classList.remove('hidden');
             else container.classList.add('hidden');
+        }
+
+        function toggleMetricsFormFields() {
+            const status = document.getElementById('post-status').value;
+            const box = document.getElementById('metrics-input-box');
+            if (status === 'publicado') {
+                box.classList.remove('opacity-60');
+            }
         }
 
         function openModal(post = null, defaultDate = null) {
@@ -841,6 +984,15 @@
                 document.getElementById('post-media-status').value = post.mediaStatus || 'A Gravar';
                 document.getElementById('post-keywords').value = post.keywords || '';
 
+                // Preencher Métricas do Post
+                const m = post.metrics || {};
+                document.getElementById('post-metric-reach').value = m.reach || '';
+                document.getElementById('post-metric-impressions').value = m.impressions || '';
+                document.getElementById('post-metric-conversions').value = m.conversions || '';
+                document.getElementById('post-metric-likes').value = m.likes || '';
+                document.getElementById('post-metric-comments').value = m.comments || '';
+                document.getElementById('post-metric-shares').value = m.shares || '';
+
                 const isSeasonal = post.isSeasonal || false;
                 document.getElementById('post-is-seasonal').checked = isSeasonal;
                 document.getElementById('post-seasonal-event').value = post.seasonalEvent || '';
@@ -856,6 +1008,15 @@
                 form.reset();
                 document.getElementById('post-id').value = '';
                 document.querySelector('input[name="platform"][value="Instagram"]').checked = true;
+
+                // Limpar métricas
+                document.getElementById('post-metric-reach').value = '';
+                document.getElementById('post-metric-impressions').value = '';
+                document.getElementById('post-metric-conversions').value = '';
+                document.getElementById('post-metric-likes').value = '';
+                document.getElementById('post-metric-comments').value = '';
+                document.getElementById('post-metric-shares').value = '';
+
                 if (defaultDate) {
                     document.getElementById('post-date').value = defaultDate;
                     document.getElementById('post-status').value = 'agendado';
@@ -863,6 +1024,7 @@
                 toggleSeasonalInput();
             }
 
+            toggleMetricsFormFields();
             renderModalQuickTags();
         }
 
@@ -876,6 +1038,14 @@
 
             const selectedPlats = [];
             document.querySelectorAll('input[name="platform"]:checked').forEach(cb => selectedPlats.push(cb.value));
+
+            // Métricas
+            const reach = parseInt(document.getElementById('post-metric-reach').value) || 0;
+            const impressions = parseInt(document.getElementById('post-metric-impressions').value) || 0;
+            const conversions = parseInt(document.getElementById('post-metric-conversions').value) || 0;
+            const likes = parseInt(document.getElementById('post-metric-likes').value) || 0;
+            const comments = parseInt(document.getElementById('post-metric-comments').value) || 0;
+            const shares = parseInt(document.getElementById('post-metric-shares').value) || 0;
 
             const postData = {
                 title: document.getElementById('post-title').value,
@@ -891,6 +1061,10 @@
                 keywords: document.getElementById('post-keywords').value,
                 isSeasonal: document.getElementById('post-is-seasonal').checked,
                 seasonalEvent: document.getElementById('post-seasonal-event').value,
+                metrics: {
+                    reach, impressions, conversions, likes, comments, shares,
+                    totalInteractions: likes + comments + shares
+                },
                 updatedAt: new Date().toISOString()
             };
 
@@ -933,6 +1107,178 @@
             renderSeasonalView();
             renderStrategyView();
             renderBrandNotes();
+            renderMetricsView();
+        }
+
+        // --- STREAMING_CHUNK:Rendering Metrics View and Analytics Calculations... ---
+        // RENDERING MÉTRICAS & RESULTADOS
+        function renderMetricsView() {
+            const publishedPosts = posts.filter(p => p.status === 'publicado' || (p.metrics && (p.metrics.reach > 0 || p.metrics.likes > 0)));
+
+            let totalReach = 0;
+            let totalInteractions = 0;
+            let totalConversions = 0;
+            let topPost = null;
+            let maxInteractions = -1;
+
+            publishedPosts.forEach(p => {
+                const m = p.metrics || {};
+                totalReach += (m.reach || 0);
+                const interactions = (m.likes || 0) + (m.comments || 0) + (m.shares || 0);
+                totalInteractions += interactions;
+                totalConversions += (m.conversions || 0);
+
+                if (interactions > maxInteractions && interactions > 0) {
+                    maxInteractions = interactions;
+                    topPost = p;
+                }
+            });
+
+            const avgEngagementRate = totalReach > 0 ? ((totalInteractions / totalReach) * 100).toFixed(1) : '0';
+
+            // KPIs
+            document.getElementById('metric-kpi-reach').innerText = totalReach.toLocaleString('pt-BR');
+            document.getElementById('metric-kpi-engagement').innerText = `${avgEngagementRate}%`;
+            document.getElementById('metric-kpi-conversions').innerText = totalConversions.toLocaleString('pt-BR');
+            
+            if (topPost) {
+                document.getElementById('metric-kpi-top-post').innerText = topPost.title;
+                document.getElementById('metric-kpi-top-sub').innerText = `❤️ ${maxInteractions} interações`;
+            } else {
+                document.getElementById('metric-kpi-top-post').innerText = 'Nenhum ainda';
+                document.getElementById('metric-kpi-top-sub').innerText = 'Cadastre métricas nos posts';
+            }
+
+            // Gráfico por Pilar
+            renderPillarMetricsChart(publishedPosts);
+
+            // Gráfico por Plataforma
+            renderPlatformMetricsChart(publishedPosts);
+
+            // Tabela de Métricas
+            renderMetricsTable();
+        }
+
+        function renderPillarMetricsChart(publishedPosts) {
+            const chart = document.getElementById('pillar-metrics-chart');
+            if (!chart) return;
+            chart.innerHTML = '';
+
+            const pillars = ['Educacional', 'Bastidores', 'Venda Direta', 'Estilo de Vida', 'Prova Social', 'Entretenimento'];
+            const stats = {};
+
+            pillars.forEach(p => stats[p] = { totalReach: 0, totalInteractions: 0, count: 0 });
+
+            publishedPosts.forEach(p => {
+                const pillar = p.pillar || 'Educacional';
+                if (!stats[pillar]) stats[pillar] = { totalReach: 0, totalInteractions: 0, count: 0 };
+                
+                const m = p.metrics || {};
+                stats[pillar].totalReach += (m.reach || 0);
+                stats[pillar].totalInteractions += (m.likes || 0) + (m.comments || 0) + (m.shares || 0);
+                stats[pillar].count++;
+            });
+
+            pillars.forEach(pillar => {
+                const s = stats[pillar];
+                const engRate = s.totalReach > 0 ? ((s.totalInteractions / s.totalReach) * 100).toFixed(1) : 0;
+                const barWidth = Math.min(100, engRate * 10);
+
+                chart.innerHTML += 
+                    `<div class="space-y-1 text-xs">` +
+                        `<div class="flex justify-between font-medium"><span>${pillar} (${s.count} posts)</span><span class="font-bold text-bordo">${engRate}% engaj.</span></div>` +
+                        `<div class="w-full bg-bege h-2.5 rounded-full overflow-hidden border border-begeDark/50">` +
+                            `<div class="bg-vibrante h-full rounded-full transition-all duration-500" style="width: ${barWidth}%"></div>` +
+                        `</div>` +
+                    `</div>`;
+            });
+        }
+
+        function renderPlatformMetricsChart(publishedPosts) {
+            const chart = document.getElementById('platform-metrics-chart');
+            if (!chart) return;
+            chart.innerHTML = '';
+
+            const platforms = ['Instagram', 'TikTok', 'YouTube', 'Pinterest'];
+            const platInteractions = { Instagram: 0, TikTok: 0, YouTube: 0, Pinterest: 0 };
+            let grandTotal = 0;
+
+            publishedPosts.forEach(p => {
+                const m = p.metrics || {};
+                const interactions = (m.likes || 0) + (m.comments || 0) + (m.shares || 0);
+                const plats = p.platforms || [p.platform || 'Instagram'];
+                
+                plats.forEach(plat => {
+                    if (platInteractions[plat] !== undefined) {
+                        platInteractions[plat] += interactions;
+                        grandTotal += interactions;
+                    }
+                });
+            });
+
+            platforms.forEach(plat => {
+                const count = platInteractions[plat];
+                const percent = grandTotal > 0 ? Math.round((count / grandTotal) * 100) : 0;
+
+                chart.innerHTML += 
+                    `<div class="space-y-1 text-xs">` +
+                        `<div class="flex justify-between font-medium"><span>${plat}</span><span class="font-bold text-rosa">${count} interações (${percent}%)</span></div>` +
+                        `<div class="w-full bg-bege h-2.5 rounded-full overflow-hidden border border-begeDark/50">` +
+                            `<div class="bg-pink h-full rounded-full transition-all duration-500" style="width: ${percent}%"></div>` +
+                        `</div>` +
+                    `</div>`;
+            });
+        }
+
+        function renderMetricsTable() {
+            const tbody = document.getElementById('metrics-table-body');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+
+            const sortBy = document.getElementById('metrics-sort-by')?.value || 'date';
+            let publishedPosts = posts.filter(p => p.status === 'publicado' || (p.metrics && (p.metrics.reach > 0 || p.metrics.likes > 0)));
+
+            publishedPosts.sort((a, b) => {
+                const mA = a.metrics || {};
+                const mB = b.metrics || {};
+                if (sortBy === 'reach') return (mB.reach || 0) - (mA.reach || 0);
+                if (sortBy === 'likes') return (mB.likes || 0) - (mA.likes || 0);
+                if (sortBy === 'conversions') return (mB.conversions || 0) - (mA.conversions || 0);
+                return new Date(b.date || 0) - new Date(a.date || 0);
+            });
+
+            if (publishedPosts.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-gray-400">Nenhum post publicado ou com métricas cadastradas. Edite um post e mude seu status para 'Publicado' para registrar resultados!</td></tr>`;
+                return;
+            }
+
+            publishedPosts.forEach(p => {
+                const m = p.metrics || {};
+                const totalInter = (m.likes || 0) + (m.comments || 0) + (m.shares || 0);
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-bege/40 transition";
+
+                const plats = p.platforms || [p.platform || 'Instagram'];
+                const platBadges = plats.map(pl => `<span class="text-[8px] bg-bege px-1.5 py-0.5 rounded text-bordo font-bold border border-begeDark">${pl}</span>`).join(' ');
+
+                tr.innerHTML = 
+                    `<td class="p-2.5">` +
+                        `<div class="font-bold text-gray-800">${p.title}</div>` +
+                        `<div class="text-[10px] text-gray-400">📅 ${formatDate(p.date) || 'Sem data'}</div>` +
+                    `</td>` +
+                    `<td class="p-2.5">` +
+                        `<div class="flex gap-1 mb-1">${platBadges}</div>` +
+                        `<span class="text-[9px] bg-pink/10 text-pink px-1.5 py-0.5 rounded font-bold">${p.pillar || 'Geral'}</span>` +
+                    `</td>` +
+                    `<td class="p-2.5 text-center font-bold text-gray-700">${(m.reach || 0).toLocaleString('pt-BR')}</td>` +
+                    `<td class="p-2.5 text-center font-bold text-rosa">${totalInter} <span class="text-[9px] font-normal text-gray-400">(${m.likes || 0}👍 ${m.comments || 0}💬)</span></td>` +
+                    `<td class="p-2.5 text-center font-bold text-verde">${(m.conversions || 0)}</td>` +
+                    `<td class="p-2.5 text-right">` +
+                        `<button onclick="openModalById('${p.id}')" class="bg-bege hover:bg-begeDark text-bordo font-bold px-2 py-1 rounded text-[10px] border border-begeDark">✏️ Métricas</button>` +
+                    `</td>`;
+
+                tbody.appendChild(tr);
+            });
         }
 
         function renderKanban() {
@@ -956,6 +1302,9 @@
                 const platBadges = plats.map(p => `<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-bege text-bordo">${p}</span>`).join(' ');
                 const formattedDate = formatDate(post.date);
 
+                const m = post.metrics || {};
+                const hasMetrics = m.reach > 0 || m.likes > 0;
+
                 card.innerHTML = 
                     `<div class="flex flex-wrap items-center justify-between gap-1">${platBadges} <span class="text-[9px] text-gray-400">${post.format || ''}</span></div>` +
                     `<h4 class="font-bold text-xs text-gray-800 leading-snug">${post.title || 'Sem título'}</h4>` +
@@ -964,6 +1313,7 @@
                         `<span class="bg-pink/10 text-pink px-1.5 py-0.5 rounded">${post.goal || 'Conexão'}</span>` +
                         `<span class="bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">${post.mediaStatus || 'A Gravar'}</span>` +
                     `</div>` +
+                    (hasMetrics ? `<div class="bg-green-50 text-green-700 text-[9px] font-bold p-1 rounded border border-green-200">📊 ${m.reach || 0} alcance • ${m.likes || 0} curtidas</div>` : '') +
                     `<div class="flex items-center justify-between pt-2 border-t border-bege/50 text-gray-400">` +
                         `<select onchange="updateStatus('${post.id}', this.value)" class="text-[10px] border border-begeDark rounded px-1 py-0.5 bg-bege text-gray-600">` +
                             `<option value="ideia" ${post.status === 'ideia' ? 'selected' : ''}>Ideia</option>` +
