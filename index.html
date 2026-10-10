@@ -58,31 +58,43 @@
             text-decoration: line-through;
             opacity: 0.6;
         }
-        /* Estilo otimizado para colunas do Kanban retraídas */
-        .kanban-col-collapsed {
-            width: 4.5rem !important;
-            min-width: 4.5rem !important;
-            max-width: 4.5rem !important;
-            flex-grow: 0 !important;
-            overflow: hidden;
-            padding: 1rem 0.5rem !important;
-            align-items: center;
+        /* Estilo otimizado para colunas do Kanban retraídas no Desktop */
+        @media (min-width: 768px) {
+            .kanban-col-collapsed {
+                width: 4.5rem !important;
+                min-width: 4.5rem !important;
+                max-width: 4.5rem !important;
+                flex-grow: 0 !important;
+                overflow: hidden;
+                padding: 1rem 0.5rem !important;
+                align-items: center;
+            }
+            .kanban-col-collapsed .col-header-inner {
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 0.75rem !important;
+                width: 100%;
+            }
+            .kanban-col-collapsed .col-title-text {
+                writing-mode: vertical-rl;
+                transform: rotate(180deg);
+                white-space: nowrap;
+                font-size: 0.875rem;
+            }
+            .kanban-col-collapsed .col-content,
+            .kanban-col-collapsed .col-counter {
+                display: none !important;
+            }
         }
-        .kanban-col-collapsed .col-header-inner {
-            flex-direction: column !important;
-            align-items: center !important;
-            gap: 0.75rem !important;
-            width: 100%;
-        }
-        .kanban-col-collapsed .col-title-text {
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
-            white-space: nowrap;
-            font-size: 0.875rem;
-        }
-        .kanban-col-collapsed .col-content,
-        .kanban-col-collapsed .col-counter {
-            display: none !important;
+        /* Estilo para colunas retraídas no Mobile */
+        @media (max-width: 767px) {
+            .kanban-col-collapsed-mobile .col-content,
+            .kanban-col-collapsed-mobile .col-counter {
+                display: none !important;
+            }
+            .kanban-col-collapsed-mobile {
+                padding: 0.75rem 1rem !important;
+            }
         }
     </style>
 </head>
@@ -238,14 +250,6 @@
                 </div>
             </div>
 
-            <!-- Navegação por Abas para Mobile -->
-            <div class="flex md:hidden bg-white p-1 rounded-xl border border-begeDark overflow-x-auto gap-1 text-xs font-accent">
-                <button onclick="switchMobileKanbanCol('ideia')" id="mob-col-btn-ideia" class="flex-1 py-1.5 px-3 rounded-lg font-bold bg-bege text-bordo whitespace-nowrap">Ideias</button>
-                <button onclick="switchMobileKanbanCol('producao')" id="mob-col-btn-producao" class="flex-1 py-1.5 px-3 rounded-lg font-bold text-gray-500 whitespace-nowrap">Produção</button>
-                <button onclick="switchMobileKanbanCol('agendado')" id="mob-col-btn-agendado" class="flex-1 py-1.5 px-3 rounded-lg font-bold text-gray-500 whitespace-nowrap">Agendado</button>
-                <button onclick="switchMobileKanbanCol('publicado')" id="mob-col-btn-publicado" class="flex-1 py-1.5 px-3 rounded-lg font-bold text-gray-500 whitespace-nowrap">Publicado</button>
-            </div>
-
             <!-- Grade do Kanban com Suporte a Expansão e Retração de Colunas -->
             <div class="flex flex-col md:flex-row gap-4 items-start">
                 
@@ -258,14 +262,14 @@
                         </div>
                         <div class="flex items-center gap-2 font-accent">
                             <span id="count-ideia" class="col-counter bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
-                            <button onclick="toggleColumnCollapse('ideia')" class="hidden md:inline-block text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher Coluna" id="btn-col-ideia">[−]</button>
+                            <button onclick="toggleColumnCollapse('ideia')" class="text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher Coluna" id="btn-col-ideia">[+]</button>
                         </div>
                     </div>
                     <div id="col-ideia" class="col-content space-y-3 flex-1 min-h-[150px]"></div>
                 </div>
 
                 <!-- Coluna 2: Em Produção -->
-                <div id="wrapper-col-producao" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0 hidden md:flex">
+                <div id="wrapper-col-producao" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0 kanban-col-collapsed-mobile">
                     <div class="col-header-inner flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
                         <div class="flex items-center gap-2">
                             <span class="w-3 h-3 rounded-full bg-azul flex-shrink-0"></span>
@@ -273,14 +277,14 @@
                         </div>
                         <div class="flex items-center gap-2 font-accent">
                             <span id="count-producao" class="col-counter bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
-                            <button onclick="toggleColumnCollapse('producao')" class="hidden md:inline-block text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher Coluna" id="btn-col-producao">[−]</button>
+                            <button onclick="toggleColumnCollapse('producao')" class="text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher Coluna" id="btn-col-producao">[+]</button>
                         </div>
                     </div>
                     <div id="col-producao" class="col-content space-y-3 flex-1 min-h-[150px]"></div>
                 </div>
 
                 <!-- Coluna 3: Agendado -->
-                <div id="wrapper-col-agendado" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0 hidden md:flex">
+                <div id="wrapper-col-agendado" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0 kanban-col-collapsed-mobile">
                     <div class="col-header-inner flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
                         <div class="flex items-center gap-2">
                             <span class="w-3 h-3 rounded-full bg-rosa flex-shrink-0"></span>
@@ -288,14 +292,14 @@
                         </div>
                         <div class="flex items-center gap-2 font-accent">
                             <span id="count-agendado" class="col-counter bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
-                            <button onclick="toggleColumnCollapse('agendado')" class="hidden md:inline-block text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher Coluna" id="btn-col-agendado">[−]</button>
+                            <button onclick="toggleColumnCollapse('agendado')" class="text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher Coluna" id="btn-col-agendado">[+]</button>
                         </div>
                     </div>
                     <div id="col-agendado" class="col-content space-y-3 flex-1 min-h-[150px]"></div>
                 </div>
 
                 <!-- Coluna 4: Publicado -->
-                <div id="wrapper-col-publicado" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0 hidden md:flex">
+                <div id="wrapper-col-publicado" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0 kanban-col-collapsed-mobile">
                     <div class="col-header-inner flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
                         <div class="flex items-center gap-2">
                             <span class="w-3 h-3 rounded-full bg-verde flex-shrink-0"></span>
@@ -304,7 +308,7 @@
                         <div class="flex items-center gap-1 font-accent">
                             <span id="count-publicado" class="col-counter bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
                             <button onclick="toggleShowAllPublished()" class="col-content text-[10px] text-bordo underline font-bold ml-1" title="Alternar entre ver todos e recentes">Ver todos</button>
-                            <button onclick="toggleColumnCollapse('publicado')" class="hidden md:inline-block text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher Coluna" id="btn-col-publicado">[−]</button>
+                            <button onclick="toggleColumnCollapse('publicado')" class="text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher Coluna" id="btn-col-publicado">[+]</button>
                         </div>
                     </div>
                     <div id="col-publicado" class="col-content space-y-3 flex-1 min-h-[150px]"></div>
@@ -791,11 +795,10 @@
         let brandGoalsData = { goals: '', campaign: '' };
         let currentCalendarDate = new Date();
 
-        // Estado de colunas recolhidas no Kanban
-        let collapsedColumns = new Set();
+        // Estado de colunas recolhidas no Kanban (Inicia com ideias expandida e as demais retraídas)
+        let collapsedColumns = new Set(['producao', 'agendado', 'publicado']);
 
         // Estados do Kanban
-        let currentMobileCol = 'ideia';
         let isCompactMode = false;
         let isMediaReadyOnly = false;
         let showAllPublished = false;
@@ -908,29 +911,14 @@
             if (collapsedColumns.has(colKey)) {
                 collapsedColumns.delete(colKey);
                 wrapper.classList.remove('kanban-col-collapsed');
+                wrapper.classList.remove('kanban-col-collapsed-mobile');
                 if (btn) btn.innerText = '[−]';
             } else {
                 collapsedColumns.add(colKey);
                 wrapper.classList.add('kanban-col-collapsed');
+                wrapper.classList.add('kanban-col-collapsed-mobile');
                 if (btn) btn.innerText = '[+]';
             }
-        }
-
-        function switchMobileKanbanCol(col) {
-            currentMobileCol = col;
-            ['ideia', 'producao', 'agendado', 'publicado'].forEach(c => {
-                const wrapper = document.getElementById(`wrapper-col-${c}`);
-                const btn = document.getElementById(`mob-col-btn-${c}`);
-                if (wrapper) {
-                    if (c === col) { wrapper.classList.remove('hidden'); } 
-                    else { wrapper.classList.add('hidden'); }
-                }
-                if (btn) {
-                    btn.className = c === col 
-                        ? "flex-1 py-1.5 px-3 rounded-lg font-bold bg-bege text-bordo whitespace-nowrap" 
-                        : "flex-1 py-1.5 px-3 rounded-lg font-bold text-gray-500 whitespace-nowrap";
-                }
-            });
         }
 
         function toggleCompactMode() {
@@ -963,6 +951,23 @@
 
             const searchText = (document.getElementById('kanban-search')?.value || '').toLowerCase();
             const platformFilter = document.getElementById('kanban-filter-platform')?.value || 'ALL';
+
+            // Assegura que o estado visual inicial das colunas reflita o Set `collapsedColumns`
+            ['ideia', 'producao', 'agendado', 'publicado'].forEach(colKey => {
+                const wrapper = document.getElementById(`wrapper-col-${colKey}`);
+                const btn = document.getElementById(`btn-col-${colKey}`);
+                if (wrapper && btn) {
+                    if (collapsedColumns.has(colKey)) {
+                        wrapper.classList.add('kanban-col-collapsed');
+                        wrapper.classList.add('kanban-col-collapsed-mobile');
+                        btn.innerText = '[+]';
+                    } else {
+                        wrapper.classList.remove('kanban-col-collapsed');
+                        wrapper.classList.remove('kanban-col-collapsed-mobile');
+                        btn.innerText = '[−]';
+                    }
+                }
+            });
 
             posts.forEach(post => {
                 if (searchText && !(post.title || '').toLowerCase().includes(searchText)) return;
