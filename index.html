@@ -210,7 +210,7 @@
                 <button onclick="switchMobileKanbanCol('publicado')" id="mob-col-btn-publicado" class="flex-1 py-1.5 px-3 rounded-lg font-bold text-gray-500 whitespace-nowrap">Publicado</button>
             </div>
 
-            <!-- Grade do Kanban (Mobile exibe 1 coluna por vez, Desktop exibe as 4 lado a lado) -->
+            <!-- Grade do Kanban -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div id="wrapper-col-ideia" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col">
                     <div class="flex items-center justify-between mb-4">
@@ -331,12 +331,52 @@
             <div id="ideas-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
         </section>
 
-        <!-- TAB 5: MURAL DA MARCA (COM NOTAS LIVRES & CHECKLISTS) -->
+        <!-- TAB 5: MURAL DA MARCA (COM BÚSSOLA DE OBJETIVOS & CAMPANHAS) -->
         <section id="tab-brandmural" class="hidden space-y-6">
+            <!-- PAINEL FIXO DE OBJETIVOS & CAMPANHAS DA MARCA -->
+            <div class="bg-gradient-to-r from-bordo to-vibrante p-5 rounded-2xl text-white shadow-md space-y-3">
+                <div class="flex justify-between items-center border-b border-white/20 pb-2">
+                    <div class="flex items-center gap-2">
+                        <span class="text-lg">🎯</span>
+                        <h3 class="font-bold text-sm uppercase tracking-wide">Bússola de Objetivos & Campanha Ativa</h3>
+                    </div>
+                    <button onclick="toggleBrandGoalsExpand()" id="btn-toggle-goals" class="text-xs bg-white/20 hover:bg-white/30 px-2.5 py-1 rounded-lg font-semibold transition">
+                        ✏️ Editar Objetivos
+                    </button>
+                </div>
+
+                <!-- Visão de Leitura dos Objetivos -->
+                <div id="view-brand-goals" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div class="bg-black/15 p-3 rounded-xl border border-white/10 space-y-1">
+                        <span class="text-[10px] font-bold uppercase text-amber-200">📌 Objetivos Principais da Marca:</span>
+                        <p id="display-brand-goals" class="font-medium whitespace-pre-line leading-relaxed">Nenhum objetivo cadastrado ainda. Clique em 'Editar Objetivos' para definir!</p>
+                    </div>
+                    <div class="bg-black/15 p-3 rounded-xl border border-white/10 space-y-1">
+                        <span class="text-[10px] font-bold uppercase text-amber-200">🚀 Campanha / Foco do Mês:</span>
+                        <p id="display-brand-campaign" class="font-bold text-sm text-white">Nenhuma campanha ativa no momento.</p>
+                    </div>
+                </div>
+
+                <!-- Formulário de Edição dos Objetivos -->
+                <div id="form-brand-goals" class="hidden space-y-3 pt-2 text-xs">
+                    <div>
+                        <label class="block font-bold mb-1 text-amber-200">Objetivos Gerais / Trimestrais da Cazinha:</label>
+                        <textarea id="input-brand-goals" rows="2" class="w-full p-2.5 rounded-xl text-gray-800 text-xs focus:outline-none" placeholder="Ex: Fortalecer a presença em Reels, aumentar vendas do kit presente..."></textarea>
+                    </div>
+                    <div>
+                        <label class="block font-bold mb-1 text-amber-200">Campanha Ativa do Mês:</label>
+                        <input type="text" id="input-brand-campaign" class="w-full p-2 rounded-xl text-gray-800 text-xs focus:outline-none" placeholder="Ex: Lançamento Coleção Primavera / Dia das Mães">
+                    </div>
+                    <div class="flex justify-end gap-2">
+                        <button onclick="saveBrandGoals()" class="bg-white text-bordo font-bold px-4 py-1.5 rounded-xl shadow hover:bg-bege text-xs">Salvar Objetivos</button>
+                    </div>
+                </div>
+            </div>
+
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <h2 class="text-xl md:text-2xl font-bold text-bordo">Mural da Marca & Caderno Vivo</h2>
-                    <p class="text-sm text-gray-500">Anote pensamentos soltos, ideias de produtos ou crie listas de tarefas organizadas</p>
+                    <h2 class="text-xl md:text-2xl font-bold text-bordo">Mural de Anotações & Checklists</h2>
+                    <p class="text-sm text-gray-500">Caderno livre para pensamentos, tarefas rápidas e lembretes operacionais</p>
                 </div>
                 
                 <!-- Filtro do Mural -->
@@ -692,7 +732,11 @@
         let posts = [];
         let seoTags = [];
         let brandNotes = [];
+        let brandGoalsData = { goals: '', campaign: '' };
         let currentCalendarDate = new Date();
+
+        // Controle de cards expandidos no Kanban
+        let expandedCardIds = new Set();
 
         // Estados do Kanban
         let currentMobileCol = 'ideia';
@@ -710,6 +754,14 @@
                 posts.push({ id: doc.id, ...doc.data() });
             });
             renderAllViews();
+        });
+
+        // Escutar alterações dos Objetivos da Marca no Firebase
+        db.collection("settings").doc("brand_goals").onSnapshot((doc) => {
+            if (doc.exists) {
+                brandGoalsData = doc.data();
+                renderBrandGoals();
+            }
         });
 
         // Escutar alterações das Tags de SEO
@@ -759,18 +811,57 @@
             document.getElementById(`tab-${tab}`).classList.remove('hidden');
         }
 
+        // --- OBJETIVOS DA MARCA ---
+        function toggleBrandGoalsExpand() {
+            const form = document.getElementById('form-brand-goals');
+            const isHidden = form.classList.contains('hidden');
+            form.classList.toggle('hidden', !isHidden);
+
+            if (isHidden) {
+                document.getElementById('input-brand-goals').value = brandGoalsData.goals || '';
+                document.getElementById('input-brand-campaign').value = brandGoalsData.campaign || '';
+            }
+        }
+
+        function saveBrandGoals() {
+            const goals = document.getElementById('input-brand-goals').value.trim();
+            const campaign = document.getElementById('input-brand-campaign').value.trim();
+
+            db.collection("settings").doc("brand_goals").set({
+                goals: goals,
+                campaign: campaign,
+                updatedAt: new Date().toISOString()
+            });
+
+            document.getElementById('form-brand-goals').classList.add('hidden');
+        }
+
+        function renderBrandGoals() {
+            const goalsEl = document.getElementById('display-brand-goals');
+            const campaignEl = document.getElementById('display-brand-campaign');
+
+            if (goalsEl) goalsEl.innerText = brandGoalsData.goals || "Nenhum objetivo cadastrado ainda.";
+            if (campaignEl) campaignEl.innerText = brandGoalsData.campaign ? `🚀 ${brandGoalsData.campaign}` : "Nenhuma campanha ativa no momento.";
+        }
+
         // --- KANBAN CONTROLS ---
+        function toggleCardExpand(postId) {
+            if (expandedCardIds.has(postId)) {
+                expandedCardIds.delete(postId);
+            } else {
+                expandedCardIds.add(postId);
+            }
+            renderKanban();
+        }
+
         function switchMobileKanbanCol(col) {
             currentMobileCol = col;
             ['ideia', 'producao', 'agendado', 'publicado'].forEach(c => {
                 const wrapper = document.getElementById(`wrapper-col-${c}`);
                 const btn = document.getElementById(`mob-col-btn-${c}`);
                 if (wrapper) {
-                    if (c === col) {
-                        wrapper.classList.remove('hidden');
-                    } else {
-                        wrapper.classList.add('hidden');
-                    }
+                    if (c === col) { wrapper.classList.remove('hidden'); } 
+                    else { wrapper.classList.add('hidden'); }
                 }
                 if (btn) {
                     btn.className = c === col 
@@ -812,7 +903,6 @@
             const platformFilter = document.getElementById('kanban-filter-platform')?.value || 'ALL';
 
             posts.forEach(post => {
-                // Filtros
                 if (searchText && !(post.title || '').toLowerCase().includes(searchText)) return;
                 
                 const plats = post.platforms || [post.platform || 'Instagram'];
@@ -822,24 +912,23 @@
 
                 if (counts[post.status] !== undefined) counts[post.status]++;
 
-                // Limitação para Coluna de Publicados
                 if (post.status === 'publicado' && !showAllPublished && counts.publicado > 5) return;
 
                 const card = document.createElement('div');
+                const isExpanded = expandedCardIds.has(post.id);
                 
-                if (isCompactMode) {
+                if (isCompactMode && !isExpanded) {
                     card.className = "bg-white p-2.5 rounded-xl border border-begeDark shadow-2xs space-y-1 hover:border-bordo transition";
                     card.innerHTML = 
-                        `<div class="flex items-center justify-between"><span class="text-[9px] font-bold text-bordo">${plats.join(', ')}</span><span class="text-[9px] text-gray-400">${formatDate(post.date)}</span></div>` +
-                        `<h4 class="font-bold text-xs text-gray-800 truncate">${post.title}</h4>` +
-                        `<div class="flex justify-end gap-2 pt-1"><button onclick="openModalById('${post.id}')" class="text-[10px] text-vibrante font-bold">Editar</button></div>`;
+                        `<div class="flex items-center justify-between"><span class="text-[9px] font-bold text-bordo">${plats.join(', ')}</span><button onclick="toggleCardExpand('${post.id}')" class="text-[10px] text-gray-400 hover:text-bordo font-bold">▼ Expandir</button></div>` +
+                        `<h4 class="font-bold text-xs text-gray-800 truncate">${post.title}</h4>`;
                 } else {
                     card.className = "bg-white p-3.5 rounded-xl border border-begeDark shadow-sm hover:shadow-md transition space-y-2.5";
                     const platBadges = plats.map(p => `<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-bege text-bordo">${p}</span>`).join(' ');
                     const goals = (post.goals || [post.goal || 'Conexão']).map(g => `<span class="bg-pink/10 text-pink px-1.5 py-0.5 rounded">${g}</span>`).join(' ');
 
                     card.innerHTML = 
-                        `<div class="flex flex-wrap items-center justify-between gap-1">${platBadges} <span class="text-[9px] text-gray-400">${post.format || ''}</span></div>` +
+                        `<div class="flex flex-wrap items-center justify-between gap-1">${platBadges} <button onclick="toggleCardExpand('${post.id}')" class="text-[10px] text-gray-400 hover:text-bordo font-bold">${isExpanded ? '▲ Recolher' : '▼'}</button></div>` +
                         `<h4 class="font-bold text-xs text-gray-800 leading-snug">${post.title || 'Sem título'}</h4>` +
                         (post.date ? `<p class="text-[10px] text-rosa font-medium">📅 ${formatDate(post.date)}</p>` : '') +
                         `<div class="flex flex-wrap gap-1 text-[9px]">${goals} <span class="bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">${post.mediaStatus || 'A Gravar'}</span></div>` +
@@ -978,6 +1067,8 @@
                 if (note.type === 'CHECKLIST' && note.items) {
                     const pending = note.items.filter(i => !i.done);
                     const completed = note.items.filter(i => i.done);
+                    const total = note.items.length;
+                    const percent = total > 0 ? Math.round((completed.length / total) * 100) : 0;
 
                     let pendingHTML = pending.map(i => 
                         `<label class="flex items-center gap-2 text-xs cursor-pointer"><input type="checkbox" onchange="toggleChecklistItem('${note.id}', '${i.id}')" class="accent-bordo"> <span>${i.text}</span></label>`
@@ -988,6 +1079,10 @@
                     ).join('');
 
                     contentHTML = 
+                        `<div class="space-y-1">` +
+                            `<div class="flex justify-between items-center text-[10px] text-gray-500 font-bold mb-1"><span>Progresso</span><span>${completed.length}/${total} (${percent}%)</span></div>` +
+                            `<div class="w-full bg-bege h-1.5 rounded-full overflow-hidden mb-2"><div class="bg-vibrante h-full" style="width: ${percent}%"></div></div>` +
+                        `</div>` +
                         `<div class="space-y-1.5">${pendingHTML}</div>` +
                         (completed.length > 0 ? 
                             `<details class="pt-2 text-[11px] text-gray-400 border-t border-begeDark/40"><summary class="cursor-pointer font-semibold">Concluídos (${completed.length})</summary><div class="space-y-1 mt-1 font-normal">${completedHTML}</div></details>` 
@@ -1350,6 +1445,7 @@
             renderStrategyView();
             renderBrandNotes();
             renderMetricsView();
+            renderBrandGoals();
         }
 
         function importOldData() {
