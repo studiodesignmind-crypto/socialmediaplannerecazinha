@@ -58,14 +58,30 @@
             text-decoration: line-through;
             opacity: 0.6;
         }
-        /* Estilo para colunas do Kanban retraídas */
+        /* Estilo otimizado para colunas do Kanban retraídas */
         .kanban-col-collapsed {
-            width: 50px !important;
-            min-width: 50px !important;
+            width: 4.5rem !important;
+            min-width: 4.5rem !important;
+            max-width: 4.5rem !important;
             flex-grow: 0 !important;
             overflow: hidden;
+            padding: 1rem 0.5rem !important;
+            align-items: center;
         }
-        .kanban-col-collapsed .col-content {
+        .kanban-col-collapsed .col-header-inner {
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 0.75rem !important;
+            width: 100%;
+        }
+        .kanban-col-collapsed .col-title-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            white-space: nowrap;
+            font-size: 0.875rem;
+        }
+        .kanban-col-collapsed .col-content,
+        .kanban-col-collapsed .col-counter {
             display: none !important;
         }
     </style>
@@ -235,12 +251,13 @@
                 
                 <!-- Coluna 1: Ideias -->
                 <div id="wrapper-col-ideia" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0">
-                    <div class="flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
-                        <span class="font-bold text-sm text-gray-700 flex items-center gap-2 font-title">
-                            <span class="w-3 h-3 rounded-full bg-amarelo flex-shrink-0"></span> Ideias
-                        </span>
+                    <div class="col-header-inner flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-amarelo flex-shrink-0"></span>
+                            <span class="col-title-text font-bold text-sm text-gray-700 font-title">Ideias</span>
+                        </div>
                         <div class="flex items-center gap-2 font-accent">
-                            <span id="count-ideia" class="bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
+                            <span id="count-ideia" class="col-counter bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
                             <button onclick="toggleColumnCollapse('ideia')" class="hidden md:inline-block text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher Coluna" id="btn-col-ideia">[−]</button>
                         </div>
                     </div>
@@ -249,12 +266,13 @@
 
                 <!-- Coluna 2: Em Produção -->
                 <div id="wrapper-col-producao" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0 hidden md:flex">
-                    <div class="flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
-                        <span class="font-bold text-sm text-gray-700 flex items-center gap-2 font-title">
-                            <span class="w-3 h-3 rounded-full bg-azul flex-shrink-0"></span> Em Produção
-                        </span>
+                    <div class="col-header-inner flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-azul flex-shrink-0"></span>
+                            <span class="col-title-text font-bold text-sm text-gray-700 font-title">Em Produção</span>
+                        </div>
                         <div class="flex items-center gap-2 font-accent">
-                            <span id="count-producao" class="bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
+                            <span id="count-producao" class="col-counter bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
                             <button onclick="toggleColumnCollapse('producao')" class="hidden md:inline-block text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher Coluna" id="btn-col-producao">[−]</button>
                         </div>
                     </div>
@@ -263,12 +281,13 @@
 
                 <!-- Coluna 3: Agendado -->
                 <div id="wrapper-col-agendado" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0 hidden md:flex">
-                    <div class="flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
-                        <span class="font-bold text-sm text-gray-700 flex items-center gap-2 font-title">
-                            <span class="w-3 h-3 rounded-full bg-rosa flex-shrink-0"></span> Agendado
-                        </span>
+                    <div class="col-header-inner flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-rosa flex-shrink-0"></span>
+                            <span class="col-title-text font-bold text-sm text-gray-700 font-title">Agendado</span>
+                        </div>
                         <div class="flex items-center gap-2 font-accent">
-                            <span id="count-agendado" class="bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
+                            <span id="count-agendado" class="col-counter bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
                             <button onclick="toggleColumnCollapse('agendado')" class="hidden md:inline-block text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher Coluna" id="btn-col-agendado">[−]</button>
                         </div>
                     </div>
@@ -277,12 +296,13 @@
 
                 <!-- Coluna 4: Publicado -->
                 <div id="wrapper-col-publicado" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0 hidden md:flex">
-                    <div class="flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
-                        <span class="font-bold text-sm text-gray-700 flex items-center gap-2 font-title">
-                            <span class="w-3 h-3 rounded-full bg-verde flex-shrink-0"></span> Publicado
-                        </span>
+                    <div class="col-header-inner flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-verde flex-shrink-0"></span>
+                            <span class="col-title-text font-bold text-sm text-gray-700 font-title">Publicado</span>
+                        </div>
                         <div class="flex items-center gap-1 font-accent">
-                            <span id="count-publicado" class="bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
+                            <span id="count-publicado" class="col-counter bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
                             <button onclick="toggleShowAllPublished()" class="col-content text-[10px] text-bordo underline font-bold ml-1" title="Alternar entre ver todos e recentes">Ver todos</button>
                             <button onclick="toggleColumnCollapse('publicado')" class="hidden md:inline-block text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher Coluna" id="btn-col-publicado">[−]</button>
                         </div>
