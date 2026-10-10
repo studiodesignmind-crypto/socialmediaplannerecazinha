@@ -6,8 +6,10 @@
     <title>Social Media Planner & Estratégia - Cazinha</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Fraunces, Poppins, Comfortaa -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -29,7 +31,9 @@
                         azul: '#19B5FE'
                     },
                     fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        sans: ['Poppins', 'sans-serif'],
+                        title: ['Fraunces', 'serif'],
+                        accent: ['Comfortaa', 'cursive']
                     }
                 }
             }
@@ -38,8 +42,14 @@
     <style>
         body {
             background-color: #F7F2E7;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Poppins', sans-serif;
             padding-bottom: 80px;
+        }
+        h1, h2, h3, h4, .font-title {
+            font-family: 'Fraunces', serif;
+        }
+        .font-accent {
+            font-family: 'Comfortaa', cursive;
         }
         @media (min-width: 768px) {
             body { padding-bottom: 0; }
@@ -48,6 +58,16 @@
             text-decoration: line-through;
             opacity: 0.6;
         }
+        /* Estilo para colunas do Kanban retraídas */
+        .kanban-col-collapsed {
+            width: 50px !important;
+            min-width: 50px !important;
+            flex-grow: 0 !important;
+            overflow: hidden;
+        }
+        .kanban-col-collapsed .col-content {
+            display: none !important;
+        }
     </style>
 </head>
 <body class="text-gray-800 min-h-screen flex flex-col md:flex-row">
@@ -55,17 +75,17 @@
     <!-- Barra Lateral (Desktop) -->
     <aside class="hidden md:flex flex-col w-64 bg-white border-r border-begeDark p-6 flex-shrink-0 min-h-screen sticky top-0 h-screen overflow-y-auto">
         <div class="flex items-center gap-3 mb-6">
-            <div class="w-10 h-10 rounded-xl bg-bordo flex items-center justify-center text-white font-bold text-xl shadow-md">
+            <div class="w-10 h-10 rounded-xl bg-bordo flex items-center justify-center text-white font-bold text-xl shadow-md font-title">
                 P
             </div>
             <div>
-                <h1 class="font-bold text-lg text-bordo leading-tight">Planner Cazinha</h1>
-                <p class="text-xs text-rosa font-medium">Social Media & Estratégia</p>
+                <h1 class="font-bold text-lg text-bordo leading-tight font-title">Planner Cazinha</h1>
+                <p class="text-xs text-rosa font-semibold font-accent">Social Media & Estratégia</p>
             </div>
         </div>
 
         <!-- Status do Firebase -->
-        <div class="mb-6 px-3 py-2 rounded-lg bg-green-50 text-green-700 text-xs flex items-center gap-2 border border-green-200">
+        <div class="mb-6 px-3 py-2 rounded-lg bg-green-50 text-green-700 text-xs flex items-center gap-2 border border-green-200 font-accent">
             <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
             <span>Nuvem Ativa (Firebase)</span>
         </div>
@@ -106,11 +126,11 @@
         </nav>
 
         <div class="space-y-2 pt-4 border-t border-begeDark">
-            <button onclick="importOldData()" class="w-full bg-bege hover:bg-begeDark text-bordo font-medium py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-2 transition">
+            <button onclick="importOldData()" class="w-full bg-bege hover:bg-begeDark text-bordo font-medium py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-2 transition font-accent">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                 Recuperar Dados Antigos
             </button>
-            <button onclick="openModal()" class="w-full bg-vibrante hover:bg-bordo text-white font-medium py-3 px-4 rounded-xl shadow-lg flex items-center justify-center gap-2 transition duration-200">
+            <button onclick="openModal()" class="w-full bg-vibrante hover:bg-bordo text-white font-medium py-3 px-4 rounded-xl shadow-lg flex items-center justify-center gap-2 transition duration-200 font-accent">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
                 Novo Conteúdo
             </button>
@@ -120,12 +140,12 @@
     <!-- Cabeçalho Mobile -->
     <header class="md:hidden bg-white border-b border-begeDark p-4 flex items-center justify-between sticky top-0 z-20">
         <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-lg bg-bordo flex items-center justify-center text-white font-bold text-lg">
+            <div class="w-9 h-9 rounded-lg bg-bordo flex items-center justify-center text-white font-bold text-lg font-title">
                 P
             </div>
             <div>
-                <h1 class="font-bold text-base text-bordo leading-tight">Planner Cazinha</h1>
-                <div class="text-[10px] text-green-600 flex items-center gap-1 font-medium">
+                <h1 class="font-bold text-base text-bordo leading-tight font-title">Planner Cazinha</h1>
+                <div class="text-[10px] text-green-600 flex items-center gap-1 font-medium font-accent">
                     <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
                     Sincronizado
                 </div>
@@ -145,43 +165,43 @@
     <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-begeDark px-2 py-2 flex justify-around items-center z-30 shadow-lg overflow-x-auto">
         <button onclick="switchTab('kanban')" id="mob-nav-kanban" class="flex flex-col items-center gap-1 text-bordo px-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
-            <span class="text-[9px] font-medium">Kanban</span>
+            <span class="text-[9px] font-medium font-accent">Kanban</span>
         </button>
         <button onclick="switchTab('calendar')" id="mob-nav-calendar" class="flex flex-col items-center gap-1 text-gray-400 px-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-            <span class="text-[9px] font-medium">Agenda</span>
+            <span class="text-[9px] font-medium font-accent">Agenda</span>
         </button>
         <button onclick="switchTab('ideas')" id="mob-nav-ideas" class="flex flex-col items-center gap-1 text-gray-400 px-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
-            <span class="text-[9px] font-medium">Ideias</span>
+            <span class="text-[9px] font-medium font-accent">Ideias</span>
         </button>
         <button onclick="switchTab('brandmural')" id="mob-nav-brandmural" class="flex flex-col items-center gap-1 text-gray-400 px-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-            <span class="text-[9px] font-medium">Mural</span>
+            <span class="text-[9px] font-medium font-accent">Mural</span>
         </button>
         <button onclick="switchTab('strategy')" id="mob-nav-strategy" class="flex flex-col items-center gap-1 text-gray-400 px-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path></svg>
-            <span class="text-[9px] font-medium">SEO</span>
+            <span class="text-[9px] font-medium font-accent">SEO</span>
         </button>
         <button onclick="switchTab('metrics')" id="mob-nav-metrics" class="flex flex-col items-center gap-1 text-gray-400 px-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-            <span class="text-[9px] font-medium">Métricas</span>
+            <span class="text-[9px] font-medium font-accent">Métricas</span>
         </button>
     </nav>
 
     <!-- Área Principal de Conteúdo -->
     <main class="flex-1 p-4 md:p-8 overflow-y-auto max-w-7xl mx-auto w-full">
 
-        <!-- TAB 1: KANBAN BOARD OTIMIZADO -->
+        <!-- TAB 1: KANBAN BOARD OTIMIZADO COM COLUNAS RETRAÍVEIS -->
         <section id="tab-kanban" class="space-y-6">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <h2 class="text-xl md:text-2xl font-bold text-bordo">Fluxo de Produção</h2>
+                    <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Fluxo de Produção</h2>
                     <p class="text-sm text-gray-500">Gerencie o progresso das suas publicações</p>
                 </div>
 
                 <!-- Controles de Filtro e Modos de Visão -->
-                <div class="flex flex-wrap items-center gap-2">
+                <div class="flex flex-wrap items-center gap-2 font-accent">
                     <input type="text" id="kanban-search" oninput="renderKanban()" placeholder="🔍 Buscar por título..." class="px-3 py-1.5 text-xs rounded-xl border border-begeDark bg-white focus:outline-none">
                     
                     <select id="kanban-filter-platform" onchange="renderKanban()" class="px-3 py-1.5 text-xs rounded-xl border border-begeDark bg-white">
@@ -202,58 +222,74 @@
                 </div>
             </div>
 
-            <!-- Navegação por Abas para Mobile (Apenas em Telas Pequenas) -->
-            <div class="flex md:hidden bg-white p-1 rounded-xl border border-begeDark overflow-x-auto gap-1 text-xs">
+            <!-- Navegação por Abas para Mobile -->
+            <div class="flex md:hidden bg-white p-1 rounded-xl border border-begeDark overflow-x-auto gap-1 text-xs font-accent">
                 <button onclick="switchMobileKanbanCol('ideia')" id="mob-col-btn-ideia" class="flex-1 py-1.5 px-3 rounded-lg font-bold bg-bege text-bordo whitespace-nowrap">Ideias</button>
                 <button onclick="switchMobileKanbanCol('producao')" id="mob-col-btn-producao" class="flex-1 py-1.5 px-3 rounded-lg font-bold text-gray-500 whitespace-nowrap">Produção</button>
                 <button onclick="switchMobileKanbanCol('agendado')" id="mob-col-btn-agendado" class="flex-1 py-1.5 px-3 rounded-lg font-bold text-gray-500 whitespace-nowrap">Agendado</button>
                 <button onclick="switchMobileKanbanCol('publicado')" id="mob-col-btn-publicado" class="flex-1 py-1.5 px-3 rounded-lg font-bold text-gray-500 whitespace-nowrap">Publicado</button>
             </div>
 
-            <!-- Grade do Kanban -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div id="wrapper-col-ideia" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col">
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="font-bold text-sm text-gray-700 flex items-center gap-2">
-                            <span class="w-3 h-3 rounded-full bg-amarelo"></span> Ideias
+            <!-- Grade do Kanban com Suporte a Expansão e Retração de Colunas -->
+            <div class="flex flex-col md:flex-row gap-4 items-start">
+                
+                <!-- Coluna 1: Ideias -->
+                <div id="wrapper-col-ideia" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0">
+                    <div class="flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
+                        <span class="font-bold text-sm text-gray-700 flex items-center gap-2 font-title">
+                            <span class="w-3 h-3 rounded-full bg-amarelo flex-shrink-0"></span> Ideias
                         </span>
-                        <span id="count-ideia" class="bg-bege text-xs font-semibold px-2 py-1 rounded-full text-gray-600">0</span>
-                    </div>
-                    <div id="col-ideia" class="space-y-3 flex-1 min-h-[150px]"></div>
-                </div>
-
-                <div id="wrapper-col-producao" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col hidden md:flex">
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="font-bold text-sm text-gray-700 flex items-center gap-2">
-                            <span class="w-3 h-3 rounded-full bg-azul"></span> Em Produção
-                        </span>
-                        <span id="count-producao" class="bg-bege text-xs font-semibold px-2 py-1 rounded-full text-gray-600">0</span>
-                    </div>
-                    <div id="col-producao" class="space-y-3 flex-1 min-h-[150px]"></div>
-                </div>
-
-                <div id="wrapper-col-agendado" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col hidden md:flex">
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="font-bold text-sm text-gray-700 flex items-center gap-2">
-                            <span class="w-3 h-3 rounded-full bg-rosa"></span> Agendado
-                        </span>
-                        <span id="count-agendado" class="bg-bege text-xs font-semibold px-2 py-1 rounded-full text-gray-600">0</span>
-                    </div>
-                    <div id="col-agendado" class="space-y-3 flex-1 min-h-[150px]"></div>
-                </div>
-
-                <div id="wrapper-col-publicado" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col hidden md:flex">
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="font-bold text-sm text-gray-700 flex items-center gap-2">
-                            <span class="w-3 h-3 rounded-full bg-verde"></span> Publicado
-                        </span>
-                        <div class="flex items-center gap-1">
-                            <span id="count-publicado" class="bg-bege text-xs font-semibold px-2 py-1 rounded-full text-gray-600">0</span>
-                            <button onclick="toggleShowAllPublished()" class="text-[10px] text-bordo underline font-bold ml-1" title="Alternar entre ver todos e recentes">Ver todos</button>
+                        <div class="flex items-center gap-2 font-accent">
+                            <span id="count-ideia" class="bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
+                            <button onclick="toggleColumnCollapse('ideia')" class="hidden md:inline-block text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher Coluna" id="btn-col-ideia">[−]</button>
                         </div>
                     </div>
-                    <div id="col-publicado" class="space-y-3 flex-1 min-h-[150px]"></div>
+                    <div id="col-ideia" class="col-content space-y-3 flex-1 min-h-[150px]"></div>
                 </div>
+
+                <!-- Coluna 2: Em Produção -->
+                <div id="wrapper-col-producao" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0 hidden md:flex">
+                    <div class="flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
+                        <span class="font-bold text-sm text-gray-700 flex items-center gap-2 font-title">
+                            <span class="w-3 h-3 rounded-full bg-azul flex-shrink-0"></span> Em Produção
+                        </span>
+                        <div class="flex items-center gap-2 font-accent">
+                            <span id="count-producao" class="bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
+                            <button onclick="toggleColumnCollapse('producao')" class="hidden md:inline-block text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher Coluna" id="btn-col-producao">[−]</button>
+                        </div>
+                    </div>
+                    <div id="col-producao" class="col-content space-y-3 flex-1 min-h-[150px]"></div>
+                </div>
+
+                <!-- Coluna 3: Agendado -->
+                <div id="wrapper-col-agendado" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0 hidden md:flex">
+                    <div class="flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
+                        <span class="font-bold text-sm text-gray-700 flex items-center gap-2 font-title">
+                            <span class="w-3 h-3 rounded-full bg-rosa flex-shrink-0"></span> Agendado
+                        </span>
+                        <div class="flex items-center gap-2 font-accent">
+                            <span id="count-agendado" class="bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
+                            <button onclick="toggleColumnCollapse('agendado')" class="hidden md:inline-block text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher Coluna" id="btn-col-agendado">[−]</button>
+                        </div>
+                    </div>
+                    <div id="col-agendado" class="col-content space-y-3 flex-1 min-h-[150px]"></div>
+                </div>
+
+                <!-- Coluna 4: Publicado -->
+                <div id="wrapper-col-publicado" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0 hidden md:flex">
+                    <div class="flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
+                        <span class="font-bold text-sm text-gray-700 flex items-center gap-2 font-title">
+                            <span class="w-3 h-3 rounded-full bg-verde flex-shrink-0"></span> Publicado
+                        </span>
+                        <div class="flex items-center gap-1 font-accent">
+                            <span id="count-publicado" class="bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
+                            <button onclick="toggleShowAllPublished()" class="col-content text-[10px] text-bordo underline font-bold ml-1" title="Alternar entre ver todos e recentes">Ver todos</button>
+                            <button onclick="toggleColumnCollapse('publicado')" class="hidden md:inline-block text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher Coluna" id="btn-col-publicado">[−]</button>
+                        </div>
+                    </div>
+                    <div id="col-publicado" class="col-content space-y-3 flex-1 min-h-[150px]"></div>
+                </div>
+
             </div>
         </section>
 
@@ -261,14 +297,14 @@
         <section id="tab-calendar" class="hidden space-y-6">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <h2 class="text-xl md:text-2xl font-bold text-bordo">Calendário do Mês</h2>
+                    <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Calendário do Mês</h2>
                     <p class="text-sm text-gray-500">Clique em qualquer dia para ver os posts ou agendar novo conteúdo</p>
                 </div>
                 <div class="flex items-center gap-3 bg-white px-4 py-2 rounded-xl border border-begeDark self-start">
                     <button onclick="changeMonth(-1)" class="text-bordo hover:bg-bege p-1 rounded-lg">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     </button>
-                    <span id="calendar-month-title" class="font-bold text-bordo text-sm min-w-[120px] text-center">Outubro 2026</span>
+                    <span id="calendar-month-title" class="font-bold text-bordo text-sm min-w-[120px] text-center font-title">Outubro 2026</span>
                     <button onclick="changeMonth(1)" class="text-bordo hover:bg-bege p-1 rounded-lg">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                     </button>
@@ -277,7 +313,7 @@
 
             <!-- Grade do Mês -->
             <div class="bg-white rounded-2xl p-4 md:p-6 border border-begeDark shadow-sm">
-                <div class="grid grid-cols-7 gap-1 md:gap-2 mb-2 text-center text-xs font-bold text-bordo uppercase">
+                <div class="grid grid-cols-7 gap-1 md:gap-2 mb-2 text-center text-xs font-bold text-bordo uppercase font-accent">
                     <div>Dom</div><div>Seg</div><div>Ter</div><div>Qua</div><div>Qui</div><div>Sex</div><div>Sáb</div>
                 </div>
                 <div id="calendar-grid" class="grid grid-cols-7 gap-1 md:gap-2"></div>
@@ -287,35 +323,35 @@
         <!-- TAB 3: VISUALIZAÇÃO POR PLATAFORMAS -->
         <section id="tab-platforms" class="hidden space-y-6">
             <div>
-                <h2 class="text-xl md:text-2xl font-bold text-bordo">Organização por Rede Social</h2>
+                <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Organização por Rede Social</h2>
                 <p class="text-sm text-gray-500">Visualize as publicações separadas por cada canal</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col">
-                    <h3 class="font-bold text-sm text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center">
+                    <h3 class="font-bold text-sm text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center font-title">
                         <span>Instagram</span>
-                        <span id="count-plat-instagram" class="text-xs bg-bege px-2 py-0.5 rounded-full text-gray-600">0</span>
+                        <span id="count-plat-instagram" class="text-xs bg-bege px-2 py-0.5 rounded-full text-gray-600 font-accent">0</span>
                     </h3>
                     <div id="col-plat-instagram" class="space-y-3 flex-1 min-h-[150px]"></div>
                 </div>
                 <div class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col">
-                    <h3 class="font-bold text-sm text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center">
+                    <h3 class="font-bold text-sm text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center font-title">
                         <span>TikTok</span>
-                        <span id="count-plat-tiktok" class="text-xs bg-bege px-2 py-0.5 rounded-full text-gray-600">0</span>
+                        <span id="count-plat-tiktok" class="text-xs bg-bege px-2 py-0.5 rounded-full text-gray-600 font-accent">0</span>
                     </h3>
                     <div id="col-plat-tiktok" class="space-y-3 flex-1 min-h-[150px]"></div>
                 </div>
                 <div class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col">
-                    <h3 class="font-bold text-sm text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center">
+                    <h3 class="font-bold text-sm text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center font-title">
                         <span>YouTube</span>
-                        <span id="count-plat-youtube" class="text-xs bg-bege px-2 py-0.5 rounded-full text-gray-600">0</span>
+                        <span id="count-plat-youtube" class="text-xs bg-bege px-2 py-0.5 rounded-full text-gray-600 font-accent">0</span>
                     </h3>
                     <div id="col-plat-youtube" class="space-y-3 flex-1 min-h-[150px]"></div>
                 </div>
                 <div class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col">
-                    <h3 class="font-bold text-sm text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center">
+                    <h3 class="font-bold text-sm text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center font-title">
                         <span>Pinterest / Outros</span>
-                        <span id="count-plat-outros" class="text-xs bg-bege px-2 py-0.5 rounded-full text-gray-600">0</span>
+                        <span id="count-plat-outros" class="text-xs bg-bege px-2 py-0.5 rounded-full text-gray-600 font-accent">0</span>
                     </h3>
                     <div id="col-plat-outros" class="space-y-3 flex-1 min-h-[150px]"></div>
                 </div>
@@ -325,7 +361,7 @@
         <!-- TAB 4: BANCO DE IDEIAS (DE POSTS) -->
         <section id="tab-ideas" class="hidden space-y-6">
             <div>
-                <h2 class="text-xl md:text-2xl font-bold text-bordo">Banco de Ideias de Posts</h2>
+                <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Banco de Ideias de Posts</h2>
                 <p class="text-sm text-gray-500">Rascunhos de conteúdo prontos para serem trabalhados</p>
             </div>
             <div id="ideas-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
@@ -338,9 +374,9 @@
                 <div class="flex justify-between items-center border-b border-white/20 pb-2">
                     <div class="flex items-center gap-2">
                         <span class="text-lg">🎯</span>
-                        <h3 class="font-bold text-sm uppercase tracking-wide">Bússola de Objetivos & Campanha Ativa</h3>
+                        <h3 class="font-bold text-sm uppercase tracking-wide font-title">Bússola de Objetivos & Campanha Ativa</h3>
                     </div>
-                    <button onclick="toggleBrandGoalsExpand()" id="btn-toggle-goals" class="text-xs bg-white/20 hover:bg-white/30 px-2.5 py-1 rounded-lg font-semibold transition">
+                    <button onclick="toggleBrandGoalsExpand()" id="btn-toggle-goals" class="text-xs bg-white/20 hover:bg-white/30 px-2.5 py-1 rounded-lg font-semibold transition font-accent">
                         ✏️ Editar Objetivos
                     </button>
                 </div>
@@ -348,39 +384,39 @@
                 <!-- Visão de Leitura dos Objetivos -->
                 <div id="view-brand-goals" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                     <div class="bg-black/15 p-3 rounded-xl border border-white/10 space-y-1">
-                        <span class="text-[10px] font-bold uppercase text-amber-200">📌 Objetivos Principais da Marca:</span>
+                        <span class="text-[10px] font-bold uppercase text-amber-200 font-accent">📌 Objetivos Principais da Marca:</span>
                         <p id="display-brand-goals" class="font-medium whitespace-pre-line leading-relaxed">Nenhum objetivo cadastrado ainda. Clique em 'Editar Objetivos' para definir!</p>
                     </div>
                     <div class="bg-black/15 p-3 rounded-xl border border-white/10 space-y-1">
-                        <span class="text-[10px] font-bold uppercase text-amber-200">🚀 Campanha / Foco do Mês:</span>
-                        <p id="display-brand-campaign" class="font-bold text-sm text-white">Nenhuma campanha ativa no momento.</p>
+                        <span class="text-[10px] font-bold uppercase text-amber-200 font-accent">🚀 Campanha / Foco do Mês:</span>
+                        <p id="display-brand-campaign" class="font-bold text-sm text-white font-title">Nenhuma campanha ativa no momento.</p>
                     </div>
                 </div>
 
                 <!-- Formulário de Edição dos Objetivos -->
                 <div id="form-brand-goals" class="hidden space-y-3 pt-2 text-xs">
                     <div>
-                        <label class="block font-bold mb-1 text-amber-200">Objetivos Gerais / Trimestrais da Cazinha:</label>
+                        <label class="block font-bold mb-1 text-amber-200 font-accent">Objetivos Gerais / Trimestrais da Cazinha:</label>
                         <textarea id="input-brand-goals" rows="2" class="w-full p-2.5 rounded-xl text-gray-800 text-xs focus:outline-none" placeholder="Ex: Fortalecer a presença em Reels, aumentar vendas do kit presente..."></textarea>
                     </div>
                     <div>
-                        <label class="block font-bold mb-1 text-amber-200">Campanha Ativa do Mês:</label>
+                        <label class="block font-bold mb-1 text-amber-200 font-accent">Campanha Ativa do Mês:</label>
                         <input type="text" id="input-brand-campaign" class="w-full p-2 rounded-xl text-gray-800 text-xs focus:outline-none" placeholder="Ex: Lançamento Coleção Primavera / Dia das Mães">
                     </div>
                     <div class="flex justify-end gap-2">
-                        <button onclick="saveBrandGoals()" class="bg-white text-bordo font-bold px-4 py-1.5 rounded-xl shadow hover:bg-bege text-xs">Salvar Objetivos</button>
+                        <button onclick="saveBrandGoals()" class="bg-white text-bordo font-bold px-4 py-1.5 rounded-xl shadow hover:bg-bege text-xs font-accent">Salvar Objetivos</button>
                     </div>
                 </div>
             </div>
 
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <h2 class="text-xl md:text-2xl font-bold text-bordo">Mural de Anotações & Checklists</h2>
+                    <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Mural de Anotações & Checklists</h2>
                     <p class="text-sm text-gray-500">Caderno livre para pensamentos, tarefas rápidas e lembretes operacionais</p>
                 </div>
                 
                 <!-- Filtro do Mural -->
-                <div class="flex items-center gap-1 bg-white p-1 rounded-xl border border-begeDark text-xs">
+                <div class="flex items-center gap-1 bg-white p-1 rounded-xl border border-begeDark text-xs font-accent">
                     <button onclick="filterBrandMural('ALL')" id="mural-filter-ALL" class="px-3 py-1.5 rounded-lg font-bold bg-bege text-bordo">Todas</button>
                     <button onclick="filterBrandMural('NOTE')" id="mural-filter-NOTE" class="px-3 py-1.5 rounded-lg font-medium text-gray-500">Notas Livres</button>
                     <button onclick="filterBrandMural('CHECKLIST')" id="mural-filter-CHECKLIST" class="px-3 py-1.5 rounded-lg font-medium text-gray-500">Checklists</button>
@@ -389,7 +425,7 @@
 
             <!-- Criador de Nota / Checklist -->
             <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-4 shadow-sm">
-                <div class="flex items-center gap-4 border-b border-begeDark pb-2 text-xs font-bold text-bordo">
+                <div class="flex items-center gap-4 border-b border-begeDark pb-2 text-xs font-bold text-bordo font-accent">
                     <label class="flex items-center gap-1.5 cursor-pointer">
                         <input type="radio" name="note-type" value="NOTE" checked onchange="toggleNoteTypeInput()" class="accent-bordo"> 📝 Nota / Insight Livre
                     </label>
@@ -399,7 +435,7 @@
                 </div>
 
                 <div class="space-y-3">
-                    <input type="text" id="brand-note-title" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs font-bold focus:outline-none" placeholder="Título (ex: Tarefas de Produção, Ideia de Embalagem)...">
+                    <input type="text" id="brand-note-title" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs font-bold focus:outline-none font-title" placeholder="Título (ex: Tarefas de Produção, Ideia de Embalagem)...">
                     
                     <!-- Campo para Nota Livre -->
                     <div id="field-note-text">
@@ -408,20 +444,20 @@
 
                     <!-- Campo para Itens do Checklist -->
                     <div id="field-checklist-items" class="hidden space-y-2">
-                        <p class="text-[10px] font-bold text-gray-500 uppercase">Itens da Lista (digite um item por linha):</p>
+                        <p class="text-[10px] font-bold text-gray-500 uppercase font-accent">Itens da Lista (digite um item por linha):</p>
                         <textarea id="brand-checklist-text" rows="3" class="w-full p-3 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Comprar cera vegetal&#10;Imprimir etiquetas&#10;Gravar vídeo de bastidores"></textarea>
                     </div>
 
                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pt-2">
                         <div class="flex flex-wrap items-center gap-3 text-xs">
                             <div>
-                                <span class="text-[10px] font-bold text-gray-600 uppercase block">Data Limite (Opcional):</span>
+                                <span class="text-[10px] font-bold text-gray-600 uppercase block font-accent">Data Limite (Opcional):</span>
                                 <input type="date" id="brand-note-duedate" class="px-2.5 py-1 rounded-lg border border-begeDark text-xs">
                             </div>
 
                             <div>
-                                <span class="text-[10px] font-bold text-gray-600 uppercase block">Categorias:</span>
-                                <div class="flex flex-wrap gap-1.5 text-[11px]">
+                                <span class="text-[10px] font-bold text-gray-600 uppercase block font-accent">Categorias:</span>
+                                <div class="flex flex-wrap gap-1.5 text-[11px] font-accent">
                                     <label class="flex items-center gap-1 bg-bege px-2 py-0.5 rounded border border-begeDark cursor-pointer">
                                         <input type="checkbox" name="brand-note-cat" value="Produtos" class="accent-bordo"> 📦 Produtos
                                     </label>
@@ -435,7 +471,7 @@
                             </div>
                         </div>
 
-                        <button onclick="addBrandNote()" class="bg-vibrante hover:bg-bordo text-white font-semibold text-xs py-2.5 px-5 rounded-xl transition shadow">Salvar no Mural</button>
+                        <button onclick="addBrandNote()" class="bg-vibrante hover:bg-bordo text-white font-semibold text-xs py-2.5 px-5 rounded-xl transition shadow font-accent">Salvar no Mural</button>
                     </div>
                 </div>
             </div>
@@ -447,12 +483,12 @@
         <!-- TAB 6: DATAS SAZONAIS -->
         <section id="tab-seasonal" class="hidden space-y-6">
             <div>
-                <h2 class="text-xl md:text-2xl font-bold text-bordo">Datas Sazonais & Comemorativas</h2>
+                <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Datas Sazonais & Comemorativas</h2>
                 <p class="text-sm text-gray-500">Planeje conteúdos estratégicos vinculados a eventos importantes do ano</p>
             </div>
 
             <div class="bg-white p-6 rounded-2xl border border-begeDark space-y-4">
-                <h3 class="font-bold text-bordo text-sm">Publicações Marcadas como Sazonais</h3>
+                <h3 class="font-bold text-bordo text-sm font-title">Publicações Marcadas como Sazonais</h3>
                 <div id="seasonal-posts-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
             </div>
         </section>
@@ -460,19 +496,19 @@
         <!-- TAB 7: ESTRATÉGIA & SEO (BANCO INTERATIVO DE PALAVRAS-CHAVE) -->
         <section id="tab-strategy" class="hidden space-y-6">
             <div>
-                <h2 class="text-xl md:text-2xl font-bold text-bordo">Central de Estratégia & SEO</h2>
+                <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Central de Estratégia & SEO</h2>
                 <p class="text-sm text-gray-500">Gerencie palavras-chave principais do seu nicho para usar de forma natural nas legendas</p>
             </div>
 
             <!-- Adicionar Nova Tag -->
             <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3">
-                <h3 class="font-bold text-bordo text-sm">Adicionar Nova Palavra-Chave ao Banco</h3>
+                <h3 class="font-bold text-bordo text-sm font-title">Adicionar Nova Palavra-Chave ao Banco</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <input type="text" id="new-tag-text" class="px-3 py-2 rounded-xl border border-begeDark text-xs" placeholder="Ex: velas aromáticas ou presente criativo">
                     
                     <div class="space-y-1">
-                        <span class="text-[10px] font-bold text-gray-600 uppercase block">Categorias (Selecione 1 ou mais):</span>
-                        <div class="flex flex-wrap gap-1.5 text-[11px]">
+                        <span class="text-[10px] font-bold text-gray-600 uppercase block font-accent">Categorias (Selecione 1 ou mais):</span>
+                        <div class="flex flex-wrap gap-1.5 text-[11px] font-accent">
                             <label class="flex items-center gap-1 bg-bege px-2 py-0.5 rounded border border-begeDark cursor-pointer">
                                 <input type="checkbox" name="new-tag-cat" value="Marca & Nicho" class="accent-bordo"> Marca & Nicho
                             </label>
@@ -486,7 +522,7 @@
                     </div>
 
                     <div class="flex items-end">
-                        <button onclick="addSeoTag()" class="w-full bg-vibrante text-white text-xs font-semibold py-2 px-4 rounded-xl hover:bg-bordo transition">Adicionar Termo</button>
+                        <button onclick="addSeoTag()" class="w-full bg-vibrante text-white text-xs font-semibold py-2 px-4 rounded-xl hover:bg-bordo transition font-accent">Adicionar Termo</button>
                     </div>
                 </div>
             </div>
@@ -496,8 +532,8 @@
                 <!-- Marca & Nicho -->
                 <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3">
                     <div class="flex justify-between items-center border-b border-begeDark pb-2">
-                        <h4 class="font-bold text-bordo text-xs uppercase">🏷️ Marca & Nicho</h4>
-                        <button onclick="copyCategoryTags('Marca & Nicho')" class="text-[10px] bg-bege hover:bg-begeDark text-bordo font-bold px-2.5 py-1 rounded-lg">Copiar Todos</button>
+                        <h4 class="font-bold text-bordo text-xs uppercase font-accent">🏷️ Marca & Nicho</h4>
+                        <button onclick="copyCategoryTags('Marca & Nicho')" class="text-[10px] bg-bege hover:bg-begeDark text-bordo font-bold px-2.5 py-1 rounded-lg font-accent">Copiar Todos</button>
                     </div>
                     <div id="tags-container-Marca & Nicho" class="flex flex-wrap gap-1.5 min-h-[50px]"></div>
                 </div>
@@ -505,8 +541,8 @@
                 <!-- Produtos -->
                 <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3">
                     <div class="flex justify-between items-center border-b border-begeDark pb-2">
-                        <h4 class="font-bold text-bordo text-xs uppercase">📦 Produtos</h4>
-                        <button onclick="copyCategoryTags('Produtos')" class="text-[10px] bg-bege hover:bg-begeDark text-bordo font-bold px-2.5 py-1 rounded-lg">Copiar Todos</button>
+                        <h4 class="font-bold text-bordo text-xs uppercase font-accent">📦 Produtos</h4>
+                        <button onclick="copyCategoryTags('Produtos')" class="text-[10px] bg-bege hover:bg-begeDark text-bordo font-bold px-2.5 py-1 rounded-lg font-accent">Copiar Todos</button>
                     </div>
                     <div id="tags-container-Produtos" class="flex flex-wrap gap-1.5 min-h-[50px]"></div>
                 </div>
@@ -514,8 +550,8 @@
                 <!-- Intenção & Estilo de Vida -->
                 <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3 md:col-span-2">
                     <div class="flex justify-between items-center border-b border-begeDark pb-2">
-                        <h4 class="font-bold text-bordo text-xs uppercase">✨ Intenção & Estilo de Vida</h4>
-                        <button onclick="copyCategoryTags('Intenção & Estilo de Vida')" class="text-[10px] bg-bege hover:bg-begeDark text-bordo font-bold px-2.5 py-1 rounded-lg">Copiar Todos</button>
+                        <h4 class="font-bold text-bordo text-xs uppercase font-accent">✨ Intenção & Estilo de Vida</h4>
+                        <button onclick="copyCategoryTags('Intenção & Estilo de Vida')" class="text-[10px] bg-bege hover:bg-begeDark text-bordo font-bold px-2.5 py-1 rounded-lg font-accent">Copiar Todos</button>
                     </div>
                     <div id="tags-container-Intenção & Estilo de Vida" class="flex flex-wrap gap-1.5 min-h-[50px]"></div>
                 </div>
@@ -523,7 +559,7 @@
 
             <!-- Resumo dos Objetivos -->
             <div class="bg-white p-6 rounded-2xl border border-begeDark space-y-4">
-                <h3 class="font-bold text-bordo text-base">Distribuição por Objetivo de Conteúdo</h3>
+                <h3 class="font-bold text-bordo text-base font-title">Distribuição por Objetivo de Conteúdo</h3>
                 <div id="strategy-goals-summary" class="space-y-2 text-xs"></div>
             </div>
         </section>
@@ -531,40 +567,40 @@
         <!-- TAB 8: MÉTRICAS & RESULTADOS -->
         <section id="tab-metrics" class="hidden space-y-6">
             <div>
-                <h2 class="text-xl md:text-2xl font-bold text-bordo">Métricas & Desempenho</h2>
+                <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Métricas & Desempenho</h2>
                 <p class="text-sm text-gray-500">Análise de resultados gerada automaticamente a partir dos dados preenchidos nos seus posts</p>
             </div>
 
             <!-- KPIs Rápidos -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
-                    <span class="text-[10px] font-bold text-gray-500 uppercase">Alcance Total Acumulado</span>
-                    <h3 id="kpi-total-reach" class="text-2xl font-bold text-bordo mt-1">0</h3>
+                    <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Alcance Total Acumulado</span>
+                    <h3 id="kpi-total-reach" class="text-2xl font-bold text-bordo mt-1 font-title">0</h3>
                     <span class="text-[9px] text-gray-400 mt-2">Soma de impressões/alcance</span>
                 </div>
                 <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
-                    <span class="text-[10px] font-bold text-gray-500 uppercase">Média de Engajamento</span>
-                    <h3 id="kpi-avg-engagement" class="text-2xl font-bold text-pink mt-1">0%</h3>
+                    <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Média de Engajamento</span>
+                    <h3 id="kpi-avg-engagement" class="text-2xl font-bold text-pink mt-1 font-title">0%</h3>
                     <span class="text-[9px] text-gray-400 mt-2">(Interações / Alcance) * 100</span>
                 </div>
                 <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
-                    <span class="text-[10px] font-bold text-gray-500 uppercase">Vendas / Conversões</span>
-                    <h3 id="kpi-total-sales" class="text-2xl font-bold text-verde mt-1">0</h3>
+                    <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Vendas / Conversões</span>
+                    <h3 id="kpi-total-sales" class="text-2xl font-bold text-verde mt-1 font-title">0</h3>
                     <span class="text-[9px] text-gray-400 mt-2">Cliques/Vendas relatadas</span>
                 </div>
                 <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
-                    <span class="text-[10px] font-bold text-gray-500 uppercase">Top Post do Mês</span>
-                    <h3 id="kpi-top-post-title" class="text-xs font-bold text-gray-800 line-clamp-1 mt-1">-</h3>
-                    <span id="kpi-top-post-stats" class="text-[9px] text-vibrante font-bold mt-2">Nenhum post registrado</span>
+                    <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Top Post do Mês</span>
+                    <h3 id="kpi-top-post-title" class="text-xs font-bold text-gray-800 line-clamp-1 mt-1 font-title">-</h3>
+                    <span id="kpi-top-post-stats" class="text-[9px] text-vibrante font-bold mt-2 font-accent">Nenhum post registrado</span>
                 </div>
             </div>
 
             <!-- Tabela de Desempenho dos Posts -->
             <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3 overflow-x-auto">
-                <h3 class="font-bold text-bordo text-sm">Histórico de Performance dos Posts</h3>
+                <h3 class="font-bold text-bordo text-sm font-title">Histórico de Performance dos Posts</h3>
                 <table class="w-full text-left text-xs">
                     <thead>
-                        <tr class="border-b border-begeDark text-gray-500 uppercase text-[10px]">
+                        <tr class="border-b border-begeDark text-gray-500 uppercase text-[10px] font-accent">
                             <th class="pb-2">Post</th>
                             <th class="pb-2">Plataforma</th>
                             <th class="pb-2">Alcance</th>
@@ -584,7 +620,7 @@
     <div id="modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-xl max-h-[90vh] overflow-y-auto">
             <div class="flex items-center justify-between mb-6 border-b border-begeDark pb-3">
-                <h3 id="modal-title" class="text-lg font-bold text-bordo">Novo Conteúdo</h3>
+                <h3 id="modal-title" class="text-lg font-bold text-bordo font-title">Novo Conteúdo</h3>
                 <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
@@ -594,14 +630,14 @@
                 <input type="hidden" id="post-id">
 
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Título do Post</label>
-                    <input type="text" id="post-title" required class="w-full px-4 py-2.5 rounded-xl border border-begeDark focus:ring-2 focus:ring-vibrante focus:outline-none text-sm" placeholder="Ex: Lançamento do Produto X">
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Título do Post</label>
+                    <input type="text" id="post-title" required class="w-full px-4 py-2.5 rounded-xl border border-begeDark focus:ring-2 focus:ring-vibrante focus:outline-none text-sm font-title font-bold" placeholder="Ex: Lançamento do Produto X">
                 </div>
 
                 <!-- Múltiplas Plataformas (Checkboxes) -->
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Plataformas</label>
-                    <div class="flex flex-wrap gap-2 text-xs">
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Plataformas</label>
+                    <div class="flex flex-wrap gap-2 text-xs font-accent">
                         <label class="flex items-center gap-1.5 bg-bege px-3 py-1.5 rounded-lg border border-begeDark cursor-pointer">
                             <input type="checkbox" name="platform" value="Instagram" class="accent-bordo"> Instagram
                         </label>
@@ -619,7 +655,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Formato</label>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Formato</label>
                         <select id="post-format" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
                             <option value="Carrossel">Carrossel</option>
                             <option value="Reels">Reels / Vídeo Curto</option>
@@ -629,7 +665,7 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Status</label>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Status</label>
                         <select id="post-status" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
                             <option value="ideia">Ideia</option>
                             <option value="producao">Em Produção</option>
@@ -638,7 +674,7 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Data de Publicação</label>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Data de Publicação</label>
                         <input type="date" id="post-date" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
                     </div>
                 </div>
@@ -646,7 +682,7 @@
                 <!-- Estratégia: Objetivo & Pilar em Dropdowns com Múltipla Seleção -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 border-t border-begeDark">
                     <div class="relative">
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Objetivo(s)</label>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Objetivo(s)</label>
                         <div class="p-2 border border-begeDark rounded-xl text-xs bg-bege/30 max-h-28 overflow-y-auto space-y-1">
                             <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="post-goals" value="Conexão" class="accent-bordo"> Conexão</label>
                             <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="post-goals" value="Engajamento" class="accent-bordo"> Engajamento</label>
@@ -656,7 +692,7 @@
                     </div>
 
                     <div class="relative">
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Pilar(es)</label>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Pilar(es)</label>
                         <div class="p-2 border border-begeDark rounded-xl text-xs bg-bege/30 max-h-28 overflow-y-auto space-y-1">
                             <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="post-pillars" value="Educacional" class="accent-bordo"> Educacional</label>
                             <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="post-pillars" value="Bastidores" class="accent-bordo"> Bastidores</label>
@@ -666,7 +702,7 @@
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Status da Mídia</label>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Status da Mídia</label>
                         <select id="post-media-status" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
                             <option value="A Gravar">A Gravar / Foto</option>
                             <option value="Em Edição">Em Edição</option>
@@ -677,39 +713,39 @@
 
                 <!-- Palavras-Chave Rápidas e Validador de SEO -->
                 <div class="space-y-1.5 pt-2 border-t border-begeDark">
-                    <label class="block text-xs font-bold text-gray-700 uppercase">Apoio de Palavras-Chave do Banco</label>
+                    <label class="block text-xs font-bold text-gray-700 uppercase font-accent">Apoio de Palavras-Chave do Banco</label>
                     <p class="text-[10px] text-gray-500">Clique na palavra abaixo para inseri-la naturalmente na sua legenda/roteiro:</p>
-                    <div id="modal-quick-tags" class="flex flex-wrap gap-1 p-2 bg-bege/50 rounded-xl border border-begeDark/50 max-h-20 overflow-y-auto"></div>
+                    <div id="modal-quick-tags" class="flex flex-wrap gap-1 p-2 bg-bege/50 rounded-xl border border-begeDark/50 max-h-20 overflow-y-auto font-accent"></div>
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Legenda / Roteiro</label>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Legenda / Roteiro</label>
                     <textarea id="post-caption" oninput="checkSeoKeywordsInCaption()" rows="4" class="w-full px-4 py-2.5 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Escreva aqui a legenda ou roteiro..."></textarea>
-                    <p id="seo-feedback-text" class="text-[10px] text-gray-500 font-medium mt-1"></p>
+                    <p id="seo-feedback-text" class="text-[10px] text-gray-500 font-medium mt-1 font-accent"></p>
                 </div>
 
                 <!-- Bloco de Registro de Métricas após Publicação -->
                 <div class="bg-bege/60 p-3 rounded-xl space-y-2 border border-begeDark">
-                    <span class="text-xs font-bold text-bordo block">📊 Métricas do Post (Preencher após publicar)</span>
+                    <span class="text-xs font-bold text-bordo block font-title">📊 Métricas do Post (Preencher após publicar)</span>
                     <div class="grid grid-cols-3 gap-2 text-xs">
                         <div>
-                            <label class="block text-[10px] text-gray-600">Alcance</label>
+                            <label class="block text-[10px] text-gray-600 font-accent">Alcance</label>
                             <input type="number" id="metric-reach" class="w-full p-1.5 rounded-lg border border-begeDark text-xs" placeholder="0">
                         </div>
                         <div>
-                            <label class="block text-[10px] text-gray-600">Interações</label>
+                            <label class="block text-[10px] text-gray-600 font-accent">Interações</label>
                             <input type="number" id="metric-interactions" class="w-full p-1.5 rounded-lg border border-begeDark text-xs" placeholder="0">
                         </div>
                         <div>
-                            <label class="block text-[10px] text-gray-600">Vendas/Cliques</label>
+                            <label class="block text-[10px] text-gray-600 font-accent">Vendas/Cliques</label>
                             <input type="number" id="metric-sales" class="w-full p-1.5 rounded-lg border border-begeDark text-xs" placeholder="0">
                         </div>
                     </div>
                 </div>
 
                 <div class="flex gap-3 pt-3">
-                    <button type="button" onclick="closeModal()" class="w-1/2 py-2.5 border border-begeDark rounded-xl text-xs font-semibold text-gray-600 hover:bg-bege">Cancelar</button>
-                    <button type="submit" class="w-1/2 py-2.5 bg-vibrante text-white rounded-xl text-xs font-semibold hover:bg-bordo transition">Salvar Conteúdo</button>
+                    <button type="button" onclick="closeModal()" class="w-1/2 py-2.5 border border-begeDark rounded-xl text-xs font-semibold text-gray-600 hover:bg-bege font-accent">Cancelar</button>
+                    <button type="submit" class="w-1/2 py-2.5 bg-vibrante text-white rounded-xl text-xs font-semibold hover:bg-bordo transition font-accent">Salvar Conteúdo</button>
                 </div>
             </form>
         </div>
@@ -735,8 +771,8 @@
         let brandGoalsData = { goals: '', campaign: '' };
         let currentCalendarDate = new Date();
 
-        // Controle de cards expandidos no Kanban
-        let expandedCardIds = new Set();
+        // Estado de colunas recolhidas no Kanban
+        let collapsedColumns = new Set();
 
         // Estados do Kanban
         let currentMobileCol = 'ideia';
@@ -844,14 +880,20 @@
             if (campaignEl) campaignEl.innerText = brandGoalsData.campaign ? `🚀 ${brandGoalsData.campaign}` : "Nenhuma campanha ativa no momento.";
         }
 
-        // --- KANBAN CONTROLS ---
-        function toggleCardExpand(postId) {
-            if (expandedCardIds.has(postId)) {
-                expandedCardIds.delete(postId);
+        // --- KANBAN CONTROLS COM EXPANSÃO/RETRAÇÃO DE COLUNAS ---
+        function toggleColumnCollapse(colKey) {
+            const wrapper = document.getElementById(`wrapper-col-${colKey}`);
+            const btn = document.getElementById(`btn-col-${colKey}`);
+
+            if (collapsedColumns.has(colKey)) {
+                collapsedColumns.delete(colKey);
+                wrapper.classList.remove('kanban-col-collapsed');
+                if (btn) btn.innerText = '[−]';
             } else {
-                expandedCardIds.add(postId);
+                collapsedColumns.add(colKey);
+                wrapper.classList.add('kanban-col-collapsed');
+                if (btn) btn.innerText = '[+]';
             }
-            renderKanban();
         }
 
         function switchMobileKanbanCol(col) {
@@ -915,24 +957,24 @@
                 if (post.status === 'publicado' && !showAllPublished && counts.publicado > 5) return;
 
                 const card = document.createElement('div');
-                const isExpanded = expandedCardIds.has(post.id);
                 
-                if (isCompactMode && !isExpanded) {
+                if (isCompactMode) {
                     card.className = "bg-white p-2.5 rounded-xl border border-begeDark shadow-2xs space-y-1 hover:border-bordo transition";
                     card.innerHTML = 
-                        `<div class="flex items-center justify-between"><span class="text-[9px] font-bold text-bordo">${plats.join(', ')}</span><button onclick="toggleCardExpand('${post.id}')" class="text-[10px] text-gray-400 hover:text-bordo font-bold">▼ Expandir</button></div>` +
-                        `<h4 class="font-bold text-xs text-gray-800 truncate">${post.title}</h4>`;
+                        `<div class="flex items-center justify-between font-accent"><span class="text-[9px] font-bold text-bordo">${plats.join(', ')}</span><span class="text-[9px] text-gray-400">${formatDate(post.date)}</span></div>` +
+                        `<h4 class="font-bold text-xs text-gray-800 truncate font-title">${post.title}</h4>` +
+                        `<div class="flex justify-end gap-2 pt-1 font-accent"><button onclick="openModalById('${post.id}')" class="text-[10px] text-vibrante font-bold">Editar</button></div>`;
                 } else {
                     card.className = "bg-white p-3.5 rounded-xl border border-begeDark shadow-sm hover:shadow-md transition space-y-2.5";
-                    const platBadges = plats.map(p => `<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-bege text-bordo">${p}</span>`).join(' ');
-                    const goals = (post.goals || [post.goal || 'Conexão']).map(g => `<span class="bg-pink/10 text-pink px-1.5 py-0.5 rounded">${g}</span>`).join(' ');
+                    const platBadges = plats.map(p => `<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-bege text-bordo font-accent">${p}</span>`).join(' ');
+                    const goals = (post.goals || [post.goal || 'Conexão']).map(g => `<span class="bg-pink/10 text-pink px-1.5 py-0.5 rounded font-accent">${g}</span>`).join(' ');
 
                     card.innerHTML = 
-                        `<div class="flex flex-wrap items-center justify-between gap-1">${platBadges} <button onclick="toggleCardExpand('${post.id}')" class="text-[10px] text-gray-400 hover:text-bordo font-bold">${isExpanded ? '▲ Recolher' : '▼'}</button></div>` +
-                        `<h4 class="font-bold text-xs text-gray-800 leading-snug">${post.title || 'Sem título'}</h4>` +
-                        (post.date ? `<p class="text-[10px] text-rosa font-medium">📅 ${formatDate(post.date)}</p>` : '') +
-                        `<div class="flex flex-wrap gap-1 text-[9px]">${goals} <span class="bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">${post.mediaStatus || 'A Gravar'}</span></div>` +
-                        `<div class="flex items-center justify-between pt-2 border-t border-bege/50 text-gray-400">` +
+                        `<div class="flex flex-wrap items-center justify-between gap-1">${platBadges} <span class="text-[9px] text-gray-400 font-accent">${post.format || ''}</span></div>` +
+                        `<h4 class="font-bold text-xs text-gray-800 leading-snug font-title">${post.title || 'Sem título'}</h4>` +
+                        (post.date ? `<p class="text-[10px] text-rosa font-medium font-accent">📅 ${formatDate(post.date)}</p>` : '') +
+                        `<div class="flex flex-wrap gap-1 text-[9px] font-accent">${goals} <span class="bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">${post.mediaStatus || 'A Gravar'}</span></div>` +
+                        `<div class="flex items-center justify-between pt-2 border-t border-bege/50 text-gray-400 font-accent">` +
                             `<select onchange="updateStatus('${post.id}', this.value)" class="text-[10px] border border-begeDark rounded px-1 py-0.5 bg-bege text-gray-600">` +
                                 `<option value="ideia" ${post.status === 'ideia' ? 'selected' : ''}>Ideia</option>` +
                                 `<option value="producao" ${post.status === 'producao' ? 'selected' : ''}>Produção</option>` +
@@ -968,8 +1010,8 @@
                 const btn = document.getElementById(`mural-filter-${t}`);
                 if (btn) {
                     btn.className = t === type 
-                        ? "px-3 py-1.5 rounded-lg font-bold bg-bege text-bordo" 
-                        : "px-3 py-1.5 rounded-lg font-medium text-gray-500";
+                        ? "px-3 py-1.5 rounded-lg font-bold bg-bege text-bordo font-accent" 
+                        : "px-3 py-1.5 rounded-lg font-medium text-gray-500 font-accent";
                 }
             });
             renderBrandNotes();
@@ -1051,7 +1093,7 @@
             });
 
             if (filtered.length === 0) {
-                grid.innerHTML = '<p class="text-xs text-gray-400 col-span-3 text-center py-6">Seu mural está vazio para esse filtro.</p>';
+                grid.innerHTML = '<p class="text-xs text-gray-400 col-span-3 text-center py-6 font-accent">Seu mural está vazio para esse filtro.</p>';
                 return;
             }
 
@@ -1059,7 +1101,7 @@
                 const card = document.createElement('div');
                 card.className = "bg-white p-4 rounded-2xl border border-begeDark shadow-2xs space-y-3 flex flex-col justify-between";
 
-                const catBadges = (note.categories || ['Geral']).map(c => `<span class="text-[9px] font-bold px-2 py-0.5 rounded-md bg-bege text-bordo border border-begeDark">${c}</span>`).join(' ');
+                const catBadges = (note.categories || ['Geral']).map(c => `<span class="text-[9px] font-bold px-2 py-0.5 rounded-md bg-bege text-bordo border border-begeDark font-accent">${c}</span>`).join(' ');
                 const formattedDueDate = note.dueDate ? formatDate(note.dueDate) : '';
 
                 let contentHTML = '';
@@ -1079,13 +1121,13 @@
                     ).join('');
 
                     contentHTML = 
-                        `<div class="space-y-1">` +
+                        `<div class="space-y-1 font-accent">` +
                             `<div class="flex justify-between items-center text-[10px] text-gray-500 font-bold mb-1"><span>Progresso</span><span>${completed.length}/${total} (${percent}%)</span></div>` +
                             `<div class="w-full bg-bege h-1.5 rounded-full overflow-hidden mb-2"><div class="bg-vibrante h-full" style="width: ${percent}%"></div></div>` +
                         `</div>` +
                         `<div class="space-y-1.5">${pendingHTML}</div>` +
                         (completed.length > 0 ? 
-                            `<details class="pt-2 text-[11px] text-gray-400 border-t border-begeDark/40"><summary class="cursor-pointer font-semibold">Concluídos (${completed.length})</summary><div class="space-y-1 mt-1 font-normal">${completedHTML}</div></details>` 
+                            `<details class="pt-2 text-[11px] text-gray-400 border-t border-begeDark/40"><summary class="cursor-pointer font-semibold font-accent">Concluídos (${completed.length})</summary><div class="space-y-1 mt-1 font-normal">${completedHTML}</div></details>` 
                             : '');
                 } else {
                     contentHTML = `<p class="text-xs text-gray-800 whitespace-pre-line leading-relaxed font-medium">${note.text || ''}</p>`;
@@ -1093,11 +1135,11 @@
 
                 card.innerHTML = 
                     `<div class="space-y-2">` +
-                        `<div class="flex items-center justify-between"><div class="flex flex-wrap gap-1">${catBadges}</div> ${formattedDueDate ? `<span class="text-[9px] font-bold text-vibrante">⏰ \${formattedDueDate}</span>` : ''}</div>` +
-                        `<h4 class="font-bold text-xs text-bordo">${note.title || 'Anotação'}</h4>` +
+                        `<div class="flex items-center justify-between"><div class="flex flex-wrap gap-1">${catBadges}</div> ${formattedDueDate ? `<span class="text-[9px] font-bold text-vibrante font-accent">⏰ \${formattedDueDate}</span>` : ''}</div>` +
+                        `<h4 class="font-bold text-xs text-bordo font-title">${note.title || 'Anotação'}</h4>` +
                         `${contentHTML}` +
                     `</div>` +
-                    `<div class="pt-2 border-t border-begeDark/50 flex items-center justify-end text-[10px]">` +
+                    `<div class="pt-2 border-t border-begeDark/50 flex items-center justify-end text-[10px] font-accent">` +
                         `<button onclick="deleteBrandNote('${note.id}')" class="text-gray-400 hover:text-vibrante">Excluir</button>` +
                     `</div>`;
 
@@ -1149,10 +1191,10 @@
             const feedbackEl = document.getElementById('seo-feedback-text');
             if (found.length > 0) {
                 feedbackEl.innerText = `✨ Palavras-chave do seu banco presentes na legenda: ${found.join(', ')}`;
-                feedbackEl.className = "text-[10px] text-green-700 font-bold mt-1";
+                feedbackEl.className = "text-[10px] text-green-700 font-bold mt-1 font-accent";
             } else {
                 feedbackEl.innerText = "💡 Dica: inclua termos do seu banco naturalmente na legenda para melhorar o SEO.";
-                feedbackEl.className = "text-[10px] text-gray-500 font-medium mt-1";
+                feedbackEl.className = "text-[10px] text-gray-500 font-medium mt-1 font-accent";
             }
         }
 
@@ -1165,13 +1207,13 @@
 
                 const catTags = seoTags.filter(t => (t.categories || [t.category]).includes(cat));
                 if (catTags.length === 0) {
-                    container.innerHTML = '<span class="text-[10px] text-gray-400 italic">Nenhum termo cadastrado.</span>';
+                    container.innerHTML = '<span class="text-[10px] text-gray-400 italic font-accent">Nenhum termo cadastrado.</span>';
                     return;
                 }
 
                 catTags.forEach(t => {
                     const tagEl = document.createElement('div');
-                    tagEl.className = "bg-bege border border-begeDark rounded-lg px-2.5 py-1 text-xs text-bordo flex items-center gap-1.5 shadow-2xs";
+                    tagEl.className = "bg-bege border border-begeDark rounded-lg px-2.5 py-1 text-xs text-bordo flex items-center gap-1.5 shadow-2xs font-accent";
                     tagEl.innerHTML = `<span class="font-medium cursor-pointer" onclick="navigator.clipboard.writeText('${t.text}'); alert('Copiado: ${t.text}');">${t.text}</span><button onclick="removeSeoTag('${t.id}')" class="text-gray-400 hover:text-vibrante font-bold">×</button>`;
                     container.appendChild(tagEl);
                 });
@@ -1186,7 +1228,7 @@
             seoTags.forEach(t => {
                 const btn = document.createElement('button');
                 btn.type = 'button';
-                btn.className = "bg-white hover:bg-bordo hover:text-white border border-begeDark px-2 py-0.5 rounded text-[10px] text-bordo font-medium transition";
+                btn.className = "bg-white hover:bg-bordo hover:text-white border border-begeDark px-2 py-0.5 rounded text-[10px] text-bordo font-medium transition font-accent";
                 btn.innerText = `+ ${t.text}`;
                 btn.onclick = () => insertKeywordIntoCaption(t.text);
                 container.appendChild(btn);
@@ -1225,10 +1267,10 @@
                 cell.onclick = (e) => { if (e.target.tagName !== 'BUTTON') openModal(null, dayString); };
 
                 let postsHTML = dayPosts.map(p => 
-                    `<div onclick="event.stopPropagation(); openModalById('${p.id}')" class="bg-white text-[9px] font-bold text-bordo p-1 rounded border border-begeDark truncate mb-0.5 shadow-2xs hover:bg-vibrante hover:text-white">${p.title}</div>`
+                    `<div onclick="event.stopPropagation(); openModalById('${p.id}')" class="bg-white text-[9px] font-bold text-bordo p-1 rounded border border-begeDark truncate mb-0.5 shadow-2xs hover:bg-vibrante hover:text-white font-title">${p.title}</div>`
                 ).join('');
 
-                cell.innerHTML = `<div class="flex justify-between items-center mb-1"><span class="text-xs font-bold text-bordo">${day}</span><button onclick="event.stopPropagation(); openModal(null, '${dayString}')" class="text-[10px] text-gray-400 hover:text-vibrante font-bold">+</button></div><div class="overflow-y-auto max-h-[60px]">${postsHTML}</div>`;
+                cell.innerHTML = `<div class="flex justify-between items-center mb-1 font-accent"><span class="text-xs font-bold text-bordo">${day}</span><button onclick="event.stopPropagation(); openModal(null, '${dayString}')" class="text-[10px] text-gray-400 hover:text-vibrante font-bold">+</button></div><div class="overflow-y-auto max-h-[60px]">${postsHTML}</div>`;
                 grid.appendChild(cell);
             }
         }
@@ -1262,12 +1304,12 @@
                     const tr = document.createElement('tr');
                     tr.className = "border-b border-begeDark/30 text-xs";
                     tr.innerHTML = 
-                        `<td class="py-2 font-bold text-bordo">${p.title}</td>` +
-                        `<td class="py-2">${(p.platforms || [p.platform]).join(', ')}</td>` +
+                        `<td class="py-2 font-bold text-bordo font-title">${p.title}</td>` +
+                        `<td class="py-2 font-accent">${(p.platforms || [p.platform]).join(', ')}</td>` +
                         `<td class="py-2 font-semibold">${reach}</td>` +
                         `<td class="py-2">${inter}</td>` +
                         `<td class="py-2 font-bold text-verde">${sales}</td>` +
-                        `<td class="py-2"><button onclick="openModalById('${p.id}')" class="text-vibrante font-bold">Editar</button></td>`;
+                        `<td class="py-2 font-accent"><button onclick="openModalById('${p.id}')" class="text-vibrante font-bold">Editar</button></td>`;
                     tbody.appendChild(tr);
                 }
             });
@@ -1393,7 +1435,7 @@
                     if (targetCol) {
                         const card = document.createElement('div');
                         card.className = "bg-white p-3 rounded-xl border border-begeDark shadow-2xs space-y-1";
-                        card.innerHTML = `<h4 class="font-bold text-xs text-gray-800">${post.title}</h4><div class="flex justify-end"><button onclick="openModalById('${post.id}')" class="text-[10px] text-vibrante font-bold">Editar</button></div>`;
+                        card.innerHTML = `<h4 class="font-bold text-xs text-gray-800 font-title">${post.title}</h4><div class="flex justify-end font-accent"><button onclick="openModalById('${post.id}')" class="text-[10px] text-vibrante font-bold">Editar</button></div>`;
                         targetCol.appendChild(card);
                     }
                 });
@@ -1407,7 +1449,7 @@
             posts.filter(p => p.status === 'ideia').forEach(p => {
                 const card = document.createElement('div');
                 card.className = "bg-white p-4 rounded-xl border border-begeDark space-y-2";
-                card.innerHTML = `<h5 class="font-bold text-xs text-bordo">${p.title}</h5><p class="text-xs text-gray-600 line-clamp-2">${p.caption || 'Sem descrição.'}</p><button onclick="openModalById('${p.id}')" class="text-xs text-vibrante font-bold">Editar / Promover</button>`;
+                card.innerHTML = `<h5 class="font-bold text-xs text-bordo font-title">${p.title}</h5><p class="text-xs text-gray-600 line-clamp-2">${p.caption || 'Sem descrição.'}</p><button onclick="openModalById('${p.id}')" class="text-xs text-vibrante font-bold font-accent">Editar / Promover</button>`;
                 grid.appendChild(card);
             });
         }
@@ -1419,7 +1461,7 @@
             posts.filter(p => p.isSeasonal).forEach(p => {
                 const card = document.createElement('div');
                 card.className = "bg-white p-4 rounded-xl border border-begeDark flex justify-between items-center";
-                card.innerHTML = `<div><h4 class="font-bold text-xs text-bordo">${p.title}</h4><p class="text-[10px] text-gray-500">${formatDate(p.date)}</p></div><button onclick="openModalById('${p.id}')" class="text-xs text-bordo font-bold">Editar</button>`;
+                card.innerHTML = `<div><h4 class="font-bold text-xs text-bordo font-title">${p.title}</h4><p class="text-[10px] text-gray-500 font-accent">${formatDate(p.date)}</p></div><button onclick="openModalById('${p.id}')" class="text-xs text-bordo font-bold font-accent">Editar</button>`;
                 list.appendChild(card);
             });
         }
