@@ -123,6 +123,10 @@
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
                 Planejador (Kanban)
             </button>
+            <button onclick="switchTab('orders')" id="nav-orders" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                Pedidos & Encomendas
+            </button>
             <button onclick="switchTab('calendar')" id="nav-calendar" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                 Calendário Mensal
@@ -195,6 +199,10 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
             <span class="text-[9px] font-medium font-accent">Kanban</span>
         </button>
+        <button onclick="switchTab('orders')" id="mob-nav-orders" class="flex flex-col items-center gap-1 text-gray-400 px-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+            <span class="text-[9px] font-medium font-accent">Pedidos</span>
+        </button>
         <button onclick="switchTab('calendar')" id="mob-nav-calendar" class="flex flex-col items-center gap-1 text-gray-400 px-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
             <span class="text-[9px] font-medium font-accent">Agenda</span>
@@ -206,10 +214,6 @@
         <button onclick="switchTab('brandmural')" id="mob-nav-brandmural" class="flex flex-col items-center gap-1 text-gray-400 px-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
             <span class="text-[9px] font-medium font-accent">Mural</span>
-        </button>
-        <button onclick="switchTab('strategy')" id="mob-nav-strategy" class="flex flex-col items-center gap-1 text-gray-400 px-2">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path></svg>
-            <span class="text-[9px] font-medium font-accent">SEO</span>
         </button>
         <button onclick="switchTab('metrics')" id="mob-nav-metrics" class="flex flex-col items-center gap-1 text-gray-400 px-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
@@ -314,6 +318,117 @@
                     <div id="col-publicado" class="col-content space-y-3 flex-1 min-h-[150px]"></div>
                 </div>
 
+            </div>
+        </section>
+
+        <!-- TAB NOVA: PEDIDOS & ENCOMENDAS -->
+        <section id="tab-orders" class="hidden space-y-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Gestão de Pedidos & Encomendas</h2>
+                    <p class="text-sm text-gray-500">Acompanhe pedidos, status de pagamento e entregas dos clientes</p>
+                </div>
+                <button onclick="openOrderModal()" class="bg-vibrante hover:bg-bordo text-white font-semibold py-2.5 px-5 rounded-xl transition shadow flex items-center gap-2 self-start md:self-auto font-accent text-xs">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    Novo Pedido
+                </button>
+            </div>
+
+            <!-- KPIs dos Pedidos -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
+                    <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Total de Pedidos</span>
+                    <h3 id="order-kpi-total" class="text-2xl font-bold text-bordo mt-1 font-title">0</h3>
+                    <span class="text-[9px] text-gray-400 mt-2">Registrados no sistema</span>
+                </div>
+                <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
+                    <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Pendentes de Entrega</span>
+                    <h3 id="order-kpi-pending" class="text-2xl font-bold text-amarelo mt-1 font-title">0</h3>
+                    <span class="text-[9px] text-gray-400 mt-2">Pendente / Em produção</span>
+                </div>
+                <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
+                    <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Faturamento Recebido</span>
+                    <h3 id="order-kpi-revenue" class="text-2xl font-bold text-verde mt-1 font-title">R$ 0,00</h3>
+                    <span class="text-[9px] text-gray-400 mt-2">Apenas com pagamento Pago</span>
+                </div>
+                <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
+                    <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">A Receber</span>
+                    <h3 id="order-kpi-to-receive" class="text-2xl font-bold text-vibrante mt-1 font-title">R$ 0,00</h3>
+                    <span class="text-[9px] text-gray-400 mt-2">Pagamentos pendentes</span>
+                </div>
+            </div>
+
+            <!-- Filtros e Modos de Visão da Aba de Pedidos -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-begeDark">
+                <div class="flex flex-wrap items-center gap-2">
+                    <input type="text" id="orders-search" oninput="renderOrders()" placeholder="🔍 Buscar por cliente ou produto..." class="px-3 py-1.5 text-xs rounded-xl border border-begeDark bg-bege/30 focus:outline-none w-full md:w-64">
+                    <select id="orders-filter-status" onchange="renderOrders()" class="px-3 py-1.5 text-xs rounded-xl border border-begeDark bg-bege/30">
+                        <option value="ALL">Todos os Status</option>
+                        <option value="Pendente">Pendente</option>
+                        <option value="Em Produção">Em Produção</option>
+                        <option value="Pronto">Pronto p/ Entrega</option>
+                        <option value="Concluído">Concluído</option>
+                        <option value="Cancelado">Cancelado</option>
+                    </select>
+                </div>
+
+                <div class="flex items-center gap-1 bg-bege/50 p-1 rounded-xl border border-begeDark text-xs font-accent self-start md:self-auto">
+                    <button onclick="switchOrderView('table')" id="btn-orderview-table" class="px-3 py-1.5 rounded-lg font-bold bg-white text-bordo shadow-2xs">Tabela</button>
+                    <button onclick="switchOrderView('kanban')" id="btn-orderview-kanban" class="px-3 py-1.5 rounded-lg font-medium text-gray-500">Quadros (Kanban)</button>
+                </div>
+            </div>
+
+            <!-- Visão 1: Tabela de Pedidos -->
+            <div id="orders-view-table" class="bg-white p-5 rounded-2xl border border-begeDark shadow-2xs overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                    <thead>
+                        <tr class="border-b border-begeDark text-gray-500 uppercase text-[10px] font-accent">
+                            <th class="pb-2">Cliente</th>
+                            <th class="pb-2">Descrição / Produto</th>
+                            <th class="pb-2">Valor</th>
+                            <th class="pb-2">Pagamento</th>
+                            <th class="pb-2">Entrega</th>
+                            <th class="pb-2">Status</th>
+                            <th class="pb-2 text-right">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-tbody" class="divide-y divide-begeDark/50"></tbody>
+                </table>
+            </div>
+
+            <!-- Visão 2: Kanban de Pedidos -->
+            <div id="orders-view-kanban" class="hidden grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col">
+                    <h3 class="font-bold text-xs text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center font-title">
+                        <span>⏳ Pendente</span>
+                        <span id="order-count-Pendente" class="text-xs bg-bege px-2 py-0.5 rounded-full text-gray-600 font-accent">0</span>
+                    </h3>
+                    <div id="order-col-Pendente" class="space-y-3 flex-1 min-h-[150px]"></div>
+                </div>
+
+                <div class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col">
+                    <h3 class="font-bold text-xs text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center font-title">
+                        <span>🔨 Em Produção</span>
+                        <span id="order-count-Em Produção" class="text-xs bg-bege px-2 py-0.5 rounded-full text-gray-600 font-accent">0</span>
+                    </h3>
+                    <div id="order-col-Em Produção" class="space-y-3 flex-1 min-h-[150px]"></div>
+                </div>
+
+                <div class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col">
+                    <h3 class="font-bold text-xs text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center font-title">
+                        <span>📦 Pronto p/ Entrega</span>
+                        <span id="order-count-Pronto" class="text-xs bg-bege px-2 py-0.5 rounded-full text-gray-600 font-accent">0</span>
+                    </h3>
+                    <div id="order-col-Pronto" class="space-y-3 flex-1 min-h-[150px]"></div>
+                </div>
+
+                <div class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col">
+                    <h3 class="font-bold text-xs text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center font-title">
+                        <span>✅ Concluído</span>
+                        <span id="order-count-Concluído" class="text-xs bg-bege px-2 py-0.5 rounded-full text-gray-600 font-accent">0</span>
+                    </h3>
+                    <div id="order-col-Concluído" class="space-y-3 flex-1 min-h-[150px]"></div>
+                </div>
             </div>
         </section>
 
@@ -712,7 +827,7 @@
                             <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="post-goals" value="Engajamento" class="accent-bordo"> Engajamento</label>
                             <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="post-goals" value="Alcance" class="accent-bordo"> Alcance</label>
                             <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="post-goals" value="Vendas" class="accent-bordo"> Vendas</label>
-                             <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="post-goals" value="Entretenimento" class="accent-bordo"> Entretenimento</label>
+                            <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="post-goals" value="Entretenimento" class="accent-bordo"> Entretenimento</label>
                         </div>
                     </div>
 
@@ -777,6 +892,97 @@
         </div>
     </div>
 
+    <!-- Modal Adicionar/Editar Pedido -->
+    <div id="order-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between mb-6 border-b border-begeDark pb-3">
+                <h3 id="order-modal-title" class="text-lg font-bold text-bordo font-title">Novo Pedido / Encomenda</h3>
+                <button onclick="closeOrderModal()" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <form id="order-form" onsubmit="saveOrder(event)" class="space-y-4">
+                <input type="hidden" id="order-id">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Nome do Cliente</label>
+                        <input type="text" id="order-client" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Ex: Maria Silva">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Contato / WhatsApp</label>
+                        <input type="text" id="order-contact" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="(11) 99999-9999">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Descrição do Pedido / Produto</label>
+                    <textarea id="order-items" rows="3" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Ex: 2x Velas Aromáticas Lavanda + 1x Kit Presente"></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Valor Total (R$)</label>
+                        <input type="number" step="0.01" id="order-amount" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="0,00">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Forma de Pagamento</label>
+                        <select id="order-payment-method" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
+                            <option value="Pix">Pix</option>
+                            <option value="Cartão de Crédito">Cartão de Crédito</option>
+                            <option value="Cartão de Débito">Cartão de Débito</option>
+                            <option value="Dinheiro">Dinheiro</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Status do Pagamento</label>
+                        <select id="order-payment-status" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
+                            <option value="Pendente">Pendente</option>
+                            <option value="Pago">Pago</option>
+                            <option value="Sinal / 50%">Sinal / 50%</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Status do Pedido</label>
+                        <select id="order-status" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
+                            <option value="Pendente">Pendente</option>
+                            <option value="Em Produção">Em Produção</option>
+                            <option value="Pronto">Pronto p/ Entrega</option>
+                            <option value="Concluído">Concluído</option>
+                            <option value="Cancelado">Cancelado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Data do Pedido</label>
+                        <input type="date" id="order-date" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Data de Entrega</label>
+                        <input type="date" id="order-delivery-date" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Observações Gerais</label>
+                    <input type="text" id="order-notes" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Ex: Embalagem para presente com cartão azul">
+                </div>
+
+                <div class="flex gap-3 pt-3">
+                    <button type="button" onclick="closeOrderModal()" class="w-1/2 py-2.5 border border-begeDark rounded-xl text-xs font-semibold text-gray-600 hover:bg-bege font-accent">Cancelar</button>
+                    <button type="submit" class="w-1/2 py-2.5 bg-vibrante text-white rounded-xl text-xs font-semibold hover:bg-bordo transition font-accent">Salvar Pedido</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- SCRIPT DA APLICAÇÃO COM FIREBASE -->
     <script>
         const firebaseConfig = {
@@ -792,6 +998,7 @@
         const db = firebase.firestore();
 
         let posts = [];
+        let orders = [];
         let seoTags = [];
         let brandNotes = [];
         let brandGoalsData = { goals: '', campaign: '' };
@@ -805,8 +1012,9 @@
         let isMediaReadyOnly = false;
         let showAllPublished = false;
 
-        // Filtro do Mural
+        // Estado do Filtro do Mural e Pedidos
         let currentMuralFilter = 'ALL';
+        let currentOrderView = 'table';
 
         // Escutar alterações dos Posts no Firebase
         db.collection("posts").onSnapshot((snapshot) => {
@@ -815,6 +1023,15 @@
                 posts.push({ id: doc.id, ...doc.data() });
             });
             renderAllViews();
+        });
+
+        // Escutar alterações dos Pedidos no Firebase
+        db.collection("orders").onSnapshot((snapshot) => {
+            orders = [];
+            snapshot.forEach((doc) => {
+                orders.push({ id: doc.id, ...doc.data() });
+            });
+            renderOrders();
         });
 
         // Escutar alterações dos Objetivos da Marca no Firebase
@@ -850,7 +1067,7 @@
         });
 
         function switchTab(tab) {
-            ['kanban', 'calendar', 'platforms', 'ideas', 'brandmural', 'seasonal', 'strategy', 'metrics'].forEach(t => {
+            ['kanban', 'orders', 'calendar', 'platforms', 'ideas', 'brandmural', 'seasonal', 'strategy', 'metrics'].forEach(t => {
                 const el = document.getElementById(`tab-${t}`);
                 if (el) el.classList.add('hidden');
 
@@ -869,7 +1086,203 @@
                 }
             });
 
-            document.getElementById(`tab-${tab}`).classList.remove('hidden');
+            const target = document.getElementById(`tab-${tab}`);
+            if (target) target.classList.remove('hidden');
+        }
+
+        // --- GESTÃO DE PEDIDOS ---
+        function switchOrderView(view) {
+            currentOrderView = view;
+            document.getElementById('orders-view-table').classList.toggle('hidden', view !== 'table');
+            document.getElementById('orders-view-kanban').classList.toggle('hidden', view !== 'kanban');
+
+            document.getElementById('btn-orderview-table').className = view === 'table' 
+                ? "px-3 py-1.5 rounded-lg font-bold bg-white text-bordo shadow-2xs" 
+                : "px-3 py-1.5 rounded-lg font-medium text-gray-500";
+            document.getElementById('btn-orderview-kanban').className = view === 'kanban' 
+                ? "px-3 py-1.5 rounded-lg font-bold bg-white text-bordo shadow-2xs" 
+                : "px-3 py-1.5 rounded-lg font-medium text-gray-500";
+        }
+
+        function openOrderModal(order = null) {
+            const modal = document.getElementById('order-modal');
+            const form = document.getElementById('order-form');
+            modal.classList.remove('hidden');
+
+            if (order) {
+                document.getElementById('order-modal-title').innerText = 'Editar Pedido';
+                document.getElementById('order-id').value = order.id;
+                document.getElementById('order-client').value = order.client || '';
+                document.getElementById('order-contact').value = order.contact || '';
+                document.getElementById('order-items').value = order.items || '';
+                document.getElementById('order-amount').value = order.amount || '';
+                document.getElementById('order-payment-method').value = order.paymentMethod || 'Pix';
+                document.getElementById('order-payment-status').value = order.paymentStatus || 'Pendente';
+                document.getElementById('order-status').value = order.status || 'Pendente';
+                document.getElementById('order-date').value = order.date || '';
+                document.getElementById('order-delivery-date').value = order.deliveryDate || '';
+                document.getElementById('order-notes').value = order.notes || '';
+            } else {
+                document.getElementById('order-modal-title').innerText = 'Novo Pedido / Encomenda';
+                form.reset();
+                document.getElementById('order-id').value = '';
+                document.getElementById('order-date').value = new Date().toISOString().split('T')[0];
+            }
+        }
+
+        function closeOrderModal() {
+            document.getElementById('order-modal').classList.add('hidden');
+        }
+
+        function saveOrder(e) {
+            e.preventDefault();
+            const id = document.getElementById('order-id').value;
+
+            const orderData = {
+                client: document.getElementById('order-client').value,
+                contact: document.getElementById('order-contact').value,
+                items: document.getElementById('order-items').value,
+                amount: parseFloat(document.getElementById('order-amount').value || 0),
+                paymentMethod: document.getElementById('order-payment-method').value,
+                paymentStatus: document.getElementById('order-payment-status').value,
+                status: document.getElementById('order-status').value,
+                date: document.getElementById('order-date').value,
+                deliveryDate: document.getElementById('order-delivery-date').value,
+                notes: document.getElementById('order-notes').value,
+                updatedAt: new Date().toISOString()
+            };
+
+            if (id) {
+                db.collection("orders").doc(id).update(orderData);
+            } else {
+                db.collection("orders").add(orderData);
+            }
+
+            closeOrderModal();
+        }
+
+        function deleteOrder(id) {
+            if (confirm("Deseja realmente excluir este pedido?")) {
+                db.collection("orders").doc(id).delete();
+            }
+        }
+
+        function updateOrderStatus(id, newStatus) {
+            db.collection("orders").doc(id).update({ status: newStatus });
+        }
+
+        function renderOrders() {
+            const searchText = (document.getElementById('orders-search')?.value || '').toLowerCase();
+            const statusFilter = document.getElementById('orders-filter-status')?.value || 'ALL';
+
+            const filteredOrders = orders.filter(o => {
+                if (searchText && !(o.client || '').toLowerCase().includes(searchText) && !(o.items || '').toLowerCase().includes(searchText)) return false;
+                if (statusFilter !== 'ALL' && o.status !== statusFilter) return false;
+                return true;
+            });
+
+            // Calcular KPIs
+            let totalOrders = orders.length;
+            let pendingDelivery = orders.filter(o => o.status === 'Pendente' || o.status === 'Em Produção').length;
+            let totalRevenue = orders.filter(o => o.paymentStatus === 'Pago').reduce((sum, o) => sum + (o.amount || 0), 0);
+            let toReceive = orders.filter(o => o.paymentStatus !== 'Pago').reduce((sum, o) => sum + (o.amount || 0), 0);
+
+            document.getElementById('order-kpi-total').innerText = totalOrders;
+            document.getElementById('order-kpi-pending').innerText = pendingDelivery;
+            document.getElementById('order-kpi-revenue').innerText = totalRevenue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            document.getElementById('order-kpi-to-receive').innerText = toReceive.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+            // Renderizar Tabela
+            const tbody = document.getElementById('orders-tbody');
+            if (tbody) {
+                tbody.innerHTML = '';
+                if (filteredOrders.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="7" class="py-4 text-center text-gray-400 font-accent">Nenhum pedido encontrado.</td></tr>`;
+                } else {
+                    filteredOrders.forEach(o => {
+                        const tr = document.createElement('tr');
+                        tr.className = "border-b border-begeDark/40 hover:bg-bege/20";
+                        
+                        let payColor = o.paymentStatus === 'Pago' ? 'text-green-600 bg-green-50 border-green-200' : 'text-amber-600 bg-amber-50 border-amber-200';
+                        let statusColor = 'bg-gray-100 text-gray-700';
+                        if (o.status === 'Em Produção') statusColor = 'bg-blue-50 text-blue-700 border-blue-200';
+                        if (o.status === 'Pronto') statusColor = 'bg-purple-50 text-purple-700 border-purple-200';
+                        if (o.status === 'Concluído') statusColor = 'bg-green-50 text-green-700 border-green-200';
+
+                        tr.innerHTML = 
+                            `<td class="py-3 font-bold text-bordo font-title">
+                                ${o.client}
+                                ${o.contact ? `<span class="block text-[10px] font-normal text-gray-500 font-accent">${o.contact}</span>` : ''}
+                            </td>` +
+                            `<td class="py-3 max-w-xs">
+                                <span class="font-medium text-gray-800 line-clamp-1">${o.items}</span>
+                                ${o.notes ? `<span class="block text-[10px] text-gray-400 line-clamp-1">${o.notes}</span>` : ''}
+                            </td>` +
+                            `<td class="py-3 font-bold text-gray-800">R$ ${(o.amount || 0).toFixed(2)}</td>` +
+                            `<td class="py-3">
+                                <span class="text-[10px] px-2 py-0.5 rounded-full border font-semibold ${payColor}">${o.paymentStatus || 'Pendente'}</span>
+                                <span class="block text-[9px] text-gray-400 mt-0.5">${o.paymentMethod || 'Pix'}</span>
+                            </td>` +
+                            `<td class="py-3 text-[11px] font-accent">${o.deliveryDate ? formatDate(o.deliveryDate) : '-'}</td>` +
+                            `<td class="py-3">
+                                <select onchange="updateOrderStatus('${o.id}', this.value)" class="text-[10px] font-semibold border border-begeDark rounded px-2 py-1 bg-white focus:outline-none ${statusColor}">
+                                    <option value="Pendente" ${o.status === 'Pendente' ? 'selected' : ''}>⏳ Pendente</option>
+                                    <option value="Em Produção" ${o.status === 'Em Produção' ? 'selected' : ''}>🔨 Em Produção</option>
+                                    <option value="Pronto" ${o.status === 'Pronto' ? 'selected' : ''}>📦 Pronto</option>
+                                    <option value="Concluído" ${o.status === 'Concluído' ? 'selected' : ''}>✅ Concluído</option>
+                                    <option value="Cancelado" ${o.status === 'Cancelado' ? 'selected' : ''}>❌ Cancelado</option>
+                                </select>
+                            </td>` +
+                            `<td class="py-3 text-right">
+                                <div class="flex justify-end gap-2">
+                                    <button onclick="openOrderModal(orders.find(o => o.id === '${o.id}'))" class="text-gray-500 hover:text-bordo">✏️</button>
+                                    <button onclick="deleteOrder('${o.id}')" class="text-gray-500 hover:text-vibrante">🗑️</button>
+                                </div>
+                            </td>`;
+                        tbody.appendChild(tr);
+                    });
+                }
+            }
+
+            // Renderizar Kanban
+            const kanbanCols = {
+                'Pendente': document.getElementById('order-col-Pendente'),
+                'Em Produção': document.getElementById('order-col-Em Produção'),
+                'Pronto': document.getElementById('order-col-Pronto'),
+                'Concluído': document.getElementById('order-col-Concluído')
+            };
+
+            const kanbanCounts = { 'Pendente': 0, 'Em Produção': 0, 'Pronto': 0, 'Concluído': 0 };
+
+            Object.values(kanbanCols).forEach(c => { if(c) c.innerHTML = ''; });
+
+            filteredOrders.forEach(o => {
+                const statusKey = o.status || 'Pendente';
+                if (kanbanCounts[statusKey] !== undefined) kanbanCounts[statusKey]++;
+
+                if (kanbanCols[statusKey]) {
+                    const card = document.createElement('div');
+                    card.className = "bg-white p-3.5 rounded-xl border border-begeDark shadow-2xs hover:shadow-md transition space-y-2";
+                    
+                    card.innerHTML = 
+                        `<div class="flex justify-between items-start font-accent">
+                            <span class="font-bold text-xs text-bordo font-title">${o.client}</span>
+                            <span class="text-xs font-bold text-gray-800">R$ ${(o.amount || 0).toFixed(2)}</span>
+                        </div>` +
+                        `<p class="text-xs text-gray-600 line-clamp-2">${o.items}</p>` +
+                        `<div class="flex justify-between items-center text-[10px] font-accent border-t border-begeDark/30 pt-2">
+                            <span class="text-gray-400">📅 ${o.deliveryDate ? formatDate(o.deliveryDate) : 'Sem data'}</span>
+                            <button onclick="openOrderModal(orders.find(o => o.id === '${o.id}'))" class="text-vibrante font-bold">Editar</button>
+                        </div>`;
+                    
+                    kanbanCols[statusKey].appendChild(card);
+                }
+            });
+
+            Object.entries(kanbanCounts).forEach(([k, count]) => {
+                const el = document.getElementById(`order-count-${k}`);
+                if (el) el.innerText = count;
+            });
         }
 
         // --- OBJETIVOS DA MARCA ---
@@ -948,7 +1361,7 @@
                 publicado: document.getElementById('col-publicado')
             };
 
-            Object.values(cols).forEach(col => col.innerHTML = '');
+            Object.values(cols).forEach(col => { if(col) col.innerHTML = ''; });
             const counts = { ideia: 0, producao: 0, agendado: 0, publicado: 0 };
 
             const searchText = (document.getElementById('kanban-search')?.value || '').toLowerCase();
@@ -1018,10 +1431,10 @@
                 if (cols[post.status]) cols[post.status].appendChild(card);
             });
 
-            document.getElementById('count-ideia').innerText = counts.ideia;
-            document.getElementById('count-producao').innerText = counts.producao;
-            document.getElementById('count-agendado').innerText = counts.agendado;
-            document.getElementById('count-publicado').innerText = counts.publicado;
+            if(document.getElementById('count-ideia')) document.getElementById('count-ideia').innerText = counts.ideia;
+            if(document.getElementById('count-producao')) document.getElementById('count-producao').innerText = counts.producao;
+            if(document.getElementById('count-agendado')) document.getElementById('count-agendado').innerText = counts.agendado;
+            if(document.getElementById('count-publicado')) document.getElementById('count-publicado').innerText = counts.publicado;
         }
 
         // --- MURAL DA MARCA FUNCTIONS ---
@@ -1273,9 +1686,12 @@
             const month = currentCalendarDate.getMonth();
 
             const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-            document.getElementById('calendar-month-title').innerText = `${monthNames[month]} ${year}`;
+            if(document.getElementById('calendar-month-title')) {
+                document.getElementById('calendar-month-title').innerText = `${monthNames[month]} ${year}`;
+            }
 
             const grid = document.getElementById('calendar-grid');
+            if(!grid) return;
             grid.innerHTML = '';
 
             const firstDay = new Date(year, month, 1).getDay();
@@ -1341,18 +1757,18 @@
                 }
             });
 
-            document.getElementById('kpi-total-reach').innerText = totalReach.toLocaleString('pt-BR');
-            document.getElementById('kpi-total-sales').innerText = totalSales.toLocaleString('pt-BR');
+            if(document.getElementById('kpi-total-reach')) document.getElementById('kpi-total-reach').innerText = totalReach.toLocaleString('pt-BR');
+            if(document.getElementById('kpi-total-sales')) document.getElementById('kpi-total-sales').innerText = totalSales.toLocaleString('pt-BR');
 
             const avgEng = totalReach > 0 ? ((totalInteractions / totalReach) * 100).toFixed(1) : 0;
-            document.getElementById('kpi-avg-engagement').innerText = `${avgEng}%`;
+            if(document.getElementById('kpi-avg-engagement')) document.getElementById('kpi-avg-engagement').innerText = `${avgEng}%`;
 
             if (topPost) {
-                document.getElementById('kpi-top-post-title').innerText = topPost.title;
-                document.getElementById('kpi-top-post-stats').innerText = `${topPost.metricReach} alcance`;
+                if(document.getElementById('kpi-top-post-title')) document.getElementById('kpi-top-post-title').innerText = topPost.title;
+                if(document.getElementById('kpi-top-post-stats')) document.getElementById('kpi-top-post-stats').innerText = `${topPost.metricReach} alcance`;
             } else {
-                document.getElementById('kpi-top-post-title').innerText = '-';
-                document.getElementById('kpi-top-post-stats').innerText = 'Sem dados registrados';
+                if(document.getElementById('kpi-top-post-title')) document.getElementById('kpi-top-post-title').innerText = '-';
+                if(document.getElementById('kpi-top-post-stats')) document.getElementById('kpi-top-post-stats').innerText = 'Sem dados registrados';
             }
         }
 
@@ -1515,6 +1931,7 @@
             renderBrandNotes();
             renderMetricsView();
             renderBrandGoals();
+            renderOrders();
         }
 
         function importOldData() {
