@@ -136,10 +136,6 @@
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                 Plataformas
             </button>
-            <button onclick="switchTab('ideas')" id="nav-ideas" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
-                Banco de Ideias
-            </button>
             <button onclick="switchTab('brandmural')" id="nav-brandmural" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
                 Mural da Marca
@@ -208,10 +204,6 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
             <span class="text-[9px] font-medium font-accent">Agenda</span>
         </button>
-        <button onclick="switchTab('ideas')" id="mob-nav-ideas" class="flex flex-col items-center gap-1 text-gray-400 px-2">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
-            <span class="text-[9px] font-medium font-accent">Ideias</span>
-        </button>
         <button onclick="switchTab('brandmural')" id="mob-nav-brandmural" class="flex flex-col items-center gap-1 text-gray-400 px-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
             <span class="text-[9px] font-medium font-accent">Mural</span>
@@ -241,7 +233,6 @@
                         <option value="ALL">Todas as Redes</option>
                         <option value="Instagram">Instagram</option>
                         <option value="TikTok">TikTok</option>
-                        <option value="YouTube">YouTube</option>
                         <option value="Pinterest">Pinterest</option>
                     </select>
 
@@ -261,6 +252,15 @@
                         <option value="Venda Direta">Venda Direta</option>
                         <option value="Estilo de Vida">Estilo de Vida</option>
                         <option value="Entretenimento">Entretenimento</option>
+                    </select>
+
+                    <select id="kanban-filter-format" onchange="renderKanban()" class="px-3 py-1.5 text-xs rounded-xl border border-begeDark bg-white">
+                        <option value="ALL">Todos os Formatos</option>
+                        <option value="Carrossel">Carrossel</option>
+                        <option value="Reels">Reels / Vídeo Curto</option>
+                        <option value="Estático">Foto Estática</option>
+                        <option value="Stories">Stories</option>
+                        <option value="Vídeo Longo">Vídeo Longo</option>
                     </select>
 
                     <button onclick="toggleMediaReadyFilter()" id="btn-media-ready" class="px-3 py-1.5 text-xs font-semibold rounded-xl border border-begeDark bg-white text-gray-600 hover:bg-bege transition">
@@ -484,7 +484,7 @@
                 <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Organização por Rede Social</h2>
                 <p class="text-sm text-gray-500">Visualize as publicações separadas por cada canal</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col">
                     <h3 class="font-bold text-sm text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center font-title">
                         <span>Instagram</span>
@@ -501,13 +501,6 @@
                 </div>
                 <div class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col">
                     <h3 class="font-bold text-sm text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center font-title">
-                        <span>YouTube</span>
-                        <span id="count-plat-youtube" class="text-xs bg-bege px-2 py-0.5 rounded-full text-gray-600 font-accent">0</span>
-                    </h3>
-                    <div id="col-plat-youtube" class="space-y-3 flex-1 min-h-[150px]"></div>
-                </div>
-                <div class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col">
-                    <h3 class="font-bold text-sm text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center font-title">
                         <span>Pinterest / Outros</span>
                         <span id="count-plat-outros" class="text-xs bg-bege px-2 py-0.5 rounded-full text-gray-600 font-accent">0</span>
                     </h3>
@@ -516,16 +509,7 @@
             </div>
         </section>
 
-        <!-- TAB 4: BANCO DE IDEIAS (DE POSTS) -->
-        <section id="tab-ideas" class="hidden space-y-6">
-            <div>
-                <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Banco de Ideias de Posts</h2>
-                <p class="text-sm text-gray-500">Rascunhos de conteúdo prontos para serem trabalhados</p>
-            </div>
-            <div id="ideas-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
-        </section>
-
-        <!-- TAB 5: MURAL DA MARCA (COM BÚSSOLA DE OBJETIVOS & CAMPANHAS) -->
+        <!-- TAB 4: MURAL DA MARCA (COM BÚSSOLA DE OBJETIVOS & CAMPANHAS) -->
         <section id="tab-brandmural" class="hidden space-y-6">
             <!-- PAINEL FIXO DE OBJETIVOS & CAMPANHAS DA MARCA -->
             <div class="bg-gradient-to-r from-bordo to-vibrante p-5 rounded-2xl text-white shadow-md space-y-3">
@@ -638,7 +622,7 @@
             <div id="brand-notes-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
         </section>
 
-        <!-- TAB 6: DATAS SAZONAIS -->
+        <!-- TAB 5: DATAS SAZONAIS -->
         <section id="tab-seasonal" class="hidden space-y-6">
             <div>
                 <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Datas Sazonais & Comemorativas</h2>
@@ -651,7 +635,7 @@
             </div>
         </section>
 
-        <!-- TAB 7: ESTRATÉGIA & SEO (BANCO INTERATIVO DE PALAVRAS-CHAVE) -->
+        <!-- TAB 6: ESTRATÉGIA & SEO (BANCO INTERATIVO DE PALAVRAS-CHAVE) -->
         <section id="tab-strategy" class="hidden space-y-6">
             <div>
                 <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Central de Estratégia & SEO</h2>
@@ -722,7 +706,7 @@
             </div>
         </section>
 
-        <!-- TAB 8: MÉTRICAS & RESULTADOS -->
+        <!-- TAB 7: MÉTRICAS & RESULTADOS -->
         <section id="tab-metrics" class="hidden space-y-6">
             <div>
                 <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Métricas & Desempenho</h2>
@@ -792,18 +776,15 @@
                     <input type="text" id="post-title" required class="w-full px-4 py-2.5 rounded-xl border border-begeDark focus:ring-2 focus:ring-vibrante focus:outline-none text-sm font-title font-bold" placeholder="Ex: Lançamento do Produto X">
                 </div>
 
-                <!-- Múltiplas Plataformas (Checkboxes) -->
+                <!-- Múltiplas Plataformas (Checkboxes - Sem YouTube) -->
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Plataformas</label>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Plataformas em que foi / será veiculado</label>
                     <div class="flex flex-wrap gap-2 text-xs font-accent">
                         <label class="flex items-center gap-1.5 bg-bege px-3 py-1.5 rounded-lg border border-begeDark cursor-pointer">
                             <input type="checkbox" name="platform" value="Instagram" class="accent-bordo"> Instagram
                         </label>
                         <label class="flex items-center gap-1.5 bg-bege px-3 py-1.5 rounded-lg border border-begeDark cursor-pointer">
                             <input type="checkbox" name="platform" value="TikTok" class="accent-bordo"> TikTok
-                        </label>
-                        <label class="flex items-center gap-1.5 bg-bege px-3 py-1.5 rounded-lg border border-begeDark cursor-pointer">
-                            <input type="checkbox" name="platform" value="YouTube" class="accent-bordo"> YouTube
                         </label>
                         <label class="flex items-center gap-1.5 bg-bege px-3 py-1.5 rounded-lg border border-begeDark cursor-pointer">
                             <input type="checkbox" name="platform" value="Pinterest" class="accent-bordo"> Pinterest
@@ -1152,7 +1133,7 @@
         });
 
         function switchTab(tab) {
-            ['kanban', 'orders', 'calendar', 'platforms', 'ideas', 'brandmural', 'seasonal', 'strategy', 'metrics'].forEach(t => {
+            ['kanban', 'orders', 'calendar', 'platforms', 'brandmural', 'seasonal', 'strategy', 'metrics'].forEach(t => {
                 const el = document.getElementById(`tab-${t}`);
                 if (el) el.classList.add('hidden');
 
@@ -1547,6 +1528,7 @@
             const platformFilter = document.getElementById('kanban-filter-platform')?.value || 'ALL';
             const goalFilter = document.getElementById('kanban-filter-goal')?.value || 'ALL';
             const pillarFilter = document.getElementById('kanban-filter-pillar')?.value || 'ALL';
+            const formatFilter = document.getElementById('kanban-filter-format')?.value || 'ALL';
 
             // Assegura o estado visual inicial das colunas
             ['ideia', 'producao', 'agendado', 'publicado'].forEach(colKey => {
@@ -1576,6 +1558,8 @@
 
                 const pillars = post.pillars || [post.pillar || 'Educacional'];
                 if (pillarFilter !== 'ALL' && !pillars.includes(pillarFilter)) return;
+
+                if (formatFilter !== 'ALL' && (post.format || 'Carrossel') !== formatFilter) return;
 
                 if (isMediaReadyOnly && post.mediaStatus !== 'Mídia Pronta') return;
 
@@ -1820,7 +1804,7 @@
                 feedbackEl.innerText = `✨ Palavras-chave do seu banco presentes na legenda: ${found.join(', ')}`;
                 feedbackEl.className = "text-[10px] text-green-700 font-bold mt-1 font-accent";
             } else {
-                feedbackEl.innerText = "💡 Dica: inclua termos do seu banco naturally na legenda para melhorar o SEO.";
+                feedbackEl.innerText = "💡 Dica: inclua termos do seu banco naturalmente na legenda para melhorar o SEO.";
                 feedbackEl.className = "text-[10px] text-gray-500 font-medium mt-1 font-accent";
             }
         }
@@ -2056,7 +2040,7 @@
         function openModalById(id) { const post = posts.find(p => p.id === id); if (post) openModal(post); }
 
         function renderPlatformsView() {
-            const cols = { instagram: document.getElementById('col-plat-instagram'), tiktok: document.getElementById('col-plat-tiktok'), youtube: document.getElementById('col-plat-youtube'), outros: document.getElementById('col-plat-outros') };
+            const cols = { instagram: document.getElementById('col-plat-instagram'), tiktok: document.getElementById('col-plat-tiktok'), outros: document.getElementById('col-plat-outros') };
             Object.values(cols).forEach(c => { if(c) c.innerHTML = ''; });
             posts.forEach(post => {
                 (post.platforms || [post.platform]).forEach(p => {
@@ -2069,18 +2053,6 @@
                         targetCol.appendChild(card);
                     }
                 });
-            });
-        }
-
-        function renderIdeasView() {
-            const grid = document.getElementById('ideas-grid');
-            if (!grid) return;
-            grid.innerHTML = '';
-            posts.filter(p => p.status === 'ideia').forEach(p => {
-                const card = document.createElement('div');
-                card.className = "bg-white p-4 rounded-xl border border-begeDark space-y-2";
-                card.innerHTML = `<h5 class="font-bold text-xs text-bordo font-title">${p.title}</h5><p class="text-xs text-gray-600 line-clamp-2">${p.caption || 'Sem descrição.'}</p><button onclick="openModalById('${p.id}')" class="text-xs text-vibrante font-bold font-accent">Editar / Promover</button>`;
-                grid.appendChild(card);
             });
         }
 
@@ -2112,7 +2084,6 @@
             renderKanban();
             renderMonthlyCalendar();
             renderPlatformsView();
-            renderIdeasView();
             renderSeasonalView();
             renderStrategyView();
             renderBrandNotes();
