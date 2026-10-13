@@ -59,12 +59,12 @@
             text-decoration: line-through;
             opacity: 0.6;
         }
-        /* Estilo otimizado para colunas do Kanban retraídas no Desktop */
+        /* Estilo para colunas do Kanban retraídas no Desktop - Texto Mantido na Horizontal */
         @media (min-width: 768px) {
             .kanban-col-collapsed {
-                width: 4.5rem !important;
-                min-width: 4.5rem !important;
-                max-width: 4.5rem !important;
+                width: 7rem !important;
+                min-width: 7rem !important;
+                max-width: 7rem !important;
                 flex-grow: 0 !important;
                 overflow: hidden;
                 padding: 1rem 0.5rem !important;
@@ -73,17 +73,17 @@
             .kanban-col-collapsed .col-header-inner {
                 flex-direction: column !important;
                 align-items: center !important;
-                gap: 0.75rem !important;
+                gap: 0.5rem !important;
                 width: 100%;
             }
             .kanban-col-collapsed .col-title-text {
-                writing-mode: vertical-rl;
-                transform: rotate(180deg);
+                writing-mode: horizontal-tb;
+                transform: none;
                 white-space: nowrap;
-                font-size: 0.875rem;
+                font-size: 0.75rem;
+                text-align: center;
             }
-            .kanban-col-collapsed .col-content,
-            .kanban-col-collapsed .col-counter {
+            .kanban-col-collapsed .col-content {
                 display: none !important;
             }
         }
@@ -104,8 +104,8 @@
     <!-- Barra Lateral (Desktop) -->
     <aside class="hidden md:flex flex-col w-64 bg-white border-r border-begeDark p-6 flex-shrink-0 min-h-screen sticky top-0 h-screen overflow-y-auto">
         <div class="flex items-center gap-3 mb-6">
-            <div class="w-10 h-10 rounded-xl bg-bordo flex items-center justify-center text-white font-bold text-xl shadow-md font-title">
-                P
+            <div class="text-2xl">
+                🕯️
             </div>
             <div>
                 <h1 class="font-bold text-lg text-bordo leading-tight font-title">Planner Cazinha</h1>
@@ -173,8 +173,8 @@
     <!-- Cabeçalho Mobile -->
     <header class="md:hidden bg-white border-b border-begeDark p-4 flex items-center justify-between sticky top-0 z-20">
         <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-lg bg-bordo flex items-center justify-center text-white font-bold text-lg font-title">
-                P
+            <div class="text-xl">
+                🕯️
             </div>
             <div>
                 <h1 class="font-bold text-base text-bordo leading-tight font-title">Planner Cazinha</h1>
@@ -243,6 +243,24 @@
                         <option value="TikTok">TikTok</option>
                         <option value="YouTube">YouTube</option>
                         <option value="Pinterest">Pinterest</option>
+                    </select>
+
+                    <select id="kanban-filter-goal" onchange="renderKanban()" class="px-3 py-1.5 text-xs rounded-xl border border-begeDark bg-white">
+                        <option value="ALL">Todos os Objetivos</option>
+                        <option value="Conexão">Conexão</option>
+                        <option value="Engajamento">Engajamento</option>
+                        <option value="Alcance">Alcance</option>
+                        <option value="Vendas">Vendas</option>
+                        <option value="Entretenimento">Entretenimento</option>
+                    </select>
+
+                    <select id="kanban-filter-pillar" onchange="renderKanban()" class="px-3 py-1.5 text-xs rounded-xl border border-begeDark bg-white">
+                        <option value="ALL">Todos os Pilares</option>
+                        <option value="Educacional">Educacional</option>
+                        <option value="Bastidores">Bastidores</option>
+                        <option value="Venda Direta">Venda Direta</option>
+                        <option value="Estilo de Vida">Estilo de Vida</option>
+                        <option value="Entretenimento">Entretenimento</option>
                     </select>
 
                     <button onclick="toggleMediaReadyFilter()" id="btn-media-ready" class="px-3 py-1.5 text-xs font-semibold rounded-xl border border-begeDark bg-white text-gray-600 hover:bg-bege transition">
@@ -922,7 +940,7 @@
                     <textarea id="order-items" rows="2" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Ex: Velas Aromáticas Lavanda"></textarea>
                 </div>
 
-                <!-- NOVOS CAMPOS: Quantidade, Valor Unitário e Tipo de Entrega (Retirada ou Envio) -->
+                <!-- CAMPOS: Quantidade, Valor Unitário e Tipo de Entrega -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3 bg-bege/30 p-3 rounded-xl border border-begeDark">
                     <div>
                         <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Quantidade</label>
@@ -941,7 +959,7 @@
                     </div>
                 </div>
 
-                <!-- CAMPOS CONDICIONAIS DE ENVIO (Endereço e Frete) -->
+                <!-- CAMPOS CONDICIONAIS DE ENVIO -->
                 <div id="shipping-container" class="hidden space-y-3 bg-bege/60 p-3 rounded-xl border border-begeDark">
                     <div>
                         <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Endereço de Entrega</label>
@@ -1048,7 +1066,7 @@
                 </div>
             </form>
         </div>
-
+    </div>
 
     <!-- SCRIPT DA APLICAÇÃO COM FIREBASE -->
     <script>
@@ -1071,7 +1089,7 @@
         let brandGoalsData = { goals: '', campaign: '' };
         let currentCalendarDate = new Date();
 
-        // Estado de colunas recolhidas no Kanban (Inicia com ideias expandida e as demais retraídas)
+        // Estado de colunas recolhidas no Kanban
         let collapsedColumns = new Set(['producao', 'agendado', 'publicado']);
 
         // Estados do Kanban
@@ -1171,160 +1189,155 @@
                 : "px-3 py-1.5 rounded-lg font-medium text-gray-500";
         }
 
-       // --- FUNÇÕES DE CONTROLE DE CAMPOS E CÁLCULO DE PEDIDOS ---
+        function toggleShippingFields() {
+            const fulfillmentType = document.getElementById('order-fulfillment-type').value;
+            const shippingContainer = document.getElementById('shipping-container');
+            
+            if (fulfillmentType === 'Envio') {
+                shippingContainer.classList.remove('hidden');
+            } else {
+                shippingContainer.classList.add('hidden');
+                document.getElementById('order-shipping-amount').value = '0';
+            }
+            calculateOrderTotal();
+        }
 
-function toggleShippingFields() {
-    const fulfillmentType = document.getElementById('order-fulfillment-type').value;
-    const shippingContainer = document.getElementById('shipping-container');
-    
-    if (fulfillmentType === 'Envio') {
-        shippingContainer.classList.remove('hidden');
-    } else {
-        shippingContainer.classList.add('hidden');
-        document.getElementById('order-shipping-amount').value = '0';
-    }
-    calculateOrderTotal();
-}
+        function calculateOrderTotal() {
+            const qty = parseFloat(document.getElementById('order-qty').value) || 0;
+            const unitAmount = parseFloat(document.getElementById('order-unit-amount').value) || 0;
+            const fulfillmentType = document.getElementById('order-fulfillment-type').value;
+            
+            let shippingAmount = 0;
+            if (fulfillmentType === 'Envio') {
+                shippingAmount = parseFloat(document.getElementById('order-shipping-amount').value) || 0;
+            }
 
-function calculateOrderTotal() {
-    const qty = parseFloat(document.getElementById('order-qty').value) || 0;
-    const unitAmount = parseFloat(document.getElementById('order-unit-amount').value) || 0;
-    const fulfillmentType = document.getElementById('order-fulfillment-type').value;
-    
-    let shippingAmount = 0;
-    if (fulfillmentType === 'Envio') {
-        shippingAmount = parseFloat(document.getElementById('order-shipping-amount').value) || 0;
-    }
+            const total = (qty * unitAmount) + shippingAmount;
+            document.getElementById('order-amount').value = total.toFixed(2);
+        }
 
-    const total = (qty * unitAmount) + shippingAmount;
-    document.getElementById('order-amount').value = total.toFixed(2);
-}
+        function toggleConclusionFields() {
+            const status = document.getElementById('order-status').value;
+            const conclusionContainer = document.getElementById('conclusion-container');
+            
+            if (status === 'Concluído') {
+                conclusionContainer.classList.remove('hidden');
+                toggleConclusionSubtype();
+            } else {
+                conclusionContainer.classList.add('hidden');
+            }
+        }
 
-function toggleConclusionFields() {
-    const status = document.getElementById('order-status').value;
-    const conclusionContainer = document.getElementById('conclusion-container');
-    
-    if (status === 'Concluído') {
-        conclusionContainer.classList.remove('hidden');
-        toggleConclusionSubtype();
-    } else {
-        conclusionContainer.classList.add('hidden');
-    }
-}
+        function toggleConclusionSubtype() {
+            const conclusionType = document.getElementById('order-conclusion-type').value;
+            const postedDetailsContainer = document.getElementById('posted-details-container');
+            
+            if (conclusionType === 'Postado') {
+                postedDetailsContainer.classList.remove('hidden');
+            } else {
+                postedDetailsContainer.classList.add('hidden');
+            }
+        }
 
-function toggleConclusionSubtype() {
-    const conclusionType = document.getElementById('order-conclusion-type').value;
-    const postedDetailsContainer = document.getElementById('posted-details-container');
-    
-    if (conclusionType === 'Postado') {
-        postedDetailsContainer.classList.remove('hidden');
-    } else {
-        postedDetailsContainer.classList.add('hidden');
-    }
-}
+        function openOrderModal(order = null) {
+            const modal = document.getElementById('order-modal');
+            const form = document.getElementById('order-form');
+            modal.classList.remove('hidden');
 
-// --- FUNÇÕES DE ABRIR, FECHAR E SALVAR PEDIDOS ---
+            if (order) {
+                document.getElementById('order-modal-title').innerText = 'Editar Pedido';
+                document.getElementById('order-id').value = order.id;
+                document.getElementById('order-client').value = order.client || '';
+                document.getElementById('order-contact').value = order.contact || '';
+                document.getElementById('order-items').value = order.items || '';
+                
+                document.getElementById('order-qty').value = order.qty || 1;
+                document.getElementById('order-unit-amount').value = order.unitAmount || 0;
+                document.getElementById('order-fulfillment-type').value = order.fulfillmentType || 'Retirada';
+                
+                toggleShippingFields();
+                
+                document.getElementById('order-address').value = order.address || '';
+                document.getElementById('order-shipping-amount').value = order.shippingAmount || 0;
+                document.getElementById('order-amount').value = order.amount || 0;
+                
+                document.getElementById('order-payment-method').value = order.paymentMethod || 'Pix';
+                document.getElementById('order-payment-status').value = order.paymentStatus || 'Pendente';
+                document.getElementById('order-status').value = order.status || 'Pendente';
+                
+                toggleConclusionFields();
+                
+                document.getElementById('order-conclusion-type').value = order.conclusionType || 'Entregue/Retirado';
+                toggleConclusionSubtype();
+                
+                document.getElementById('order-posted-via').value = order.postedVia || '';
+                document.getElementById('order-posted-date').value = order.postedDate || '';
+                document.getElementById('order-tracking-code').value = order.trackingCode || '';
+                document.getElementById('order-tracking-link').value = order.trackingLink || '';
 
-function openOrderModal(order = null) {
-    const modal = document.getElementById('order-modal');
-    const form = document.getElementById('order-form');
-    modal.classList.remove('hidden');
+                document.getElementById('order-date').value = order.date || '';
+                document.getElementById('order-delivery-date').value = order.deliveryDate || '';
+                document.getElementById('order-notes').value = order.notes || '';
+            } else {
+                document.getElementById('order-modal-title').innerText = 'Novo Pedido / Encomenda';
+                form.reset();
+                document.getElementById('order-id').value = '';
+                document.getElementById('order-qty').value = 1;
+                document.getElementById('order-unit-amount').value = 0;
+                document.getElementById('order-shipping-amount').value = 0;
+                document.getElementById('order-fulfillment-type').value = 'Retirada';
+                document.getElementById('order-status').value = 'Pendente';
+                document.getElementById('order-date').value = new Date().toISOString().split('T')[0];
+                
+                toggleShippingFields();
+                toggleConclusionFields();
+                calculateOrderTotal();
+            }
+        }
 
-    if (order) {
-        document.getElementById('order-modal-title').innerText = 'Editar Pedido';
-        document.getElementById('order-id').value = order.id;
-        document.getElementById('order-client').value = order.client || '';
-        document.getElementById('order-contact').value = order.contact || '';
-        document.getElementById('order-items').value = order.items || '';
-        
-        document.getElementById('order-qty').value = order.qty || 1;
-        document.getElementById('order-unit-amount').value = order.unitAmount || 0;
-        document.getElementById('order-fulfillment-type').value = order.fulfillmentType || 'Retirada';
-        
-        toggleShippingFields();
-        
-        document.getElementById('order-address').value = order.address || '';
-        document.getElementById('order-shipping-amount').value = order.shippingAmount || 0;
-        document.getElementById('order-amount').value = order.amount || 0;
-        
-        document.getElementById('order-payment-method').value = order.paymentMethod || 'Pix';
-        document.getElementById('order-payment-status').value = order.paymentStatus || 'Pendente';
-        document.getElementById('order-status').value = order.status || 'Pendente';
-        
-        toggleConclusionFields();
-        
-        document.getElementById('order-conclusion-type').value = order.conclusionType || 'Entregue/Retirado';
-        toggleConclusionSubtype();
-        
-        document.getElementById('order-posted-via').value = order.postedVia || '';
-        document.getElementById('order-posted-date').value = order.postedDate || '';
-        document.getElementById('order-tracking-code').value = order.trackingCode || '';
-        document.getElementById('order-tracking-link').value = order.trackingLink || '';
+        function closeOrderModal() {
+            document.getElementById('order-modal').classList.add('hidden');
+        }
 
-        document.getElementById('order-date').value = order.date || '';
-        document.getElementById('order-delivery-date').value = order.deliveryDate || '';
-        document.getElementById('order-notes').value = order.notes || '';
-    } else {
-        document.getElementById('order-modal-title').innerText = 'Novo Pedido / Encomenda';
-        form.reset();
-        document.getElementById('order-id').value = '';
-        document.getElementById('order-qty').value = 1;
-        document.getElementById('order-unit-amount').value = 0;
-        document.getElementById('order-shipping-amount').value = 0;
-        document.getElementById('order-fulfillment-type').value = 'Retirada';
-        document.getElementById('order-status').value = 'Pendente';
-        document.getElementById('order-date').value = new Date().toISOString().split('T')[0];
-        
-        toggleShippingFields();
-        toggleConclusionFields();
-        calculateOrderTotal();
-    }
-}
+        function saveOrder(e) {
+            e.preventDefault();
+            const id = document.getElementById('order-id').value;
 
-function closeOrderModal() {
-    document.getElementById('order-modal').classList.add('hidden');
-}
+            const fulfillmentType = document.getElementById('order-fulfillment-type').value;
+            const status = document.getElementById('order-status').value;
+            const conclusionType = document.getElementById('order-conclusion-type').value;
 
-function saveOrder(e) {
-    e.preventDefault();
-    const id = document.getElementById('order-id').value;
+            const orderData = {
+                client: document.getElementById('order-client').value,
+                contact: document.getElementById('order-contact').value,
+                items: document.getElementById('order-items').value,
+                qty: parseFloat(document.getElementById('order-qty').value || 1),
+                unitAmount: parseFloat(document.getElementById('order-unit-amount').value || 0),
+                fulfillmentType: fulfillmentType,
+                address: fulfillmentType === 'Envio' ? document.getElementById('order-address').value : '',
+                shippingAmount: fulfillmentType === 'Envio' ? parseFloat(document.getElementById('order-shipping-amount').value || 0) : 0,
+                amount: parseFloat(document.getElementById('order-amount').value || 0),
+                paymentMethod: document.getElementById('order-payment-method').value,
+                paymentStatus: document.getElementById('order-payment-status').value,
+                status: status,
+                conclusionType: status === 'Concluído' ? conclusionType : '',
+                postedVia: (status === 'Concluído' && conclusionType === 'Postado') ? document.getElementById('order-posted-via').value : '',
+                postedDate: (status === 'Concluído' && conclusionType === 'Postado') ? document.getElementById('order-posted-date').value : '',
+                trackingCode: (status === 'Concluído' && conclusionType === 'Postado') ? document.getElementById('order-tracking-code').value : '',
+                trackingLink: (status === 'Concluído' && conclusionType === 'Postado') ? document.getElementById('order-tracking-link').value : '',
+                date: document.getElementById('order-date').value,
+                deliveryDate: document.getElementById('order-delivery-date').value,
+                notes: document.getElementById('order-notes').value,
+                updatedAt: new Date().toISOString()
+            };
 
-    const fulfillmentType = document.getElementById('order-fulfillment-type').value;
-    const status = document.getElementById('order-status').value;
-    const conclusionType = document.getElementById('order-conclusion-type').value;
+            if (id) {
+                db.collection("orders").doc(id).update(orderData);
+            } else {
+                db.collection("orders").add(orderData);
+            }
 
-    const orderData = {
-        client: document.getElementById('order-client').value,
-        contact: document.getElementById('order-contact').value,
-        items: document.getElementById('order-items').value,
-        qty: parseFloat(document.getElementById('order-qty').value || 1),
-        unitAmount: parseFloat(document.getElementById('order-unit-amount').value || 0),
-        fulfillmentType: fulfillmentType,
-        address: fulfillmentType === 'Envio' ? document.getElementById('order-address').value : '',
-        shippingAmount: fulfillmentType === 'Envio' ? parseFloat(document.getElementById('order-shipping-amount').value || 0) : 0,
-        amount: parseFloat(document.getElementById('order-amount').value || 0),
-        paymentMethod: document.getElementById('order-payment-method').value,
-        paymentStatus: document.getElementById('order-payment-status').value,
-        status: status,
-        conclusionType: status === 'Concluído' ? conclusionType : '',
-        postedVia: (status === 'Concluído' && conclusionType === 'Postado') ? document.getElementById('order-posted-via').value : '',
-        postedDate: (status === 'Concluído' && conclusionType === 'Postado') ? document.getElementById('order-posted-date').value : '',
-        trackingCode: (status === 'Concluído' && conclusionType === 'Postado') ? document.getElementById('order-tracking-code').value : '',
-        trackingLink: (status === 'Concluído' && conclusionType === 'Postado') ? document.getElementById('order-tracking-link').value : '',
-        date: document.getElementById('order-date').value,
-        deliveryDate: document.getElementById('order-delivery-date').value,
-        notes: document.getElementById('order-notes').value,
-        updatedAt: new Date().toISOString()
-    };
-
-    if (id) {
-        db.collection("orders").doc(id).update(orderData);
-    } else {
-        db.collection("orders").add(orderData);
-    }
-
-    closeOrderModal();
-
+            closeOrderModal();
         }
 
         function deleteOrder(id) {
@@ -1532,8 +1545,10 @@ function saveOrder(e) {
 
             const searchText = (document.getElementById('kanban-search')?.value || '').toLowerCase();
             const platformFilter = document.getElementById('kanban-filter-platform')?.value || 'ALL';
+            const goalFilter = document.getElementById('kanban-filter-goal')?.value || 'ALL';
+            const pillarFilter = document.getElementById('kanban-filter-pillar')?.value || 'ALL';
 
-            // Assegura que o estado visual inicial das colunas reflita o Set `collapsedColumns`
+            // Assegura o estado visual inicial das colunas
             ['ideia', 'producao', 'agendado', 'publicado'].forEach(colKey => {
                 const wrapper = document.getElementById(`wrapper-col-${colKey}`);
                 const btn = document.getElementById(`btn-col-${colKey}`);
@@ -1556,6 +1571,12 @@ function saveOrder(e) {
                 const plats = post.platforms || [post.platform || 'Instagram'];
                 if (platformFilter !== 'ALL' && !plats.includes(platformFilter)) return;
 
+                const goals = post.goals || [post.goal || 'Conexão'];
+                if (goalFilter !== 'ALL' && !goals.includes(goalFilter)) return;
+
+                const pillars = post.pillars || [post.pillar || 'Educacional'];
+                if (pillarFilter !== 'ALL' && !pillars.includes(pillarFilter)) return;
+
                 if (isMediaReadyOnly && post.mediaStatus !== 'Mídia Pronta') return;
 
                 if (counts[post.status] !== undefined) counts[post.status]++;
@@ -1573,13 +1594,13 @@ function saveOrder(e) {
                 } else {
                     card.className = "bg-white p-3.5 rounded-xl border border-begeDark shadow-sm hover:shadow-md transition space-y-2.5";
                     const platBadges = plats.map(p => `<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-bege text-bordo font-accent">${p}</span>`).join(' ');
-                    const goals = (post.goals || [post.goal || 'Conexão']).map(g => `<span class="bg-pink/10 text-pink px-1.5 py-0.5 rounded font-accent">${g}</span>`).join(' ');
+                    const goalsBadges = goals.map(g => `<span class="bg-pink/10 text-pink px-1.5 py-0.5 rounded font-accent">${g}</span>`).join(' ');
 
                     card.innerHTML = 
                         `<div class="flex flex-wrap items-center justify-between gap-1">${platBadges} <span class="text-[9px] text-gray-400 font-accent">${post.format || ''}</span></div>` +
                         `<h4 class="font-bold text-xs text-gray-800 leading-snug font-title">${post.title || 'Sem título'}</h4>` +
                         (post.date ? `<p class="text-[10px] text-rosa font-medium font-accent">📅 ${formatDate(post.date)}</p>` : '') +
-                        `<div class="flex flex-wrap gap-1 text-[9px] font-accent">${goals} <span class="bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">${post.mediaStatus || 'A Gravar'}</span></div>` +
+                        `<div class="flex flex-wrap gap-1 text-[9px] font-accent">${goalsBadges} <span class="bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">${post.mediaStatus || 'A Gravar'}</span></div>` +
                         `<div class="flex items-center justify-between pt-2 border-t border-bege/50 text-gray-400 font-accent">` +
                             `<select onchange="updateStatus('${post.id}', this.value)" class="text-[10px] border border-begeDark rounded px-1 py-0.5 bg-bege text-gray-600">` +
                                 `<option value="ideia" ${post.status === 'ideia' ? 'selected' : ''}>Ideia</option>` +
@@ -1799,7 +1820,7 @@ function saveOrder(e) {
                 feedbackEl.innerText = `✨ Palavras-chave do seu banco presentes na legenda: ${found.join(', ')}`;
                 feedbackEl.className = "text-[10px] text-green-700 font-bold mt-1 font-accent";
             } else {
-                feedbackEl.innerText = "💡 Dica: inclua termos do seu banco naturalmente na legenda para melhorar o SEO.";
+                feedbackEl.innerText = "💡 Dica: inclua termos do seu banco naturally na legenda para melhorar o SEO.";
                 feedbackEl.className = "text-[10px] text-gray-500 font-medium mt-1 font-accent";
             }
         }
