@@ -59,6 +59,7 @@
             text-decoration: line-through;
             opacity: 0.6;
         }
+        /* Estilo para colunas do Kanban retraídas no Desktop - Texto Mantido na Horizontal */
         @media (min-width: 768px) {
             .kanban-col-collapsed {
                 width: 7rem !important;
@@ -86,6 +87,7 @@
                 display: none !important;
             }
         }
+        /* Estilo para colunas retraídas no Mobile */
         @media (max-width: 767px) {
             .kanban-col-collapsed-mobile .col-content,
             .kanban-col-collapsed-mobile .col-counter {
@@ -95,18 +97,6 @@
                 padding: 0.75rem 1rem !important;
             }
         }
-        .rich-editor-content {
-            min-height: 90px;
-            outline: none;
-        }
-        .rich-editor-content u {
-            text-decoration: underline;
-        }
-        .rich-editor-content mark {
-            background-color: #fef08a;
-            padding: 0 2px;
-            border-radius: 2px;
-        }
     </style>
 </head>
 <body class="text-gray-800 min-h-screen flex flex-col md:flex-row">
@@ -114,7 +104,9 @@
     <!-- Barra Lateral (Desktop) -->
     <aside class="hidden md:flex flex-col w-64 bg-white border-r border-begeDark p-6 flex-shrink-0 min-h-screen sticky top-0 h-screen overflow-y-auto">
         <div class="flex items-center gap-3 mb-6">
-            <div class="text-2xl">🏡</div>
+            <div class="text-2xl">
+                🕯️
+            </div>
             <div>
                 <h1 class="font-bold text-lg text-bordo leading-tight font-title">Planner Cazinha</h1>
                 <p class="text-xs text-rosa font-semibold font-accent">Social Media & Estratégia</p>
@@ -160,11 +152,6 @@
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                 Métricas & Resultados
             </button>
-            <!-- GESTÃO FINANCEIRA: EXATAMENTE A ÚLTIMA ABA NO PAINEL LATERAL -->
-            <button onclick="switchTab('finance')" id="nav-finance" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                Gestão Financeira & Planilha de Gastos
-            </button>
         </nav>
 
         <div class="space-y-2 pt-4 border-t border-begeDark">
@@ -182,7 +169,9 @@
     <!-- Cabeçalho Mobile -->
     <header class="md:hidden bg-white border-b border-begeDark p-4 flex items-center justify-between sticky top-0 z-20">
         <div class="flex items-center gap-3">
-            <div class="text-xl">🏡</div>
+            <div class="text-xl">
+                🕯️
+            </div>
             <div>
                 <h1 class="font-bold text-base text-bordo leading-tight font-title">Planner Cazinha</h1>
                 <div class="text-[10px] text-green-600 flex items-center gap-1 font-medium font-accent">
@@ -219,16 +208,16 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
             <span class="text-[9px] font-medium font-accent">Mural</span>
         </button>
-        <button onclick="switchTab('finance')" id="mob-nav-finance" class="flex flex-col items-center gap-1 text-gray-400 px-2">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            <span class="text-[9px] font-medium font-accent">Finanças</span>
+        <button onclick="switchTab('metrics')" id="mob-nav-metrics" class="flex flex-col items-center gap-1 text-gray-400 px-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+            <span class="text-[9px] font-medium font-accent">Métricas</span>
         </button>
     </nav>
 
     <!-- Área Principal de Conteúdo -->
     <main class="flex-1 p-4 md:p-8 overflow-y-auto max-w-7xl mx-auto w-full">
 
-        <!-- TAB 1: KANBAN BOARD -->
+        <!-- TAB 1: KANBAN BOARD OTIMIZADO COM COLUNAS RETRAÍVEIS -->
         <section id="tab-kanban" class="space-y-6">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
@@ -236,6 +225,7 @@
                     <p class="text-sm text-gray-500">Gerencie o progresso das suas publicações</p>
                 </div>
 
+                <!-- Controles de Filtro e Modos de Visão -->
                 <div class="flex flex-wrap items-center gap-2 font-accent">
                     <input type="text" id="kanban-search" oninput="renderKanban()" placeholder="🔍 Buscar por título..." class="px-3 py-1.5 text-xs rounded-xl border border-begeDark bg-white focus:outline-none">
                     
@@ -283,7 +273,10 @@
                 </div>
             </div>
 
+            <!-- Grade do Kanban com Suporte a Expansão e Retração de Colunas -->
             <div class="flex flex-col md:flex-row gap-4 items-start">
+                
+                <!-- Coluna 1: Ideias -->
                 <div id="wrapper-col-ideia" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0">
                     <div class="col-header-inner flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
                         <div class="flex items-center gap-2">
@@ -292,12 +285,13 @@
                         </div>
                         <div class="flex items-center gap-2 font-accent">
                             <span id="count-ideia" class="col-counter bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
-                            <button onclick="toggleColumnCollapse('ideia')" class="text-gray-400 hover:text-bordo font-bold text-sm px-1" id="btn-col-ideia">[+]</button>
+                            <button onclick="toggleColumnCollapse('ideia')" class="text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher Coluna" id="btn-col-ideia">[+]</button>
                         </div>
                     </div>
                     <div id="col-ideia" class="col-content space-y-3 flex-1 min-h-[150px]"></div>
                 </div>
 
+                <!-- Coluna 2: Em Produção -->
                 <div id="wrapper-col-producao" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0 kanban-col-collapsed-mobile">
                     <div class="col-header-inner flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
                         <div class="flex items-center gap-2">
@@ -306,12 +300,13 @@
                         </div>
                         <div class="flex items-center gap-2 font-accent">
                             <span id="count-producao" class="col-counter bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
-                            <button onclick="toggleColumnCollapse('producao')" class="text-gray-400 hover:text-bordo font-bold text-sm px-1" id="btn-col-producao">[+]</button>
+                            <button onclick="toggleColumnCollapse('producao')" class="text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher Coluna" id="btn-col-producao">[+]</button>
                         </div>
                     </div>
                     <div id="col-producao" class="col-content space-y-3 flex-1 min-h-[150px]"></div>
                 </div>
 
+                <!-- Coluna 3: Agendado -->
                 <div id="wrapper-col-agendado" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0 kanban-col-collapsed-mobile">
                     <div class="col-header-inner flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
                         <div class="flex items-center gap-2">
@@ -320,12 +315,13 @@
                         </div>
                         <div class="flex items-center gap-2 font-accent">
                             <span id="count-agendado" class="col-counter bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
-                            <button onclick="toggleColumnCollapse('agendado')" class="text-gray-400 hover:text-bordo font-bold text-sm px-1" id="btn-col-agendado">[+]</button>
+                            <button onclick="toggleColumnCollapse('agendado')" class="text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher Coluna" id="btn-col-agendado">[+]</button>
                         </div>
                     </div>
                     <div id="col-agendado" class="col-content space-y-3 flex-1 min-h-[150px]"></div>
                 </div>
 
+                <!-- Coluna 4: Publicado -->
                 <div id="wrapper-col-publicado" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0 kanban-col-collapsed-mobile">
                     <div class="col-header-inner flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
                         <div class="flex items-center gap-2">
@@ -334,16 +330,17 @@
                         </div>
                         <div class="flex items-center gap-1 font-accent">
                             <span id="count-publicado" class="col-counter bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
-                            <button onclick="toggleShowAllPublished()" class="col-content text-[10px] text-bordo underline font-bold ml-1">Ver todos</button>
-                            <button onclick="toggleColumnCollapse('publicado')" class="text-gray-400 hover:text-bordo font-bold text-sm px-1" id="btn-col-publicado">[+]</button>
+                            <button onclick="toggleShowAllPublished()" class="col-content text-[10px] text-bordo underline font-bold ml-1" title="Alternar entre ver todos e recentes">Ver todos</button>
+                            <button onclick="toggleColumnCollapse('publicado')" class="text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher Coluna" id="btn-col-publicado">[+]</button>
                         </div>
                     </div>
                     <div id="col-publicado" class="col-content space-y-3 flex-1 min-h-[150px]"></div>
                 </div>
+
             </div>
         </section>
 
-        <!-- TAB 2: PEDIDOS & ENCOMENDAS -->
+        <!-- TAB NOVA: PEDIDOS & ENCOMENDAS -->
         <section id="tab-orders" class="hidden space-y-6">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
@@ -356,25 +353,31 @@
                 </button>
             </div>
 
+            <!-- KPIs dos Pedidos -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
                     <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Total de Pedidos</span>
                     <h3 id="order-kpi-total" class="text-2xl font-bold text-bordo mt-1 font-title">0</h3>
+                    <span class="text-[9px] text-gray-400 mt-2">Registrados no sistema</span>
                 </div>
                 <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
                     <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Pendentes de Entrega</span>
                     <h3 id="order-kpi-pending" class="text-2xl font-bold text-amarelo mt-1 font-title">0</h3>
+                    <span class="text-[9px] text-gray-400 mt-2">Pendente / Em produção</span>
                 </div>
                 <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
                     <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Faturamento Recebido</span>
                     <h3 id="order-kpi-revenue" class="text-2xl font-bold text-verde mt-1 font-title">R$ 0,00</h3>
+                    <span class="text-[9px] text-gray-400 mt-2">Apenas com pagamento Pago</span>
                 </div>
                 <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
                     <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">A Receber</span>
                     <h3 id="order-kpi-to-receive" class="text-2xl font-bold text-vibrante mt-1 font-title">R$ 0,00</h3>
+                    <span class="text-[9px] text-gray-400 mt-2">Pagamentos pendentes</span>
                 </div>
             </div>
 
+            <!-- Filtros e Modos de Visão da Aba de Pedidos -->
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-begeDark">
                 <div class="flex flex-wrap items-center gap-2">
                     <input type="text" id="orders-search" oninput="renderOrders()" placeholder="🔍 Buscar por cliente ou produto..." class="px-3 py-1.5 text-xs rounded-xl border border-begeDark bg-bege/30 focus:outline-none w-full md:w-64">
@@ -394,6 +397,7 @@
                 </div>
             </div>
 
+            <!-- Visão 1: Tabela de Pedidos -->
             <div id="orders-view-table" class="bg-white p-5 rounded-2xl border border-begeDark shadow-2xs overflow-x-auto">
                 <table class="w-full text-left text-xs">
                     <thead>
@@ -411,6 +415,7 @@
                 </table>
             </div>
 
+            <!-- Visão 2: Kanban de Pedidos -->
             <div id="orders-view-kanban" class="hidden grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col">
                     <h3 class="font-bold text-xs text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center font-title">
@@ -446,7 +451,7 @@
             </div>
         </section>
 
-        <!-- TAB 3: CALENDÁRIO MENSAL -->
+        <!-- TAB 2: CALENDÁRIO MENSAL INTERATIVO -->
         <section id="tab-calendar" class="hidden space-y-6">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
@@ -454,12 +459,17 @@
                     <p class="text-sm text-gray-500">Clique em qualquer dia para ver os posts ou agendar novo conteúdo</p>
                 </div>
                 <div class="flex items-center gap-3 bg-white px-4 py-2 rounded-xl border border-begeDark self-start">
-                    <button onclick="changeMonth(-1)" class="text-bordo hover:bg-bege p-1 rounded-lg">←</button>
+                    <button onclick="changeMonth(-1)" class="text-bordo hover:bg-bege p-1 rounded-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
                     <span id="calendar-month-title" class="font-bold text-bordo text-sm min-w-[120px] text-center font-title">Outubro 2026</span>
-                    <button onclick="changeMonth(1)" class="text-bordo hover:bg-bege p-1 rounded-lg">→</button>
+                    <button onclick="changeMonth(1)" class="text-bordo hover:bg-bege p-1 rounded-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
                 </div>
             </div>
 
+            <!-- Grade do Mês -->
             <div class="bg-white rounded-2xl p-4 md:p-6 border border-begeDark shadow-sm">
                 <div class="grid grid-cols-7 gap-1 md:gap-2 mb-2 text-center text-xs font-bold text-bordo uppercase font-accent">
                     <div>Dom</div><div>Seg</div><div>Ter</div><div>Qua</div><div>Qui</div><div>Sex</div><div>Sáb</div>
@@ -468,7 +478,7 @@
             </div>
         </section>
 
-        <!-- TAB 4: PLATAFORMAS -->
+        <!-- TAB 3: VISUALIZAÇÃO POR PLATAFORMAS -->
         <section id="tab-platforms" class="hidden space-y-6">
             <div>
                 <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Organização por Rede Social</h2>
@@ -499,8 +509,9 @@
             </div>
         </section>
 
-        <!-- TAB 5: MURAL DA MARCA -->
+        <!-- TAB 4: MURAL DA MARCA (COM BÚSSOLA DE OBJETIVOS & CAMPANHAS) -->
         <section id="tab-brandmural" class="hidden space-y-6">
+            <!-- PAINEL FIXO DE OBJETIVOS & CAMPANHAS DA MARCA -->
             <div class="bg-gradient-to-r from-bordo to-vibrante p-5 rounded-2xl text-white shadow-md space-y-3">
                 <div class="flex justify-between items-center border-b border-white/20 pb-2">
                     <div class="flex items-center gap-2">
@@ -512,10 +523,11 @@
                     </button>
                 </div>
 
+                <!-- Visão de Leitura dos Objetivos -->
                 <div id="view-brand-goals" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                     <div class="bg-black/15 p-3 rounded-xl border border-white/10 space-y-1">
                         <span class="text-[10px] font-bold uppercase text-amber-200 font-accent">📌 Objetivos Principais da Marca:</span>
-                        <p id="display-brand-goals" class="font-medium whitespace-pre-line leading-relaxed">Nenhum objetivo cadastrado ainda.</p>
+                        <p id="display-brand-goals" class="font-medium whitespace-pre-line leading-relaxed">Nenhum objetivo cadastrado ainda. Clique em 'Editar Objetivos' para definir!</p>
                     </div>
                     <div class="bg-black/15 p-3 rounded-xl border border-white/10 space-y-1">
                         <span class="text-[10px] font-bold uppercase text-amber-200 font-accent">🚀 Campanha / Foco do Mês:</span>
@@ -524,18 +536,19 @@
                     </div>
                 </div>
 
+                <!-- Formulário de Edição dos Objetivos -->
                 <div id="form-brand-goals" class="hidden space-y-3 pt-2 text-xs">
                     <div>
                         <label class="block font-bold mb-1 text-amber-200 font-accent">Objetivos Gerais / Trimestrais da Cazinha:</label>
-                        <textarea id="input-brand-goals" rows="2" class="w-full p-2.5 rounded-xl text-gray-800 text-xs focus:outline-none" placeholder="Ex: Fortalecer presença, aumentar vendas..."></textarea>
+                        <textarea id="input-brand-goals" rows="2" class="w-full p-2.5 rounded-xl text-gray-800 text-xs focus:outline-none" placeholder="Ex: Fortalecer a presença em Reels, aumentar vendas do kit presente..."></textarea>
                     </div>
                     <div>
                         <label class="block font-bold mb-1 text-amber-200 font-accent">Campanha Ativa do Mês:</label>
-                        <input type="text" id="input-brand-campaign" class="w-full p-2 rounded-xl text-gray-800 text-xs focus:outline-none" placeholder="Ex: Lançamento Coleção...">
+                        <input type="text" id="input-brand-campaign" class="w-full p-2 rounded-xl text-gray-800 text-xs focus:outline-none" placeholder="Ex: Lançamento Coleção Primavera / Dia das Mães">
                     </div>
                     <div>
                         <label class="block font-bold mb-1 text-amber-200 font-accent">Observações da Campanha Ativa (Opcional):</label>
-                        <textarea id="input-brand-campaign-notes" rows="2" class="w-full p-2.5 rounded-xl text-gray-800 text-xs focus:outline-none" placeholder="Observações..."></textarea>
+                        <textarea id="input-brand-campaign-notes" rows="2" class="w-full p-2.5 rounded-xl text-gray-800 text-xs focus:outline-none" placeholder="Ex: Focar nos stories de bastidores da produção dos kits..."></textarea>
                     </div>
                     <div class="flex justify-end gap-2">
                         <button onclick="saveBrandGoals()" class="bg-white text-bordo font-bold px-4 py-1.5 rounded-xl shadow hover:bg-bege text-xs font-accent">Salvar Objetivos</button>
@@ -549,6 +562,7 @@
                     <p class="text-sm text-gray-500">Caderno livre para pensamentos, tarefas rápidas e lembretes operacionais</p>
                 </div>
                 
+                <!-- Filtro do Mural -->
                 <div class="flex items-center gap-1 bg-white p-1 rounded-xl border border-begeDark text-xs font-accent">
                     <button onclick="filterBrandMural('ALL')" id="mural-filter-ALL" class="px-3 py-1.5 rounded-lg font-bold bg-bege text-bordo">Todas</button>
                     <button onclick="filterBrandMural('NOTE')" id="mural-filter-NOTE" class="px-3 py-1.5 rounded-lg font-medium text-gray-500">Notas Livres</button>
@@ -556,6 +570,7 @@
                 </div>
             </div>
 
+            <!-- Criador de Nota / Checklist -->
             <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-4 shadow-sm">
                 <div class="flex items-center gap-4 border-b border-begeDark pb-2 text-xs font-bold text-bordo font-accent">
                     <label class="flex items-center gap-1.5 cursor-pointer">
@@ -567,21 +582,23 @@
                 </div>
 
                 <div class="space-y-3">
-                    <input type="text" id="brand-note-title" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs font-bold focus:outline-none font-title" placeholder="Título...">
+                    <input type="text" id="brand-note-title" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs font-bold focus:outline-none font-title" placeholder="Título (ex: Tarefas de Produção, Ideia de Embalagem)...">
                     
+                    <!-- Campo para Nota Livre -->
                     <div id="field-note-text">
                         <textarea id="brand-note-text" rows="2" class="w-full p-3 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Digite seu pensamento solto aqui..."></textarea>
                     </div>
 
+                    <!-- Campo para Itens do Checklist -->
                     <div id="field-checklist-items" class="hidden space-y-2">
-                        <p class="text-[10px] font-bold text-gray-500 uppercase font-accent">Itens da Lista (um por linha):</p>
-                        <textarea id="brand-checklist-text" rows="3" class="w-full p-3 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Item 1&#10;Item 2"></textarea>
+                        <p class="text-[10px] font-bold text-gray-500 uppercase font-accent">Itens da Lista (digite um item por linha):</p>
+                        <textarea id="brand-checklist-text" rows="3" class="w-full p-3 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Comprar cera vegetal&#10;Imprimir etiquetas&#10;Gravar vídeo de bastidores"></textarea>
                     </div>
 
                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pt-2">
                         <div class="flex flex-wrap items-center gap-3 text-xs">
                             <div>
-                                <span class="text-[10px] font-bold text-gray-600 uppercase block font-accent">Data Limite:</span>
+                                <span class="text-[10px] font-bold text-gray-600 uppercase block font-accent">Data Limite (Opcional):</span>
                                 <input type="date" id="brand-note-duedate" class="px-2.5 py-1 rounded-lg border border-begeDark text-xs">
                             </div>
 
@@ -606,10 +623,11 @@
                 </div>
             </div>
 
+            <!-- Grade de Notas Salvas -->
             <div id="brand-notes-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
         </section>
 
-        <!-- TAB 6: DATAS SAZONAIS -->
+        <!-- TAB 5: DATAS SAZONAIS -->
         <section id="tab-seasonal" class="hidden space-y-6">
             <div>
                 <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Datas Sazonais & Comemorativas</h2>
@@ -622,20 +640,21 @@
             </div>
         </section>
 
-        <!-- TAB 7: ESTRATÉGIA & SEO -->
+        <!-- TAB 6: ESTRATÉGIA & SEO (BANCO INTERATIVO DE PALAVRAS-CHAVE) -->
         <section id="tab-strategy" class="hidden space-y-6">
             <div>
                 <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Central de Estratégia & SEO</h2>
                 <p class="text-sm text-gray-500">Gerencie palavras-chave principais do seu nicho para usar de forma natural nas legendas</p>
             </div>
 
+            <!-- Adicionar Nova Tag -->
             <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3">
                 <h3 class="font-bold text-bordo text-sm font-title">Adicionar Nova Palavra-Chave ao Banco</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                    <input type="text" id="new-tag-text" class="px-3 py-2 rounded-xl border border-begeDark text-xs" placeholder="Ex: velas aromáticas">
+                    <input type="text" id="new-tag-text" class="px-3 py-2 rounded-xl border border-begeDark text-xs" placeholder="Ex: velas aromáticas ou presente criativo">
                     
                     <div class="space-y-1">
-                        <span class="text-[10px] font-bold text-gray-600 uppercase block font-accent">Categorias:</span>
+                        <span class="text-[10px] font-bold text-gray-600 uppercase block font-accent">Categorias (Selecione 1 ou mais):</span>
                         <div class="flex flex-wrap gap-1.5 text-[11px] font-accent">
                             <label class="flex items-center gap-1 bg-bege px-2 py-0.5 rounded border border-begeDark cursor-pointer">
                                 <input type="checkbox" name="new-tag-cat" value="Marca & Nicho" class="accent-bordo"> Marca & Nicho
@@ -655,7 +674,9 @@
                 </div>
             </div>
 
+            <!-- Categorias de Tags -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Marca & Nicho -->
                 <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3">
                     <div class="flex justify-between items-center border-b border-begeDark pb-2">
                         <h4 class="font-bold text-bordo text-xs uppercase font-accent">🏷️ Marca & Nicho</h4>
@@ -664,6 +685,7 @@
                     <div id="tags-container-Marca & Nicho" class="flex flex-wrap gap-1.5 min-h-[50px]"></div>
                 </div>
 
+                <!-- Produtos -->
                 <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3">
                     <div class="flex justify-between items-center border-b border-begeDark pb-2">
                         <h4 class="font-bold text-bordo text-xs uppercase font-accent">📦 Produtos</h4>
@@ -672,6 +694,7 @@
                     <div id="tags-container-Produtos" class="flex flex-wrap gap-1.5 min-h-[50px]"></div>
                 </div>
 
+                <!-- Intenção & Estilo de Vida -->
                 <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3 md:col-span-2">
                     <div class="flex justify-between items-center border-b border-begeDark pb-2">
                         <h4 class="font-bold text-bordo text-xs uppercase font-accent">✨ Intenção & Estilo de Vida</h4>
@@ -681,31 +704,36 @@
                 </div>
             </div>
 
+            <!-- Resumo dos Objetivos -->
             <div class="bg-white p-6 rounded-2xl border border-begeDark space-y-4">
                 <h3 class="font-bold text-bordo text-base font-title">Distribuição por Objetivo de Conteúdo</h3>
                 <div id="strategy-goals-summary" class="space-y-2 text-xs"></div>
             </div>
         </section>
 
-        <!-- TAB 8: MÉTRICAS & RESULTADOS -->
+        <!-- TAB 7: MÉTRICAS & RESULTADOS -->
         <section id="tab-metrics" class="hidden space-y-6">
             <div>
                 <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Métricas & Desempenho</h2>
                 <p class="text-sm text-gray-500">Análise de resultados gerada automaticamente a partir dos dados preenchidos nos seus posts</p>
             </div>
 
+            <!-- KPIs Rápidos -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
                     <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Alcance Total Acumulado</span>
                     <h3 id="kpi-total-reach" class="text-2xl font-bold text-bordo mt-1 font-title">0</h3>
+                    <span class="text-[9px] text-gray-400 mt-2">Soma de impressões/alcance</span>
                 </div>
                 <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
                     <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Média de Engajamento</span>
                     <h3 id="kpi-avg-engagement" class="text-2xl font-bold text-pink mt-1 font-title">0%</h3>
+                    <span class="text-[9px] text-gray-400 mt-2">(Interações / Alcance) * 100</span>
                 </div>
                 <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
                     <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Vendas / Conversões</span>
                     <h3 id="kpi-total-sales" class="text-2xl font-bold text-verde mt-1 font-title">0</h3>
+                    <span class="text-[9px] text-gray-400 mt-2">Cliques/Vendas relatadas</span>
                 </div>
                 <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
                     <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Top Post do Mês</span>
@@ -714,6 +742,7 @@
                 </div>
             </div>
 
+            <!-- Tabela de Desempenho dos Posts -->
             <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3 overflow-x-auto">
                 <h3 class="font-bold text-bordo text-sm font-title">Histórico de Performance dos Posts</h3>
                 <table class="w-full text-left text-xs">
@@ -732,218 +761,42 @@
             </div>
         </section>
 
-        <!-- TAB 9: GESTÃO FINANCEIRA & PLANILHA DE GASTOS (ÚLTIMA ABA COM INTEGRAÇÃO DE PEDIDOS) -->
-        <section id="tab-finance" class="hidden space-y-6">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                    <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Gestão Financeira & Planilha de Gastos</h2>
-                    <p class="text-sm text-gray-500">Controle integrado de gastos avulsos, pedidos de vendas, fretes e margem de lucro</p>
-                </div>
-                
-                <button onclick="openFinanceModal()" class="bg-vibrante hover:bg-bordo text-white font-semibold py-2.5 px-5 rounded-xl transition shadow flex items-center gap-2 font-accent text-xs self-start md:self-auto">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                    Novo Gasto / Lançamento Avulso
-                </button>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
-                    <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Entradas (Vendas Pagas)</span>
-                    <h3 id="fin-kpi-incomes" class="text-2xl font-bold text-verde mt-1 font-title">R$ 0,00</h3>
-                    <span id="fin-sub-incomes" class="text-[9px] text-gray-400 mt-2">Incluindo pedidos integrados</span>
-                </div>
-                <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
-                    <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">A Receber (Pendentes)</span>
-                    <h3 id="fin-kpi-pending" class="text-2xl font-bold text-amarelo mt-1 font-title">R$ 0,00</h3>
-                    <span id="fin-sub-pending" class="text-[9px] text-gray-400 mt-2">Valores pendentes nos pedidos</span>
-                </div>
-                <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
-                    <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Total de Saídas / Gastos</span>
-                    <h3 id="fin-kpi-expenses" class="text-2xl font-bold text-vibrante mt-1 font-title">R$ 0,00</h3>
-                    <span class="text-[9px] text-gray-400 mt-2">Custos fixos, variáveis, insumos e fretes</span>
-                </div>
-                <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
-                    <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Saldo Líquido (Lucro Real)</span>
-                    <h3 id="fin-kpi-profit" class="text-2xl font-bold text-bordo mt-1 font-title">R$ 0,00</h3>
-                    <span class="text-[9px] text-gray-400 mt-2">Recebido total - Saídas totais</span>
-                </div>
-            </div>
-
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-begeDark">
-                <div class="flex flex-wrap items-center gap-2">
-                    <input type="text" id="fin-search" oninput="renderFinance()" placeholder="🔍 Buscar por descrição ou cliente..." class="px-3 py-1.5 text-xs rounded-xl border border-begeDark bg-bege/30 focus:outline-none w-full md:w-56">
-                    
-                    <select id="fin-filter-type" onchange="renderFinance()" class="px-3 py-1.5 text-xs rounded-xl border border-begeDark bg-bege/30 font-accent">
-                        <option value="ALL">Todos os Tipos</option>
-                        <option value="RECEITA">Entradas (Vendas)</option>
-                        <option value="DESPESA">Saídas (Gastos)</option>
-                    </select>
-
-                    <select id="fin-filter-category" onchange="renderFinance()" class="px-3 py-1.5 text-xs rounded-xl border border-begeDark bg-bege/30 font-accent">
-                        <option value="ALL">Todas as Categorias</option>
-                        <option value="Custos Fixos">Custos Fixos</option>
-                        <option value="Matéria-Prima">Matéria-Prima / Insumos</option>
-                        <option value="Embalagens">Embalagens</option>
-                        <option value="Investimentos">Investimentos / Marketing</option>
-                        <option value="Fretes">Fretes & Envio</option>
-                        <option value="Vendas de Produtos">Vendas de Produtos (Pedidos)</option>
-                        <option value="Não Categorizado">Não Categorizado / Outros</option>
-                    </select>
-
-                    <button onclick="toggleIncludeOrders()" id="btn-toggle-orders" class="px-3 py-1.5 text-xs font-semibold rounded-xl border border-bordo bg-bordo text-white hover:bg-vibrante transition font-accent flex items-center gap-1.5">
-                        <span id="toggle-orders-icon">👁️‍🗨️</span> <span id="toggle-orders-text">Ocultar Pedidos da Planilha</span>
-                    </button>
-                </div>
-
-                <div class="flex items-center gap-1 bg-bege/50 p-1 rounded-xl border border-begeDark text-xs font-accent">
-                    <button onclick="switchFinanceTab('expenses')" id="btn-fintab-expenses" class="px-3 py-1.5 rounded-lg font-bold bg-white text-bordo shadow-2xs">Planilha de Gastos</button>
-                    <button onclick="switchFinanceTab('incomes')" id="btn-fintab-incomes" class="px-3 py-1.5 rounded-lg font-medium text-gray-500">Tracking de Vendas</button>
-                </div>
-            </div>
-
-            <div id="fin-view-expenses" class="bg-white p-5 rounded-2xl border border-begeDark shadow-2xs overflow-x-auto space-y-3">
-                <div class="flex justify-between items-center border-b border-begeDark pb-2">
-                    <h3 class="font-bold text-bordo text-sm font-title">Detalhamento de Saídas & Custos Operacionais</h3>
-                    <span class="text-xs text-gray-400 font-accent">Categorizados por Cores</span>
-                </div>
-                <table class="w-full text-left text-xs">
-                    <thead>
-                        <tr class="border-b border-begeDark text-gray-500 uppercase text-[10px] font-accent">
-                            <th class="pb-2">Data</th>
-                            <th class="pb-2">Descrição / Item</th>
-                            <th class="pb-2">Categoria</th>
-                            <th class="pb-2">Qtd × Unitário</th>
-                            <th class="pb-2">Valor Total</th>
-                            <th class="pb-2">Observações (Rich Text)</th>
-                            <th class="pb-2 text-right">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="fin-expenses-tbody" class="divide-y divide-begeDark/50"></tbody>
-                </table>
-            </div>
-
-            <div id="fin-view-incomes" class="hidden bg-white p-5 rounded-2xl border border-begeDark shadow-2xs overflow-x-auto space-y-3">
-                <div class="flex justify-between items-center border-b border-begeDark pb-2">
-                    <h3 class="font-bold text-bordo text-sm font-title">Tracking de Vendas, Frete & Pagamentos (Sincronizado com Pedidos)</h3>
-                    <span class="text-xs text-gray-400 font-accent">Integração Automática</span>
-                </div>
-                <table class="w-full text-left text-xs">
-                    <thead>
-                        <tr class="border-b border-begeDark text-gray-500 uppercase text-[10px] font-accent">
-                            <th class="pb-2">Data</th>
-                            <th class="pb-2">Cliente / Item Vendido</th>
-                            <th class="pb-2">Status Pagamento</th>
-                            <th class="pb-2">Custo de Frete</th>
-                            <th class="pb-2">Valor Líquido Venda</th>
-                            <th class="pb-2">Observações</th>
-                            <th class="pb-2 text-right">Origem</th>
-                        </tr>
-                    </thead>
-                    <tbody id="fin-incomes-tbody" class="divide-y divide-begeDark/50"></tbody>
-                </table>
-            </div>
-        </section>
-
     </main>
-
-    <!-- Modais (Posts, Pedidos, Finanças, Mural) -->
-    <div id="finance-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl max-h-[90vh] overflow-y-auto space-y-4">
-            <div class="flex items-center justify-between border-b border-begeDark pb-3">
-                <h3 id="finance-modal-title" class="text-lg font-bold text-bordo font-title">Novo Gasto / Lançamento Avulso</h3>
-                <button onclick="closeFinanceModal()" class="text-gray-400 hover:text-gray-600">✕</button>
-            </div>
-
-            <form id="finance-form" onsubmit="saveFinanceTransaction(event)" class="space-y-4">
-                <input type="hidden" id="fin-id">
-
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Tipo de Registro</label>
-                        <select id="fin-type" onchange="toggleFinanceCategoryOptions()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs font-semibold">
-                            <option value="DESPESA">🔴 Saída / Gasto</option>
-                            <option value="RECEITA">🟢 Entrada Extra</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Categoria</label>
-                        <select id="fin-category" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
-                            <option value="Custos Fixos">Custos Fixos</option>
-                            <option value="Matéria-Prima">Matéria-Prima / Insumos</option>
-                            <option value="Embalagens">Embalagens</option>
-                            <option value="Investimentos">Investimentos / Mkt</option>
-                            <option value="Fretes">Fretes & Envio</option>
-                            <option value="Não Categorizado">Não Categorizado / Outros</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Descrição / Nome do Item ou Fornecedor</label>
-                    <input type="text" id="fin-title" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Ex: Cera vegetal 5kg">
-                </div>
-
-                <div class="grid grid-cols-3 gap-3 bg-bege/30 p-3 rounded-xl border border-begeDark">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Quantidade</label>
-                        <input type="number" min="1" id="fin-qty" value="1" oninput="calculateFinanceTotal()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-white" placeholder="1">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Valor Unit. (R$)</label>
-                        <input type="number" step="0.01" id="fin-unit-value" value="0" oninput="calculateFinanceTotal()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-white" placeholder="0,00">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Valor Total (R$)</label>
-                        <input type="number" step="0.01" id="fin-total-value" readonly class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-gray-100 font-bold text-bordo" placeholder="0,00">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Data do Registro</label>
-                    <input type="date" id="fin-date" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
-                </div>
-
-                <div class="space-y-1.5">
-                    <label class="block text-xs font-bold text-gray-700 uppercase font-accent">Observações (Com Formatação Rica)</label>
-                    <div class="flex flex-wrap items-center gap-1 bg-bege p-1.5 rounded-t-xl border border-begeDark border-b-0 text-xs font-accent">
-                        <button type="button" onclick="execEditorCommand('bold')" class="px-2 py-1 bg-white border border-begeDark rounded font-bold hover:bg-begeDark"><b>B</b></button>
-                        <button type="button" onclick="execEditorCommand('italic')" class="px-2 py-1 bg-white border border-begeDark rounded italic hover:bg-begeDark"><i>I</i></button>
-                        <button type="button" onclick="execEditorCommand('underline')" class="px-2 py-1 bg-white border border-begeDark rounded underline hover:bg-begeDark"><u>U</u></button>
-                        <button type="button" onclick="execEditorCommand('hiliteColor', '#fef08a')" class="px-2 py-1 bg-yellow-200 border border-yellow-400 rounded font-semibold hover:bg-yellow-300">✨ Destaque</button>
-                    </div>
-                    <div id="fin-notes-editor" contenteditable="true" class="rich-editor-content p-3 rounded-b-xl border border-begeDark bg-white text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Observações..."></div>
-                </div>
-
-                <div class="flex gap-3 pt-3">
-                    <button type="button" onclick="closeFinanceModal()" class="w-1/2 py-2.5 border border-begeDark rounded-xl text-xs font-semibold text-gray-600 hover:bg-bege font-accent">Cancelar</button>
-                    <button type="submit" class="w-1/2 py-2.5 bg-vibrante text-white rounded-xl text-xs font-semibold hover:bg-bordo transition font-accent">Salvar Lançamento</button>
-                </div>
-            </form>
-        </div>
-    </div>
 
     <!-- Modal Adicionar/Editar Post -->
     <div id="modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-xl max-h-[90vh] overflow-y-auto">
             <div class="flex items-center justify-between mb-6 border-b border-begeDark pb-3">
                 <h3 id="modal-title" class="text-lg font-bold text-bordo font-title">Novo Conteúdo</h3>
-                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">✕</button>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
             </div>
 
             <form id="post-form" onsubmit="savePost(event)" class="space-y-4">
                 <input type="hidden" id="post-id">
+
                 <div>
                     <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Título do Post</label>
-                    <input type="text" id="post-title" required class="w-full px-4 py-2.5 rounded-xl border border-begeDark focus:ring-2 focus:ring-vibrante focus:outline-none text-sm font-title font-bold" placeholder="Ex: Lançamento">
+                    <input type="text" id="post-title" required class="w-full px-4 py-2.5 rounded-xl border border-begeDark focus:ring-2 focus:ring-vibrante focus:outline-none text-sm font-title font-bold" placeholder="Ex: Lançamento do Produto X">
                 </div>
+
+                <!-- Múltiplas Plataformas (Checkboxes - Sem YouTube) -->
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Plataformas</label>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Plataformas em que foi / será veiculado</label>
                     <div class="flex flex-wrap gap-2 text-xs font-accent">
-                        <label class="flex items-center gap-1.5 bg-bege px-3 py-1.5 rounded-lg border border-begeDark cursor-pointer"><input type="checkbox" name="platform" value="Instagram" class="accent-bordo"> Instagram</label>
-                        <label class="flex items-center gap-1.5 bg-bege px-3 py-1.5 rounded-lg border border-begeDark cursor-pointer"><input type="checkbox" name="platform" value="TikTok" class="accent-bordo"> TikTok</label>
-                        <label class="flex items-center gap-1.5 bg-bege px-3 py-1.5 rounded-lg border border-begeDark cursor-pointer"><input type="checkbox" name="platform" value="Pinterest" class="accent-bordo"> Pinterest</label>
+                        <label class="flex items-center gap-1.5 bg-bege px-3 py-1.5 rounded-lg border border-begeDark cursor-pointer">
+                            <input type="checkbox" name="platform" value="Instagram" class="accent-bordo"> Instagram
+                        </label>
+                        <label class="flex items-center gap-1.5 bg-bege px-3 py-1.5 rounded-lg border border-begeDark cursor-pointer">
+                            <input type="checkbox" name="platform" value="TikTok" class="accent-bordo"> TikTok
+                        </label>
+                        <label class="flex items-center gap-1.5 bg-bege px-3 py-1.5 rounded-lg border border-begeDark cursor-pointer">
+                            <input type="checkbox" name="platform" value="Pinterest" class="accent-bordo"> Pinterest
+                        </label>
                     </div>
                 </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <div>
                         <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Formato</label>
@@ -969,6 +822,8 @@
                         <input type="date" id="post-date" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
                     </div>
                 </div>
+
+                <!-- Estratégia: Objetivo & Pilar em Dropdowns com Múltipla Seleção -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 border-t border-begeDark">
                     <div class="relative">
                         <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Objetivo(s)</label>
@@ -980,6 +835,7 @@
                             <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="post-goals" value="Entretenimento" class="accent-bordo"> Entretenimento</label>
                         </div>
                     </div>
+
                     <div class="relative">
                         <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Pilar(es)</label>
                         <div class="p-2 border border-begeDark rounded-xl text-xs bg-bege/30 max-h-28 overflow-y-auto space-y-1">
@@ -990,6 +846,7 @@
                             <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="post-pillars" value="Entretenimento" class="accent-bordo"> Entretenimento</label>
                         </div>
                     </div>
+
                     <div>
                         <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Status da Mídia</label>
                         <select id="post-media-status" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
@@ -999,23 +856,39 @@
                         </select>
                     </div>
                 </div>
+
+                <!-- Palavras-Chave Rápidas e Validador de SEO -->
                 <div class="space-y-1.5 pt-2 border-t border-begeDark">
                     <label class="block text-xs font-bold text-gray-700 uppercase font-accent">Apoio de Palavras-Chave do Banco</label>
+                    <p class="text-[10px] text-gray-500">Clique na palavra abaixo para inseri-la naturalmente na sua legenda/roteiro:</p>
                     <div id="modal-quick-tags" class="flex flex-wrap gap-1 p-2 bg-bege/50 rounded-xl border border-begeDark/50 max-h-20 overflow-y-auto font-accent"></div>
                 </div>
+
                 <div>
                     <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Legenda / Roteiro</label>
-                    <textarea id="post-caption" oninput="checkSeoKeywordsInCaption()" rows="4" class="w-full px-4 py-2.5 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Escreva aqui..."></textarea>
+                    <textarea id="post-caption" oninput="checkSeoKeywordsInCaption()" rows="4" class="w-full px-4 py-2.5 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Escreva aqui a legenda ou roteiro (links serão transformados automaticamente)..."></textarea>
                     <p id="seo-feedback-text" class="text-[10px] text-gray-500 font-medium mt-1 font-accent"></p>
                 </div>
+
+                <!-- Bloco de Registro de Métricas após Publicação -->
                 <div class="bg-bege/60 p-3 rounded-xl space-y-2 border border-begeDark">
-                    <span class="text-xs font-bold text-bordo block font-title">📊 Métricas do Post</span>
+                    <span class="text-xs font-bold text-bordo block font-title">📊 Métricas do Post (Preencher após publicar)</span>
                     <div class="grid grid-cols-3 gap-2 text-xs">
-                        <div><label class="block text-[10px] text-gray-600 font-accent">Alcance</label><input type="number" id="metric-reach" class="w-full p-1.5 rounded-lg border border-begeDark text-xs" placeholder="0"></div>
-                        <div><label class="block text-[10px] text-gray-600 font-accent">Interações</label><input type="number" id="metric-interactions" class="w-full p-1.5 rounded-lg border border-begeDark text-xs" placeholder="0"></div>
-                        <div><label class="block text-[10px] text-gray-600 font-accent">Vendas</label><input type="number" id="metric-sales" class="w-full p-1.5 rounded-lg border border-begeDark text-xs" placeholder="0"></div>
+                        <div>
+                            <label class="block text-[10px] text-gray-600 font-accent">Alcance</label>
+                            <input type="number" id="metric-reach" class="w-full p-1.5 rounded-lg border border-begeDark text-xs" placeholder="0">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-gray-600 font-accent">Interações</label>
+                            <input type="number" id="metric-interactions" class="w-full p-1.5 rounded-lg border border-begeDark text-xs" placeholder="0">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-gray-600 font-accent">Vendas/Cliques</label>
+                            <input type="number" id="metric-sales" class="w-full p-1.5 rounded-lg border border-begeDark text-xs" placeholder="0">
+                        </div>
                     </div>
                 </div>
+
                 <div class="flex gap-3 pt-3">
                     <button type="button" onclick="closeModal()" class="w-1/2 py-2.5 border border-begeDark rounded-xl text-xs font-semibold text-gray-600 hover:bg-bege font-accent">Cancelar</button>
                     <button type="submit" class="w-1/2 py-2.5 bg-vibrante text-white rounded-xl text-xs font-semibold hover:bg-bordo transition font-accent">Salvar Conteúdo</button>
@@ -1029,62 +902,190 @@
         <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl max-h-[90vh] overflow-y-auto">
             <div class="flex items-center justify-between mb-6 border-b border-begeDark pb-3">
                 <h3 id="order-modal-title" class="text-lg font-bold text-bordo font-title">Novo Pedido / Encomenda</h3>
-                <button onclick="closeOrderModal()" class="text-gray-400 hover:text-gray-600">✕</button>
+                <button onclick="closeOrderModal()" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
             </div>
 
             <form id="order-form" onsubmit="saveOrder(event)" class="space-y-4">
                 <input type="hidden" id="order-id">
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Nome do Cliente</label><input type="text" id="order-client" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs" placeholder="Ex: Maria"></div>
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Contato</label><input type="text" id="order-contact" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs" placeholder="WhatsApp"></div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Nome do Cliente</label>
+                        <input type="text" id="order-client" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Ex: Maria Silva">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Contato / WhatsApp</label>
+                        <input type="text" id="order-contact" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="(11) 99999-9999">
+                    </div>
                 </div>
-                <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Descrição</label><textarea id="order-items" rows="2" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs" placeholder="Produtos"></textarea></div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Descrição do Pedido / Produto</label>
+                    <textarea id="order-items" rows="2" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Ex: Velas Aromáticas Lavanda"></textarea>
+                </div>
+
+                <!-- CAMPOS: Quantidade, Valor Unitário e Tipo de Entrega -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3 bg-bege/30 p-3 rounded-xl border border-begeDark">
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Qtd</label><input type="number" min="1" id="order-qty" value="1" oninput="calculateOrderTotal()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-white"></div>
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Valor Unit. (R$)</label><input type="number" step="0.01" id="order-unit-amount" value="0" oninput="calculateOrderTotal()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-white"></div>
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Entrega</label><select id="order-fulfillment-type" onchange="toggleShippingFields()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-white"><option value="Retirada">Retirada</option><option value="Envio">Envio</option></select></div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Quantidade</label>
+                        <input type="number" min="1" id="order-qty" value="1" oninput="calculateOrderTotal()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-white" placeholder="1">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Valor Unitário (R$)</label>
+                        <input type="number" step="0.01" min="0" id="order-unit-amount" value="0" oninput="calculateOrderTotal()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-white" placeholder="0,00">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Tipo de Entrega</label>
+                        <select id="order-fulfillment-type" onchange="toggleShippingFields()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-white font-semibold text-bordo">
+                            <option value="Retirada">Retirada</option>
+                            <option value="Envio">Envio</option>
+                        </select>
+                    </div>
                 </div>
+
+                <!-- CAMPOS CONDICIONAIS DE ENVIO -->
                 <div id="shipping-container" class="hidden space-y-3 bg-bege/60 p-3 rounded-xl border border-begeDark">
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Endereço</label><input type="text" id="order-address" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-white"></div>
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Frete (R$)</label><input type="number" step="0.01" id="order-shipping-amount" value="0" oninput="calculateOrderTotal()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-white"></div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Endereço de Entrega</label>
+                        <input type="text" id="order-address" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-white" placeholder="Rua Exemplo, 123 - Bairro - Cidade/UF">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Valor do Frete (R$)</label>
+                        <input type="number" step="0.01" min="0" id="order-shipping-amount" value="0" oninput="calculateOrderTotal()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-white" placeholder="0,00">
+                    </div>
                 </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Total (R$)</label><input type="number" step="0.01" id="order-amount" readonly class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-gray-100 font-bold text-bordo"></div>
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Pagamento</label><select id="order-payment-method" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"><option value="Pix">Pix</option><option value="Cartão">Cartão</option><option value="Dinheiro">Dinheiro</option></select></div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Valor Total (R$) <span class="text-[10px] text-gray-400 font-normal">(Automático)</span></label>
+                        <input type="number" step="0.01" id="order-amount" required readonly class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-gray-100 font-bold text-bordo" placeholder="0,00">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Forma de Pagamento</label>
+                        <select id="order-payment-method" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
+                            <option value="Pix">Pix</option>
+                            <option value="Cartão de Crédito">Cartão de Crédito</option>
+                            <option value="Cartão de Débito">Cartão de Débito</option>
+                            <option value="Dinheiro">Dinheiro</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
                 </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Status Pagamento</label><select id="order-payment-status" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"><option value="Pendente">Pendente</option><option value="Pago">Pago</option><option value="Sinal / 50%">Sinal / 50%</option></select></div>
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Status Pedido</label><select id="order-status" onchange="toggleConclusionFields()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"><option value="Pendente">Pendente</option><option value="Em Produção">Em Produção</option><option value="Pronto">Pronto</option><option value="Concluído">Concluído</option><option value="Cancelado">Cancelado</option></select></div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Status do Pagamento</label>
+                        <select id="order-payment-status" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
+                            <option value="Pendente">Pendente</option>
+                            <option value="Pago">Pago</option>
+                            <option value="Sinal / 50%">Sinal / 50%</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Status do Pedido</label>
+                        <select id="order-status" onchange="toggleConclusionFields()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
+                            <option value="Pendente">Pendente</option>
+                            <option value="Em Produção">Em Produção</option>
+                            <option value="Pronto">Pronto p/ Entrega</option>
+                            <option value="Concluído">Concluído</option>
+                            <option value="Cancelado">Cancelado</option>
+                        </select>
+                    </div>
                 </div>
+
+                <!-- SEÇÃO CONDICIONAL QUANDO STATUS É CONCLUÍDO -->
+                <div id="conclusion-container" class="hidden space-y-3 bg-emerald-50/70 p-3 rounded-xl border border-emerald-200">
+                    <span class="text-xs font-bold text-emerald-800 block font-title">📦 Detalhes de Conclusão / Entrega</span>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Tipo de Conclusão</label>
+                        <select id="order-conclusion-type" onchange="toggleConclusionSubtype()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-white">
+                            <option value="Entregue/Retirado">Entregue / Retirado Pessoalmente</option>
+                            <option value="Postado">Postado (Correios / Transportadora)</option>
+                        </select>
+                    </div>
+
+                    <div id="posted-details-container" class="hidden space-y-2 pt-1">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-600 uppercase font-accent">Serviço / Transportadora</label>
+                                <input type="text" id="order-posted-via" class="w-full px-2.5 py-1.5 rounded-lg border border-begeDark text-xs bg-white" placeholder="Ex: SEDEX / Jadlog">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-600 uppercase font-accent">Data da Postagem</label>
+                                <input type="date" id="order-posted-date" class="w-full px-2.5 py-1.5 rounded-lg border border-begeDark text-xs bg-white">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-600 uppercase font-accent">Código de Rastreamento</label>
+                                <input type="text" id="order-tracking-code" class="w-full px-2.5 py-1.5 rounded-lg border border-begeDark text-xs bg-white" placeholder="Ex: AB123456789BR">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-600 uppercase font-accent">Link de Rastreio</label>
+                                <input type="url" id="order-tracking-link" class="w-full px-2.5 py-1.5 rounded-lg border border-begeDark text-xs bg-white" placeholder="https://linkderastreio.com">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Data Pedido</label><input type="date" id="order-date" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"></div>
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Data Entrega</label><input type="date" id="order-delivery-date" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"></div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Data do Pedido</label>
+                        <input type="date" id="order-date" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Data de Entrega / Prazo</label>
+                        <input type="date" id="order-delivery-date" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
+                    </div>
                 </div>
-                <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Observações</label><input type="text" id="order-notes" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"></div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Observações Gerais</label>
+                    <input type="text" id="order-notes" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Ex: Embalagem para presente">
+                </div>
+
                 <div class="flex gap-3 pt-3">
-                    <button type="button" onclick="closeOrderModal()" class="w-1/2 py-2.5 border border-begeDark rounded-xl text-xs font-semibold text-gray-600 font-accent">Cancelar</button>
+                    <button type="button" onclick="closeOrderModal()" class="w-1/2 py-2.5 border border-begeDark rounded-xl text-xs font-semibold text-gray-600 hover:bg-bege font-accent">Cancelar</button>
                     <button type="submit" class="w-1/2 py-2.5 bg-vibrante text-white rounded-xl text-xs font-semibold hover:bg-bordo transition font-accent">Salvar Pedido</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Modal Visualizar Post -->
+    <!-- Modal de Visualização Rápida de Post ao Clicar no Card do Kanban ou Calendário -->
     <div id="view-post-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl max-h-[90vh] overflow-y-auto space-y-4">
             <div class="flex items-center justify-between border-b border-begeDark pb-3">
                 <h3 id="view-post-title" class="text-base font-bold text-bordo font-title">Detalhes do Post</h3>
-                <button onclick="closeViewPostModal()" class="text-gray-400 hover:text-gray-600">✕</button>
+                <button onclick="closeViewPostModal()" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
             </div>
+
             <div class="space-y-3 text-xs">
                 <div class="flex flex-wrap gap-2 items-center" id="view-post-badges"></div>
-                <div><span class="text-[10px] font-bold text-gray-400 uppercase font-accent">Data</span><p id="view-post-date" class="font-bold text-bordo font-accent">-</p></div>
-                <div><span class="text-[10px] font-bold text-gray-400 uppercase font-accent">Legenda</span><div id="view-post-caption" class="p-3 bg-bege/40 rounded-xl border border-begeDark whitespace-pre-line leading-relaxed text-gray-800"></div></div>
+                <div>
+                    <span class="text-[10px] font-bold text-gray-400 uppercase font-accent">Data de Publicação</span>
+                    <p id="view-post-date" class="font-bold text-bordo font-accent">-</p>
+                </div>
+                <div>
+                    <span class="text-[10px] font-bold text-gray-400 uppercase font-accent">Legenda / Roteiro</span>
+                    <div id="view-post-caption" class="p-3 bg-bege/40 rounded-xl border border-begeDark whitespace-pre-line leading-relaxed text-gray-800"></div>
+                </div>
                 <div class="grid grid-cols-2 gap-2 bg-bege/50 p-3 rounded-xl border border-begeDark">
-                    <div><span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Objetivo(s)</span><p id="view-post-goals" class="font-semibold text-gray-800">-</p></div>
-                    <div><span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Pilar(es)</span><p id="view-post-pillars" class="font-semibold text-gray-800">-</p></div>
+                    <div>
+                        <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Objetivo(s)</span>
+                        <p id="view-post-goals" class="font-semibold text-gray-800">-</p>
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Pilar(es)</span>
+                        <p id="view-post-pillars" class="font-semibold text-gray-800">-</p>
+                    </div>
                 </div>
             </div>
+
             <div class="flex gap-2 pt-2 border-t border-begeDark">
                 <button onclick="closeViewPostModal(); openModalById(currentViewingPostId);" class="w-1/2 py-2 bg-bordo text-white rounded-xl font-semibold hover:bg-vibrante transition font-accent">Editar Post</button>
                 <button onclick="closeViewPostModal()" class="w-1/2 py-2 border border-begeDark rounded-xl font-semibold text-gray-600 hover:bg-bege font-accent">Fechar</button>
@@ -1092,7 +1093,7 @@
         </div>
     </div>
 
-    <!-- SCRIPT COMPLETO E INTEGRADO -->
+    <!-- SCRIPT DA APLICAÇÃO COM FIREBASE -->
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyBtIr-5hhOKmGawG2Xhw2vIqRtNUivm4Cc",
@@ -1110,279 +1111,120 @@
         let orders = [];
         let seoTags = [];
         let brandNotes = [];
-        let financeTransactions = [];
         let brandGoalsData = { goals: '', campaign: '', campaignNotes: '' };
         let currentCalendarDate = new Date();
         let currentViewingPostId = null;
-        let currentFinanceTab = 'expenses';
-        let includeOrdersInFinance = true;
 
+        // Estado de colunas recolhidas no Kanban
         let collapsedColumns = new Set(['producao', 'agendado', 'publicado']);
+
+        // Estados do Kanban
         let isCompactMode = false;
         let isMediaReadyOnly = false;
         let showAllPublished = false;
+
+        // Estado do Filtro do Mural e Pedidos
         let currentMuralFilter = 'ALL';
         let currentOrderView = 'table';
 
-        db.collection("posts").onSnapshot((s) => { posts = []; s.forEach(d => posts.push({ id: d.id, ...d.data() })); renderAllViews(); });
-        db.collection("orders").onSnapshot((s) => { orders = []; s.forEach(d => orders.push({ id: d.id, ...d.data() })); renderOrders(); renderFinance(); });
-        db.collection("financial_transactions").onSnapshot((s) => { financeTransactions = []; s.forEach(d => financeTransactions.push({ id: d.id, ...d.data() })); renderFinance(); });
-        db.collection("settings").doc("brand_goals").onSnapshot((doc) => { if (doc.exists) { brandGoalsData = doc.data(); renderBrandGoals(); } });
+        // Escutar alterações dos Posts no Firebase
+        db.collection("posts").onSnapshot((snapshot) => {
+            posts = [];
+            snapshot.forEach((doc) => {
+                posts.push({ id: doc.id, ...doc.data() });
+            });
+            renderAllViews();
+        });
+
+        // Escutar alterações dos Pedidos no Firebase
+        db.collection("orders").onSnapshot((snapshot) => {
+            orders = [];
+            snapshot.forEach((doc) => {
+                orders.push({ id: doc.id, ...doc.data() });
+            });
+            renderOrders();
+        });
+
+        // Escutar alterações dos Objetivos da Marca no Firebase
+        db.collection("settings").doc("brand_goals").onSnapshot((doc) => {
+            if (doc.exists) {
+                brandGoalsData = doc.data();
+                renderBrandGoals();
+            }
+        });
+
+        // Escutar alterações das Tags de SEO
         db.collection("settings").doc("seo_tags").onSnapshot((doc) => {
-            if (doc.exists && doc.data().list) { seoTags = doc.data().list; } 
-            else { seoTags = [{ id: '1', text: 'velas aromáticas', categories: ['Marca & Nicho'] }]; }
+            if (doc.exists && doc.data().list) {
+                seoTags = doc.data().list;
+            } else {
+                seoTags = [
+                    { id: '1', text: 'velas aromáticas', categories: ['Marca & Nicho'] },
+                    { id: '2', text: 'porta velas', categories: ['Produtos'] },
+                    { id: '3', text: 'autocuidado', categories: ['Intenção & Estilo de Vida'] }
+                ];
+            }
             renderSeoTags();
             renderModalQuickTags();
         });
-        db.collection("brand_notes").onSnapshot((s) => { brandNotes = []; s.forEach(d => brandNotes.push({ id: d.id, ...d.data() })); renderBrandNotes(); });
+
+        // Escutar alterações do Mural da Marca no Firebase
+        db.collection("brand_notes").onSnapshot((snapshot) => {
+            brandNotes = [];
+            snapshot.forEach((doc) => {
+                brandNotes.push({ id: doc.id, ...doc.data() });
+            });
+            renderBrandNotes();
+        });
 
         function switchTab(tab) {
-            ['kanban', 'orders', 'calendar', 'platforms', 'brandmural', 'seasonal', 'strategy', 'metrics', 'finance'].forEach(t => {
+            ['kanban', 'orders', 'calendar', 'platforms', 'brandmural', 'seasonal', 'strategy', 'metrics'].forEach(t => {
                 const el = document.getElementById(`tab-${t}`);
                 if (el) el.classList.add('hidden');
+
                 const btnDesk = document.getElementById(`nav-${t}`);
-                if (btnDesk) btnDesk.className = t === tab ? "w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-bordo bg-bege" : "w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege";
+                if (btnDesk) {
+                    btnDesk.className = t === tab 
+                        ? "w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-bordo bg-bege" 
+                        : "w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege";
+                }
+
                 const btnMob = document.getElementById(`mob-nav-${t}`);
-                if (btnMob) btnMob.className = t === tab ? "flex flex-col items-center gap-1 text-bordo px-2" : "flex flex-col items-center gap-1 text-gray-400 px-2";
+                if (btnMob) {
+                    btnMob.className = t === tab 
+                        ? "flex flex-col items-center gap-1 text-bordo px-2" 
+                        : "flex flex-col items-center gap-1 text-gray-400 px-2";
+                }
             });
+
             const target = document.getElementById(`tab-${tab}`);
             if (target) target.classList.remove('hidden');
         }
 
-        // --- GESTÃO FINANCEIRA & INTEGRAÇÃO COM PEDIDOS ---
-        function switchFinanceTab(view) {
-            currentFinanceTab = view;
-            document.getElementById('fin-view-expenses').classList.toggle('hidden', view !== 'expenses');
-            document.getElementById('fin-view-incomes').classList.toggle('hidden', view !== 'incomes');
-
-            document.getElementById('btn-fintab-expenses').className = view === 'expenses' ? "px-3 py-1.5 rounded-lg font-bold bg-white text-bordo shadow-2xs" : "px-3 py-1.5 rounded-lg font-medium text-gray-500";
-            document.getElementById('btn-fintab-incomes').className = view === 'incomes' ? "px-3 py-1.5 rounded-lg font-bold bg-white text-bordo shadow-2xs" : "px-3 py-1.5 rounded-lg font-medium text-gray-500";
-        }
-
-        function toggleIncludeOrders() {
-            includeOrdersInFinance = !includeOrdersInFinance;
-            const btn = document.getElementById('btn-toggle-orders');
-            const txt = document.getElementById('toggle-orders-text');
-            const icon = document.getElementById('toggle-orders-icon');
-
-            if (includeOrdersInFinance) {
-                btn.className = "px-3 py-1.5 text-xs font-semibold rounded-xl border border-bordo bg-bordo text-white hover:bg-vibrante transition font-accent flex items-center gap-1.5";
-                txt.innerText = "Ocultar Pedidos da Planilha";
-                icon.innerText = "👁️‍🗨️";
-            } else {
-                btn.className = "px-3 py-1.5 text-xs font-semibold rounded-xl border border-begeDark bg-white text-gray-600 hover:bg-bege transition font-accent flex items-center gap-1.5";
-                txt.innerText = "Mostrar Pedidos na Planilha";
-                icon.innerText = "👁️";
-            }
-            renderFinance();
-        }
-
-        function execEditorCommand(command, value = null) {
-            document.execCommand(command, false, value);
-        }
-
-        function calculateFinanceTotal() {
-            const qty = parseFloat(document.getElementById('fin-qty').value) || 0;
-            const unit = parseFloat(document.getElementById('fin-unit-value').value) || 0;
-            document.getElementById('fin-total-value').value = (qty * unit).toFixed(2);
-        }
-
-        function toggleFinanceCategoryOptions() {
-            const type = document.getElementById('fin-type').value;
-            const catSelect = document.getElementById('fin-category');
-            if (type === 'RECEITA') {
-                catSelect.innerHTML = `<option value="Outros">Outras Entradas Extras</option>`;
-            } else {
-                catSelect.innerHTML = `
-                    <option value="Custos Fixos">Custos Fixos</option>
-                    <option value="Matéria-Prima">Matéria-Prima / Insumos</option>
-                    <option value="Embalagens">Embalagens</option>
-                    <option value="Investimentos">Investimentos / Mkt</option>
-                    <option value="Fretes">Fretes & Envio</option>
-                    <option value="Não Categorizado">Não Categorizado / Outros</option>
-                `;
-            }
-        }
-
-        function openFinanceModal(item = null) {
-            const modal = document.getElementById('finance-modal');
-            const form = document.getElementById('finance-form');
-            modal.classList.remove('hidden');
-
-            if (item) {
-                document.getElementById('finance-modal-title').innerText = 'Editar Lançamento Avulso';
-                document.getElementById('fin-id').value = item.id;
-                document.getElementById('fin-type').value = item.type || 'DESPESA';
-                toggleFinanceCategoryOptions();
-                document.getElementById('fin-category').value = item.category || 'Não Categorizado';
-                document.getElementById('fin-title').value = item.title || '';
-                document.getElementById('fin-qty').value = item.qty || 1;
-                document.getElementById('fin-unit-value').value = item.unitValue || 0;
-                document.getElementById('fin-total-value').value = item.totalValue || 0;
-                document.getElementById('fin-date').value = item.date || new Date().toISOString().split('T')[0];
-                document.getElementById('fin-notes-editor').innerHTML = item.notesHtml || '';
-            } else {
-                document.getElementById('finance-modal-title').innerText = 'Novo Gasto / Lançamento Avulso';
-                form.reset();
-                document.getElementById('fin-id').value = '';
-                document.getElementById('fin-qty').value = 1;
-                document.getElementById('fin-unit-value').value = 0;
-                document.getElementById('fin-total-value').value = 0;
-                document.getElementById('fin-date').value = new Date().toISOString().split('T')[0];
-                document.getElementById('fin-notes-editor').innerHTML = '';
-                toggleFinanceCategoryOptions();
-            }
-        }
-
-        function closeFinanceModal() { document.getElementById('finance-modal').classList.add('hidden'); }
-
-        function saveFinanceTransaction(e) {
-            e.preventDefault();
-            const id = document.getElementById('fin-id').value;
-            const data = {
-                type: document.getElementById('fin-type').value,
-                category: document.getElementById('fin-category').value,
-                title: document.getElementById('fin-title').value,
-                qty: parseFloat(document.getElementById('fin-qty').value || 1),
-                unitValue: parseFloat(document.getElementById('fin-unit-value').value || 0),
-                totalValue: parseFloat(document.getElementById('fin-total-value').value || 0),
-                shippingCost: 0,
-                paymentStatus: 'Pago',
-                date: document.getElementById('fin-date').value,
-                notesHtml: document.getElementById('fin-notes-editor').innerHTML,
-                updatedAt: new Date().toISOString()
-            };
-
-            if (id) db.collection("financial_transactions").doc(id).update(data);
-            else db.collection("financial_transactions").add(data);
-            closeFinanceModal();
-        }
-
-        function deleteFinanceTransaction(id) {
-            if (confirm("Excluir este lançamento financeiro?")) db.collection("financial_transactions").doc(id).delete();
-        }
-
-        function renderFinance() {
-            const searchText = (document.getElementById('fin-search')?.value || '').toLowerCase();
-            const typeFilter = document.getElementById('fin-filter-type')?.value || 'ALL';
-            const catFilter = document.getElementById('fin-filter-category')?.value || 'ALL';
-
-            let allItems = [...financeTransactions];
-
-            if (includeOrdersInFinance) {
-                orders.forEach(o => {
-                    allItems.push({
-                        id: 'order_' + o.id,
-                        isFromOrders: true,
-                        orderObj: o,
-                        type: 'RECEITA',
-                        category: 'Vendas de Produtos',
-                        title: `Pedido: ${o.client} (${o.items})`,
-                        qty: o.qty || 1,
-                        unitValue: o.unitAmount || 0,
-                        totalValue: o.amount || 0,
-                        shippingCost: o.shippingAmount || 0,
-                        paymentStatus: o.paymentStatus || 'Pendente',
-                        date: o.date || new Date().toISOString().split('T')[0],
-                        notesHtml: o.notes || 'Sincronizado da aba Pedidos'
-                    });
-                });
-            }
-
-            let totalIncomes = 0, totalPending = 0, totalExpenses = 0;
-
-            allItems.forEach(i => {
-                if (i.type === 'RECEITA') {
-                    if (i.paymentStatus === 'Pago') totalIncomes += (i.totalValue || 0);
-                    else totalPending += (i.totalValue || 0);
-                } else {
-                    totalExpenses += (i.totalValue || 0) + (i.shippingCost || 0);
-                }
-            });
-
-            let profit = totalIncomes - totalExpenses;
-
-            if (document.getElementById('fin-kpi-incomes')) document.getElementById('fin-kpi-incomes').innerText = totalIncomes.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-            if (document.getElementById('fin-kpi-pending')) document.getElementById('fin-kpi-pending').innerText = totalPending.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-            if (document.getElementById('fin-kpi-expenses')) document.getElementById('fin-kpi-expenses').innerText = totalExpenses.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-            
-            const profitEl = document.getElementById('fin-kpi-profit');
-            if (profitEl) {
-                profitEl.innerText = profit.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-                profitEl.className = profit >= 0 ? "text-2xl font-bold text-verde mt-1 font-title" : "text-2xl font-bold text-vibrante mt-1 font-title";
-            }
-
-            if (document.getElementById('fin-sub-incomes')) {
-                document.getElementById('fin-sub-incomes').innerText = includeOrdersInFinance ? "Com pedidos integrados" : "Apenas entradas avulsas";
-            }
-
-            const expTbody = document.getElementById('fin-expenses-tbody');
-            const incTbody = document.getElementById('fin-incomes-tbody');
-
-            if (expTbody) expTbody.innerHTML = '';
-            if (incTbody) incTbody.innerHTML = '';
-
-            allItems.filter(i => {
-                if (searchText && !i.title.toLowerCase().includes(searchText)) return false;
-                if (typeFilter !== 'ALL' && i.type !== typeFilter) return false;
-                if (catFilter !== 'ALL' && i.category !== catFilter) return false;
-                return true;
-            }).forEach(i => {
-                if (i.type === 'DESPESA' && expTbody) {
-                    let catColor = 'bg-gray-100 text-gray-700';
-                    if (i.category === 'Custos Fixos') catColor = 'bg-blue-50 text-blue-700 border-blue-200';
-                    if (i.category === 'Matéria-Prima') catColor = 'bg-green-50 text-green-700 border-green-200';
-                    if (i.category === 'Embalagens') catColor = 'bg-yellow-50 text-yellow-800 border-yellow-200';
-                    if (i.category === 'Investimentos') catColor = 'bg-purple-50 text-purple-700 border-purple-200';
-
-                    const tr = document.createElement('tr');
-                    tr.className = "border-b border-begeDark/40 hover:bg-bege/20";
-                    tr.innerHTML = 
-                        `<td class="py-3 font-accent">${formatDate(i.date)}</td>` +
-                        `<td class="py-3 font-bold text-bordo font-title">${i.title}</td>` +
-                        `<td class="py-3"><span class="text-[10px] px-2 py-0.5 rounded-full border font-semibold ${catColor}">${i.category}</span></td>` +
-                        `<td class="py-3">${i.qty} × R$ ${(i.unitValue || 0).toFixed(2)}</td>` +
-                        `<td class="py-3 font-bold text-vibrante">R$ ${(i.totalValue || 0).toFixed(2)}</td>` +
-                        `<td class="py-3 max-w-xs text-gray-600 line-clamp-2">${i.notesHtml || '-'}</td>` +
-                        `<td class="py-3 text-right">` +
-                            `<button onclick="openFinanceModal(financeTransactions.find(t => t.id === '${i.id}'))" class="text-gray-500 hover:text-bordo mr-2">✏️</button>` +
-                            `<button onclick="deleteFinanceTransaction('${i.id}')" class="text-gray-500 hover:text-vibrante">🗑️</button>` +
-                        `</td>`;
-                    expTbody.appendChild(tr);
-                } else if (i.type === 'RECEITA' && incTbody) {
-                    let payColor = i.paymentStatus === 'Pago' ? 'text-green-600 bg-green-50 border-green-200' : 'text-amber-600 bg-amber-50 border-amber-200';
-
-                    const tr = document.createElement('tr');
-                    tr.className = "border-b border-begeDark/40 hover:bg-bege/20";
-                    tr.innerHTML = 
-                        `<td class="py-3 font-accent">${formatDate(i.date)}</td>` +
-                        `<td class="py-3 font-bold text-bordo font-title">${i.title}</td>` +
-                        `<td class="py-3"><span class="text-[10px] px-2 py-0.5 rounded-full border font-semibold ${payColor}">${i.paymentStatus}</span></td>` +
-                        `<td class="py-3 text-gray-500">R$ ${(i.shippingCost || 0).toFixed(2)}</td>` +
-                        `<td class="py-3 font-bold text-verde">R$ ${(i.totalValue || 0).toFixed(2)}</td>` +
-                        `<td class="py-3 max-w-xs text-gray-600 line-clamp-2">${i.notesHtml || '-'}</td>` +
-                        `<td class="py-3 text-right">` +
-                            (i.isFromOrders ? `<span class="text-[10px] text-bordo bg-bege px-2 py-0.5 rounded font-bold font-accent">Aba Pedidos</span>` : 
-                            `<span class="text-[10px] text-gray-400 font-accent">Avulso</span>`) +
-                        `</td>`;
-                    incTbody.appendChild(tr);
-                }
-            });
-        }
-
-        // --- PEDIDOS (COMPLETO) ---
+        // --- GESTÃO DE PEDIDOS ---
         function switchOrderView(view) {
             currentOrderView = view;
             document.getElementById('orders-view-table').classList.toggle('hidden', view !== 'table');
             document.getElementById('orders-view-kanban').classList.toggle('hidden', view !== 'kanban');
-            document.getElementById('btn-orderview-table').className = view === 'table' ? "px-3 py-1.5 rounded-lg font-bold bg-white text-bordo shadow-2xs" : "px-3 py-1.5 rounded-lg font-medium text-gray-500";
-            document.getElementById('btn-orderview-kanban').className = view === 'kanban' ? "px-3 py-1.5 rounded-lg font-bold bg-white text-bordo shadow-2xs" : "px-3 py-1.5 rounded-lg font-medium text-gray-500";
+
+            document.getElementById('btn-orderview-table').className = view === 'table' 
+                ? "px-3 py-1.5 rounded-lg font-bold bg-white text-bordo shadow-2xs" 
+                : "px-3 py-1.5 rounded-lg font-medium text-gray-500";
+            document.getElementById('btn-orderview-kanban').className = view === 'kanban' 
+                ? "px-3 py-1.5 rounded-lg font-bold bg-white text-bordo shadow-2xs" 
+                : "px-3 py-1.5 rounded-lg font-medium text-gray-500";
         }
 
         function toggleShippingFields() {
             const fulfillmentType = document.getElementById('order-fulfillment-type').value;
-            document.getElementById('shipping-container').classList.toggle('hidden', fulfillmentType !== 'Envio');
-            if (fulfillmentType !== 'Envio') document.getElementById('order-shipping-amount').value = '0';
+            const shippingContainer = document.getElementById('shipping-container');
+            
+            if (fulfillmentType === 'Envio') {
+                shippingContainer.classList.remove('hidden');
+            } else {
+                shippingContainer.classList.add('hidden');
+                document.getElementById('order-shipping-amount').value = '0';
+            }
             calculateOrderTotal();
         }
 
@@ -1390,13 +1232,37 @@
             const qty = parseFloat(document.getElementById('order-qty').value) || 0;
             const unitAmount = parseFloat(document.getElementById('order-unit-amount').value) || 0;
             const fulfillmentType = document.getElementById('order-fulfillment-type').value;
-            let shippingAmount = fulfillmentType === 'Envio' ? (parseFloat(document.getElementById('order-shipping-amount').value) || 0) : 0;
-            document.getElementById('order-amount').value = ((qty * unitAmount) + shippingAmount).toFixed(2);
+            
+            let shippingAmount = 0;
+            if (fulfillmentType === 'Envio') {
+                shippingAmount = parseFloat(document.getElementById('order-shipping-amount').value) || 0;
+            }
+
+            const total = (qty * unitAmount) + shippingAmount;
+            document.getElementById('order-amount').value = total.toFixed(2);
         }
 
         function toggleConclusionFields() {
             const status = document.getElementById('order-status').value;
-            document.getElementById('conclusion-container').classList.toggle('hidden', status !== 'Concluído');
+            const conclusionContainer = document.getElementById('conclusion-container');
+            
+            if (status === 'Concluído') {
+                conclusionContainer.classList.remove('hidden');
+                toggleConclusionSubtype();
+            } else {
+                conclusionContainer.classList.add('hidden');
+            }
+        }
+
+        function toggleConclusionSubtype() {
+            const conclusionType = document.getElementById('order-conclusion-type').value;
+            const postedDetailsContainer = document.getElementById('posted-details-container');
+            
+            if (conclusionType === 'Postado') {
+                postedDetailsContainer.classList.remove('hidden');
+            } else {
+                postedDetailsContainer.classList.add('hidden');
+            }
         }
 
         function openOrderModal(order = null) {
@@ -1410,17 +1276,31 @@
                 document.getElementById('order-client').value = order.client || '';
                 document.getElementById('order-contact').value = order.contact || '';
                 document.getElementById('order-items').value = order.items || '';
+                
                 document.getElementById('order-qty').value = order.qty || 1;
                 document.getElementById('order-unit-amount').value = order.unitAmount || 0;
                 document.getElementById('order-fulfillment-type').value = order.fulfillmentType || 'Retirada';
+                
                 toggleShippingFields();
+                
                 document.getElementById('order-address').value = order.address || '';
                 document.getElementById('order-shipping-amount').value = order.shippingAmount || 0;
                 document.getElementById('order-amount').value = order.amount || 0;
+                
                 document.getElementById('order-payment-method').value = order.paymentMethod || 'Pix';
                 document.getElementById('order-payment-status').value = order.paymentStatus || 'Pendente';
                 document.getElementById('order-status').value = order.status || 'Pendente';
+                
                 toggleConclusionFields();
+                
+                document.getElementById('order-conclusion-type').value = order.conclusionType || 'Entregue/Retirado';
+                toggleConclusionSubtype();
+                
+                document.getElementById('order-posted-via').value = order.postedVia || '';
+                document.getElementById('order-posted-date').value = order.postedDate || '';
+                document.getElementById('order-tracking-code').value = order.trackingCode || '';
+                document.getElementById('order-tracking-link').value = order.trackingLink || '';
+
                 document.getElementById('order-date').value = order.date || '';
                 document.getElementById('order-delivery-date').value = order.deliveryDate || '';
                 document.getElementById('order-notes').value = order.notes || '';
@@ -1434,18 +1314,25 @@
                 document.getElementById('order-fulfillment-type').value = 'Retirada';
                 document.getElementById('order-status').value = 'Pendente';
                 document.getElementById('order-date').value = new Date().toISOString().split('T')[0];
+                
                 toggleShippingFields();
                 toggleConclusionFields();
                 calculateOrderTotal();
             }
         }
 
-        function closeOrderModal() { document.getElementById('order-modal').classList.add('hidden'); }
+        function closeOrderModal() {
+            document.getElementById('order-modal').classList.add('hidden');
+        }
 
         function saveOrder(e) {
             e.preventDefault();
             const id = document.getElementById('order-id').value;
+
             const fulfillmentType = document.getElementById('order-fulfillment-type').value;
+            const status = document.getElementById('order-status').value;
+            const conclusionType = document.getElementById('order-conclusion-type').value;
+
             const orderData = {
                 client: document.getElementById('order-client').value,
                 contact: document.getElementById('order-contact').value,
@@ -1458,20 +1345,36 @@
                 amount: parseFloat(document.getElementById('order-amount').value || 0),
                 paymentMethod: document.getElementById('order-payment-method').value,
                 paymentStatus: document.getElementById('order-payment-status').value,
-                status: document.getElementById('order-status').value,
+                status: status,
+                conclusionType: status === 'Concluído' ? conclusionType : '',
+                postedVia: (status === 'Concluído' && conclusionType === 'Postado') ? document.getElementById('order-posted-via').value : '',
+                postedDate: (status === 'Concluído' && conclusionType === 'Postado') ? document.getElementById('order-posted-date').value : '',
+                trackingCode: (status === 'Concluído' && conclusionType === 'Postado') ? document.getElementById('order-tracking-code').value : '',
+                trackingLink: (status === 'Concluído' && conclusionType === 'Postado') ? document.getElementById('order-tracking-link').value : '',
                 date: document.getElementById('order-date').value,
                 deliveryDate: document.getElementById('order-delivery-date').value,
                 notes: document.getElementById('order-notes').value,
                 updatedAt: new Date().toISOString()
             };
 
-            if (id) db.collection("orders").doc(id).update(orderData);
-            else db.collection("orders").add(orderData);
+            if (id) {
+                db.collection("orders").doc(id).update(orderData);
+            } else {
+                db.collection("orders").add(orderData);
+            }
+
             closeOrderModal();
         }
 
-        function deleteOrder(id) { if (confirm("Excluir pedido?")) db.collection("orders").doc(id).delete(); }
-        function updateOrderStatus(id, newStatus) { db.collection("orders").doc(id).update({ status: newStatus }); }
+        function deleteOrder(id) {
+            if (confirm("Deseja realmente excluir este pedido?")) {
+                db.collection("orders").doc(id).delete();
+            }
+        }
+
+        function updateOrderStatus(id, newStatus) {
+            db.collection("orders").doc(id).update({ status: newStatus });
+        }
 
         function renderOrders() {
             const searchText = (document.getElementById('orders-search')?.value || '').toLowerCase();
@@ -1483,258 +1386,829 @@
                 return true;
             });
 
+            // Calcular KPIs
             let totalOrders = orders.length;
             let pendingDelivery = orders.filter(o => o.status === 'Pendente' || o.status === 'Em Produção').length;
             let totalRevenue = orders.filter(o => o.paymentStatus === 'Pago').reduce((sum, o) => sum + (o.amount || 0), 0);
             let toReceive = orders.filter(o => o.paymentStatus !== 'Pago').reduce((sum, o) => sum + (o.amount || 0), 0);
 
-            if (document.getElementById('order-kpi-total')) document.getElementById('order-kpi-total').innerText = totalOrders;
-            if (document.getElementById('order-kpi-pending')) document.getElementById('order-kpi-pending').innerText = pendingDelivery;
-            if (document.getElementById('order-kpi-revenue')) document.getElementById('order-kpi-revenue').innerText = totalRevenue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-            if (document.getElementById('order-kpi-to-receive')) document.getElementById('order-kpi-to-receive').innerText = toReceive.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            document.getElementById('order-kpi-total').innerText = totalOrders;
+            document.getElementById('order-kpi-pending').innerText = pendingDelivery;
+            document.getElementById('order-kpi-revenue').innerText = totalRevenue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            document.getElementById('order-kpi-to-receive').innerText = toReceive.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
+            // Renderizar Tabela
             const tbody = document.getElementById('orders-tbody');
             if (tbody) {
                 tbody.innerHTML = '';
-                filteredOrders.forEach(o => {
-                    let payColor = o.paymentStatus === 'Pago' ? 'text-green-600 bg-green-50 border-green-200' : 'text-amber-600 bg-amber-50 border-amber-200';
-                    const tr = document.createElement('tr');
-                    tr.className = "border-b border-begeDark/40 hover:bg-bege/20";
-                    tr.innerHTML = `
-                        <td class="py-3 font-bold text-bordo font-title">${o.client}</td>
-                        <td class="py-3">${o.items}</td>
-                        <td class="py-3 font-bold">R$ ${(o.amount || 0).toFixed(2)}</td>
-                        <td class="py-3"><span class="px-2 py-0.5 rounded-full text-[10px] font-semibold border ${payColor}">${o.paymentStatus}</span></td>
-                        <td class="py-3 font-accent">${o.deliveryDate ? formatDate(o.deliveryDate) : '-'}</td>
-                        <td class="py-3 font-semibold text-gray-700">${o.status}</td>
-                        <td class="py-3 text-right">
-                            <button onclick="openOrderModal(orders.find(item => item.id === '${o.id}'))" class="text-gray-500 hover:text-bordo mr-2">✏️</button>
-                            <button onclick="deleteOrder('${o.id}')" class="text-gray-500 hover:text-vibrante">🗑️</button>
-                        </td>`;
-                    tbody.appendChild(tr);
-                });
+                if (filteredOrders.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="7" class="py-4 text-center text-gray-400 font-accent">Nenhum pedido encontrado.</td></tr>`;
+                } else {
+                    filteredOrders.forEach(o => {
+                        const tr = document.createElement('tr');
+                        tr.className = "border-b border-begeDark/40 hover:bg-bege/20";
+                        
+                        let payColor = o.paymentStatus === 'Pago' ? 'text-green-600 bg-green-50 border-green-200' : 'text-amber-600 bg-amber-50 border-amber-200';
+                        let statusColor = 'bg-gray-100 text-gray-700';
+                        if (o.status === 'Em Produção') statusColor = 'bg-blue-50 text-blue-700 border-blue-200';
+                        if (o.status === 'Pronto') statusColor = 'bg-purple-50 text-purple-700 border-purple-200';
+                        if (o.status === 'Concluído') statusColor = 'bg-green-50 text-green-700 border-green-200';
+
+                        tr.innerHTML = 
+                            `<td class="py-3 font-bold text-bordo font-title">
+                                ${o.client}
+                                ${o.contact ? `<span class="block text-[10px] font-normal text-gray-500 font-accent">${o.contact}</span>` : ''}
+                            </td>` +
+                            `<td class="py-3 max-w-xs">
+                                <span class="font-medium text-gray-800 line-clamp-1">${o.items}</span>
+                                ${o.notes ? `<span class="block text-[10px] text-gray-400 line-clamp-1">${o.notes}</span>` : ''}
+                            </td>` +
+                            `<td class="py-3 font-bold text-gray-800">R$ ${(o.amount || 0).toFixed(2)}</td>` +
+                            `<td class="py-3">
+                                <span class="text-[10px] px-2 py-0.5 rounded-full border font-semibold ${payColor}">${o.paymentStatus || 'Pendente'}</span>
+                                <span class="block text-[9px] text-gray-400 mt-0.5">${o.paymentMethod || 'Pix'}</span>
+                            </td>` +
+                            `<td class="py-3 text-[11px] font-accent">${o.deliveryDate ? formatDate(o.deliveryDate) : '-'}</td>` +
+                            `<td class="py-3">
+                                <select onchange="updateOrderStatus('${o.id}', this.value)" class="text-[10px] font-semibold border border-begeDark rounded px-2 py-1 bg-white focus:outline-none ${statusColor}">
+                                    <option value="Pendente" ${o.status === 'Pendente' ? 'selected' : ''}>⏳ Pendente</option>
+                                    <option value="Em Produção" ${o.status === 'Em Produção' ? 'selected' : ''}>🔨 Em Produção</option>
+                                    <option value="Pronto" ${o.status === 'Pronto' ? 'selected' : ''}>📦 Pronto</option>
+                                    <option value="Concluído" ${o.status === 'Concluído' ? 'selected' : ''}>✅ Concluído</option>
+                                    <option value="Cancelado" ${o.status === 'Cancelado' ? 'selected' : ''}>❌ Cancelado</option>
+                                </select>
+                            </td>` +
+                            `<td class="py-3 text-right">
+                                <div class="flex justify-end gap-2">
+                                    <button onclick="openOrderModal(orders.find(o => o.id === '${o.id}'))" class="text-gray-500 hover:text-bordo">✏️</button>
+                                    <button onclick="deleteOrder('${o.id}')" class="text-gray-500 hover:text-vibrante">🗑️</button>
+                                </div>
+                            </td>`;
+                        tbody.appendChild(tr);
+                    });
+                }
+            }
+
+            // Renderizar Kanban
+            const kanbanCols = {
+                'Pendente': document.getElementById('order-col-Pendente'),
+                'Em Produção': document.getElementById('order-col-Em Produção'),
+                'Pronto': document.getElementById('order-col-Pronto'),
+                'Concluído': document.getElementById('order-col-Concluído')
+            };
+
+            const kanbanCounts = { 'Pendente': 0, 'Em Produção': 0, 'Pronto': 0, 'Concluído': 0 };
+
+            Object.values(kanbanCols).forEach(c => { if(c) c.innerHTML = ''; });
+
+            filteredOrders.forEach(o => {
+                const statusKey = o.status || 'Pendente';
+                if (kanbanCounts[statusKey] !== undefined) kanbanCounts[statusKey]++;
+
+                if (kanbanCols[statusKey]) {
+                    const card = document.createElement('div');
+                    card.className = "bg-white p-3.5 rounded-xl border border-begeDark shadow-2xs hover:shadow-md transition space-y-2";
+                    
+                    card.innerHTML = 
+                        `<div class="flex justify-between items-start font-accent">
+                            <span class="font-bold text-xs text-bordo font-title">${o.client}</span>
+                            <span class="text-xs font-bold text-gray-800">R$ ${(o.amount || 0).toFixed(2)}</span>
+                        </div>` +
+                        `<p class="text-xs text-gray-600 line-clamp-2">${o.items}</p>` +
+                        `<div class="flex justify-between items-center text-[10px] font-accent border-t border-begeDark/30 pt-2">
+                            <span class="text-gray-400">📅 ${o.deliveryDate ? formatDate(o.deliveryDate) : 'Sem data'}</span>
+                            <button onclick="openOrderModal(orders.find(o => o.id === '${o.id}'))" class="text-vibrante font-bold">Editar</button>
+                        </div>`;
+                    
+                    kanbanCols[statusKey].appendChild(card);
+                }
+            });
+
+            Object.entries(kanbanCounts).forEach(([k, count]) => {
+                const el = document.getElementById(`order-count-${k}`);
+                if (el) el.innerText = count;
+            });
+        }
+
+        // --- OBJETIVOS DA MARCA ---
+        function toggleBrandGoalsExpand() {
+            const form = document.getElementById('form-brand-goals');
+            const isHidden = form.classList.contains('hidden');
+            form.classList.toggle('hidden', !isHidden);
+
+            if (isHidden) {
+                document.getElementById('input-brand-goals').value = brandGoalsData.goals || '';
+                document.getElementById('input-brand-campaign').value = brandGoalsData.campaign || '';
+                document.getElementById('input-brand-campaign-notes').value = brandGoalsData.campaignNotes || '';
             }
         }
 
-        // --- KANBAN & OUTROS MÓDULOS ---
+        function saveBrandGoals() {
+            const goals = document.getElementById('input-brand-goals').value.trim();
+            const campaign = document.getElementById('input-brand-campaign').value.trim();
+            const campaignNotes = document.getElementById('input-brand-campaign-notes').value.trim();
+
+            db.collection("settings").doc("brand_goals").set({
+                goals: goals,
+                campaign: campaign,
+                campaignNotes: campaignNotes,
+                updatedAt: new Date().toISOString()
+            });
+
+            document.getElementById('form-brand-goals').classList.add('hidden');
+        }
+
+        function renderBrandGoals() {
+            const goalsEl = document.getElementById('display-brand-goals');
+            const campaignEl = document.getElementById('display-brand-campaign');
+            const campaignNotesEl = document.getElementById('display-brand-campaign-notes');
+
+            if (goalsEl) goalsEl.innerText = brandGoalsData.goals || "Nenhum objetivo cadastrado ainda.";
+            if (campaignEl) campaignEl.innerText = brandGoalsData.campaign ? `🚀 ${brandGoalsData.campaign}` : "Nenhuma campanha ativa no momento.";
+            if (campaignNotesEl) campaignNotesEl.innerText = brandGoalsData.campaignNotes ? `💡 ${brandGoalsData.campaignNotes}` : "";
+        }
+
+        // --- KANBAN CONTROLS COM EXPANSÃO/RETRAÇÃO DE COLUNAS ---
         function toggleColumnCollapse(colKey) {
             const wrapper = document.getElementById(`wrapper-col-${colKey}`);
             const btn = document.getElementById(`btn-col-${colKey}`);
+
             if (collapsedColumns.has(colKey)) {
                 collapsedColumns.delete(colKey);
-                wrapper.classList.remove('kanban-col-collapsed', 'kanban-col-collapsed-mobile');
+                wrapper.classList.remove('kanban-col-collapsed');
+                wrapper.classList.remove('kanban-col-collapsed-mobile');
                 if (btn) btn.innerText = '[−]';
             } else {
                 collapsedColumns.add(colKey);
-                wrapper.classList.add('kanban-col-collapsed', 'kanban-col-collapsed-mobile');
+                wrapper.classList.add('kanban-col-collapsed');
+                wrapper.classList.add('kanban-col-collapsed-mobile');
                 if (btn) btn.innerText = '[+]';
             }
         }
 
-        function toggleCompactMode() { isCompactMode = !isCompactMode; renderKanban(); }
-        function toggleMediaReadyFilter() { isMediaReadyOnly = !isMediaReadyOnly; renderKanban(); }
-        function toggleShowAllPublished() { showAllPublished = !showAllPublished; renderKanban(); }
+        function toggleCompactMode() {
+            isCompactMode = !isCompactMode;
+            document.getElementById('btn-compact-mode').classList.toggle('bg-bege');
+            renderKanban();
+        }
+
+        function toggleMediaReadyFilter() {
+            isMediaReadyOnly = !isMediaReadyOnly;
+            document.getElementById('btn-media-ready').classList.toggle('bg-bege');
+            renderKanban();
+        }
+
+        function toggleShowAllPublished() {
+            showAllPublished = !showAllPublished;
+            renderKanban();
+        }
 
         function renderKanban() {
-            const cols = { ideia: document.getElementById('col-ideia'), producao: document.getElementById('col-producao'), agendado: document.getElementById('col-agendado'), publicado: document.getElementById('col-publicado') };
-            Object.values(cols).forEach(c => { if(c) c.innerHTML = ''; });
+            const cols = {
+                ideia: document.getElementById('col-ideia'),
+                producao: document.getElementById('col-producao'),
+                agendado: document.getElementById('col-agendado'),
+                publicado: document.getElementById('col-publicado')
+            };
+
+            Object.values(cols).forEach(col => { if(col) col.innerHTML = ''; });
             const counts = { ideia: 0, producao: 0, agendado: 0, publicado: 0 };
 
-            const search = (document.getElementById('kanban-search')?.value || '').toLowerCase();
-            const plat = document.getElementById('kanban-filter-platform')?.value || 'ALL';
-            const goal = document.getElementById('kanban-filter-goal')?.value || 'ALL';
-            const pillar = document.getElementById('kanban-filter-pillar')?.value || 'ALL';
-            const format = document.getElementById('kanban-filter-format')?.value || 'ALL';
+            const searchText = (document.getElementById('kanban-search')?.value || '').toLowerCase();
+            const platformFilter = document.getElementById('kanban-filter-platform')?.value || 'ALL';
+            const goalFilter = document.getElementById('kanban-filter-goal')?.value || 'ALL';
+            const pillarFilter = document.getElementById('kanban-filter-pillar')?.value || 'ALL';
+            const formatFilter = document.getElementById('kanban-filter-format')?.value || 'ALL';
+
+            // Assegura o estado visual inicial das colunas
+            ['ideia', 'producao', 'agendado', 'publicado'].forEach(colKey => {
+                const wrapper = document.getElementById(`wrapper-col-${colKey}`);
+                const btn = document.getElementById(`btn-col-${colKey}`);
+                if (wrapper && btn) {
+                    if (collapsedColumns.has(colKey)) {
+                        wrapper.classList.add('kanban-col-collapsed');
+                        wrapper.classList.add('kanban-col-collapsed-mobile');
+                        btn.innerText = '[+]';
+                    } else {
+                        wrapper.classList.remove('kanban-col-collapsed');
+                        wrapper.classList.remove('kanban-col-collapsed-mobile');
+                        btn.innerText = '[−]';
+                    }
+                }
+            });
 
             posts.forEach(post => {
-                if (search && !(post.title || '').toLowerCase().includes(search)) return;
+                if (searchText && !(post.title || '').toLowerCase().includes(searchText)) return;
+                
                 const plats = post.platforms || [post.platform || 'Instagram'];
-                if (plat !== 'ALL' && !plats.includes(plat)) return;
+                if (platformFilter !== 'ALL' && !plats.includes(platformFilter)) return;
+
                 const goals = post.goals || [post.goal || 'Conexão'];
-                if (goal !== 'ALL' && !goals.includes(goal)) return;
+                if (goalFilter !== 'ALL' && !goals.includes(goalFilter)) return;
+
                 const pillars = post.pillars || [post.pillar || 'Educacional'];
-                if (pillar !== 'ALL' && !pillars.includes(pillar)) return;
-                if (format !== 'ALL' && (post.format || 'Carrossel') !== format) return;
+                if (pillarFilter !== 'ALL' && !pillars.includes(pillarFilter)) return;
+
+                if (formatFilter !== 'ALL' && (post.format || 'Carrossel') !== formatFilter) return;
+
                 if (isMediaReadyOnly && post.mediaStatus !== 'Mídia Pronta') return;
 
                 if (counts[post.status] !== undefined) counts[post.status]++;
 
+                if (post.status === 'publicado' && !showAllPublished && counts.publicado > 5) return;
+
                 const card = document.createElement('div');
-                card.className = "bg-white p-3.5 rounded-xl border border-begeDark shadow-sm hover:shadow-md transition space-y-2 cursor-pointer";
                 card.onclick = () => openViewPostModal(post.id);
-                card.innerHTML = `
-                    <div class="flex justify-between items-start"><h4 class="font-bold text-xs text-gray-800 font-title">${post.title}</h4><span class="text-[9px] px-1.5 rounded bg-bege text-bordo font-accent">${post.format || ''}</span></div>
-                    <p class="text-[10px] text-gray-400 font-accent">${post.date ? formatDate(post.date) : 'Sem data'}</p>
-                `;
+                
+                if (isCompactMode) {
+                    card.className = "bg-white p-2.5 rounded-xl border border-begeDark shadow-2xs space-y-1 hover:border-bordo transition cursor-pointer";
+                    card.innerHTML = 
+                        `<div class="flex items-center justify-between font-accent"><span class="text-[9px] font-bold text-bordo">${plats.join(', ')}</span><span class="text-[9px] text-gray-400">${formatDate(post.date)}</span></div>` +
+                        `<h4 class="font-bold text-xs text-gray-800 truncate font-title">${post.title}</h4>` +
+                        `<div class="flex justify-end gap-2 pt-1 font-accent"><button onclick="event.stopPropagation(); openModalById('${post.id}')" class="text-[10px] text-vibrante font-bold">Editar</button></div>`;
+                } else {
+                    card.className = "bg-white p-3.5 rounded-xl border border-begeDark shadow-sm hover:shadow-md transition space-y-2.5 cursor-pointer";
+                    const platBadges = plats.map(p => `<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-bege text-bordo font-accent">${p}</span>`).join(' ');
+                    const goalsBadges = goals.map(g => `<span class="bg-pink/10 text-pink px-1.5 py-0.5 rounded font-accent">${g}</span>`).join(' ');
+
+                    card.innerHTML = 
+                        `<div class="flex flex-wrap items-center justify-between gap-1">${platBadges} <span class="text-[9px] text-gray-400 font-accent">${post.format || ''}</span></div>` +
+                        `<h4 class="font-bold text-xs text-gray-800 leading-snug font-title">${post.title || 'Sem título'}</h4>` +
+                        (post.date ? `<p class="text-[10px] text-rosa font-medium font-accent">📅 ${formatDate(post.date)}</p>` : '') +
+                        `<div class="flex flex-wrap gap-1 text-[9px] font-accent">${goalsBadges} <span class="bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded">${post.mediaStatus || 'A Gravar'}</span></div>` +
+                        `<div class="flex items-center justify-between pt-2 border-t border-bege/50 text-gray-400 font-accent" onclick="event.stopPropagation()">` +
+                            `<select onchange="updateStatus('${post.id}', this.value)" class="text-[10px] border border-begeDark rounded px-1 py-0.5 bg-bege text-gray-600">` +
+                                `<option value="ideia" ${post.status === 'ideia' ? 'selected' : ''}>Ideia</option>` +
+                                `<option value="producao" ${post.status === 'producao' ? 'selected' : ''}>Produção</option>` +
+                                `<option value="agendado" ${post.status === 'agendado' ? 'selected' : ''}>Agendado</option>` +
+                                `<option value="publicado" ${post.status === 'publicado' ? 'selected' : ''}>Publicado</option>` +
+                            `</select>` +
+                            `<div class="flex gap-2">` +
+                                `<button onclick="openModalById('${post.id}')" class="hover:text-bordo">✏️</button>` +
+                                `<button onclick="deletePost('${post.id}')" class="hover:text-vibrante">🗑️</button>` +
+                            `</div>` +
+                        `</div>`;
+                }
+
                 if (cols[post.status]) cols[post.status].appendChild(card);
             });
 
-            ['ideia', 'producao', 'agendado', 'publicado'].forEach(k => {
-                const el = document.getElementById(`count-${k}`);
-                if (el) el.innerText = counts[k];
-            });
+            if(document.getElementById('count-ideia')) document.getElementById('count-ideia').innerText = counts.ideia;
+            if(document.getElementById('count-producao')) document.getElementById('count-producao').innerText = counts.producao;
+            if(document.getElementById('count-agendado')) document.getElementById('count-agendado').innerText = counts.agendado;
+            if(document.getElementById('count-publicado')) document.getElementById('count-publicado').innerText = counts.publicado;
         }
 
-        // --- MURAL DA MARCA ---
-        function toggleBrandGoalsExpand() { document.getElementById('form-brand-goals').classList.toggle('hidden'); }
-        function saveBrandGoals() {
-            const data = {
-                goals: document.getElementById('input-brand-goals').value,
-                campaign: document.getElementById('input-brand-campaign').value,
-                campaignNotes: document.getElementById('input-brand-campaign-notes').value,
-                updatedAt: new Date().toISOString()
-            };
-            db.collection("settings").doc("brand_goals").set(data);
-            document.getElementById('form-brand-goals').classList.add('hidden');
-        }
-        function renderBrandGoals() {
-            if (document.getElementById('display-brand-goals')) document.getElementById('display-brand-goals').innerText = brandGoalsData.goals || 'Nenhum objetivo cadastrado.';
-            if (document.getElementById('display-brand-campaign')) document.getElementById('display-brand-campaign').innerText = brandGoalsData.campaign || 'Nenhuma campanha ativa.';
-            if (document.getElementById('display-brand-campaign-notes')) document.getElementById('display-brand-campaign-notes').innerText = brandGoalsData.campaignNotes || '';
-        }
+        // --- MURAL DA MARCA FUNCTIONS ---
         function toggleNoteTypeInput() {
-            const isCheck = document.querySelector('input[name="note-type"]:checked').value === 'CHECKLIST';
-            document.getElementById('field-note-text').classList.toggle('hidden', isCheck);
-            document.getElementById('field-checklist-items').classList.toggle('hidden', !isCheck);
+            const isChecklist = document.querySelector('input[name="note-type"]:checked').value === 'CHECKLIST';
+            document.getElementById('field-note-text').classList.toggle('hidden', isChecklist);
+            document.getElementById('field-checklist-items').classList.toggle('hidden', !isChecklist);
         }
-        function filterBrandMural(type) { currentMuralFilter = type; renderBrandNotes(); }
+
+        function filterBrandMural(type) {
+            currentMuralFilter = type;
+            ['ALL', 'NOTE', 'CHECKLIST'].forEach(t => {
+                const btn = document.getElementById(`mural-filter-${t}`);
+                if (btn) {
+                    btn.className = t === type 
+                        ? "px-3 py-1.5 rounded-lg font-bold bg-bege text-bordo font-accent" 
+                        : "px-3 py-1.5 rounded-lg font-medium text-gray-500 font-accent";
+                }
+            });
+            renderBrandNotes();
+        }
+
         function addBrandNote() {
             const title = document.getElementById('brand-note-title').value.trim();
             const noteType = document.querySelector('input[name="note-type"]:checked').value;
             const dueDate = document.getElementById('brand-note-duedate').value;
+
             const selectedCats = [];
             document.querySelectorAll('input[name="brand-note-cat"]:checked').forEach(cb => selectedCats.push(cb.value));
 
             if (noteType === 'NOTE') {
                 const text = document.getElementById('brand-note-text').value.trim();
-                if (!text) return alert("Digite o texto da nota.");
-                db.collection("brand_notes").add({ type: 'NOTE', title: title || 'Anotação', text, dueDate, categories: selectedCats });
+                if (!text) { alert("Digite o conteúdo da anotação."); return; }
+
+                db.collection("brand_notes").add({
+                    type: 'NOTE',
+                    title: title || 'Anotação',
+                    text: text,
+                    dueDate: dueDate,
+                    categories: selectedCats.length > 0 ? selectedCats : ['Geral'],
+                    createdAt: new Date().toISOString()
+                });
             } else {
-                const items = document.getElementById('brand-checklist-text').value.split('\n').filter(t => t.trim()).map((t, idx) => ({ id: idx.toString(), text: t.trim(), done: false }));
-                if (items.length === 0) return alert("Adicione itens ao checklist.");
-                db.collection("brand_notes").add({ type: 'CHECKLIST', title: title || 'Lista', items, dueDate, categories: selectedCats });
+                const rawItems = document.getElementById('brand-checklist-text').value.trim().split('\n');
+                const items = rawItems.filter(i => i.trim() !== '').map((itemText, idx) => ({
+                    id: idx.toString(),
+                    text: itemText.trim(),
+                    done: false
+                }));
+
+                if (items.length === 0) { alert("Digite ao menos um item para o checklist."); return; }
+
+                db.collection("brand_notes").add({
+                    type: 'CHECKLIST',
+                    title: title || 'Lista de Afazeres',
+                    items: items,
+                    dueDate: dueDate,
+                    categories: selectedCats.length > 0 ? selectedCats : ['Geral'],
+                    createdAt: new Date().toISOString()
+                });
             }
+
             document.getElementById('brand-note-title').value = '';
             document.getElementById('brand-note-text').value = '';
             document.getElementById('brand-checklist-text').value = '';
+            document.getElementById('brand-note-duedate').value = '';
+            document.querySelectorAll('input[name="brand-note-cat"]').forEach(cb => cb.checked = false);
         }
+
+        function toggleChecklistItem(noteId, itemId) {
+            const note = brandNotes.find(n => n.id === noteId);
+            if (!note || !note.items) return;
+
+            const updatedItems = note.items.map(item => {
+                if (item.id === itemId) return { ...item, done: !item.done };
+                return item;
+            });
+
+            db.collection("brand_notes").doc(noteId).update({ items: updatedItems });
+        }
+
+        function deleteBrandNote(id) {
+            if (confirm("Deseja mesmo remover do mural?")) {
+                db.collection("brand_notes").doc(id).delete();
+            }
+        }
+
         function renderBrandNotes() {
             const grid = document.getElementById('brand-notes-grid');
             if (!grid) return;
             grid.innerHTML = '';
-            brandNotes.forEach(n => {
+
+            const filtered = brandNotes.filter(n => {
+                if (currentMuralFilter === 'ALL') return true;
+                return (n.type || 'NOTE') === currentMuralFilter;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<p class="text-xs text-gray-400 col-span-3 text-center py-6 font-accent">Seu mural está vazio para esse filtro.</p>';
+                return;
+            }
+
+            filtered.forEach(note => {
                 const card = document.createElement('div');
-                card.className = "bg-white p-4 rounded-2xl border border-begeDark shadow-2xs space-y-2";
-                card.innerHTML = `<h4 class="font-bold text-sm text-bordo font-title">${n.title}</h4><p class="text-xs text-gray-700">${n.text || (n.items ? n.items.length + ' itens' : '')}</p>`;
+                card.className = "bg-white p-4 rounded-2xl border border-begeDark shadow-2xs space-y-3 flex flex-col justify-between";
+
+                const catBadges = (note.categories || ['Geral']).map(c => `<span class="text-[9px] font-bold px-2 py-0.5 rounded-md bg-bege text-bordo border border-begeDark font-accent">${c}</span>`).join(' ');
+                const formattedDueDate = note.dueDate ? formatDate(note.dueDate) : '';
+
+                let contentHTML = '';
+
+                if (note.type === 'CHECKLIST' && note.items) {
+                    const pending = note.items.filter(i => !i.done);
+                    const completed = note.items.filter(i => i.done);
+                    const total = note.items.length;
+                    const percent = total > 0 ? Math.round((completed.length / total) * 100) : 0;
+
+                    let pendingHTML = pending.map(i => 
+                        `<label class="flex items-center gap-2 text-xs cursor-pointer"><input type="checkbox" onchange="toggleChecklistItem('${note.id}', '${i.id}')" class="accent-bordo"> <span>${i.text}</span></label>`
+                    ).join('');
+
+                    let completedHTML = completed.map(i => 
+                        `<label class="flex items-center gap-2 text-xs cursor-pointer line-through-task"><input type="checkbox" checked onchange="toggleChecklistItem('${note.id}', '${i.id}')" class="accent-bordo"> <span>${i.text}</span></label>`
+                    ).join('');
+
+                    contentHTML = 
+                        `<div class="space-y-1 font-accent">` +
+                            `<div class="flex justify-between items-center text-[10px] text-gray-500 font-bold mb-1"><span>Progresso</span><span>${completed.length}/${total} (${percent}%)</span></div>` +
+                            `<div class="w-full bg-bege h-1.5 rounded-full overflow-hidden mb-2"><div class="bg-vibrante h-full" style="width: ${percent}%"></div></div>` +
+                        `</div>` +
+                        `<div class="space-y-1.5">${pendingHTML}</div>` +
+                        (completed.length > 0 ? 
+                            `<details class="pt-2 text-[11px] text-gray-400 border-t border-begeDark/40"><summary class="cursor-pointer font-semibold font-accent">Concluídos (${completed.length})</summary><div class="space-y-1 mt-1 font-normal">${completedHTML}</div></details>` 
+                            : '');
+                } else {
+                    contentHTML = `<p class="text-xs text-gray-800 whitespace-pre-line leading-relaxed font-medium">${note.text || ''}</p>`;
+                }
+
+                card.innerHTML = 
+                    `<div class="space-y-2">` +
+                        `<div class="flex items-center justify-between"><div class="flex flex-wrap gap-1">${catBadges}</div> ${formattedDueDate ? `<span class="text-[9px] font-bold text-vibrante font-accent">⏰ \${formattedDueDate}</span>` : ''}</div>` +
+                        `<h4 class="font-bold text-xs text-bordo font-title">${note.title || 'Anotação'}</h4>` +
+                        `${contentHTML}` +
+                    `</div>` +
+                    `<div class="pt-2 border-t border-begeDark/50 flex items-center justify-end text-[10px] font-accent">` +
+                        `<button onclick="deleteBrandNote('${note.id}')" class="text-gray-400 hover:text-vibrante">Excluir</button>` +
+                    `</div>`;
+
                 grid.appendChild(card);
             });
         }
 
-        // --- SEO & TAGS ---
+        // --- SEO & POST FORM HELPERS ---
         function addSeoTag() {
-            const text = document.getElementById('new-tag-text').value.trim();
+            const input = document.getElementById('new-tag-text');
+            const text = input.value.trim();
+
+            const selectedCats = [];
+            document.querySelectorAll('input[name="new-tag-cat"]:checked').forEach(cb => selectedCats.push(cb.value));
+
             if (!text) return;
-            seoTags.push({ id: Date.now().toString(), text, categories: ['Marca & Nicho'] });
+
+            const newTag = { id: Date.now().toString(), text: text, categories: selectedCats.length > 0 ? selectedCats : ['Marca & Nicho'] };
+            seoTags.push(newTag);
             db.collection("settings").doc("seo_tags").set({ list: seoTags });
-            document.getElementById('new-tag-text').value = '';
+
+            input.value = '';
+            document.querySelectorAll('input[name="new-tag-cat"]').forEach(cb => cb.checked = false);
         }
+
+        function removeSeoTag(tagId) {
+            seoTags = seoTags.filter(t => t.id !== tagId);
+            db.collection("settings").doc("seo_tags").set({ list: seoTags });
+        }
+
+        function copyCategoryTags(category) {
+            const catTags = seoTags.filter(t => (t.categories || [t.category]).includes(category)).map(t => t.text).join(', ');
+            if (catTags) {
+                navigator.clipboard.writeText(catTags);
+                alert(`Palavras-chave copiadas: ${catTags}`);
+            }
+        }
+
+        function insertKeywordIntoCaption(text) {
+            const captionEl = document.getElementById('post-caption');
+            captionEl.value = (captionEl.value ? captionEl.value.trim() + ' ' : '') + text;
+            checkSeoKeywordsInCaption();
+        }
+
+        function checkSeoKeywordsInCaption() {
+            const caption = (document.getElementById('post-caption').value || '').toLowerCase();
+            const found = seoTags.filter(t => caption.includes(t.text.toLowerCase())).map(t => t.text);
+            
+            const feedbackEl = document.getElementById('seo-feedback-text');
+            if (found.length > 0) {
+                feedbackEl.innerText = `✨ Palavras-chave do seu banco presentes na legenda: ${found.join(', ')}`;
+                feedbackEl.className = "text-[10px] text-green-700 font-bold mt-1 font-accent";
+            } else {
+                feedbackEl.innerText = "💡 Dica: inclua termos do seu banco naturalmente na legenda para melhorar o SEO.";
+                feedbackEl.className = "text-[10px] text-gray-500 font-medium mt-1 font-accent";
+            }
+        }
+
         function renderSeoTags() {
-            const container = document.getElementById('tags-container-Marca & Nicho');
-            if (!container) return;
-            container.innerHTML = '';
-            seoTags.forEach(t => {
-                const tag = document.createElement('span');
-                tag.className = "px-3 py-1 bg-bege border border-begeDark rounded-xl text-xs font-accent flex items-center gap-2";
-                tag.innerHTML = `<span>#${t.text}</span>`;
-                container.appendChild(tag);
+            const categories = ['Marca & Nicho', 'Produtos', 'Intenção & Estilo de Vida'];
+            categories.forEach(cat => {
+                const container = document.getElementById(`tags-container-${cat}`);
+                if (!container) return;
+                container.innerHTML = '';
+
+                const catTags = seoTags.filter(t => (t.categories || [t.category]).includes(cat));
+                if (catTags.length === 0) {
+                    container.innerHTML = '<span class="text-[10px] text-gray-400 italic font-accent">Nenhum termo cadastrado.</span>';
+                    return;
+                }
+
+                catTags.forEach(t => {
+                    const tagEl = document.createElement('div');
+                    tagEl.className = "bg-bege border border-begeDark rounded-lg px-2.5 py-1 text-xs text-bordo flex items-center gap-1.5 shadow-2xs font-accent";
+                    tagEl.innerHTML = `<span class="font-medium cursor-pointer" onclick="navigator.clipboard.writeText('${t.text}'); alert('Copiado: ${t.text}');">${t.text}</span><button onclick="removeSeoTag('${t.id}')" class="text-gray-400 hover:text-vibrante font-bold">×</button>`;
+                    container.appendChild(tagEl);
+                });
             });
         }
+
         function renderModalQuickTags() {
             const container = document.getElementById('modal-quick-tags');
             if (!container) return;
             container.innerHTML = '';
+
             seoTags.forEach(t => {
                 const btn = document.createElement('button');
                 btn.type = 'button';
-                btn.className = "bg-white border border-begeDark px-2 py-0.5 rounded text-[10px] text-bordo font-accent";
+                btn.className = "bg-white hover:bg-bordo hover:text-white border border-begeDark px-2 py-0.5 rounded text-[10px] text-bordo font-medium transition font-accent";
                 btn.innerText = `+ ${t.text}`;
-                btn.onclick = () => { document.getElementById('post-caption').value += ' ' + t.text; };
+                btn.onclick = () => insertKeywordIntoCaption(t.text);
                 container.appendChild(btn);
             });
         }
-        function checkSeoKeywordsInCaption() {}
 
-        // --- CALENDÁRIO & OUTROS ---
-        function changeMonth(dir) { currentCalendarDate.setMonth(currentCalendarDate.getMonth() + dir); renderMonthlyCalendar(); }
+        // --- CALENDÁRIO, PLATAFORMAS & MÉTRICAS ---
+        function changeMonth(delta) {
+            currentCalendarDate.setMonth(currentCalendarDate.getMonth() + delta);
+            renderMonthlyCalendar();
+        }
+
         function renderMonthlyCalendar() {
-            const grid = document.getElementById('calendar-grid');
-            if (!grid) return;
-            grid.innerHTML = '';
             const year = currentCalendarDate.getFullYear();
             const month = currentCalendarDate.getMonth();
-            const totalDays = new Date(year, month + 1, 0).getDate();
-            for (let day = 1; day <= totalDays; day++) {
+
+            const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+            if(document.getElementById('calendar-month-title')) {
+                document.getElementById('calendar-month-title').innerText = `${monthNames[month]} ${year}`;
+            }
+
+            const grid = document.getElementById('calendar-grid');
+            if(!grid) return;
+            grid.innerHTML = '';
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            for (let i = 0; i < firstDay; i++) {
+                grid.appendChild(Object.assign(document.createElement('div'), { className: "min-h-[90px] bg-bege/20 rounded-xl" }));
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                const dayPosts = posts.filter(p => p.date === dayString);
+
                 const cell = document.createElement('div');
-                cell.className = "min-h-[90px] bg-white border border-begeDark rounded-xl p-1.5 text-xs font-accent";
-                cell.innerHTML = `<div class="font-bold text-bordo">${day}</div>`;
+                cell.className = "min-h-[95px] bg-bege/40 hover:bg-bege border border-begeDark/50 rounded-xl p-1.5 flex flex-col justify-between cursor-pointer transition";
+                cell.onclick = (e) => { if (e.target.tagName !== 'BUTTON' && !e.target.closest('.cal-post-card')) openModal(null, dayString); };
+
+                let postsHTML = dayPosts.map(p => {
+                    let statusBgClass = 'bg-white text-bordo border-begeDark';
+                    if (p.status === 'ideia') statusBgClass = 'bg-amarelo/20 text-yellow-800 border-yellow-300';
+                    else if (p.status === 'producao') statusBgClass = 'bg-azul/20 text-blue-900 border-blue-300';
+                    else if (p.status === 'agendado') statusBgClass = 'bg-rosa/20 text-pink-900 border-pink-300';
+                    else if (p.status === 'publicado') statusBgClass = 'bg-verde/20 text-green-900 border-green-300';
+
+                    const plats = p.platforms || [p.platform || 'Instagram'];
+                    const platText = plats.join(', ');
+
+                    return `<div onclick="event.stopPropagation(); openViewPostModal('${p.id}')" class="cal-post-card ${statusBgClass} text-[9px] p-1 rounded border mb-1 shadow-2xs hover:opacity-80 transition cursor-pointer space-y-0.5">` +
+                        `<div class="flex justify-between items-center font-accent"><span class="font-bold truncate">${p.title}</span></div>` +
+                        `<div class="text-[8px] opacity-75 font-accent">🌐 ${platText}</div>` +
+                    `</div>`;
+                }).join('');
+
+                cell.innerHTML = `<div class="flex justify-between items-center mb-1 font-accent"><span class="text-xs font-bold text-bordo">${day}</span><button onclick="event.stopPropagation(); openModal(null, '${dayString}')" class="text-[10px] text-gray-400 hover:text-vibrante font-bold">+</button></div><div class="overflow-y-auto max-h-[70px]">${postsHTML}</div>`;
                 grid.appendChild(cell);
             }
         }
-        function renderPlatformsView() {}
-        function renderSeasonalView() {}
-        function renderStrategyView() {}
-        function renderMetricsView() {}
 
-        function openViewPostModal(id) {
-            const p = posts.find(item => item.id === id);
-            if (!p) return;
-            currentViewingPostId = id;
-            document.getElementById('view-post-title').innerText = p.title;
-            document.getElementById('view-post-date').innerText = p.date ? formatDate(p.date) : 'Sem data';
-            document.getElementById('view-post-caption').innerText = p.caption || 'Sem legenda.';
+        // Função auxiliar para transformar links de texto em hiperlinks clicáveis que abrem em nova aba
+        function linkifyText(inputText) {
+            if (!inputText) return '';
+            const urlRegex = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+            return inputText.replace(urlRegex, function(url) {
+                return '<a href="' + url + '" target="_blank" rel="noopener noreferrer" class="text-vibrante underline font-semibold">' + url + '</a>';
+            });
+        }
+
+        function openViewPostModal(postId) {
+            const post = posts.find(p => p.id === postId);
+            if (!post) return;
+            currentViewingPostId = postId;
+
+            document.getElementById('view-post-title').innerText = post.title || 'Detalhes do Post';
+            document.getElementById('view-post-date').innerText = post.date ? formatDate(post.date) : 'Sem data definida';
+            
+            const captionDiv = document.getElementById('view-post-caption');
+            captionDiv.innerHTML = linkifyText(post.caption || 'Nenhuma legenda ou roteiro preenchido.');
+
+            const badgesContainer = document.getElementById('view-post-badges');
+            badgesContainer.innerHTML = '';
+            
+            const plats = post.platforms || [post.platform || 'Instagram'];
+            plats.forEach(p => {
+                badgesContainer.innerHTML += `<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-bege text-bordo border border-begeDark font-accent">${p}</span>`;
+            });
+            badgesContainer.innerHTML += `<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-pink/10 text-pink font-accent">${post.format || 'Carrossel'}</span>`;
+            badgesContainer.innerHTML += `<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-50 text-blue-600 font-accent">${post.mediaStatus || 'A Gravar'}</span>`;
+
+            document.getElementById('view-post-goals').innerText = (post.goals || [post.goal || 'Conexão']).join(', ');
+            document.getElementById('view-post-pillars').innerText = (post.pillars || [post.pillar || 'Educacional']).join(', ');
+
             document.getElementById('view-post-modal').classList.remove('hidden');
         }
-        function closeViewPostModal() { document.getElementById('view-post-modal').classList.add('hidden'); }
 
-        function openModal() { document.getElementById('modal').classList.remove('hidden'); document.getElementById('post-form').reset(); document.getElementById('post-id').value = ''; }
-        function openModalById(id) { const p = posts.find(item => item.id === id); if (p) openModal(); }
+        function closeViewPostModal() {
+            document.getElementById('view-post-modal').classList.add('hidden');
+        }
+
+        function renderMetricsView() {
+            let totalReach = 0;
+            let totalInteractions = 0;
+            let totalSales = 0;
+            let topPost = null;
+            let maxReach = -1;
+
+            const tbody = document.getElementById('metrics-posts-tbody');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+
+            posts.forEach(p => {
+                const reach = Number(p.metricReach || 0);
+                const inter = Number(p.metricInteractions || 0);
+                const sales = Number(p.metricSales || 0);
+
+                totalReach += reach;
+                totalInteractions += inter;
+                totalSales += sales;
+
+                if (reach > maxReach && reach > 0) {
+                    maxReach = reach;
+                    topPost = p;
+                }
+
+                if (reach > 0 || inter > 0 || sales > 0) {
+                    const tr = document.createElement('tr');
+                    tr.className = "border-b border-begeDark/30 text-xs";
+                    tr.innerHTML = 
+                        `<td class="py-2 font-bold text-bordo font-title">${p.title}</td>` +
+                        `<td class="py-2 font-accent">${(p.platforms || [p.platform]).join(', ')}</td>` +
+                        `<td class="py-2 font-semibold">${reach}</td>` +
+                        `<td class="py-2">${inter}</td>` +
+                        `<td class="py-2 font-bold text-verde">${sales}</td>` +
+                        `<td class="py-2 font-accent"><button onclick="openModalById('${p.id}')" class="text-vibrante font-bold">Editar</button></td>`;
+                    tbody.appendChild(tr);
+                }
+            });
+
+            if(document.getElementById('kpi-total-reach')) document.getElementById('kpi-total-reach').innerText = totalReach.toLocaleString('pt-BR');
+            if(document.getElementById('kpi-total-sales')) document.getElementById('kpi-total-sales').innerText = totalSales.toLocaleString('pt-BR');
+
+            const avgEng = totalReach > 0 ? ((totalInteractions / totalReach) * 100).toFixed(1) : 0;
+            if(document.getElementById('kpi-avg-engagement')) document.getElementById('kpi-avg-engagement').innerText = `${avgEng}%`;
+
+            if (topPost) {
+                if(document.getElementById('kpi-top-post-title')) document.getElementById('kpi-top-post-title').innerText = topPost.title;
+                if(document.getElementById('kpi-top-post-stats')) document.getElementById('kpi-top-post-stats').innerText = `${topPost.metricReach} alcance`;
+            } else {
+                if(document.getElementById('kpi-top-post-title')) document.getElementById('kpi-top-post-title').innerText = '-';
+                if(document.getElementById('kpi-top-post-stats')) document.getElementById('kpi-top-post-stats').innerText = 'Sem dados registrados';
+            }
+        }
+
+        // --- FORMULARIO DO POST ---
+        function openModal(post = null, defaultDate = null) {
+            const modal = document.getElementById('modal');
+            const form = document.getElementById('post-form');
+            modal.classList.remove('hidden');
+
+            document.querySelectorAll('input[name="platform"]').forEach(cb => cb.checked = false);
+            document.querySelectorAll('input[name="post-goals"]').forEach(cb => cb.checked = false);
+            document.querySelectorAll('input[name="post-pillars"]').forEach(cb => cb.checked = false);
+
+            if (post) {
+                document.getElementById('modal-title').innerText = 'Editar Conteúdo';
+                document.getElementById('post-id').value = post.id;
+                document.getElementById('post-title').value = post.title || '';
+                document.getElementById('post-format').value = post.format || 'Carrossel';
+                document.getElementById('post-status').value = post.status || 'ideia';
+                document.getElementById('post-date').value = post.date || '';
+                document.getElementById('post-caption').value = post.caption || '';
+                document.getElementById('post-media-status').value = post.mediaStatus || 'A Gravar';
+
+                document.getElementById('metric-reach').value = post.metricReach || '';
+                document.getElementById('metric-interactions').value = post.metricInteractions || '';
+                document.getElementById('metric-sales').value = post.metricSales || '';
+
+                (post.platforms || [post.platform || 'Instagram']).forEach(p => {
+                    const cb = document.querySelector(`input[name="platform"][value="${p}"]`);
+                    if (cb) cb.checked = true;
+                });
+
+                (post.goals || [post.goal || 'Conexão']).forEach(g => {
+                    const cb = document.querySelector(`input[name="post-goals"][value="${g}"]`);
+                    if (cb) cb.checked = true;
+                });
+
+                (post.pillars || [post.pillar || 'Educacional']).forEach(p => {
+                    const cb = document.querySelector(`input[name="post-pillars"][value="${p}"]`);
+                    if (cb) cb.checked = true;
+                });
+            } else {
+                document.getElementById('modal-title').innerText = 'Novo Conteúdo';
+                form.reset();
+                document.getElementById('post-id').value = '';
+                document.querySelector('input[name="platform"][value="Instagram"]').checked = true;
+                if (defaultDate) {
+                    document.getElementById('post-date').value = defaultDate;
+                    document.getElementById('post-status').value = 'agendado';
+                }
+            }
+
+            renderModalQuickTags();
+            checkSeoKeywordsInCaption();
+        }
+
         function closeModal() { document.getElementById('modal').classList.add('hidden'); }
 
         function savePost(e) {
             e.preventDefault();
             const id = document.getElementById('post-id').value;
-            const data = {
+
+            const selectedPlats = [];
+            document.querySelectorAll('input[name="platform"]:checked').forEach(cb => selectedPlats.push(cb.value));
+
+            const selectedGoals = [];
+            document.querySelectorAll('input[name="post-goals"]:checked').forEach(cb => selectedGoals.push(cb.value));
+
+            const selectedPillars = [];
+            document.querySelectorAll('input[name="post-pillars"]:checked').forEach(cb => selectedPillars.push(cb.value));
+
+            const postData = {
                 title: document.getElementById('post-title').value,
+                platforms: selectedPlats.length > 0 ? selectedPlats : ['Instagram'],
+                platform: selectedPlats[0] || 'Instagram',
                 format: document.getElementById('post-format').value,
                 status: document.getElementById('post-status').value,
                 date: document.getElementById('post-date').value,
                 caption: document.getElementById('post-caption').value,
+                goals: selectedGoals.length > 0 ? selectedGoals : ['Conexão'],
+                pillars: selectedPillars.length > 0 ? selectedPillars : ['Educacional'],
+                mediaStatus: document.getElementById('post-media-status').value,
+                metricReach: document.getElementById('metric-reach').value,
+                metricInteractions: document.getElementById('metric-interactions').value,
+                metricSales: document.getElementById('metric-sales').value,
                 updatedAt: new Date().toISOString()
             };
-            if (id) db.collection("posts").doc(id).update(data);
-            else db.collection("posts").add(data);
+
+            if (id) { db.collection("posts").doc(id).update(postData); } 
+            else { db.collection("posts").add(postData); }
+
             closeModal();
         }
 
-        function formatDate(d) {
-            if (!d) return '';
-            const p = d.split('-');
-            return p.length === 3 ? `${p[2]}/${p[1]}/${p[0]}` : d;
+        function updateStatus(id, newStatus) { db.collection("posts").doc(id).update({ status: newStatus }); }
+        function deletePost(id) { if (confirm("Deseja mesmo excluir este post?")) db.collection("posts").doc(id).delete(); }
+        function formatDate(dateStr) { if (!dateStr) return ''; const parts = dateStr.split('-'); return parts.length === 3 ? `${parts[2]}/${parts[1]}/${parts[0]}` : dateStr; }
+        function openModalById(id) { const post = posts.find(p => p.id === id); if (post) openModal(post); }
+
+        function renderPlatformsView() {
+            const cols = { instagram: document.getElementById('col-plat-instagram'), tiktok: document.getElementById('col-plat-tiktok'), outros: document.getElementById('col-plat-outros') };
+            Object.values(cols).forEach(c => { if(c) c.innerHTML = ''; });
+            posts.forEach(post => {
+                (post.platforms || [post.platform]).forEach(p => {
+                    const key = p.toLowerCase();
+                    const targetCol = cols[key] || cols.outros;
+                    if (targetCol) {
+                        const card = document.createElement('div');
+                        card.className = "bg-white p-3 rounded-xl border border-begeDark shadow-2xs space-y-1 cursor-pointer hover:border-bordo transition";
+                        card.onclick = () => openViewPostModal(post.id);
+                        card.innerHTML = `<h4 class="font-bold text-xs text-gray-800 font-title">${post.title}</h4><div class="flex justify-end font-accent" onclick="event.stopPropagation()"><button onclick="openModalById('${post.id}')" class="text-[10px] text-vibrante font-bold">Editar</button></div>`;
+                        targetCol.appendChild(card);
+                    }
+                });
+            });
+        }
+
+        function renderSeasonalView() {
+            const list = document.getElementById('seasonal-posts-list');
+            if (!list) return;
+            list.innerHTML = '';
+            posts.filter(p => p.isSeasonal).forEach(p => {
+                const card = document.createElement('div');
+                card.className = "bg-white p-4 rounded-xl border border-begeDark flex justify-between items-center cursor-pointer hover:border-bordo transition";
+                card.onclick = () => openViewPostModal(p.id);
+                card.innerHTML = `<div><h4 class="font-bold text-xs text-bordo font-title">${p.title}</h4><p class="text-[10px] text-gray-500 font-accent">${formatDate(p.date)}</p></div><button onclick="event.stopPropagation(); openModalById('${p.id}')" class="text-xs text-bordo font-bold font-accent">Editar</button>`;
+                list.appendChild(card);
+            });
+        }
+
+        function renderStrategyView() {
+            const container = document.getElementById('strategy-goals-summary');
+            if (!container) return;
+            container.innerHTML = '';
+            const counts = {};
+            posts.forEach(p => { (p.goals || [p.goal || 'Conexão']).forEach(g => { counts[g] = (counts[g] || 0) + 1; }); });
+            Object.entries(counts).forEach(([goal, count]) => {
+                const percent = Math.round((count / Math.max(posts.length, 1)) * 100);
+                container.innerHTML += `<div><div class="flex justify-between font-semibold mb-1"><span>${goal}</span><span>${count} posts (${percent}%)</span></div><div class="w-full bg-bege h-2 rounded-full overflow-hidden"><div class="bg-vibrante h-full" style="width: ${percent}%"></div></div></div>`;
+            });
         }
 
         function renderAllViews() {
             renderKanban();
             renderMonthlyCalendar();
-            renderOrders();
-            renderBrandGoals();
+            renderPlatformsView();
+            renderSeasonalView();
+            renderStrategyView();
             renderBrandNotes();
-            renderSeoTags();
-            renderFinance();
+            renderMetricsView();
+            renderBrandGoals();
+            renderOrders();
         }
 
-        function importOldData() { alert("Sincronização em nuvem ativa via Firebase!"); }
-
-        window.onload = () => { renderAllViews(); };
+        function importOldData() {
+            const oldData = localStorage.getItem('social_media_planner_posts') || localStorage.getItem('planner_posts');
+            if (oldData) {
+                try {
+                    const parsed = JSON.parse(oldData);
+                    if (Array.isArray(parsed) && parsed.length > 0 && confirm(`Encontrados ${parsed.length} posts salvos no navegador. Enviar para a nuvem?`)) {
+                        parsed.forEach(p => { delete p.id; db.collection("posts").add(p); });
+                        alert("Posts salvos na nuvem!");
+                    }
+                } catch(e) { alert("Erro ao importar."); }
+            } else { alert("Nenhum dado antigo encontrado neste navegador."); }
+        }
     </script>
 </body>
 </html>
