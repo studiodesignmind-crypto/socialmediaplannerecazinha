@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planner Cazinha - Social Media & Gestão Completa</title>
+    <title>Social Media Planner & Estratégia - Cazinha</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏡</text></svg>">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -59,7 +59,6 @@
             text-decoration: line-through;
             opacity: 0.6;
         }
-        /* Estilo para colunas do Kanban retraídas no Desktop */
         @media (min-width: 768px) {
             .kanban-col-collapsed {
                 width: 7rem !important;
@@ -87,7 +86,6 @@
                 display: none !important;
             }
         }
-        /* Estilo para colunas retraídas no Mobile */
         @media (max-width: 767px) {
             .kanban-col-collapsed-mobile .col-content,
             .kanban-col-collapsed-mobile .col-counter {
@@ -97,7 +95,6 @@
                 padding: 0.75rem 1rem !important;
             }
         }
-        /* Rich Editor Toolbar Styling */
         .rich-editor-content {
             min-height: 90px;
             outline: none;
@@ -114,10 +111,10 @@
 </head>
 <body class="text-gray-800 min-h-screen flex flex-col md:flex-row">
 
-    <!-- Barra Lateral (Desktop) - TODAS AS ABAS ORIGINAIS RESTAURADAS -->
+    <!-- Barra Lateral (Desktop) -->
     <aside class="hidden md:flex flex-col w-64 bg-white border-r border-begeDark p-6 flex-shrink-0 min-h-screen sticky top-0 h-screen overflow-y-auto">
         <div class="flex items-center gap-3 mb-6">
-            <div class="text-2xl">🕯️</div>
+            <div class="text-2xl">🏡</div>
             <div>
                 <h1 class="font-bold text-lg text-bordo leading-tight font-title">Planner Cazinha</h1>
                 <p class="text-xs text-rosa font-semibold font-accent">Social Media & Estratégia</p>
@@ -163,7 +160,7 @@
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                 Métricas & Resultados
             </button>
-            <!-- GESTÃO FINANCEIRA: ÚLTIMA ABA NO PAINEL LATERAL -->
+            <!-- GESTÃO FINANCEIRA: EXATAMENTE A ÚLTIMA ABA NO PAINEL LATERAL -->
             <button onclick="switchTab('finance')" id="nav-finance" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 Gestão Financeira & Planilha de Gastos
@@ -185,7 +182,7 @@
     <!-- Cabeçalho Mobile -->
     <header class="md:hidden bg-white border-b border-begeDark p-4 flex items-center justify-between sticky top-0 z-20">
         <div class="flex items-center gap-3">
-            <div class="text-xl">🕯️</div>
+            <div class="text-xl">🏡</div>
             <div>
                 <h1 class="font-bold text-base text-bordo leading-tight font-title">Planner Cazinha</h1>
                 <div class="text-[10px] text-green-600 flex items-center gap-1 font-medium font-accent">
@@ -239,7 +236,6 @@
                     <p class="text-sm text-gray-500">Gerencie o progresso das suas publicações</p>
                 </div>
 
-                <!-- Controles de Filtro -->
                 <div class="flex flex-wrap items-center gap-2 font-accent">
                     <input type="text" id="kanban-search" oninput="renderKanban()" placeholder="🔍 Buscar por título..." class="px-3 py-1.5 text-xs rounded-xl border border-begeDark bg-white focus:outline-none">
                     
@@ -287,7 +283,6 @@
                 </div>
             </div>
 
-            <!-- Grade do Kanban -->
             <div class="flex flex-col md:flex-row gap-4 items-start">
                 <div id="wrapper-col-ideia" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0">
                     <div class="col-header-inner flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
@@ -353,10 +348,11 @@
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                     <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Gestão de Pedidos & Encomendas</h2>
-                    <p class="text-sm text-gray-500">Acompanhe pedidos, status de pagamento e entregas</p>
+                    <p class="text-sm text-gray-500">Acompanhe pedidos, status de pagamento e entregas dos clientes</p>
                 </div>
-                <button onclick="openOrderModal()" class="bg-vibrante hover:bg-bordo text-white font-semibold py-2.5 px-5 rounded-xl transition shadow flex items-center gap-2 font-accent text-xs">
-                    + Novo Pedido
+                <button onclick="openOrderModal()" class="bg-vibrante hover:bg-bordo text-white font-semibold py-2.5 px-5 rounded-xl transition shadow flex items-center gap-2 self-start md:self-auto font-accent text-xs">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    Novo Pedido
                 </button>
             </div>
 
@@ -379,7 +375,26 @@
                 </div>
             </div>
 
-            <div class="bg-white p-5 rounded-2xl border border-begeDark overflow-x-auto">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-begeDark">
+                <div class="flex flex-wrap items-center gap-2">
+                    <input type="text" id="orders-search" oninput="renderOrders()" placeholder="🔍 Buscar por cliente ou produto..." class="px-3 py-1.5 text-xs rounded-xl border border-begeDark bg-bege/30 focus:outline-none w-full md:w-64">
+                    <select id="orders-filter-status" onchange="renderOrders()" class="px-3 py-1.5 text-xs rounded-xl border border-begeDark bg-bege/30">
+                        <option value="ALL">Todos os Status</option>
+                        <option value="Pendente">Pendente</option>
+                        <option value="Em Produção">Em Produção</option>
+                        <option value="Pronto">Pronto p/ Entrega</option>
+                        <option value="Concluído">Concluído</option>
+                        <option value="Cancelado">Cancelado</option>
+                    </select>
+                </div>
+
+                <div class="flex items-center gap-1 bg-bege/50 p-1 rounded-xl border border-begeDark text-xs font-accent self-start md:self-auto">
+                    <button onclick="switchOrderView('table')" id="btn-orderview-table" class="px-3 py-1.5 rounded-lg font-bold bg-white text-bordo shadow-2xs">Tabela</button>
+                    <button onclick="switchOrderView('kanban')" id="btn-orderview-kanban" class="px-3 py-1.5 rounded-lg font-medium text-gray-500">Quadros (Kanban)</button>
+                </div>
+            </div>
+
+            <div id="orders-view-table" class="bg-white p-5 rounded-2xl border border-begeDark shadow-2xs overflow-x-auto">
                 <table class="w-full text-left text-xs">
                     <thead>
                         <tr class="border-b border-begeDark text-gray-500 uppercase text-[10px] font-accent">
@@ -395,15 +410,52 @@
                     <tbody id="orders-tbody" class="divide-y divide-begeDark/50"></tbody>
                 </table>
             </div>
+
+            <div id="orders-view-kanban" class="hidden grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col">
+                    <h3 class="font-bold text-xs text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center font-title">
+                        <span>⏳ Pendente</span>
+                        <span id="order-count-Pendente" class="text-xs bg-bege px-2 py-0.5 rounded-full text-gray-600 font-accent">0</span>
+                    </h3>
+                    <div id="order-col-Pendente" class="space-y-3 flex-1 min-h-[150px]"></div>
+                </div>
+
+                <div class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col">
+                    <h3 class="font-bold text-xs text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center font-title">
+                        <span>🔨 Em Produção</span>
+                        <span id="order-count-Em Produção" class="text-xs bg-bege px-2 py-0.5 rounded-full text-gray-600 font-accent">0</span>
+                    </h3>
+                    <div id="order-col-Em Produção" class="space-y-3 flex-1 min-h-[150px]"></div>
+                </div>
+
+                <div class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col">
+                    <h3 class="font-bold text-xs text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center font-title">
+                        <span>📦 Pronto p/ Entrega</span>
+                        <span id="order-count-Pronto" class="text-xs bg-bege px-2 py-0.5 rounded-full text-gray-600 font-accent">0</span>
+                    </h3>
+                    <div id="order-col-Pronto" class="space-y-3 flex-1 min-h-[150px]"></div>
+                </div>
+
+                <div class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col">
+                    <h3 class="font-bold text-xs text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center font-title">
+                        <span>✅ Concluído</span>
+                        <span id="order-count-Concluído" class="text-xs bg-bege px-2 py-0.5 rounded-full text-gray-600 font-accent">0</span>
+                    </h3>
+                    <div id="order-col-Concluído" class="space-y-3 flex-1 min-h-[150px]"></div>
+                </div>
+            </div>
         </section>
 
         <!-- TAB 3: CALENDÁRIO MENSAL -->
         <section id="tab-calendar" class="hidden space-y-6">
-            <div class="flex justify-between items-center">
-                <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Calendário do Mês</h2>
-                <div class="flex items-center gap-3 bg-white px-4 py-2 rounded-xl border border-begeDark">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Calendário do Mês</h2>
+                    <p class="text-sm text-gray-500">Clique em qualquer dia para ver os posts ou agendar novo conteúdo</p>
+                </div>
+                <div class="flex items-center gap-3 bg-white px-4 py-2 rounded-xl border border-begeDark self-start">
                     <button onclick="changeMonth(-1)" class="text-bordo hover:bg-bege p-1 rounded-lg">←</button>
-                    <span id="calendar-month-title" class="font-bold text-bordo text-sm font-title">Outubro 2026</span>
+                    <span id="calendar-month-title" class="font-bold text-bordo text-sm min-w-[120px] text-center font-title">Outubro 2026</span>
                     <button onclick="changeMonth(1)" class="text-bordo hover:bg-bege p-1 rounded-lg">→</button>
                 </div>
             </div>
@@ -418,51 +470,139 @@
 
         <!-- TAB 4: PLATAFORMAS -->
         <section id="tab-platforms" class="hidden space-y-6">
-            <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Organização por Rede Social</h2>
+            <div>
+                <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Organização por Rede Social</h2>
+                <p class="text-sm text-gray-500">Visualize as publicações separadas por cada canal</p>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col">
-                    <h3 class="font-bold text-sm text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between font-title"><span>Instagram</span><span id="count-plat-instagram">0</span></h3>
+                    <h3 class="font-bold text-sm text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center font-title">
+                        <span>Instagram</span>
+                        <span id="count-plat-instagram" class="text-xs bg-bege px-2 py-0.5 rounded-full text-gray-600 font-accent">0</span>
+                    </h3>
                     <div id="col-plat-instagram" class="space-y-3 flex-1 min-h-[150px]"></div>
                 </div>
                 <div class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col">
-                    <h3 class="font-bold text-sm text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between font-title"><span>TikTok</span><span id="count-plat-tiktok">0</span></h3>
+                    <h3 class="font-bold text-sm text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center font-title">
+                        <span>TikTok</span>
+                        <span id="count-plat-tiktok" class="text-xs bg-bege px-2 py-0.5 rounded-full text-gray-600 font-accent">0</span>
+                    </h3>
                     <div id="col-plat-tiktok" class="space-y-3 flex-1 min-h-[150px]"></div>
                 </div>
                 <div class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col">
-                    <h3 class="font-bold text-sm text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between font-title"><span>Pinterest / Outros</span><span id="count-plat-outros">0</span></h3>
+                    <h3 class="font-bold text-sm text-bordo mb-3 pb-2 border-b border-begeDark flex justify-between items-center font-title">
+                        <span>Pinterest / Outros</span>
+                        <span id="count-plat-outros" class="text-xs bg-bege px-2 py-0.5 rounded-full text-gray-600 font-accent">0</span>
+                    </h3>
                     <div id="col-plat-outros" class="space-y-3 flex-1 min-h-[150px]"></div>
                 </div>
             </div>
         </section>
 
-        <!-- TAB 5: MURAL DA MARCA (RESTAURADO COMPLETO) -->
+        <!-- TAB 5: MURAL DA MARCA -->
         <section id="tab-brandmural" class="hidden space-y-6">
-            <div class="flex justify-between items-center">
-                <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Mural & Bússola da Marca</h2>
-                <button onclick="openBrandNoteModal()" class="bg-vibrante text-white text-xs font-semibold px-4 py-2 rounded-xl font-accent">+ Nova Nota / Ideia Fixa</button>
-            </div>
-
             <div class="bg-gradient-to-r from-bordo to-vibrante p-5 rounded-2xl text-white shadow-md space-y-3">
                 <div class="flex justify-between items-center border-b border-white/20 pb-2">
-                    <h3 class="font-bold text-sm uppercase tracking-wide font-title">🎯 Bússola de Objetivos & Campanha Ativa</h3>
-                    <button onclick="toggleBrandGoalsExpand()" class="text-xs bg-white/25 hover:bg-white/35 px-2.5 py-1 rounded-lg font-accent">✏️ Editar</button>
+                    <div class="flex items-center gap-2">
+                        <span class="text-lg">🎯</span>
+                        <h3 class="font-bold text-sm uppercase tracking-wide font-title">Bússola de Objetivos & Campanha Ativa</h3>
+                    </div>
+                    <button onclick="toggleBrandGoalsExpand()" id="btn-toggle-goals" class="text-xs bg-white/20 hover:bg-white/30 px-2.5 py-1 rounded-lg font-semibold transition font-accent">
+                        ✏️ Editar Objetivos
+                    </button>
                 </div>
+
                 <div id="view-brand-goals" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                     <div class="bg-black/15 p-3 rounded-xl border border-white/10 space-y-1">
-                        <span class="text-[10px] font-bold uppercase text-amber-200 font-accent">📌 Objetivos da Marca:</span>
-                        <p id="display-brand-goals" class="font-medium whitespace-pre-line">Nenhum objetivo cadastrado.</p>
+                        <span class="text-[10px] font-bold uppercase text-amber-200 font-accent">📌 Objetivos Principais da Marca:</span>
+                        <p id="display-brand-goals" class="font-medium whitespace-pre-line leading-relaxed">Nenhum objetivo cadastrado ainda.</p>
                     </div>
                     <div class="bg-black/15 p-3 rounded-xl border border-white/10 space-y-1">
                         <span class="text-[10px] font-bold uppercase text-amber-200 font-accent">🚀 Campanha / Foco do Mês:</span>
-                        <p id="display-brand-campaign" class="font-bold text-sm font-title">Nenhuma campanha ativa.</p>
-                        <p id="display-brand-campaign-notes" class="text-[11px] text-amber-100/95 whitespace-pre-line mt-1 font-accent"></p>
+                        <p id="display-brand-campaign" class="font-bold text-sm text-white font-title">Nenhuma campanha ativa no momento.</p>
+                        <p id="display-brand-campaign-notes" class="text-[11px] text-amber-100/90 whitespace-pre-line mt-1 font-accent"></p>
                     </div>
                 </div>
+
                 <div id="form-brand-goals" class="hidden space-y-3 pt-2 text-xs">
-                    <textarea id="input-brand-goals" rows="2" class="w-full p-2.5 rounded-xl text-gray-800 focus:outline-none" placeholder="Objetivos..."></textarea>
-                    <input type="text" id="input-brand-campaign" class="w-full p-2 rounded-xl text-gray-800 focus:outline-none" placeholder="Campanha ativa...">
-                    <textarea id="input-brand-campaign-notes" rows="2" class="w-full p-2.5 rounded-xl text-gray-800 focus:outline-none" placeholder="Observações da campanha (opcional)..."></textarea>
-                    <button onclick="saveBrandGoals()" class="bg-white text-bordo font-bold px-4 py-1.5 rounded-xl font-accent">Salvar Alterações</button>
+                    <div>
+                        <label class="block font-bold mb-1 text-amber-200 font-accent">Objetivos Gerais / Trimestrais da Cazinha:</label>
+                        <textarea id="input-brand-goals" rows="2" class="w-full p-2.5 rounded-xl text-gray-800 text-xs focus:outline-none" placeholder="Ex: Fortalecer presença, aumentar vendas..."></textarea>
+                    </div>
+                    <div>
+                        <label class="block font-bold mb-1 text-amber-200 font-accent">Campanha Ativa do Mês:</label>
+                        <input type="text" id="input-brand-campaign" class="w-full p-2 rounded-xl text-gray-800 text-xs focus:outline-none" placeholder="Ex: Lançamento Coleção...">
+                    </div>
+                    <div>
+                        <label class="block font-bold mb-1 text-amber-200 font-accent">Observações da Campanha Ativa (Opcional):</label>
+                        <textarea id="input-brand-campaign-notes" rows="2" class="w-full p-2.5 rounded-xl text-gray-800 text-xs focus:outline-none" placeholder="Observações..."></textarea>
+                    </div>
+                    <div class="flex justify-end gap-2">
+                        <button onclick="saveBrandGoals()" class="bg-white text-bordo font-bold px-4 py-1.5 rounded-xl shadow hover:bg-bege text-xs font-accent">Salvar Objetivos</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Mural de Anotações & Checklists</h2>
+                    <p class="text-sm text-gray-500">Caderno livre para pensamentos, tarefas rápidas e lembretes operacionais</p>
+                </div>
+                
+                <div class="flex items-center gap-1 bg-white p-1 rounded-xl border border-begeDark text-xs font-accent">
+                    <button onclick="filterBrandMural('ALL')" id="mural-filter-ALL" class="px-3 py-1.5 rounded-lg font-bold bg-bege text-bordo">Todas</button>
+                    <button onclick="filterBrandMural('NOTE')" id="mural-filter-NOTE" class="px-3 py-1.5 rounded-lg font-medium text-gray-500">Notas Livres</button>
+                    <button onclick="filterBrandMural('CHECKLIST')" id="mural-filter-CHECKLIST" class="px-3 py-1.5 rounded-lg font-medium text-gray-500">Checklists</button>
+                </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-4 shadow-sm">
+                <div class="flex items-center gap-4 border-b border-begeDark pb-2 text-xs font-bold text-bordo font-accent">
+                    <label class="flex items-center gap-1.5 cursor-pointer">
+                        <input type="radio" name="note-type" value="NOTE" checked onchange="toggleNoteTypeInput()" class="accent-bordo"> 📝 Nota / Insight Livre
+                    </label>
+                    <label class="flex items-center gap-1.5 cursor-pointer">
+                        <input type="radio" name="note-type" value="CHECKLIST" onchange="toggleNoteTypeInput()" class="accent-bordo"> ☑️ Lista de Afazeres (Checklist)
+                    </label>
+                </div>
+
+                <div class="space-y-3">
+                    <input type="text" id="brand-note-title" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs font-bold focus:outline-none font-title" placeholder="Título...">
+                    
+                    <div id="field-note-text">
+                        <textarea id="brand-note-text" rows="2" class="w-full p-3 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Digite seu pensamento solto aqui..."></textarea>
+                    </div>
+
+                    <div id="field-checklist-items" class="hidden space-y-2">
+                        <p class="text-[10px] font-bold text-gray-500 uppercase font-accent">Itens da Lista (um por linha):</p>
+                        <textarea id="brand-checklist-text" rows="3" class="w-full p-3 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Item 1&#10;Item 2"></textarea>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pt-2">
+                        <div class="flex flex-wrap items-center gap-3 text-xs">
+                            <div>
+                                <span class="text-[10px] font-bold text-gray-600 uppercase block font-accent">Data Limite:</span>
+                                <input type="date" id="brand-note-duedate" class="px-2.5 py-1 rounded-lg border border-begeDark text-xs">
+                            </div>
+
+                            <div>
+                                <span class="text-[10px] font-bold text-gray-600 uppercase block font-accent">Categorias:</span>
+                                <div class="flex flex-wrap gap-1.5 text-[11px] font-accent">
+                                    <label class="flex items-center gap-1 bg-bege px-2 py-0.5 rounded border border-begeDark cursor-pointer">
+                                        <input type="checkbox" name="brand-note-cat" value="Produtos" class="accent-bordo"> 📦 Produtos
+                                    </label>
+                                    <label class="flex items-center gap-1 bg-bege px-2 py-0.5 rounded border border-begeDark cursor-pointer">
+                                        <input type="checkbox" name="brand-note-cat" value="Lembretes" class="accent-bordo"> 📌 Lembretes
+                                    </label>
+                                    <label class="flex items-center gap-1 bg-bege px-2 py-0.5 rounded border border-begeDark cursor-pointer">
+                                        <input type="checkbox" name="brand-note-cat" value="Inspirações" class="accent-bordo"> ✨ Inspirações
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="addBrandNote()" class="bg-vibrante hover:bg-bordo text-white font-semibold text-xs py-2.5 px-5 rounded-xl transition shadow font-accent">Salvar no Mural</button>
+                    </div>
                 </div>
             </div>
 
@@ -471,84 +611,128 @@
 
         <!-- TAB 6: DATAS SAZONAIS -->
         <section id="tab-seasonal" class="hidden space-y-6">
-            <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Datas Sazonais & Oportunidades</h2>
-            <div id="seasonal-posts-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+            <div>
+                <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Datas Sazonais & Comemorativas</h2>
+                <p class="text-sm text-gray-500">Planeje conteúdos estratégicos vinculados a eventos importantes do ano</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-begeDark space-y-4">
+                <h3 class="font-bold text-bordo text-sm font-title">Publicações Marcadas como Sazonais</h3>
+                <div id="seasonal-posts-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+            </div>
         </section>
 
-        <!-- TAB 7: ESTRATÉGIA & SEO (RESTAURADO COMPLETO) -->
+        <!-- TAB 7: ESTRATÉGIA & SEO -->
         <section id="tab-strategy" class="hidden space-y-6">
-            <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Central de Estratégia & SEO</h2>
+            <div>
+                <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Central de Estratégia & SEO</h2>
+                <p class="text-sm text-gray-500">Gerencie palavras-chave principais do seu nicho para usar de forma natural nas legendas</p>
+            </div>
+
             <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3">
-                <h3 class="font-bold text-bordo text-sm font-title">Adicionar Nova Palavra-Chave / Hashtag</h3>
-                <div class="flex gap-2">
-                    <input type="text" id="new-tag-text" class="px-3 py-2 rounded-xl border border-begeDark text-xs flex-1" placeholder="Ex: velas aromáticas artesanais">
-                    <select id="new-tag-cat" class="px-3 py-2 rounded-xl border border-begeDark text-xs font-accent">
-                        <option value="Marca & Nicho">Marca & Nicho</option>
-                        <option value="Hashtags Fixas">Hashtags Fixas</option>
-                        <option value="SEO Pinterest">SEO Pinterest</option>
-                    </select>
-                    <button onclick="addSeoTag()" class="bg-vibrante text-white text-xs font-semibold px-4 py-2 rounded-xl font-accent">Adicionar</button>
+                <h3 class="font-bold text-bordo text-sm font-title">Adicionar Nova Palavra-Chave ao Banco</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <input type="text" id="new-tag-text" class="px-3 py-2 rounded-xl border border-begeDark text-xs" placeholder="Ex: velas aromáticas">
+                    
+                    <div class="space-y-1">
+                        <span class="text-[10px] font-bold text-gray-600 uppercase block font-accent">Categorias:</span>
+                        <div class="flex flex-wrap gap-1.5 text-[11px] font-accent">
+                            <label class="flex items-center gap-1 bg-bege px-2 py-0.5 rounded border border-begeDark cursor-pointer">
+                                <input type="checkbox" name="new-tag-cat" value="Marca & Nicho" class="accent-bordo"> Marca & Nicho
+                            </label>
+                            <label class="flex items-center gap-1 bg-bege px-2 py-0.5 rounded border border-begeDark cursor-pointer">
+                                <input type="checkbox" name="new-tag-cat" value="Produtos" class="accent-bordo"> Produtos
+                            </label>
+                            <label class="flex items-center gap-1 bg-bege px-2 py-0.5 rounded border border-begeDark cursor-pointer">
+                                <input type="checkbox" name="new-tag-cat" value="Intenção & Estilo de Vida" class="accent-bordo"> Estilo de Vida
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="flex items-end">
+                        <button onclick="addSeoTag()" class="w-full bg-vibrante text-white text-xs font-semibold py-2 px-4 rounded-xl hover:bg-bordo transition font-accent">Adicionar Termo</button>
+                    </div>
                 </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="bg-white p-4 rounded-2xl border border-begeDark space-y-3">
-                    <h3 class="font-bold text-bordo text-xs font-title uppercase">🏷️ Marca & Nicho</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3">
+                    <div class="flex justify-between items-center border-b border-begeDark pb-2">
+                        <h4 class="font-bold text-bordo text-xs uppercase font-accent">🏷️ Marca & Nicho</h4>
+                        <button onclick="copyCategoryTags('Marca & Nicho')" class="text-[10px] bg-bege hover:bg-begeDark text-bordo font-bold px-2.5 py-1 rounded-lg font-accent">Copiar Todos</button>
+                    </div>
                     <div id="tags-container-Marca & Nicho" class="flex flex-wrap gap-1.5 min-h-[50px]"></div>
                 </div>
-                <div class="bg-white p-4 rounded-2xl border border-begeDark space-y-3">
-                    <h3 class="font-bold text-bordo text-xs font-title uppercase">📌 Hashtags Fixas</h3>
-                    <div id="tags-container-Hashtags Fixas" class="flex flex-wrap gap-1.5 min-h-[50px]"></div>
+
+                <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3">
+                    <div class="flex justify-between items-center border-b border-begeDark pb-2">
+                        <h4 class="font-bold text-bordo text-xs uppercase font-accent">📦 Produtos</h4>
+                        <button onclick="copyCategoryTags('Produtos')" class="text-[10px] bg-bege hover:bg-begeDark text-bordo font-bold px-2.5 py-1 rounded-lg font-accent">Copiar Todos</button>
+                    </div>
+                    <div id="tags-container-Produtos" class="flex flex-wrap gap-1.5 min-h-[50px]"></div>
                 </div>
-                <div class="bg-white p-4 rounded-2xl border border-begeDark space-y-3">
-                    <h3 class="font-bold text-bordo text-xs font-title uppercase">📌 SEO Pinterest</h3>
-                    <div id="tags-container-SEO Pinterest" class="flex flex-wrap gap-1.5 min-h-[50px]"></div>
+
+                <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3 md:col-span-2">
+                    <div class="flex justify-between items-center border-b border-begeDark pb-2">
+                        <h4 class="font-bold text-bordo text-xs uppercase font-accent">✨ Intenção & Estilo de Vida</h4>
+                        <button onclick="copyCategoryTags('Intenção & Estilo de Vida')" class="text-[10px] bg-bege hover:bg-begeDark text-bordo font-bold px-2.5 py-1 rounded-lg font-accent">Copiar Todos</button>
+                    </div>
+                    <div id="tags-container-Intenção & Estilo de Vida" class="flex flex-wrap gap-1.5 min-h-[50px]"></div>
                 </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-begeDark space-y-4">
+                <h3 class="font-bold text-bordo text-base font-title">Distribuição por Objetivo de Conteúdo</h3>
+                <div id="strategy-goals-summary" class="space-y-2 text-xs"></div>
             </div>
         </section>
 
-        <!-- TAB 8: MÉTRICAS (RESTAURADO COMPLETO) -->
+        <!-- TAB 8: MÉTRICAS & RESULTADOS -->
         <section id="tab-metrics" class="hidden space-y-6">
-            <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Métricas & Desempenho</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="bg-white p-4 rounded-2xl border border-begeDark">
-                    <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Alcance Total</span>
+            <div>
+                <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Métricas & Desempenho</h2>
+                <p class="text-sm text-gray-500">Análise de resultados gerada automaticamente a partir dos dados preenchidos nos seus posts</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
+                    <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Alcance Total Acumulado</span>
                     <h3 id="kpi-total-reach" class="text-2xl font-bold text-bordo mt-1 font-title">0</h3>
                 </div>
-                <div class="bg-white p-4 rounded-2xl border border-begeDark">
-                    <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Engajamento Médio</span>
+                <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
+                    <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Média de Engajamento</span>
                     <h3 id="kpi-avg-engagement" class="text-2xl font-bold text-pink mt-1 font-title">0%</h3>
                 </div>
-                <div class="bg-white p-4 rounded-2xl border border-begeDark">
-                    <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Vendas Relatadas</span>
+                <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
+                    <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Vendas / Conversões</span>
                     <h3 id="kpi-total-sales" class="text-2xl font-bold text-verde mt-1 font-title">0</h3>
+                </div>
+                <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
+                    <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Top Post do Mês</span>
+                    <h3 id="kpi-top-post-title" class="text-xs font-bold text-gray-800 line-clamp-1 mt-1 font-title">-</h3>
+                    <span id="kpi-top-post-stats" class="text-[9px] text-vibrante font-bold mt-2 font-accent">Nenhum post registrado</span>
                 </div>
             </div>
 
-            <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-4">
-                <h3 class="font-bold text-bordo text-sm font-title">Registrar / Atualizar Métricas por Post</h3>
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
-                    <div>
-                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1 font-accent">Selecionar Post</label>
-                        <select id="metric-post-select" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs font-accent"></select>
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1 font-accent">Alcance</label>
-                        <input type="number" id="metric-reach" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs" placeholder="0">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1 font-accent">Engajamento (%)</label>
-                        <input type="number" step="0.1" id="metric-engagement" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs" placeholder="0.0">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1 font-accent">Vendas Geradas</label>
-                        <input type="number" id="metric-sales" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs" placeholder="0">
-                    </div>
-                </div>
-                <button onclick="savePostMetrics()" class="bg-vibrante text-white text-xs font-semibold px-5 py-2.5 rounded-xl font-accent">Salvar Métricas do Post</button>
+            <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3 overflow-x-auto">
+                <h3 class="font-bold text-bordo text-sm font-title">Histórico de Performance dos Posts</h3>
+                <table class="w-full text-left text-xs">
+                    <thead>
+                        <tr class="border-b border-begeDark text-gray-500 uppercase text-[10px] font-accent">
+                            <th class="pb-2">Post</th>
+                            <th class="pb-2">Plataforma</th>
+                            <th class="pb-2">Alcance</th>
+                            <th class="pb-2">Interações</th>
+                            <th class="pb-2">Vendas</th>
+                            <th class="pb-2">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="metrics-posts-tbody" class="divide-y divide-begeDark/50"></tbody>
+                </table>
             </div>
         </section>
 
-        <!-- TAB 9: GESTÃO FINANCEIRA & PLANILHA DE GASTOS (ÚLTIMA ABA COM INTEGRAÇÃO DE PEDIDOS E TOGGLE) -->
+        <!-- TAB 9: GESTÃO FINANCEIRA & PLANILHA DE GASTOS (ÚLTIMA ABA COM INTEGRAÇÃO DE PEDIDOS) -->
         <section id="tab-finance" class="hidden space-y-6">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
@@ -562,7 +746,6 @@
                 </button>
             </div>
 
-            <!-- DASHBOARD / KPIS FINANCEIROS DINÂMICOS (COM E SEM OS PEDIDOS) -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
                     <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Entradas (Vendas Pagas)</span>
@@ -586,7 +769,6 @@
                 </div>
             </div>
 
-            <!-- FILTROS, ABAS E CONTROLE DE EXIBIÇÃO DOS PEDIDOS -->
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-begeDark">
                 <div class="flex flex-wrap items-center gap-2">
                     <input type="text" id="fin-search" oninput="renderFinance()" placeholder="🔍 Buscar por descrição ou cliente..." class="px-3 py-1.5 text-xs rounded-xl border border-begeDark bg-bege/30 focus:outline-none w-full md:w-56">
@@ -608,7 +790,6 @@
                         <option value="Não Categorizado">Não Categorizado / Outros</option>
                     </select>
 
-                    <!-- BOTÃO TOGGLE PARA MOSTRAR / OCULTAR PEDIDOS NA PLANILHA -->
                     <button onclick="toggleIncludeOrders()" id="btn-toggle-orders" class="px-3 py-1.5 text-xs font-semibold rounded-xl border border-bordo bg-bordo text-white hover:bg-vibrante transition font-accent flex items-center gap-1.5">
                         <span id="toggle-orders-icon">👁️‍🗨️</span> <span id="toggle-orders-text">Ocultar Pedidos da Planilha</span>
                     </button>
@@ -620,7 +801,6 @@
                 </div>
             </div>
 
-            <!-- VISÃO 1: TABELA DE GASTOS & DESPESAS -->
             <div id="fin-view-expenses" class="bg-white p-5 rounded-2xl border border-begeDark shadow-2xs overflow-x-auto space-y-3">
                 <div class="flex justify-between items-center border-b border-begeDark pb-2">
                     <h3 class="font-bold text-bordo text-sm font-title">Detalhamento de Saídas & Custos Operacionais</h3>
@@ -642,7 +822,6 @@
                 </table>
             </div>
 
-            <!-- VISÃO 2: TRACKING DE VENDAS & ENTRADAS (INTEGRADO COM PEDIDOS) -->
             <div id="fin-view-incomes" class="hidden bg-white p-5 rounded-2xl border border-begeDark shadow-2xs overflow-x-auto space-y-3">
                 <div class="flex justify-between items-center border-b border-begeDark pb-2">
                     <h3 class="font-bold text-bordo text-sm font-title">Tracking de Vendas, Frete & Pagamentos (Sincronizado com Pedidos)</h3>
@@ -667,7 +846,7 @@
 
     </main>
 
-    <!-- MODAL DE LANÇAMENTO FINANCEIRO (APENAS PARA GASTOS E ENTRADAS EXTRAS) -->
+    <!-- Modais (Posts, Pedidos, Finanças, Mural) -->
     <div id="finance-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl max-h-[90vh] overflow-y-auto space-y-4">
             <div class="flex items-center justify-between border-b border-begeDark pb-3">
@@ -701,7 +880,7 @@
 
                 <div>
                     <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Descrição / Nome do Item ou Fornecedor</label>
-                    <input type="text" id="fin-title" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Ex: Cera vegetal 5kg / Embalagens Correios">
+                    <input type="text" id="fin-title" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Ex: Cera vegetal 5kg">
                 </div>
 
                 <div class="grid grid-cols-3 gap-3 bg-bege/30 p-3 rounded-xl border border-begeDark">
@@ -724,28 +903,15 @@
                     <input type="date" id="fin-date" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
                 </div>
 
-                <!-- CAMPO DE OBSERVAÇÕES COM FORMATADOR COMPLETO DE TEXTO (RICH TEXT TOOLBAR) -->
                 <div class="space-y-1.5">
                     <label class="block text-xs font-bold text-gray-700 uppercase font-accent">Observações (Com Formatação Rica)</label>
-                    
-                    <!-- Toolbar Inteligente de Formatação -->
                     <div class="flex flex-wrap items-center gap-1 bg-bege p-1.5 rounded-t-xl border border-begeDark border-b-0 text-xs font-accent">
-                        <button type="button" onclick="execEditorCommand('bold')" class="px-2 py-1 bg-white border border-begeDark rounded font-bold hover:bg-begeDark" title="Negrito"><b>B</b></button>
-                        <button type="button" onclick="execEditorCommand('italic')" class="px-2 py-1 bg-white border border-begeDark rounded italic hover:bg-begeDark" title="Itálico"><i>I</i></button>
-                        <button type="button" onclick="execEditorCommand('underline')" class="px-2 py-1 bg-white border border-begeDark rounded underline hover:bg-begeDark" title="Underline"><u>U</u></button>
-                        <button type="button" onclick="execEditorCommand('hiliteColor', '#fef08a')" class="px-2 py-1 bg-yellow-200 border border-yellow-400 rounded font-semibold hover:bg-yellow-300" title="Highlight Amarelo">✨ Destaque</button>
-                        
-                        <div class="flex items-center gap-1 ml-auto">
-                            <span class="text-[10px] font-bold text-gray-500">Cor:</span>
-                            <button type="button" onclick="execEditorCommand('foreColor', '#8C1D24')" class="w-5 h-5 rounded-full bg-bordo border border-white" title="Vinho Bordô"></button>
-                            <button type="button" onclick="execEditorCommand('foreColor', '#D92B2B')" class="w-5 h-5 rounded-full bg-vibrante border border-white" title="Vermelho Vibrante"></button>
-                            <button type="button" onclick="execEditorCommand('foreColor', '#16a34a')" class="w-5 h-5 rounded-full bg-green-600 border border-white" title="Verde"></button>
-                            <button type="button" onclick="execEditorCommand('foreColor', '#2563eb')" class="w-5 h-5 rounded-full bg-blue-600 border border-white" title="Azul"></button>
-                            <button type="button" onclick="execEditorCommand('foreColor', '#374151')" class="w-5 h-5 rounded-full bg-gray-700 border border-white" title="Escuro"></button>
-                        </div>
+                        <button type="button" onclick="execEditorCommand('bold')" class="px-2 py-1 bg-white border border-begeDark rounded font-bold hover:bg-begeDark"><b>B</b></button>
+                        <button type="button" onclick="execEditorCommand('italic')" class="px-2 py-1 bg-white border border-begeDark rounded italic hover:bg-begeDark"><i>I</i></button>
+                        <button type="button" onclick="execEditorCommand('underline')" class="px-2 py-1 bg-white border border-begeDark rounded underline hover:bg-begeDark"><u>U</u></button>
+                        <button type="button" onclick="execEditorCommand('hiliteColor', '#fef08a')" class="px-2 py-1 bg-yellow-200 border border-yellow-400 rounded font-semibold hover:bg-yellow-300">✨ Destaque</button>
                     </div>
-
-                    <div id="fin-notes-editor" contenteditable="true" class="rich-editor-content p-3 rounded-b-xl border border-begeDark bg-white text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Digite detalhes, fornecedor ou observações importantes aqui..."></div>
+                    <div id="fin-notes-editor" contenteditable="true" class="rich-editor-content p-3 rounded-b-xl border border-begeDark bg-white text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Observações..."></div>
                 </div>
 
                 <div class="flex gap-3 pt-3">
@@ -756,7 +922,154 @@
         </div>
     </div>
 
-    <!-- MODAL POST VIEWER -->
+    <!-- Modal Adicionar/Editar Post -->
+    <div id="modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-xl max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between mb-6 border-b border-begeDark pb-3">
+                <h3 id="modal-title" class="text-lg font-bold text-bordo font-title">Novo Conteúdo</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">✕</button>
+            </div>
+
+            <form id="post-form" onsubmit="savePost(event)" class="space-y-4">
+                <input type="hidden" id="post-id">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Título do Post</label>
+                    <input type="text" id="post-title" required class="w-full px-4 py-2.5 rounded-xl border border-begeDark focus:ring-2 focus:ring-vibrante focus:outline-none text-sm font-title font-bold" placeholder="Ex: Lançamento">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Plataformas</label>
+                    <div class="flex flex-wrap gap-2 text-xs font-accent">
+                        <label class="flex items-center gap-1.5 bg-bege px-3 py-1.5 rounded-lg border border-begeDark cursor-pointer"><input type="checkbox" name="platform" value="Instagram" class="accent-bordo"> Instagram</label>
+                        <label class="flex items-center gap-1.5 bg-bege px-3 py-1.5 rounded-lg border border-begeDark cursor-pointer"><input type="checkbox" name="platform" value="TikTok" class="accent-bordo"> TikTok</label>
+                        <label class="flex items-center gap-1.5 bg-bege px-3 py-1.5 rounded-lg border border-begeDark cursor-pointer"><input type="checkbox" name="platform" value="Pinterest" class="accent-bordo"> Pinterest</label>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Formato</label>
+                        <select id="post-format" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
+                            <option value="Carrossel">Carrossel</option>
+                            <option value="Reels">Reels / Vídeo Curto</option>
+                            <option value="Estático">Foto Estática</option>
+                            <option value="Stories">Stories</option>
+                            <option value="Vídeo Longo">Vídeo Longo</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Status</label>
+                        <select id="post-status" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
+                            <option value="ideia">Ideia</option>
+                            <option value="producao">Em Produção</option>
+                            <option value="agendado">Agendado</option>
+                            <option value="publicado">Publicado</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Data de Publicação</label>
+                        <input type="date" id="post-date" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 border-t border-begeDark">
+                    <div class="relative">
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Objetivo(s)</label>
+                        <div class="p-2 border border-begeDark rounded-xl text-xs bg-bege/30 max-h-28 overflow-y-auto space-y-1">
+                            <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="post-goals" value="Conexão" class="accent-bordo"> Conexão</label>
+                            <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="post-goals" value="Engajamento" class="accent-bordo"> Engajamento</label>
+                            <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="post-goals" value="Alcance" class="accent-bordo"> Alcance</label>
+                            <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="post-goals" value="Vendas" class="accent-bordo"> Vendas</label>
+                            <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="post-goals" value="Entretenimento" class="accent-bordo"> Entretenimento</label>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Pilar(es)</label>
+                        <div class="p-2 border border-begeDark rounded-xl text-xs bg-bege/30 max-h-28 overflow-y-auto space-y-1">
+                            <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="post-pillars" value="Educacional" class="accent-bordo"> Educacional</label>
+                            <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="post-pillars" value="Bastidores" class="accent-bordo"> Bastidores</label>
+                            <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="post-pillars" value="Venda Direta" class="accent-bordo"> Venda Direta</label>
+                            <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="post-pillars" value="Estilo de Vida" class="accent-bordo"> Estilo de Vida</label>
+                            <label class="flex items-center gap-1 cursor-pointer"><input type="checkbox" name="post-pillars" value="Entretenimento" class="accent-bordo"> Entretenimento</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Status da Mídia</label>
+                        <select id="post-media-status" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
+                            <option value="A Gravar">A Gravar / Foto</option>
+                            <option value="Em Edição">Em Edição</option>
+                            <option value="Mídia Pronta">Mídia Pronta</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="space-y-1.5 pt-2 border-t border-begeDark">
+                    <label class="block text-xs font-bold text-gray-700 uppercase font-accent">Apoio de Palavras-Chave do Banco</label>
+                    <div id="modal-quick-tags" class="flex flex-wrap gap-1 p-2 bg-bege/50 rounded-xl border border-begeDark/50 max-h-20 overflow-y-auto font-accent"></div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Legenda / Roteiro</label>
+                    <textarea id="post-caption" oninput="checkSeoKeywordsInCaption()" rows="4" class="w-full px-4 py-2.5 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Escreva aqui..."></textarea>
+                    <p id="seo-feedback-text" class="text-[10px] text-gray-500 font-medium mt-1 font-accent"></p>
+                </div>
+                <div class="bg-bege/60 p-3 rounded-xl space-y-2 border border-begeDark">
+                    <span class="text-xs font-bold text-bordo block font-title">📊 Métricas do Post</span>
+                    <div class="grid grid-cols-3 gap-2 text-xs">
+                        <div><label class="block text-[10px] text-gray-600 font-accent">Alcance</label><input type="number" id="metric-reach" class="w-full p-1.5 rounded-lg border border-begeDark text-xs" placeholder="0"></div>
+                        <div><label class="block text-[10px] text-gray-600 font-accent">Interações</label><input type="number" id="metric-interactions" class="w-full p-1.5 rounded-lg border border-begeDark text-xs" placeholder="0"></div>
+                        <div><label class="block text-[10px] text-gray-600 font-accent">Vendas</label><input type="number" id="metric-sales" class="w-full p-1.5 rounded-lg border border-begeDark text-xs" placeholder="0"></div>
+                    </div>
+                </div>
+                <div class="flex gap-3 pt-3">
+                    <button type="button" onclick="closeModal()" class="w-1/2 py-2.5 border border-begeDark rounded-xl text-xs font-semibold text-gray-600 hover:bg-bege font-accent">Cancelar</button>
+                    <button type="submit" class="w-1/2 py-2.5 bg-vibrante text-white rounded-xl text-xs font-semibold hover:bg-bordo transition font-accent">Salvar Conteúdo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Adicionar/Editar Pedido -->
+    <div id="order-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between mb-6 border-b border-begeDark pb-3">
+                <h3 id="order-modal-title" class="text-lg font-bold text-bordo font-title">Novo Pedido / Encomenda</h3>
+                <button onclick="closeOrderModal()" class="text-gray-400 hover:text-gray-600">✕</button>
+            </div>
+
+            <form id="order-form" onsubmit="saveOrder(event)" class="space-y-4">
+                <input type="hidden" id="order-id">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Nome do Cliente</label><input type="text" id="order-client" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs" placeholder="Ex: Maria"></div>
+                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Contato</label><input type="text" id="order-contact" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs" placeholder="WhatsApp"></div>
+                </div>
+                <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Descrição</label><textarea id="order-items" rows="2" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs" placeholder="Produtos"></textarea></div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 bg-bege/30 p-3 rounded-xl border border-begeDark">
+                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Qtd</label><input type="number" min="1" id="order-qty" value="1" oninput="calculateOrderTotal()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-white"></div>
+                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Valor Unit. (R$)</label><input type="number" step="0.01" id="order-unit-amount" value="0" oninput="calculateOrderTotal()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-white"></div>
+                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Entrega</label><select id="order-fulfillment-type" onchange="toggleShippingFields()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-white"><option value="Retirada">Retirada</option><option value="Envio">Envio</option></select></div>
+                </div>
+                <div id="shipping-container" class="hidden space-y-3 bg-bege/60 p-3 rounded-xl border border-begeDark">
+                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Endereço</label><input type="text" id="order-address" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-white"></div>
+                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Frete (R$)</label><input type="number" step="0.01" id="order-shipping-amount" value="0" oninput="calculateOrderTotal()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-white"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Total (R$)</label><input type="number" step="0.01" id="order-amount" readonly class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-gray-100 font-bold text-bordo"></div>
+                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Pagamento</label><select id="order-payment-method" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"><option value="Pix">Pix</option><option value="Cartão">Cartão</option><option value="Dinheiro">Dinheiro</option></select></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Status Pagamento</label><select id="order-payment-status" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"><option value="Pendente">Pendente</option><option value="Pago">Pago</option><option value="Sinal / 50%">Sinal / 50%</option></select></div>
+                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Status Pedido</label><select id="order-status" onchange="toggleConclusionFields()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"><option value="Pendente">Pendente</option><option value="Em Produção">Em Produção</option><option value="Pronto">Pronto</option><option value="Concluído">Concluído</option><option value="Cancelado">Cancelado</option></select></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Data Pedido</label><input type="date" id="order-date" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"></div>
+                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Data Entrega</label><input type="date" id="order-delivery-date" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"></div>
+                </div>
+                <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Observações</label><input type="text" id="order-notes" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"></div>
+                <div class="flex gap-3 pt-3">
+                    <button type="button" onclick="closeOrderModal()" class="w-1/2 py-2.5 border border-begeDark rounded-xl text-xs font-semibold text-gray-600 font-accent">Cancelar</button>
+                    <button type="submit" class="w-1/2 py-2.5 bg-vibrante text-white rounded-xl text-xs font-semibold hover:bg-bordo transition font-accent">Salvar Pedido</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Visualizar Post -->
     <div id="view-post-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl max-h-[90vh] overflow-y-auto space-y-4">
             <div class="flex items-center justify-between border-b border-begeDark pb-3">
@@ -766,78 +1079,16 @@
             <div class="space-y-3 text-xs">
                 <div class="flex flex-wrap gap-2 items-center" id="view-post-badges"></div>
                 <div><span class="text-[10px] font-bold text-gray-400 uppercase font-accent">Data</span><p id="view-post-date" class="font-bold text-bordo font-accent">-</p></div>
-                <div><span class="text-[10px] font-bold text-gray-400 uppercase font-accent">Legenda / Roteiro</span><div id="view-post-caption" class="p-3 bg-bege/40 rounded-xl border border-begeDark whitespace-pre-line leading-relaxed text-gray-800"></div></div>
+                <div><span class="text-[10px] font-bold text-gray-400 uppercase font-accent">Legenda</span><div id="view-post-caption" class="p-3 bg-bege/40 rounded-xl border border-begeDark whitespace-pre-line leading-relaxed text-gray-800"></div></div>
+                <div class="grid grid-cols-2 gap-2 bg-bege/50 p-3 rounded-xl border border-begeDark">
+                    <div><span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Objetivo(s)</span><p id="view-post-goals" class="font-semibold text-gray-800">-</p></div>
+                    <div><span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Pilar(es)</span><p id="view-post-pillars" class="font-semibold text-gray-800">-</p></div>
+                </div>
             </div>
             <div class="flex gap-2 pt-2 border-t border-begeDark">
-                <button onclick="closeViewPostModal(); openModalById(currentViewingPostId);" class="w-1/2 py-2 bg-bordo text-white rounded-xl font-semibold font-accent">Editar Post</button>
-                <button onclick="closeViewPostModal()" class="w-1/2 py-2 border border-begeDark rounded-xl font-semibold text-gray-600 font-accent">Fechar</button>
+                <button onclick="closeViewPostModal(); openModalById(currentViewingPostId);" class="w-1/2 py-2 bg-bordo text-white rounded-xl font-semibold hover:bg-vibrante transition font-accent">Editar Post</button>
+                <button onclick="closeViewPostModal()" class="w-1/2 py-2 border border-begeDark rounded-xl font-semibold text-gray-600 hover:bg-bege font-accent">Fechar</button>
             </div>
-        </div>
-    </div>
-
-    <!-- MODAL NOVO POST / EDIÇÃO -->
-    <div id="modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-xl max-h-[90vh] overflow-y-auto">
-            <div class="flex items-center justify-between mb-6 border-b border-begeDark pb-3">
-                <h3 id="modal-title" class="text-lg font-bold text-bordo font-title">Novo Conteúdo</h3>
-                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">✕</button>
-            </div>
-            <form id="post-form" onsubmit="savePost(event)" class="space-y-4">
-                <input type="hidden" id="post-id">
-                <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Título do Post</label><input type="text" id="post-title" required class="w-full px-4 py-2.5 rounded-xl border border-begeDark focus:ring-2 focus:ring-vibrante focus:outline-none text-sm font-title font-bold" placeholder="Ex: Lançamento do Produto X"></div>
-                <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Plataformas</label><div class="flex flex-wrap gap-2 text-xs font-accent"><label class="flex items-center gap-1.5 bg-bege px-3 py-1.5 rounded-lg border border-begeDark cursor-pointer"><input type="checkbox" name="platform" value="Instagram" class="accent-bordo"> Instagram</label><label class="flex items-center gap-1.5 bg-bege px-3 py-1.5 rounded-lg border border-begeDark cursor-pointer"><input type="checkbox" name="platform" value="TikTok" class="accent-bordo"> TikTok</label><label class="flex items-center gap-1.5 bg-bege px-3 py-1.5 rounded-lg border border-begeDark cursor-pointer"><input type="checkbox" name="platform" value="Pinterest" class="accent-bordo"> Pinterest</label></div></div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Formato</label><select id="post-format" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"><option value="Carrossel">Carrossel</option><option value="Reels">Reels / Vídeo Curto</option><option value="Estático">Foto Estática</option><option value="Stories">Stories</option><option value="Vídeo Longo">Vídeo Longo</option></select></div>
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Status</label><select id="post-status" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"><option value="ideia">Ideia</option><option value="producao">Em Produção</option><option value="agendado">Agendado</option><option value="publicado">Publicado</option></select></div>
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Data de Publicação</label><input type="date" id="post-date" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"></div>
-                </div>
-                <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Legenda / Roteiro</label><textarea id="post-caption" rows="4" class="w-full px-4 py-2.5 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Escreva aqui..."></textarea></div>
-                <div class="flex gap-3 pt-3"><button type="button" onclick="closeModal()" class="w-1/2 py-2.5 border border-begeDark rounded-xl text-xs font-semibold text-gray-600 font-accent">Cancelar</button><button type="submit" class="w-1/2 py-2.5 bg-vibrante text-white rounded-xl text-xs font-semibold hover:bg-bordo transition font-accent">Salvar Conteúdo</button></div>
-            </form>
-        </div>
-    </div>
-
-    <!-- MODAL PEDIDO -->
-    <div id="order-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl max-h-[90vh] overflow-y-auto">
-            <div class="flex items-center justify-between mb-4 border-b border-begeDark pb-3">
-                <h3 id="order-modal-title" class="text-lg font-bold text-bordo font-title">Novo Pedido / Encomenda</h3>
-                <button onclick="closeOrderModal()" class="text-gray-400 hover:text-gray-600">✕</button>
-            </div>
-            <form id="order-form" onsubmit="saveOrder(event)" class="space-y-4">
-                <input type="hidden" id="order-id">
-                <div class="grid grid-cols-2 gap-3">
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Nome do Cliente</label><input type="text" id="order-client" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs" placeholder="Ex: Ana Silva"></div>
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Data do Pedido</label><input type="date" id="order-date" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"></div>
-                </div>
-                <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Itens / Produtos</label><input type="text" id="order-items" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs" placeholder="Ex: 2x Vela de Lavanda"></div>
-                <div class="grid grid-cols-3 gap-3">
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Qtd</label><input type="number" id="order-qty" value="1" min="1" onchange="calcOrderTotal()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"></div>
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Valor Unit. (R$)</label><input type="number" id="order-unit-amount" step="0.01" value="0" onchange="calcOrderTotal()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"></div>
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Total (R$)</label><input type="number" id="order-amount" step="0.01" readonly class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-gray-100 font-bold"></div>
-                </div>
-                <div class="grid grid-cols-3 gap-3">
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Frete (R$)</label><input type="number" id="order-shipping" step="0.01" value="0" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"></div>
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Pagamento</label><select id="order-payment" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"><option value="Pago">Pago</option><option value="Pendente">Pendente</option><option value="Sinal 50%">Sinal 50%</option></select></div>
-                    <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Status Entrega</label><select id="order-status" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"><option value="Produzindo">Produzindo</option><option value="Enviado">Enviado</option><option value="Entregue">Entregue</option></select></div>
-                </div>
-                <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Observações</label><textarea id="order-notes" rows="2" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs" placeholder="Notas sobre o envio ou cliente..."></textarea></div>
-                <div class="flex gap-3 pt-2"><button type="button" onclick="closeOrderModal()" class="w-1/2 py-2.5 border border-begeDark rounded-xl text-xs font-semibold text-gray-600 font-accent">Cancelar</button><button type="submit" class="w-1/2 py-2.5 bg-vibrante text-white rounded-xl text-xs font-semibold font-accent">Salvar Pedido</button></div>
-            </form>
-        </div>
-    </div>
-
-    <!-- MODAL NOTA DO MURAL -->
-    <div id="brand-note-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl">
-            <h3 class="text-lg font-bold text-bordo font-title mb-4">Nota / Ideia para o Mural</h3>
-            <form onsubmit="saveBrandNote(event)" class="space-y-4">
-                <input type="hidden" id="note-id">
-                <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Título</label><input type="text" id="note-title" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"></div>
-                <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Conteúdo</label><textarea id="note-content" rows="3" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"></textarea></div>
-                <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Cor do Post-it</label><select id="note-color" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs"><option value="amarelo">Amarelo Clássico</option><option value="rosa">Rosa Suave</option><option value="verde">Verde Menta</option><option value="azul">Azul Céu</option></select></div>
-                <div class="flex gap-2 pt-2"><button type="button" onclick="closeBrandNoteModal()" class="w-1/2 py-2 border border-begeDark rounded-xl text-xs font-accent">Cancelar</button><button type="submit" class="w-1/2 py-2 bg-vibrante text-white rounded-xl text-xs font-accent">Salvar Nota</button></div>
-            </form>
         </div>
     </div>
 
@@ -870,14 +1121,20 @@
         let isCompactMode = false;
         let isMediaReadyOnly = false;
         let showAllPublished = false;
+        let currentMuralFilter = 'ALL';
+        let currentOrderView = 'table';
 
-        // Escutadores Firebase em Tempo Real para TODAS as coleções
         db.collection("posts").onSnapshot((s) => { posts = []; s.forEach(d => posts.push({ id: d.id, ...d.data() })); renderAllViews(); });
         db.collection("orders").onSnapshot((s) => { orders = []; s.forEach(d => orders.push({ id: d.id, ...d.data() })); renderOrders(); renderFinance(); });
         db.collection("financial_transactions").onSnapshot((s) => { financeTransactions = []; s.forEach(d => financeTransactions.push({ id: d.id, ...d.data() })); renderFinance(); });
         db.collection("settings").doc("brand_goals").onSnapshot((doc) => { if (doc.exists) { brandGoalsData = doc.data(); renderBrandGoals(); } });
+        db.collection("settings").doc("seo_tags").onSnapshot((doc) => {
+            if (doc.exists && doc.data().list) { seoTags = doc.data().list; } 
+            else { seoTags = [{ id: '1', text: 'velas aromáticas', categories: ['Marca & Nicho'] }]; }
+            renderSeoTags();
+            renderModalQuickTags();
+        });
         db.collection("brand_notes").onSnapshot((s) => { brandNotes = []; s.forEach(d => brandNotes.push({ id: d.id, ...d.data() })); renderBrandNotes(); });
-        db.collection("seo_tags").onSnapshot((s) => { seoTags = []; s.forEach(d => seoTags.push({ id: d.id, ...d.data() })); renderSeoTags(); });
 
         function switchTab(tab) {
             ['kanban', 'orders', 'calendar', 'platforms', 'brandmural', 'seasonal', 'strategy', 'metrics', 'finance'].forEach(t => {
@@ -890,10 +1147,9 @@
             });
             const target = document.getElementById(`tab-${tab}`);
             if (target) target.classList.remove('hidden');
-            if (tab === 'metrics') renderMetricsSelect();
         }
 
-        // --- MÓDULO FINANCEIRO COM INTEGRAÇÃO DE PEDIDOS E TOGGLE ---
+        // --- GESTÃO FINANCEIRA & INTEGRAÇÃO COM PEDIDOS ---
         function switchFinanceTab(view) {
             currentFinanceTab = view;
             document.getElementById('fin-view-expenses').classList.toggle('hidden', view !== 'expenses');
@@ -978,14 +1234,11 @@
             }
         }
 
-        function closeFinanceModal() {
-            document.getElementById('finance-modal').classList.add('hidden');
-        }
+        function closeFinanceModal() { document.getElementById('finance-modal').classList.add('hidden'); }
 
         function saveFinanceTransaction(e) {
             e.preventDefault();
             const id = document.getElementById('fin-id').value;
-
             const data = {
                 type: document.getElementById('fin-type').value,
                 category: document.getElementById('fin-category').value,
@@ -1000,19 +1253,13 @@
                 updatedAt: new Date().toISOString()
             };
 
-            if (id) {
-                db.collection("financial_transactions").doc(id).update(data);
-            } else {
-                db.collection("financial_transactions").add(data);
-            }
-
+            if (id) db.collection("financial_transactions").doc(id).update(data);
+            else db.collection("financial_transactions").add(data);
             closeFinanceModal();
         }
 
         function deleteFinanceTransaction(id) {
-            if (confirm("Excluir este lançamento financeiro?")) {
-                db.collection("financial_transactions").doc(id).delete();
-            }
+            if (confirm("Excluir este lançamento financeiro?")) db.collection("financial_transactions").doc(id).delete();
         }
 
         function renderFinance() {
@@ -1042,9 +1289,7 @@
                 });
             }
 
-            let totalIncomes = 0;
-            let totalPending = 0;
-            let totalExpenses = 0;
+            let totalIncomes = 0, totalPending = 0, totalExpenses = 0;
 
             allItems.forEach(i => {
                 if (i.type === 'RECEITA') {
@@ -1125,7 +1370,153 @@
             });
         }
 
-        // --- RESTANTE DOS MÓDULOS (KANBAN, PEDIDOS, CALENDÁRIO, PLATAFORMAS, MURAL, SAZONAIS, ESTRATÉGIA, MÉTRICAS) ---
+        // --- PEDIDOS (COMPLETO) ---
+        function switchOrderView(view) {
+            currentOrderView = view;
+            document.getElementById('orders-view-table').classList.toggle('hidden', view !== 'table');
+            document.getElementById('orders-view-kanban').classList.toggle('hidden', view !== 'kanban');
+            document.getElementById('btn-orderview-table').className = view === 'table' ? "px-3 py-1.5 rounded-lg font-bold bg-white text-bordo shadow-2xs" : "px-3 py-1.5 rounded-lg font-medium text-gray-500";
+            document.getElementById('btn-orderview-kanban').className = view === 'kanban' ? "px-3 py-1.5 rounded-lg font-bold bg-white text-bordo shadow-2xs" : "px-3 py-1.5 rounded-lg font-medium text-gray-500";
+        }
+
+        function toggleShippingFields() {
+            const fulfillmentType = document.getElementById('order-fulfillment-type').value;
+            document.getElementById('shipping-container').classList.toggle('hidden', fulfillmentType !== 'Envio');
+            if (fulfillmentType !== 'Envio') document.getElementById('order-shipping-amount').value = '0';
+            calculateOrderTotal();
+        }
+
+        function calculateOrderTotal() {
+            const qty = parseFloat(document.getElementById('order-qty').value) || 0;
+            const unitAmount = parseFloat(document.getElementById('order-unit-amount').value) || 0;
+            const fulfillmentType = document.getElementById('order-fulfillment-type').value;
+            let shippingAmount = fulfillmentType === 'Envio' ? (parseFloat(document.getElementById('order-shipping-amount').value) || 0) : 0;
+            document.getElementById('order-amount').value = ((qty * unitAmount) + shippingAmount).toFixed(2);
+        }
+
+        function toggleConclusionFields() {
+            const status = document.getElementById('order-status').value;
+            document.getElementById('conclusion-container').classList.toggle('hidden', status !== 'Concluído');
+        }
+
+        function openOrderModal(order = null) {
+            const modal = document.getElementById('order-modal');
+            const form = document.getElementById('order-form');
+            modal.classList.remove('hidden');
+
+            if (order) {
+                document.getElementById('order-modal-title').innerText = 'Editar Pedido';
+                document.getElementById('order-id').value = order.id;
+                document.getElementById('order-client').value = order.client || '';
+                document.getElementById('order-contact').value = order.contact || '';
+                document.getElementById('order-items').value = order.items || '';
+                document.getElementById('order-qty').value = order.qty || 1;
+                document.getElementById('order-unit-amount').value = order.unitAmount || 0;
+                document.getElementById('order-fulfillment-type').value = order.fulfillmentType || 'Retirada';
+                toggleShippingFields();
+                document.getElementById('order-address').value = order.address || '';
+                document.getElementById('order-shipping-amount').value = order.shippingAmount || 0;
+                document.getElementById('order-amount').value = order.amount || 0;
+                document.getElementById('order-payment-method').value = order.paymentMethod || 'Pix';
+                document.getElementById('order-payment-status').value = order.paymentStatus || 'Pendente';
+                document.getElementById('order-status').value = order.status || 'Pendente';
+                toggleConclusionFields();
+                document.getElementById('order-date').value = order.date || '';
+                document.getElementById('order-delivery-date').value = order.deliveryDate || '';
+                document.getElementById('order-notes').value = order.notes || '';
+            } else {
+                document.getElementById('order-modal-title').innerText = 'Novo Pedido / Encomenda';
+                form.reset();
+                document.getElementById('order-id').value = '';
+                document.getElementById('order-qty').value = 1;
+                document.getElementById('order-unit-amount').value = 0;
+                document.getElementById('order-shipping-amount').value = 0;
+                document.getElementById('order-fulfillment-type').value = 'Retirada';
+                document.getElementById('order-status').value = 'Pendente';
+                document.getElementById('order-date').value = new Date().toISOString().split('T')[0];
+                toggleShippingFields();
+                toggleConclusionFields();
+                calculateOrderTotal();
+            }
+        }
+
+        function closeOrderModal() { document.getElementById('order-modal').classList.add('hidden'); }
+
+        function saveOrder(e) {
+            e.preventDefault();
+            const id = document.getElementById('order-id').value;
+            const fulfillmentType = document.getElementById('order-fulfillment-type').value;
+            const orderData = {
+                client: document.getElementById('order-client').value,
+                contact: document.getElementById('order-contact').value,
+                items: document.getElementById('order-items').value,
+                qty: parseFloat(document.getElementById('order-qty').value || 1),
+                unitAmount: parseFloat(document.getElementById('order-unit-amount').value || 0),
+                fulfillmentType: fulfillmentType,
+                address: fulfillmentType === 'Envio' ? document.getElementById('order-address').value : '',
+                shippingAmount: fulfillmentType === 'Envio' ? parseFloat(document.getElementById('order-shipping-amount').value || 0) : 0,
+                amount: parseFloat(document.getElementById('order-amount').value || 0),
+                paymentMethod: document.getElementById('order-payment-method').value,
+                paymentStatus: document.getElementById('order-payment-status').value,
+                status: document.getElementById('order-status').value,
+                date: document.getElementById('order-date').value,
+                deliveryDate: document.getElementById('order-delivery-date').value,
+                notes: document.getElementById('order-notes').value,
+                updatedAt: new Date().toISOString()
+            };
+
+            if (id) db.collection("orders").doc(id).update(orderData);
+            else db.collection("orders").add(orderData);
+            closeOrderModal();
+        }
+
+        function deleteOrder(id) { if (confirm("Excluir pedido?")) db.collection("orders").doc(id).delete(); }
+        function updateOrderStatus(id, newStatus) { db.collection("orders").doc(id).update({ status: newStatus }); }
+
+        function renderOrders() {
+            const searchText = (document.getElementById('orders-search')?.value || '').toLowerCase();
+            const statusFilter = document.getElementById('orders-filter-status')?.value || 'ALL';
+
+            const filteredOrders = orders.filter(o => {
+                if (searchText && !(o.client || '').toLowerCase().includes(searchText) && !(o.items || '').toLowerCase().includes(searchText)) return false;
+                if (statusFilter !== 'ALL' && o.status !== statusFilter) return false;
+                return true;
+            });
+
+            let totalOrders = orders.length;
+            let pendingDelivery = orders.filter(o => o.status === 'Pendente' || o.status === 'Em Produção').length;
+            let totalRevenue = orders.filter(o => o.paymentStatus === 'Pago').reduce((sum, o) => sum + (o.amount || 0), 0);
+            let toReceive = orders.filter(o => o.paymentStatus !== 'Pago').reduce((sum, o) => sum + (o.amount || 0), 0);
+
+            if (document.getElementById('order-kpi-total')) document.getElementById('order-kpi-total').innerText = totalOrders;
+            if (document.getElementById('order-kpi-pending')) document.getElementById('order-kpi-pending').innerText = pendingDelivery;
+            if (document.getElementById('order-kpi-revenue')) document.getElementById('order-kpi-revenue').innerText = totalRevenue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            if (document.getElementById('order-kpi-to-receive')) document.getElementById('order-kpi-to-receive').innerText = toReceive.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+            const tbody = document.getElementById('orders-tbody');
+            if (tbody) {
+                tbody.innerHTML = '';
+                filteredOrders.forEach(o => {
+                    let payColor = o.paymentStatus === 'Pago' ? 'text-green-600 bg-green-50 border-green-200' : 'text-amber-600 bg-amber-50 border-amber-200';
+                    const tr = document.createElement('tr');
+                    tr.className = "border-b border-begeDark/40 hover:bg-bege/20";
+                    tr.innerHTML = `
+                        <td class="py-3 font-bold text-bordo font-title">${o.client}</td>
+                        <td class="py-3">${o.items}</td>
+                        <td class="py-3 font-bold">R$ ${(o.amount || 0).toFixed(2)}</td>
+                        <td class="py-3"><span class="px-2 py-0.5 rounded-full text-[10px] font-semibold border ${payColor}">${o.paymentStatus}</span></td>
+                        <td class="py-3 font-accent">${o.deliveryDate ? formatDate(o.deliveryDate) : '-'}</td>
+                        <td class="py-3 font-semibold text-gray-700">${o.status}</td>
+                        <td class="py-3 text-right">
+                            <button onclick="openOrderModal(orders.find(item => item.id === '${o.id}'))" class="text-gray-500 hover:text-bordo mr-2">✏️</button>
+                            <button onclick="deleteOrder('${o.id}')" class="text-gray-500 hover:text-vibrante">🗑️</button>
+                        </td>`;
+                    tbody.appendChild(tr);
+                });
+            }
+        }
+
+        // --- KANBAN & OUTROS MÓDULOS ---
         function toggleColumnCollapse(colKey) {
             const wrapper = document.getElementById(`wrapper-col-${colKey}`);
             const btn = document.getElementById(`btn-col-${colKey}`);
@@ -1156,24 +1547,23 @@
             const format = document.getElementById('kanban-filter-format')?.value || 'ALL';
 
             posts.forEach(post => {
-                if (search && !post.title.toLowerCase().includes(search)) return;
-                if (plat !== 'ALL' && (!post.platforms || !post.platforms.includes(plat))) return;
-                if (goal !== 'ALL' && post.goal !== goal) return;
-                if (pillar !== 'ALL' && post.pillar !== pillar) return;
-                if (format !== 'ALL' && post.format !== format) return;
-                if (isMediaReadyOnly && !post.mediaReady) return;
-                if (post.status === 'publicado' && !showAllPublished && isRecentPublished(post.date)) return;
+                if (search && !(post.title || '').toLowerCase().includes(search)) return;
+                const plats = post.platforms || [post.platform || 'Instagram'];
+                if (plat !== 'ALL' && !plats.includes(plat)) return;
+                const goals = post.goals || [post.goal || 'Conexão'];
+                if (goal !== 'ALL' && !goals.includes(goal)) return;
+                const pillars = post.pillars || [post.pillar || 'Educacional'];
+                if (pillar !== 'ALL' && !pillars.includes(pillar)) return;
+                if (format !== 'ALL' && (post.format || 'Carrossel') !== format) return;
+                if (isMediaReadyOnly && post.mediaStatus !== 'Mídia Pronta') return;
 
                 if (counts[post.status] !== undefined) counts[post.status]++;
 
                 const card = document.createElement('div');
-                card.className = "bg-white p-3.5 rounded-xl border border-begeDark shadow-2xs hover:shadow-md transition space-y-2 cursor-pointer";
+                card.className = "bg-white p-3.5 rounded-xl border border-begeDark shadow-sm hover:shadow-md transition space-y-2 cursor-pointer";
                 card.onclick = () => openViewPostModal(post.id);
                 card.innerHTML = `
-                    <div class="flex justify-between items-start">
-                        <h4 class="font-bold text-xs text-gray-800 font-title">${post.title}</h4>
-                        <span class="text-[9px] px-1.5 py-0.5 rounded bg-bege text-bordo font-accent">${post.format || ''}</span>
-                    </div>
+                    <div class="flex justify-between items-start"><h4 class="font-bold text-xs text-gray-800 font-title">${post.title}</h4><span class="text-[9px] px-1.5 rounded bg-bege text-bordo font-accent">${post.format || ''}</span></div>
                     <p class="text-[10px] text-gray-400 font-accent">${post.date ? formatDate(post.date) : 'Sem data'}</p>
                 `;
                 if (cols[post.status]) cols[post.status].appendChild(card);
@@ -1183,309 +1573,117 @@
                 const el = document.getElementById(`count-${k}`);
                 if (el) el.innerText = counts[k];
             });
-
-            renderPlatforms();
         }
 
-        function isRecentPublished(dateStr) {
-            if (!dateStr) return false;
-            const diff = new Date() - new Date(dateStr);
-            return diff > 7 * 24 * 60 * 60 * 1000;
-        }
-
-        function renderPlatforms() {
-            ['instagram', 'tiktok', 'outros'].forEach(p => {
-                const el = document.getElementById(`col-plat-${p}`);
-                if (el) el.innerHTML = '';
-            });
-            const counts = { instagram: 0, tiktok: 0, outros: 0 };
-
-            posts.forEach(post => {
-                if (!post.platforms) return;
-                post.platforms.forEach(plat => {
-                    let key = 'outros';
-                    if (plat === 'Instagram') key = 'instagram';
-                    if (plat === 'TikTok') key = 'tiktok';
-                    counts[key]++;
-
-                    const container = document.getElementById(`col-plat-${key}`);
-                    if (container) {
-                        const card = document.createElement('div');
-                        card.className = "bg-white p-3 rounded-xl border border-begeDark text-xs cursor-pointer";
-                        card.onclick = () => openViewPostModal(post.id);
-                        card.innerHTML = `<span class="font-bold text-bordo">${post.title}</span><p class="text-[10px] text-gray-400">${post.status}</p>`;
-                        container.appendChild(card);
-                    }
-                });
-            });
-
-            Object.keys(counts).forEach(k => {
-                const badge = document.getElementById(`count-plat-${k}`);
-                if (badge) badge.innerText = counts[k];
-            });
-        }
-
-        function renderMonthlyCalendar() {
-            const grid = document.getElementById('calendar-grid');
-            const title = document.getElementById('calendar-month-title');
-            if(!grid) return;
-            grid.innerHTML = '';
-
-            const year = currentCalendarDate.getFullYear();
-            const month = currentCalendarDate.getMonth();
-            const monthNames = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
-            if (title) title.innerText = `${monthNames[month]} ${year}`;
-
-            const firstDayIndex = new Date(year, month, 1).getDay();
-            const totalDays = new Date(year, month + 1, 0).getDate();
-
-            for (let i = 0; i < firstDayIndex; i++) {
-                const emptyCell = document.createElement('div');
-                emptyCell.className = "min-h-[90px] bg-gray-50/50 border border-begeDark/20 rounded-xl p-1 opacity-40";
-                grid.appendChild(emptyCell);
-            }
-
-            for (let day = 1; day <= totalDays; day++) {
-                const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                const cell = document.createElement('div');
-                cell.className = "min-h-[90px] bg-white border border-begeDark/60 rounded-xl p-1.5 text-xs font-accent flex flex-col gap-1";
-                cell.innerHTML = `<div class="font-bold text-bordo">${day}</div><div class="space-y-1 flex-1 overflow-y-auto" id="cal-day-${dateStr}"></div>`;
-                grid.appendChild(cell);
-            }
-
-            posts.forEach(post => {
-                if (!post.date) return;
-                const container = document.getElementById(`cal-day-${post.date}`);
-                if (container) {
-                    let statusBg = 'bg-amarelo/20 text-gray-700';
-                    if (post.status === 'producao') statusBg = 'bg-azul/20 text-blue-800';
-                    if (post.status === 'agendado') statusBg = 'bg-rosa/20 text-pink-800';
-                    if (post.status === 'publicado') statusBg = 'bg-verde/20 text-green-800';
-
-                    const item = document.createElement('div');
-                    item.className = `p-1 rounded text-[10px] font-bold truncate cursor-pointer ${statusBg}`;
-                    item.innerText = post.title;
-                    item.onclick = () => openViewPostModal(post.id);
-                    container.appendChild(item);
-                }
-            });
-        }
-
-        function changeMonth(dir) {
-            currentCalendarDate.setMonth(currentCalendarDate.getMonth() + dir);
-            renderMonthlyCalendar();
-        }
-
-        function renderOrders() {
-            const tbody = document.getElementById('orders-tbody');
-            if (!tbody) return;
-            tbody.innerHTML = '';
-
-            let total = 0, pending = 0, revenue = 0, toReceive = 0;
-
-            orders.forEach(o => {
-                total++;
-                if (o.status !== 'Entregue') pending++;
-                if (o.paymentStatus === 'Pago') revenue += (o.amount || 0);
-                else toReceive += (o.amount || 0);
-
-                let payColor = o.paymentStatus === 'Pago' ? 'text-green-600 bg-green-50' : 'text-amber-600 bg-amber-50';
-
-                const tr = document.createElement('tr');
-                tr.className = "border-b border-begeDark/40 hover:bg-bege/20";
-                tr.innerHTML = `
-                    <td class="py-3 font-bold text-bordo font-title">${o.client}</td>
-                    <td class="py-3">${o.items} (${o.qty}x)</td>
-                    <td class="py-3 font-bold">R$ ${(o.amount || 0).toFixed(2)}</td>
-                    <td class="py-3"><span class="px-2 py-0.5 rounded-full text-[10px] font-semibold ${payColor}">${o.paymentStatus}</span></td>
-                    <td class="py-3 font-accent">${formatDate(o.date)}</td>
-                    <td class="py-3 font-semibold text-gray-600">${o.status}</td>
-                    <td class="py-3 text-right">
-                        <button onclick="editOrder('${o.id}')" class="text-gray-500 hover:text-bordo mr-2">✏️</button>
-                        <button onclick="deleteOrder('${o.id}')" class="text-gray-500 hover:text-vibrante">🗑️</button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-
-            if (document.getElementById('order-kpi-total')) document.getElementById('order-kpi-total').innerText = total;
-            if (document.getElementById('order-kpi-pending')) document.getElementById('order-kpi-pending').innerText = pending;
-            if (document.getElementById('order-kpi-revenue')) document.getElementById('order-kpi-revenue').innerText = revenue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-            if (document.getElementById('order-kpi-to-receive')) document.getElementById('order-kpi-to-receive').innerText = toReceive.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-        }
-
-        function openOrderModal() { document.getElementById('order-modal').classList.remove('hidden'); document.getElementById('order-form').reset(); document.getElementById('order-id').value = ''; document.getElementById('order-date').value = new Date().toISOString().split('T')[0]; }
-        function closeOrderModal() { document.getElementById('order-modal').classList.add('hidden'); }
-        function calcOrderTotal() {
-            const qty = parseFloat(document.getElementById('order-qty').value) || 1;
-            const unit = parseFloat(document.getElementById('order-unit-amount').value) || 0;
-            document.getElementById('order-amount').value = (qty * unit).toFixed(2);
-        }
-        function saveOrder(e) {
-            e.preventDefault();
-            const id = document.getElementById('order-id').value;
-            const data = {
-                client: document.getElementById('order-client').value,
-                date: document.getElementById('order-date').value,
-                items: document.getElementById('order-items').value,
-                qty: parseInt(document.getElementById('order-qty').value || 1),
-                unitAmount: parseFloat(document.getElementById('order-unit-amount').value || 0),
-                amount: parseFloat(document.getElementById('order-amount').value || 0),
-                shippingAmount: parseFloat(document.getElementById('order-shipping').value || 0),
-                paymentStatus: document.getElementById('order-payment').value,
-                status: document.getElementById('order-status').value,
-                notes: document.getElementById('order-notes').value
-            };
-            if (id) db.collection("orders").doc(id).update(data);
-            else db.collection("orders").add(data);
-            closeOrderModal();
-        }
-        function editOrder(id) {
-            const o = orders.find(item => item.id === id);
-            if (!o) return;
-            openOrderModal();
-            document.getElementById('order-id').value = o.id;
-            document.getElementById('order-client').value = o.client;
-            document.getElementById('order-date').value = o.date;
-            document.getElementById('order-items').value = o.items;
-            document.getElementById('order-qty').value = o.qty || 1;
-            document.getElementById('order-unit-amount').value = o.unitAmount || 0;
-            document.getElementById('order-amount').value = o.amount || 0;
-            document.getElementById('order-shipping').value = o.shippingAmount || 0;
-            document.getElementById('order-payment').value = o.paymentStatus || 'Pago';
-            document.getElementById('order-status').value = o.status || 'Produzindo';
-            document.getElementById('order-notes').value = o.notes || '';
-        }
-        function deleteOrder(id) { if(confirm("Excluir pedido?")) db.collection("orders").doc(id).delete(); }
-
-        function renderBrandGoals() {
-            if (document.getElementById('display-brand-goals')) document.getElementById('display-brand-goals').innerText = brandGoalsData.goals || 'Nenhum objetivo cadastrado.';
-            if (document.getElementById('display-brand-campaign')) document.getElementById('display-brand-campaign').innerText = brandGoalsData.campaign || 'Nenhuma campanha ativa.';
-            if (document.getElementById('display-brand-campaign-notes')) document.getElementById('display-brand-campaign-notes').innerText = brandGoalsData.campaignNotes || '';
-            if (document.getElementById('input-brand-goals')) document.getElementById('input-brand-goals').value = brandGoalsData.goals || '';
-            if (document.getElementById('input-brand-campaign')) document.getElementById('input-brand-campaign').value = brandGoalsData.campaign || '';
-            if (document.getElementById('input-brand-campaign-notes')) document.getElementById('input-brand-campaign-notes').value = brandGoalsData.campaignNotes || '';
-        }
-
-        function toggleBrandGoalsExpand() {
-            const view = document.getElementById('view-brand-goals');
-            const form = document.getElementById('form-brand-goals');
-            if (view && form) {
-                view.classList.toggle('hidden');
-                form.classList.toggle('hidden');
-            }
-        }
-
+        // --- MURAL DA MARCA ---
+        function toggleBrandGoalsExpand() { document.getElementById('form-brand-goals').classList.toggle('hidden'); }
         function saveBrandGoals() {
             const data = {
                 goals: document.getElementById('input-brand-goals').value,
                 campaign: document.getElementById('input-brand-campaign').value,
-                campaignNotes: document.getElementById('input-brand-campaign-notes').value
+                campaignNotes: document.getElementById('input-brand-campaign-notes').value,
+                updatedAt: new Date().toISOString()
             };
-            db.collection("settings").doc("brand_goals").set(data).then(() => {
-                toggleBrandGoalsExpand();
-            });
+            db.collection("settings").doc("brand_goals").set(data);
+            document.getElementById('form-brand-goals').classList.add('hidden');
         }
+        function renderBrandGoals() {
+            if (document.getElementById('display-brand-goals')) document.getElementById('display-brand-goals').innerText = brandGoalsData.goals || 'Nenhum objetivo cadastrado.';
+            if (document.getElementById('display-brand-campaign')) document.getElementById('display-brand-campaign').innerText = brandGoalsData.campaign || 'Nenhuma campanha ativa.';
+            if (document.getElementById('display-brand-campaign-notes')) document.getElementById('display-brand-campaign-notes').innerText = brandGoalsData.campaignNotes || '';
+        }
+        function toggleNoteTypeInput() {
+            const isCheck = document.querySelector('input[name="note-type"]:checked').value === 'CHECKLIST';
+            document.getElementById('field-note-text').classList.toggle('hidden', isCheck);
+            document.getElementById('field-checklist-items').classList.toggle('hidden', !isCheck);
+        }
+        function filterBrandMural(type) { currentMuralFilter = type; renderBrandNotes(); }
+        function addBrandNote() {
+            const title = document.getElementById('brand-note-title').value.trim();
+            const noteType = document.querySelector('input[name="note-type"]:checked').value;
+            const dueDate = document.getElementById('brand-note-duedate').value;
+            const selectedCats = [];
+            document.querySelectorAll('input[name="brand-note-cat"]:checked').forEach(cb => selectedCats.push(cb.value));
 
+            if (noteType === 'NOTE') {
+                const text = document.getElementById('brand-note-text').value.trim();
+                if (!text) return alert("Digite o texto da nota.");
+                db.collection("brand_notes").add({ type: 'NOTE', title: title || 'Anotação', text, dueDate, categories: selectedCats });
+            } else {
+                const items = document.getElementById('brand-checklist-text').value.split('\n').filter(t => t.trim()).map((t, idx) => ({ id: idx.toString(), text: t.trim(), done: false }));
+                if (items.length === 0) return alert("Adicione itens ao checklist.");
+                db.collection("brand_notes").add({ type: 'CHECKLIST', title: title || 'Lista', items, dueDate, categories: selectedCats });
+            }
+            document.getElementById('brand-note-title').value = '';
+            document.getElementById('brand-note-text').value = '';
+            document.getElementById('brand-checklist-text').value = '';
+        }
         function renderBrandNotes() {
             const grid = document.getElementById('brand-notes-grid');
             if (!grid) return;
             grid.innerHTML = '';
-            brandNotes.forEach(note => {
-                let colorClass = 'bg-yellow-100 text-yellow-900 border-yellow-200';
-                if (note.color === 'rosa') colorClass = 'bg-pink-100 text-pink-900 border-pink-200';
-                if (note.color === 'verde') colorClass = 'bg-green-100 text-green-900 border-green-200';
-                if (note.color === 'azul') colorClass = 'bg-blue-100 text-blue-900 border-blue-200';
-
+            brandNotes.forEach(n => {
                 const card = document.createElement('div');
-                card.className = `p-4 rounded-2xl border shadow-2xs space-y-2 relative ${colorClass}`;
-                card.innerHTML = `
-                    <div class="flex justify-between items-start">
-                        <h4 class="font-bold text-sm font-title">${note.title}</h4>
-                        <button onclick="deleteBrandNote('${note.id}')" class="text-xs opacity-60 hover:opacity-100">✕</button>
-                    </div>
-                    <p class="text-xs whitespace-pre-line">${note.content}</p>
-                `;
+                card.className = "bg-white p-4 rounded-2xl border border-begeDark shadow-2xs space-y-2";
+                card.innerHTML = `<h4 class="font-bold text-sm text-bordo font-title">${n.title}</h4><p class="text-xs text-gray-700">${n.text || (n.items ? n.items.length + ' itens' : '')}</p>`;
                 grid.appendChild(card);
             });
         }
 
-        function openBrandNoteModal() { document.getElementById('brand-note-modal').classList.remove('hidden'); }
-        function closeBrandNoteModal() { document.getElementById('brand-note-modal').classList.add('hidden'); }
-        function saveBrandNote(e) {
-            e.preventDefault();
-            const data = {
-                title: document.getElementById('note-title').value,
-                content: document.getElementById('note-content').value,
-                color: document.getElementById('note-color').value
-            };
-            db.collection("brand_notes").add(data);
-            closeBrandNoteModal();
-        }
-        function deleteBrandNote(id) { db.collection("brand_notes").doc(id).delete(); }
-
-        function renderSeoTags() {
-            ['Marca & Nicho', 'Hashtags Fixas', 'SEO Pinterest'].forEach(cat => {
-                const container = document.getElementById(`tags-container-${cat}`);
-                if(container) container.innerHTML = '';
-            });
-            seoTags.forEach(t => {
-                const cat = t.category || 'Marca & Nicho';
-                const container = document.getElementById(`tags-container-${cat}`);
-                if(container) {
-                    const tag = document.createElement('span');
-                    tag.className = "px-3 py-1 bg-bege border border-begeDark rounded-xl text-xs font-accent flex items-center gap-2";
-                    tag.innerHTML = `<span>#${t.text}</span><button onclick="deleteSeoTag('${t.id}')" class="text-gray-400 hover:text-vibrante">✕</button>`;
-                    container.appendChild(tag);
-                }
-            });
-        }
-
+        // --- SEO & TAGS ---
         function addSeoTag() {
-            const txt = document.getElementById('new-tag-text').value.trim();
-            const cat = document.getElementById('new-tag-cat').value;
-            if(!txt) return;
-            db.collection("seo_tags").add({ text: txt, category: cat });
+            const text = document.getElementById('new-tag-text').value.trim();
+            if (!text) return;
+            seoTags.push({ id: Date.now().toString(), text, categories: ['Marca & Nicho'] });
+            db.collection("settings").doc("seo_tags").set({ list: seoTags });
             document.getElementById('new-tag-text').value = '';
         }
-        function deleteSeoTag(id) { db.collection("seo_tags").doc(id).delete(); }
-
-        function renderMetrics() {
-            let reach = 0, eng = 0, sales = 0;
-            posts.forEach(p => {
-                reach += p.reach || 0;
-                eng += p.engagement || 0;
-                sales += p.sales || 0;
-            });
-            if(document.getElementById('kpi-total-reach')) document.getElementById('kpi-total-reach').innerText = reach.toLocaleString();
-            if(document.getElementById('kpi-avg-engagement')) document.getElementById('kpi-avg-engagement').innerText = posts.length ? (eng / posts.length).toFixed(1) + '%' : '0%';
-            if(document.getElementById('kpi-total-sales')) document.getElementById('kpi-total-sales').innerText = sales;
-        }
-
-        function renderMetricsSelect() {
-            const sel = document.getElementById('metric-post-select');
-            if(!sel) return;
-            sel.innerHTML = '';
-            posts.forEach(p => {
-                const opt = document.createElement('option');
-                opt.value = p.id;
-                opt.innerText = p.title;
-                sel.appendChild(opt);
+        function renderSeoTags() {
+            const container = document.getElementById('tags-container-Marca & Nicho');
+            if (!container) return;
+            container.innerHTML = '';
+            seoTags.forEach(t => {
+                const tag = document.createElement('span');
+                tag.className = "px-3 py-1 bg-bege border border-begeDark rounded-xl text-xs font-accent flex items-center gap-2";
+                tag.innerHTML = `<span>#${t.text}</span>`;
+                container.appendChild(tag);
             });
         }
-
-        function savePostMetrics() {
-            const postId = document.getElementById('metric-post-select').value;
-            if(!postId) return alert("Selecione um post.");
-            const reach = parseInt(document.getElementById('metric-reach').value) || 0;
-            const engagement = parseFloat(document.getElementById('metric-engagement').value) || 0;
-            const sales = parseInt(document.getElementById('metric-sales').value) || 0;
-
-            db.collection("posts").doc(postId).update({ reach, engagement, sales }).then(() => {
-                alert("Métricas salvas com sucesso!");
-                renderMetrics();
+        function renderModalQuickTags() {
+            const container = document.getElementById('modal-quick-tags');
+            if (!container) return;
+            container.innerHTML = '';
+            seoTags.forEach(t => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = "bg-white border border-begeDark px-2 py-0.5 rounded text-[10px] text-bordo font-accent";
+                btn.innerText = `+ ${t.text}`;
+                btn.onclick = () => { document.getElementById('post-caption').value += ' ' + t.text; };
+                container.appendChild(btn);
             });
         }
+        function checkSeoKeywordsInCaption() {}
+
+        // --- CALENDÁRIO & OUTROS ---
+        function changeMonth(dir) { currentCalendarDate.setMonth(currentCalendarDate.getMonth() + dir); renderMonthlyCalendar(); }
+        function renderMonthlyCalendar() {
+            const grid = document.getElementById('calendar-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            const year = currentCalendarDate.getFullYear();
+            const month = currentCalendarDate.getMonth();
+            const totalDays = new Date(year, month + 1, 0).getDate();
+            for (let day = 1; day <= totalDays; day++) {
+                const cell = document.createElement('div');
+                cell.className = "min-h-[90px] bg-white border border-begeDark rounded-xl p-1.5 text-xs font-accent";
+                cell.innerHTML = `<div class="font-bold text-bordo">${day}</div>`;
+                grid.appendChild(cell);
+            }
+        }
+        function renderPlatformsView() {}
+        function renderSeasonalView() {}
+        function renderStrategyView() {}
+        function renderMetricsView() {}
 
         function openViewPostModal(id) {
             const p = posts.find(item => item.id === id);
@@ -1493,65 +1691,26 @@
             currentViewingPostId = id;
             document.getElementById('view-post-title').innerText = p.title;
             document.getElementById('view-post-date').innerText = p.date ? formatDate(p.date) : 'Sem data';
-
-            let captionText = p.caption || 'Sem legenda.';
-            const urlRegex = /(https?:\/\/[^\s]+)/g;
-            captionText = captionText.replace(urlRegex, (url) => `<a href="${url}" target="_blank" class="text-blue-600 underline">${url}</a>`);
-
-            document.getElementById('view-post-caption').innerHTML = captionText;
-
-            const badges = document.getElementById('view-post-badges');
-            badges.innerHTML = `
-                <span class="px-2 py-0.5 rounded bg-bege text-bordo font-bold">${p.status}</span>
-                <span class="px-2 py-0.5 rounded bg-bege text-gray-700">${p.format || ''}</span>
-                ${p.platforms ? p.platforms.map(pl => `<span class="px-2 py-0.5 rounded bg-vibrante/10 text-vibrante font-semibold">\${pl}</span>`).join('') : ''}
-            `;
-
+            document.getElementById('view-post-caption').innerText = p.caption || 'Sem legenda.';
             document.getElementById('view-post-modal').classList.remove('hidden');
         }
-
         function closeViewPostModal() { document.getElementById('view-post-modal').classList.add('hidden'); }
 
-        function openModal() {
-            document.getElementById('modal').classList.remove('hidden');
-            document.getElementById('post-form').reset();
-            document.getElementById('post-id').value = '';
-            document.getElementById('post-date').value = new Date().toISOString().split('T')[0];
-        }
-
-        function openModalById(id) {
-            const p = posts.find(item => item.id === id);
-            if(!p) return;
-            openModal();
-            document.getElementById('post-id').value = p.id;
-            document.getElementById('post-title').value = p.title;
-            document.getElementById('post-format').value = p.format || 'Carrossel';
-            document.getElementById('post-status').value = p.status || 'ideia';
-            document.getElementById('post-date').value = p.date || '';
-            document.getElementById('post-caption').value = p.caption || '';
-            document.querySelectorAll('input[name="platform"]').forEach(cb => {
-                cb.checked = p.platforms && p.platforms.includes(cb.value);
-            });
-        }
-
+        function openModal() { document.getElementById('modal').classList.remove('hidden'); document.getElementById('post-form').reset(); document.getElementById('post-id').value = ''; }
+        function openModalById(id) { const p = posts.find(item => item.id === id); if (p) openModal(); }
         function closeModal() { document.getElementById('modal').classList.add('hidden'); }
 
         function savePost(e) {
             e.preventDefault();
             const id = document.getElementById('post-id').value;
-            const platforms = [];
-            document.querySelectorAll('input[name="platform"]:checked').forEach(cb => platforms.push(cb.value));
-
             const data = {
                 title: document.getElementById('post-title').value,
-                platforms: platforms,
                 format: document.getElementById('post-format').value,
                 status: document.getElementById('post-status').value,
                 date: document.getElementById('post-date').value,
                 caption: document.getElementById('post-caption').value,
                 updatedAt: new Date().toISOString()
             };
-
             if (id) db.collection("posts").doc(id).update(data);
             else db.collection("posts").add(data);
             closeModal();
@@ -1570,18 +1729,12 @@
             renderBrandGoals();
             renderBrandNotes();
             renderSeoTags();
-            renderMetrics();
-            renderMetricsSelect();
             renderFinance();
         }
 
-        function importOldData() {
-            alert("A sincronização em nuvem via Firebase está ativa. Todos os seus dados estão seguros e atualizados automaticamente!");
-        }
+        function importOldData() { alert("Sincronização em nuvem ativa via Firebase!"); }
 
-        window.onload = () => {
-            renderAllViews();
-        };
+        window.onload = () => { renderAllViews(); };
     </script>
 </body>
 </html>
