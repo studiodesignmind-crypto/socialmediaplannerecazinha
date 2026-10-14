@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planejamento Financeiro - Cazinha</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏡</text></svg>">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bordo: '#8C1D24',
+                        vibrante: '#D92B2B',
+                        pink: '#E63988',
+                        rosa: '#F265A1',
+                        bege: '#F7F2E7',
+                        begeDark: '#EFE8D8',
+                        amarelo: '#FFCA3A',
+                        verde: '#8AC926',
+                        azul: '#19B5FE'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        title: ['Fraunces', 'serif'],
+                        accent: ['Comfortaa', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F7F2E7;
+            font-family: 'Poppins', sans-serif;
+            padding-bottom: 80px;
+        }
+        h1, h2, h3, h4, .font-title {
+            font-family: 'Fraunces', serif;
+        }
+        .font-accent {
+            font-family: 'Comfortaa', cursive;
+        }
+        @media (min-width: 768px) {
+            body { padding-bottom: 0; }
+        }
+    </style>
+</head>
+<body class="text-gray-800 min-h-screen flex flex-col md:flex-row">
+
+    <!-- Barra Lateral (Desktop) -->
+    <aside class="hidden md:flex flex-col w-64 bg-white border-r border-begeDark p-6 flex-shrink-0 min-h-screen sticky top-0 h-screen overflow-y-auto">
+        <div class="flex items-center gap-3 mb-6">
+            <div class="text-2xl">🕯️</div>
+            <div>
+                <h1 class="font-bold text-lg text-bordo leading-tight font-title">Planner Cazinha</h1>
+                <p class="text-xs text-rosa font-semibold font-accent">Social Media & Finanças</p>
+            </div>
+        </div>
+
+        <div class="mb-6 px-3 py-2 rounded-lg bg-green-50 text-green-700 text-xs flex items-center gap-2 border border-green-200 font-accent">
+            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+            <span>Nuvem Ativa (Firebase)</span>
+        </div>
+
+        <nav class="space-y-1.5 flex-1">
+            <a href="index.html" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                Planejador / Início
+            </a>
+            <a href="financeiro.html" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-bordo bg-bege">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Planejamento Financeiro
+            </a>
+        </nav>
+
+        <div class="pt-4 border-t border-begeDark">
+            <button onclick="openExpenseModal()" class="w-full bg-vibrante hover:bg-bordo text-white font-medium py-3 px-4 rounded-xl shadow-lg flex items-center justify-center gap-2 transition duration-200 font-accent text-xs">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                Novo Gasto / Lançamento
+            </button>
+        </div>
+    </aside>
+
+    <!-- Cabeçalho Mobile -->
+    <header class="md:hidden bg-white border-b border-begeDark p-4 flex items-center justify-between sticky top-0 z-20">
+        <div class="flex items-center gap-3">
+            <div class="text-xl">🕯️</div>
+            <div>
+                <h1 class="font-bold text-base text-bordo leading-tight font-title">Financeiro</h1>
+                <div class="text-[10px] text-green-600 flex items-center gap-1 font-medium font-accent">
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Sincronizado
+                </div>
+            </div>
+        </div>
+        <button onclick="openExpenseModal()" class="bg-vibrante text-white p-2 rounded-xl shadow text-xs font-accent">
+            + Gasto
+        </button>
+    </header>
+
+    <!-- Navegação Inferior Mobile -->
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-begeDark px-4 py-3 flex justify-around items-center z-30 shadow-lg">
+        <a href="index.html" class="flex flex-col items-center gap-1 text-gray-400">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+            <span class="text-[10px] font-accent">Planner</span>
+        </a>
+        <a href="financeiro.html" class="flex flex-col items-center gap-1 text-bordo font-bold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <span class="text-[10px] font-accent">Financeiro</span>
+        </a>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="flex-1 p-4 md:p-8 overflow-y-auto max-w-7xl mx-auto w-full space-y-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+                <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Planejamento & Controle Financeiro</h2>
+                <p class="text-sm text-gray-500">Acompanhe faturamentos, despesas operacionais e lucros em tempo real</p>
+            </div>
+            <button onclick="openExpenseModal()" class="hidden md:flex bg-vibrante hover:bg-bordo text-white font-semibold py-2.5 px-5 rounded-xl transition shadow items-center gap-2 font-accent text-xs">
+                + Novo Gasto / Lançamento
+            </button>
+        </div>
+
+        <!-- KPIs Financeiros -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="bg-white p-5 rounded-2xl border border-begeDark flex flex-col justify-between shadow-2xs">
+                <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Faturamento (Pedidos Pagos)</span>
+                <h3 id="fin-kpi-revenue" class="text-2xl font-bold text-verde mt-1 font-title">R\$ 0,00</h3>
+                <span class="text-[9px] text-gray-400 mt-2">Integrado com a aba de Pedidos</span>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-begeDark flex flex-col justify-between shadow-2xs">
+                <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Total de Gastos & Despesas</span>
+                <h3 id="fin-kpi-expenses" class="text-2xl font-bold text-vibrante mt-1 font-title">R\$ 0,00</h3>
+                <span class="text-[9px] text-gray-400 mt-2">Cadastrados manualmente</span>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-begeDark flex flex-col justify-between shadow-2xs">
+                <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Lucro Líquido</span>
+                <h3 id="fin-kpi-profit" class="text-2xl font-bold text-bordo mt-1 font-title">R\$ 0,00</h3>
+                <span class="text-[9px] text-gray-400 mt-2">Faturamento menos Gastos</span>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-begeDark flex flex-col justify-between shadow-2xs">
+                <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Margem de Lucro (%)</span>
+                <h3 id="fin-kpi-margin" class="text-2xl font-bold text-pink mt-1 font-title">0%</h3>
+                <span class="text-[9px] text-gray-400 mt-2">(Lucro / Faturamento) * 100</span>
+            </div>
+        </div>
+
+        <!-- Seção de Filtros e Abas de Gastos / Entradas Livres -->
+        <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-4 shadow-2xs">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-begeDark pb-3">
+                <div class="flex items-center gap-2">
+                    <h3 class="font-bold text-bordo text-sm font-title">Controle de Despesas & Lançamentos Livres</h3>
+                </div>
+                <div class="flex flex-wrap items-center gap-2 font-accent text-xs">
+                    <input type="text" id="fin-search" oninput="renderFinance()" placeholder="🔍 Buscar gasto..." class="px-3 py-1.5 rounded-xl border border-begeDark bg-bege/30 focus:outline-none">
+                    <select id="fin-filter-cat" onchange="renderFinance()" class="px-3 py-1.5 rounded-xl border border-begeDark bg-bege/30">
+                        <option value="ALL">Todas as Categorias</option>
+                        <option value="Matéria-Prima">Matéria-Prima / Insumos</option>
+                        <option value="Embalagens">Embalagens</option>
+                        <option value="Marketing">Marketing / Tráfego</option>
+                        <option value="Taxas">Taxas & Impostos</option>
+                        <option value="Outros">Outros / Não Categorizados</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Tabela de Despesas -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                    <thead>
+                        <tr class="border-b border-begeDark text-gray-500 uppercase text-[10px] font-accent">
+                            <th class="pb-2">Descrição / Item</th>
+                            <th class="pb-2">Categoria</th>
+                            <th class="pb-2">Data</th>
+                            <th class="pb-2">Valor</th>
+                            <th class="pb-2">Observações</th>
+                            <th class="pb-2 text-right">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expenses-tbody" class="divide-y divide-begeDark/50"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Adicionar/Editar Gasto -->
+    <div id="expense-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl space-y-4">
+            <div class="flex items-center justify-between border-b border-begeDark pb-3">
+                <h3 id="expense-modal-title" class="text-base font-bold text-bordo font-title">Novo Gasto / Despesa</h3>
+                <button onclick="closeExpenseModal()" class="text-gray-400 hover:text-gray-600">✕</button>
+            </div>
+
+            <form id="expense-form" onsubmit="saveExpense(event)" class="space-y-3 text-xs">
+                <input type="hidden" id="expense-id">
+                <div>
+                    <label class="block font-bold text-gray-700 uppercase mb-1 font-accent">Descrição do Gasto</label>
+                    <input type="text" id="expense-desc" required class="w-full px-3 py-2 rounded-xl border border-begeDark focus:outline-none" placeholder="Ex: Compra de Cera Vegetal">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block font-bold text-gray-700 uppercase mb-1 font-accent">Valor (R\$)</label>
+                        <input type="number" step="0.01" min="0" id="expense-amount" required class="w-full px-3 py-2 rounded-xl border border-begeDark focus:outline-none" placeholder="0,00">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-700 uppercase mb-1 font-accent">Data</label>
+                        <input type="date" id="expense-date" required class="w-full px-3 py-2 rounded-xl border border-begeDark focus:outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-bold text-gray-700 uppercase mb-1 font-accent">Categoria</label>
+                    <select id="expense-category" class="w-full px-3 py-2 rounded-xl border border-begeDark bg-white">
+                        <option value="Matéria-Prima">Matéria-Prima / Insumos</option>
+                        <option value="Embalagens">Embalagens</option>
+                        <option value="Marketing">Marketing / Tráfego</option>
+                        <option value="Taxas">Taxas & Impostos</option>
+                        <option value="Outros">Outros / Não Categorizados</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-bold text-gray-700 uppercase mb-1 font-accent">Observações (Opcional)</label>
+                    <input type="text" id="expense-notes" class="w-full px-3 py-2 rounded-xl border border-begeDark focus:outline-none" placeholder="Ex: Fornecedor X">
+                </div>
+                <div class="flex gap-2 pt-2">
+                    <button type="button" onclick="closeExpenseModal()" class="w-1/2 py-2 border border-begeDark rounded-xl font-semibold text-gray-600 font-accent">Cancelar</button>
+                    <button type="submit" class="w-1/2 py-2 bg-vibrante text-white rounded-xl font-semibold hover:bg-bordo transition font-accent">Salvar Gasto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script Firebase & Lógica Financeira -->
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBtIr-5hhOKmGawG2Xhw2vIqRtNUivm4Cc",
+            authDomain: "social-media-planner-cazinha.firebaseapp.com",
+            projectId: "social-media-planner-cazinha",
+            storageBucket: "social-media-planner-cazinha.firebasestorage.app",
+            messagingSenderId: "413095194883",
+            appId: "1:413095194883:web:80a7276e96989e18083936"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        let orders = [];
+        let expenses = [];
+
+        // Ouve dados de pedidos para calcular faturamento
+        db.collection("orders").onSnapshot((snapshot) => {
+            orders = [];
+            snapshot.forEach((doc) => { orders.push({ id: doc.id, ...doc.data() }); });
+            renderFinance();
+        });
+
+        // Ouve dados de despesas
+        db.collection("expenses").onSnapshot((snapshot) => {
+            expenses = [];
+            snapshot.forEach((doc) => { expenses.push({ id: doc.id, ...doc.data() }); });
+            renderFinance();
+        });
+
+        function openExpenseModal(expense = null) {
+            const modal = document.getElementById('expense-modal');
+            const form = document.getElementById('expense-form');
+            modal.classList.remove('hidden');
+
+            if (expense) {
+                document.getElementById('expense-modal-title').innerText = 'Editar Gasto';
+                document.getElementById('expense-id').value = expense.id;
+                document.getElementById('expense-desc').value = expense.desc || '';
+                document.getElementById('expense-amount').value = expense.amount || 0;
+                document.getElementById('expense-date').value = expense.date || '';
+                document.getElementById('expense-category').value = expense.category || 'Outros';
+                document.getElementById('expense-notes').value = expense.notes || '';
+            } else {
+                document.getElementById('expense-modal-title').innerText = 'Novo Gasto / Despesa';
+                form.reset();
+                document.getElementById('expense-id').value = '';
+                document.getElementById('expense-date').value = new Date().toISOString().split('T')[0];
+            }
+        }
+
+        function closeExpenseModal() {
+            document.getElementById('expense-modal').classList.add('hidden');
+        }
+
+        function saveExpense(e) {
+            e.preventDefault();
+            const id = document.getElementById('expense-id').value;
+            const data = {
+                desc: document.getElementById('expense-desc').value,
+                amount: parseFloat(document.getElementById('expense-amount').value || 0),
+                date: document.getElementById('expense-date').value,
+                category: document.getElementById('expense-category').value,
+                notes: document.getElementById('expense-notes').value,
+                updatedAt: new Date().toISOString()
+            };
+
+            if (id) {
+                db.collection("expenses").doc(id).update(data);
+            } else {
+                db.collection("expenses").add(data);
+            }
+            closeExpenseModal();
+        }
+
+        function deleteExpense(id) {
+            if (confirm("Deseja realmente excluir este lançamento?")) {
+                db.collection("expenses").doc(id).delete();
+            }
+        }
+
+        function renderFinance() {
+            const searchText = (document.getElementById('fin-search')?.value || '').toLowerCase();
+            const catFilter = document.getElementById('fin-filter-cat')?.value || 'ALL';
+
+            const filteredExpenses = expenses.filter(exp => {
+                if (searchText && !(exp.desc || '').toLowerCase().includes(searchText) && !(exp.notes || '').toLowerCase().includes(searchText)) return false;
+                if (catFilter !== 'ALL' && exp.category !== catFilter) return false;
+                return true;
+            });
+
+            // Faturamento (pedidos com pagamento "Pago")
+            let totalRevenue = orders.filter(o => o.paymentStatus === 'Pago').reduce((sum, o) => sum + (o.amount || 0), 0);
+            
+            // Total de Gastos
+            let totalExpenses = expenses.reduce((sum, exp) => sum + (exp.amount || 0), 0);
+
+            // Lucro & Margem
+            let netProfit = totalRevenue - totalExpenses;
+            let profitMargin = totalRevenue > 0 ? ((netProfit / totalRevenue) * 100).toFixed(1) : 0;
+
+            document.getElementById('fin-kpi-revenue').innerText = totalRevenue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            document.getElementById('fin-kpi-expenses').innerText = totalExpenses.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            
+            const profitEl = document.getElementById('fin-kpi-profit');
+            profitEl.innerText = netProfit.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            profitEl.className = netProfit >= 0 ? "text-2xl font-bold text-bordo mt-1 font-title" : "text-2xl font-bold text-vibrante mt-1 font-title";
+
+            document.getElementById('fin-kpi-margin').innerText = `${profitMargin}%`;
+
+            // Tabela de Despesas
+            const tbody = document.getElementById('expenses-tbody');
+            if (tbody) {
+                tbody.innerHTML = '';
+                if (filteredExpenses.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="6" class="py-4 text-center text-gray-400 font-accent">Nenhum gasto registrado.</td></tr>`;
+                } else {
+                    filteredExpenses.forEach(exp => {
+                        const tr = document.createElement('tr');
+                        tr.className = "border-b border-begeDark/40 hover:bg-bege/20";
+                        tr.innerHTML = 
+                            `<td class="py-3 font-bold text-gray-800 font-title">${exp.desc}</td>` +
+                            `<td class="py-3 font-accent"><span class="bg-bege px-2 py-0.5 rounded border border-begeDark text-[10px]">${exp.category || 'Outros'}</span></td>` +
+                            `<td class="py-3 font-accent">${exp.date ? formatDate(exp.date) : '-'}</td>` +
+                            `<td class="py-3 font-bold text-vibrante">R$ ${(exp.amount || 0).toFixed(2)}</td>` +
+                            `<td class="py-3 text-gray-500">${exp.notes || '-'}</td>` +
+                            `<td class="py-3 text-right">` +
+                                `<div class="flex justify-end gap-2">` +
+                                    `<button onclick="openExpenseModal(expenses.find(x => x.id === '${exp.id}'))" class="text-gray-500 hover:text-bordo">✏️</button>` +
+                                    `<button onclick="deleteExpense('${exp.id}')" class="text-gray-500 hover:text-vibrante">🗑️</button>` +
+                                `</div>` +
+                            `</td>`;
+                        tbody.appendChild(tr);
+                    });
+                }
+            }
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return '';
+            const parts = dateStr.split('-');
+            return parts.length === 3 ? `${parts[2]}/${parts[1]}/${parts[0]}` : dateStr;
+        }
+    </script>
+</body>
+</html>
