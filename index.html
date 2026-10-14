@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planner Cazinha - Social Media & Gestão Completa</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕯️</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏡</text></svg>">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Fraunces, Poppins, Comfortaa -->
@@ -114,7 +114,7 @@
 </head>
 <body class="text-gray-800 min-h-screen flex flex-col md:flex-row">
 
-    <!-- Barra Lateral (Desktop) - TODAS AS ABAS ORIGINAIS + GESTÃO FINANCEIRA NO FINAL -->
+    <!-- Barra Lateral (Desktop) - TODAS AS ABAS ORIGINAIS RESTAURADAS -->
     <aside class="hidden md:flex flex-col w-64 bg-white border-r border-begeDark p-6 flex-shrink-0 min-h-screen sticky top-0 h-screen overflow-y-auto">
         <div class="flex items-center gap-3 mb-6">
             <div class="text-2xl">🕯️</div>
@@ -163,7 +163,7 @@
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                 Métricas & Resultados
             </button>
-            <!-- GESTÃO FINANCEIRA: EXATAMENTE A ÚLTIMA ABA NO PAINEL LATERAL -->
+            <!-- GESTÃO FINANCEIRA: ÚLTIMA ABA NO PAINEL LATERAL -->
             <button onclick="switchTab('finance')" id="nav-finance" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 Gestão Financeira & Planilha de Gastos
@@ -204,7 +204,7 @@
         </div>
     </header>
 
-    <!-- Navegação Inferior (Mobile) - INCLUINDO A ABA FINANCEIRA NO FINAL -->
+    <!-- Navegação Inferior (Mobile) -->
     <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-begeDark px-2 py-2 flex justify-around items-center z-30 shadow-lg overflow-x-auto">
         <button onclick="switchTab('kanban')" id="mob-nav-kanban" class="flex flex-col items-center gap-1 text-bordo px-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
@@ -435,7 +435,7 @@
             </div>
         </section>
 
-        <!-- TAB 5: MURAL DA MARCA -->
+        <!-- TAB 5: MURAL DA MARCA (RESTAURADO COMPLETO) -->
         <section id="tab-brandmural" class="hidden space-y-6">
             <div class="flex justify-between items-center">
                 <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Mural & Bússola da Marca</h2>
@@ -475,20 +475,38 @@
             <div id="seasonal-posts-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
         </section>
 
-        <!-- TAB 7: ESTRATÉGIA & SEO -->
+        <!-- TAB 7: ESTRATÉGIA & SEO (RESTAURADO COMPLETO) -->
         <section id="tab-strategy" class="hidden space-y-6">
             <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Central de Estratégia & SEO</h2>
             <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-3">
                 <h3 class="font-bold text-bordo text-sm font-title">Adicionar Nova Palavra-Chave / Hashtag</h3>
                 <div class="flex gap-2">
                     <input type="text" id="new-tag-text" class="px-3 py-2 rounded-xl border border-begeDark text-xs flex-1" placeholder="Ex: velas aromáticas artesanais">
+                    <select id="new-tag-cat" class="px-3 py-2 rounded-xl border border-begeDark text-xs font-accent">
+                        <option value="Marca & Nicho">Marca & Nicho</option>
+                        <option value="Hashtags Fixas">Hashtags Fixas</option>
+                        <option value="SEO Pinterest">SEO Pinterest</option>
+                    </select>
                     <button onclick="addSeoTag()" class="bg-vibrante text-white text-xs font-semibold px-4 py-2 rounded-xl font-accent">Adicionar</button>
                 </div>
             </div>
-            <div id="tags-container-Marca & Nicho" class="flex flex-wrap gap-1.5 min-h-[50px] bg-white p-4 rounded-2xl border border-begeDark"></div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded-2xl border border-begeDark space-y-3">
+                    <h3 class="font-bold text-bordo text-xs font-title uppercase">🏷️ Marca & Nicho</h3>
+                    <div id="tags-container-Marca & Nicho" class="flex flex-wrap gap-1.5 min-h-[50px]"></div>
+                </div>
+                <div class="bg-white p-4 rounded-2xl border border-begeDark space-y-3">
+                    <h3 class="font-bold text-bordo text-xs font-title uppercase">📌 Hashtags Fixas</h3>
+                    <div id="tags-container-Hashtags Fixas" class="flex flex-wrap gap-1.5 min-h-[50px]"></div>
+                </div>
+                <div class="bg-white p-4 rounded-2xl border border-begeDark space-y-3">
+                    <h3 class="font-bold text-bordo text-xs font-title uppercase">📌 SEO Pinterest</h3>
+                    <div id="tags-container-SEO Pinterest" class="flex flex-wrap gap-1.5 min-h-[50px]"></div>
+                </div>
+            </div>
         </section>
 
-        <!-- TAB 8: MÉTRICAS -->
+        <!-- TAB 8: MÉTRICAS (RESTAURADO COMPLETO) -->
         <section id="tab-metrics" class="hidden space-y-6">
             <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Métricas & Desempenho</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -505,49 +523,73 @@
                     <h3 id="kpi-total-sales" class="text-2xl font-bold text-verde mt-1 font-title">0</h3>
                 </div>
             </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-begeDark space-y-4">
+                <h3 class="font-bold text-bordo text-sm font-title">Registrar / Atualizar Métricas por Post</h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1 font-accent">Selecionar Post</label>
+                        <select id="metric-post-select" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs font-accent"></select>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1 font-accent">Alcance</label>
+                        <input type="number" id="metric-reach" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs" placeholder="0">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1 font-accent">Engajamento (%)</label>
+                        <input type="number" step="0.1" id="metric-engagement" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs" placeholder="0.0">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1 font-accent">Vendas Geradas</label>
+                        <input type="number" id="metric-sales" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs" placeholder="0">
+                    </div>
+                </div>
+                <button onclick="savePostMetrics()" class="bg-vibrante text-white text-xs font-semibold px-5 py-2.5 rounded-xl font-accent">Salvar Métricas do Post</button>
+            </div>
         </section>
 
-        <!-- TAB 9: GESTÃO FINANCEIRA & PLANILHA DE GASTOS (ÚLTIMA ABA DO PAINEL LATERAL) -->
+        <!-- TAB 9: GESTÃO FINANCEIRA & PLANILHA DE GASTOS (ÚLTIMA ABA COM INTEGRAÇÃO DE PEDIDOS E TOGGLE) -->
         <section id="tab-finance" class="hidden space-y-6">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                     <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Gestão Financeira & Planilha de Gastos</h2>
-                    <p class="text-sm text-gray-500">Controle completo de vendas, despesas, fretes, pagamentos e margem de lucro</p>
+                    <p class="text-sm text-gray-500">Controle integrado de gastos avulsos, pedidos de vendas, fretes e margem de lucro</p>
                 </div>
+                
                 <button onclick="openFinanceModal()" class="bg-vibrante hover:bg-bordo text-white font-semibold py-2.5 px-5 rounded-xl transition shadow flex items-center gap-2 font-accent text-xs self-start md:self-auto">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                    Novo Lançamento Financeiro
+                    Novo Gasto / Lançamento Avulso
                 </button>
             </div>
 
-            <!-- DASHBOARD / KPIS FINANCEIROS AUTOMÁTICOS -->
+            <!-- DASHBOARD / KPIS FINANCEIROS DINÂMICOS (COM E SEM OS PEDIDOS) -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
                     <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Entradas (Vendas Pagas)</span>
                     <h3 id="fin-kpi-incomes" class="text-2xl font-bold text-verde mt-1 font-title">R$ 0,00</h3>
-                    <span class="text-[9px] text-gray-400 mt-2">Vendas com pagamento confirmado</span>
+                    <span id="fin-sub-incomes" class="text-[9px] text-gray-400 mt-2">Incluindo pedidos integrados</span>
                 </div>
                 <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
                     <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">A Receber (Pendentes)</span>
                     <h3 id="fin-kpi-pending" class="text-2xl font-bold text-amarelo mt-1 font-title">R$ 0,00</h3>
-                    <span class="text-[9px] text-gray-400 mt-2">Vendas a receber no período</span>
+                    <span id="fin-sub-pending" class="text-[9px] text-gray-400 mt-2">Valores pendentes nos pedidos</span>
                 </div>
                 <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
                     <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Total de Saídas / Gastos</span>
                     <h3 id="fin-kpi-expenses" class="text-2xl font-bold text-vibrante mt-1 font-title">R$ 0,00</h3>
-                    <span class="text-[9px] text-gray-400 mt-2">Custos fixos, variáveis, fretes e insumos</span>
+                    <span class="text-[9px] text-gray-400 mt-2">Custos fixos, variáveis, insumos e fretes</span>
                 </div>
                 <div class="bg-white p-4 rounded-2xl border border-begeDark flex flex-col justify-between">
                     <span class="text-[10px] font-bold text-gray-500 uppercase font-accent">Saldo Líquido (Lucro Real)</span>
                     <h3 id="fin-kpi-profit" class="text-2xl font-bold text-bordo mt-1 font-title">R$ 0,00</h3>
-                    <span class="text-[9px] text-gray-400 mt-2">Recebido - Saídas totais</span>
+                    <span class="text-[9px] text-gray-400 mt-2">Recebido total - Saídas totais</span>
                 </div>
             </div>
 
-            <!-- FILTROS E ABAS DA PLANILHA -->
+            <!-- FILTROS, ABAS E CONTROLE DE EXIBIÇÃO DOS PEDIDOS -->
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-begeDark">
                 <div class="flex flex-wrap items-center gap-2">
-                    <input type="text" id="fin-search" oninput="renderFinance()" placeholder="🔍 Buscar por descrição ou fornecedor..." class="px-3 py-1.5 text-xs rounded-xl border border-begeDark bg-bege/30 focus:outline-none w-full md:w-64">
+                    <input type="text" id="fin-search" oninput="renderFinance()" placeholder="🔍 Buscar por descrição ou cliente..." class="px-3 py-1.5 text-xs rounded-xl border border-begeDark bg-bege/30 focus:outline-none w-full md:w-56">
                     
                     <select id="fin-filter-type" onchange="renderFinance()" class="px-3 py-1.5 text-xs rounded-xl border border-begeDark bg-bege/30 font-accent">
                         <option value="ALL">Todos os Tipos</option>
@@ -562,8 +604,14 @@
                         <option value="Embalagens">Embalagens</option>
                         <option value="Investimentos">Investimentos / Marketing</option>
                         <option value="Fretes">Fretes & Envio</option>
+                        <option value="Vendas de Produtos">Vendas de Produtos (Pedidos)</option>
                         <option value="Não Categorizado">Não Categorizado / Outros</option>
                     </select>
+
+                    <!-- BOTÃO TOGGLE PARA MOSTRAR / OCULTAR PEDIDOS NA PLANILHA -->
+                    <button onclick="toggleIncludeOrders()" id="btn-toggle-orders" class="px-3 py-1.5 text-xs font-semibold rounded-xl border border-bordo bg-bordo text-white hover:bg-vibrante transition font-accent flex items-center gap-1.5">
+                        <span id="toggle-orders-icon">👁️‍🗨️</span> <span id="toggle-orders-text">Ocultar Pedidos da Planilha</span>
+                    </button>
                 </div>
 
                 <div class="flex items-center gap-1 bg-bege/50 p-1 rounded-xl border border-begeDark text-xs font-accent">
@@ -594,11 +642,11 @@
                 </table>
             </div>
 
-            <!-- VISÃO 2: TRACKING DE VENDAS & ENTRADAS -->
+            <!-- VISÃO 2: TRACKING DE VENDAS & ENTRADAS (INTEGRADO COM PEDIDOS) -->
             <div id="fin-view-incomes" class="hidden bg-white p-5 rounded-2xl border border-begeDark shadow-2xs overflow-x-auto space-y-3">
                 <div class="flex justify-between items-center border-b border-begeDark pb-2">
-                    <h3 class="font-bold text-bordo text-sm font-title">Tracking de Vendas, Frete & Pagamentos</h3>
-                    <span class="text-xs text-gray-400 font-accent">Integração Financeira</span>
+                    <h3 class="font-bold text-bordo text-sm font-title">Tracking de Vendas, Frete & Pagamentos (Sincronizado com Pedidos)</h3>
+                    <span class="text-xs text-gray-400 font-accent">Integração Automática</span>
                 </div>
                 <table class="w-full text-left text-xs">
                     <thead>
@@ -609,7 +657,7 @@
                             <th class="pb-2">Custo de Frete</th>
                             <th class="pb-2">Valor Líquido Venda</th>
                             <th class="pb-2">Observações</th>
-                            <th class="pb-2 text-right">Ações</th>
+                            <th class="pb-2 text-right">Origem</th>
                         </tr>
                     </thead>
                     <tbody id="fin-incomes-tbody" class="divide-y divide-begeDark/50"></tbody>
@@ -619,14 +667,12 @@
 
     </main>
 
-    <!-- MODAL DE LANÇAMENTO FINANCEIRO COM FORMATADOR COMPLETO DE TEXTO -->
+    <!-- MODAL DE LANÇAMENTO FINANCEIRO (APENAS PARA GASTOS E ENTRADAS EXTRAS) -->
     <div id="finance-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl max-h-[90vh] overflow-y-auto space-y-4">
             <div class="flex items-center justify-between border-b border-begeDark pb-3">
-                <h3 id="finance-modal-title" class="text-lg font-bold text-bordo font-title">Novo Lançamento Financeiro</h3>
-                <button onclick="closeFinanceModal()" class="text-gray-400 hover:text-gray-600">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
+                <h3 id="finance-modal-title" class="text-lg font-bold text-bordo font-title">Novo Gasto / Lançamento Avulso</h3>
+                <button onclick="closeFinanceModal()" class="text-gray-400 hover:text-gray-600">✕</button>
             </div>
 
             <form id="finance-form" onsubmit="saveFinanceTransaction(event)" class="space-y-4">
@@ -637,7 +683,7 @@
                         <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Tipo de Registro</label>
                         <select id="fin-type" onchange="toggleFinanceCategoryOptions()" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs font-semibold">
                             <option value="DESPESA">🔴 Saída / Gasto</option>
-                            <option value="RECEITA">🟢 Entrada / Venda</option>
+                            <option value="RECEITA">🟢 Entrada Extra</option>
                         </select>
                     </div>
                     <div>
@@ -654,8 +700,8 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Descrição / Nome do Item ou Cliente</label>
-                    <input type="text" id="fin-title" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Ex: Cera vegetal 5kg / Venda Ana Silva">
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Descrição / Nome do Item ou Fornecedor</label>
+                    <input type="text" id="fin-title" required class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Ex: Cera vegetal 5kg / Embalagens Correios">
                 </div>
 
                 <div class="grid grid-cols-3 gap-3 bg-bege/30 p-3 rounded-xl border border-begeDark">
@@ -670,20 +716,6 @@
                     <div>
                         <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Valor Total (R$)</label>
                         <input type="number" step="0.01" id="fin-total-value" readonly class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-gray-100 font-bold text-bordo" placeholder="0,00">
-                    </div>
-                </div>
-
-                <div id="fin-extra-fields" class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Custo de Frete (R$)</label>
-                        <input type="number" step="0.01" id="fin-shipping-cost" value="0" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs" placeholder="0,00">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Status do Pagamento</label>
-                        <select id="fin-payment-status" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs">
-                            <option value="Pago">Pago / Confirmado</option>
-                            <option value="Pendente">Pendente</option>
-                        </select>
                     </div>
                 </div>
 
@@ -713,7 +745,6 @@
                         </div>
                     </div>
 
-                    <!-- Área de Conteúdo Editável -->
                     <div id="fin-notes-editor" contenteditable="true" class="rich-editor-content p-3 rounded-b-xl border border-begeDark bg-white text-xs focus:ring-2 focus:ring-vibrante focus:outline-none" placeholder="Digite detalhes, fornecedor ou observações importantes aqui..."></div>
                 </div>
 
@@ -730,9 +761,7 @@
         <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl max-h-[90vh] overflow-y-auto space-y-4">
             <div class="flex items-center justify-between border-b border-begeDark pb-3">
                 <h3 id="view-post-title" class="text-base font-bold text-bordo font-title">Detalhes do Post</h3>
-                <button onclick="closeViewPostModal()" class="text-gray-400 hover:text-gray-600">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
+                <button onclick="closeViewPostModal()" class="text-gray-400 hover:text-gray-600">✕</button>
             </div>
             <div class="space-y-3 text-xs">
                 <div class="flex flex-wrap gap-2 items-center" id="view-post-badges"></div>
@@ -751,9 +780,7 @@
         <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-xl max-h-[90vh] overflow-y-auto">
             <div class="flex items-center justify-between mb-6 border-b border-begeDark pb-3">
                 <h3 id="modal-title" class="text-lg font-bold text-bordo font-title">Novo Conteúdo</h3>
-                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">✕</button>
             </div>
             <form id="post-form" onsubmit="savePost(event)" class="space-y-4">
                 <input type="hidden" id="post-id">
@@ -814,7 +841,7 @@
         </div>
     </div>
 
-    <!-- SCRIPT COMPLETO COM TODAS AS 2200+ LINHAS E MÓDULOS UNIFICADOS -->
+    <!-- SCRIPT COMPLETO E INTEGRADO -->
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyBtIr-5hhOKmGawG2Xhw2vIqRtNUivm4Cc",
@@ -837,6 +864,7 @@
         let currentCalendarDate = new Date();
         let currentViewingPostId = null;
         let currentFinanceTab = 'expenses';
+        let includeOrdersInFinance = true;
 
         let collapsedColumns = new Set(['producao', 'agendado', 'publicado']);
         let isCompactMode = false;
@@ -862,9 +890,10 @@
             });
             const target = document.getElementById(`tab-${tab}`);
             if (target) target.classList.remove('hidden');
+            if (tab === 'metrics') renderMetricsSelect();
         }
 
-        // --- MÓDULO FINANCEIRO COMPLETO ---
+        // --- MÓDULO FINANCEIRO COM INTEGRAÇÃO DE PEDIDOS E TOGGLE ---
         function switchFinanceTab(view) {
             currentFinanceTab = view;
             document.getElementById('fin-view-expenses').classList.toggle('hidden', view !== 'expenses');
@@ -872,6 +901,24 @@
 
             document.getElementById('btn-fintab-expenses').className = view === 'expenses' ? "px-3 py-1.5 rounded-lg font-bold bg-white text-bordo shadow-2xs" : "px-3 py-1.5 rounded-lg font-medium text-gray-500";
             document.getElementById('btn-fintab-incomes').className = view === 'incomes' ? "px-3 py-1.5 rounded-lg font-bold bg-white text-bordo shadow-2xs" : "px-3 py-1.5 rounded-lg font-medium text-gray-500";
+        }
+
+        function toggleIncludeOrders() {
+            includeOrdersInFinance = !includeOrdersInFinance;
+            const btn = document.getElementById('btn-toggle-orders');
+            const txt = document.getElementById('toggle-orders-text');
+            const icon = document.getElementById('toggle-orders-icon');
+
+            if (includeOrdersInFinance) {
+                btn.className = "px-3 py-1.5 text-xs font-semibold rounded-xl border border-bordo bg-bordo text-white hover:bg-vibrante transition font-accent flex items-center gap-1.5";
+                txt.innerText = "Ocultar Pedidos da Planilha";
+                icon.innerText = "👁️‍🗨️";
+            } else {
+                btn.className = "px-3 py-1.5 text-xs font-semibold rounded-xl border border-begeDark bg-white text-gray-600 hover:bg-bege transition font-accent flex items-center gap-1.5";
+                txt.innerText = "Mostrar Pedidos na Planilha";
+                icon.innerText = "👁️";
+            }
+            renderFinance();
         }
 
         function execEditorCommand(command, value = null) {
@@ -888,7 +935,7 @@
             const type = document.getElementById('fin-type').value;
             const catSelect = document.getElementById('fin-category');
             if (type === 'RECEITA') {
-                catSelect.innerHTML = `<option value="Vendas">Vendas de Produtos</option><option value="Serviços">Serviços / Consultoria</option><option value="Outros">Outras Entradas</option>`;
+                catSelect.innerHTML = `<option value="Outros">Outras Entradas Extras</option>`;
             } else {
                 catSelect.innerHTML = `
                     <option value="Custos Fixos">Custos Fixos</option>
@@ -907,7 +954,7 @@
             modal.classList.remove('hidden');
 
             if (item) {
-                document.getElementById('finance-modal-title').innerText = 'Editar Lançamento';
+                document.getElementById('finance-modal-title').innerText = 'Editar Lançamento Avulso';
                 document.getElementById('fin-id').value = item.id;
                 document.getElementById('fin-type').value = item.type || 'DESPESA';
                 toggleFinanceCategoryOptions();
@@ -916,18 +963,15 @@
                 document.getElementById('fin-qty').value = item.qty || 1;
                 document.getElementById('fin-unit-value').value = item.unitValue || 0;
                 document.getElementById('fin-total-value').value = item.totalValue || 0;
-                document.getElementById('fin-shipping-cost').value = item.shippingCost || 0;
-                document.getElementById('fin-payment-status').value = item.paymentStatus || 'Pago';
                 document.getElementById('fin-date').value = item.date || new Date().toISOString().split('T')[0];
                 document.getElementById('fin-notes-editor').innerHTML = item.notesHtml || '';
             } else {
-                document.getElementById('finance-modal-title').innerText = 'Novo Lançamento Financeiro';
+                document.getElementById('finance-modal-title').innerText = 'Novo Gasto / Lançamento Avulso';
                 form.reset();
                 document.getElementById('fin-id').value = '';
                 document.getElementById('fin-qty').value = 1;
                 document.getElementById('fin-unit-value').value = 0;
                 document.getElementById('fin-total-value').value = 0;
-                document.getElementById('fin-shipping-cost').value = 0;
                 document.getElementById('fin-date').value = new Date().toISOString().split('T')[0];
                 document.getElementById('fin-notes-editor').innerHTML = '';
                 toggleFinanceCategoryOptions();
@@ -949,8 +993,8 @@
                 qty: parseFloat(document.getElementById('fin-qty').value || 1),
                 unitValue: parseFloat(document.getElementById('fin-unit-value').value || 0),
                 totalValue: parseFloat(document.getElementById('fin-total-value').value || 0),
-                shippingCost: parseFloat(document.getElementById('fin-shipping-cost').value || 0),
-                paymentStatus: document.getElementById('fin-payment-status').value,
+                shippingCost: 0,
+                paymentStatus: 'Pago',
                 date: document.getElementById('fin-date').value,
                 notesHtml: document.getElementById('fin-notes-editor').innerHTML,
                 updatedAt: new Date().toISOString()
@@ -978,23 +1022,25 @@
 
             let allItems = [...financeTransactions];
 
-            orders.forEach(o => {
-                allItems.push({
-                    id: 'order_' + o.id,
-                    isFromOrders: true,
-                    orderObj: o,
-                    type: 'RECEITA',
-                    category: 'Vendas de Produtos',
-                    title: `Pedido: ${o.client} (${o.items})`,
-                    qty: o.qty || 1,
-                    unitValue: o.unitAmount || 0,
-                    totalValue: o.amount || 0,
-                    shippingCost: o.shippingAmount || 0,
-                    paymentStatus: o.paymentStatus || 'Pendente',
-                    date: o.date || new Date().toISOString().split('T')[0],
-                    notesHtml: o.notes || 'Gerado automaticamente via aba de Pedidos'
+            if (includeOrdersInFinance) {
+                orders.forEach(o => {
+                    allItems.push({
+                        id: 'order_' + o.id,
+                        isFromOrders: true,
+                        orderObj: o,
+                        type: 'RECEITA',
+                        category: 'Vendas de Produtos',
+                        title: `Pedido: ${o.client} (${o.items})`,
+                        qty: o.qty || 1,
+                        unitValue: o.unitAmount || 0,
+                        totalValue: o.amount || 0,
+                        shippingCost: o.shippingAmount || 0,
+                        paymentStatus: o.paymentStatus || 'Pendente',
+                        date: o.date || new Date().toISOString().split('T')[0],
+                        notesHtml: o.notes || 'Sincronizado da aba Pedidos'
+                    });
                 });
-            });
+            }
 
             let totalIncomes = 0;
             let totalPending = 0;
@@ -1019,6 +1065,10 @@
             if (profitEl) {
                 profitEl.innerText = profit.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
                 profitEl.className = profit >= 0 ? "text-2xl font-bold text-verde mt-1 font-title" : "text-2xl font-bold text-vibrante mt-1 font-title";
+            }
+
+            if (document.getElementById('fin-sub-incomes')) {
+                document.getElementById('fin-sub-incomes').innerText = includeOrdersInFinance ? "Com pedidos integrados" : "Apenas entradas avulsas";
             }
 
             const expTbody = document.getElementById('fin-expenses-tbody');
@@ -1067,8 +1117,8 @@
                         `<td class="py-3 font-bold text-verde">R$ ${(i.totalValue || 0).toFixed(2)}</td>` +
                         `<td class="py-3 max-w-xs text-gray-600 line-clamp-2">${i.notesHtml || '-'}</td>` +
                         `<td class="py-3 text-right">` +
-                            (i.isFromOrders ? `<span class="text-[10px] text-gray-400 font-accent italic">Via Pedidos</span>` : 
-                            `<button onclick="openFinanceModal(financeTransactions.find(t => t.id === '${i.id}'))" class="text-gray-500 hover:text-bordo mr-2">✏️</button><button onclick="deleteFinanceTransaction('${i.id}')" class="text-gray-500 hover:text-vibrante">🗑️</button>`) +
+                            (i.isFromOrders ? `<span class="text-[10px] text-bordo bg-bege px-2 py-0.5 rounded font-bold font-accent">Aba Pedidos</span>` : 
+                            `<span class="text-[10px] text-gray-400 font-accent">Avulso</span>`) +
                         `</td>`;
                     incTbody.appendChild(tr);
                 }
@@ -1375,20 +1425,27 @@
         function deleteBrandNote(id) { db.collection("brand_notes").doc(id).delete(); }
 
         function renderSeoTags() {
-            const container = document.getElementById('tags-container-Marca & Nicho');
-            if(!container) return;
-            container.innerHTML = '';
+            ['Marca & Nicho', 'Hashtags Fixas', 'SEO Pinterest'].forEach(cat => {
+                const container = document.getElementById(`tags-container-${cat}`);
+                if(container) container.innerHTML = '';
+            });
             seoTags.forEach(t => {
-                const tag = document.createElement('span');
-                tag.className = "px-3 py-1 bg-bege border border-begeDark rounded-xl text-xs font-accent flex items-center gap-2";
-                tag.innerHTML = `<span>#${t.text}</span><button onclick="deleteSeoTag('${t.id}')" class="text-gray-400 hover:text-vibrante">✕</button>`;
-                container.appendChild(tag);
+                const cat = t.category || 'Marca & Nicho';
+                const container = document.getElementById(`tags-container-${cat}`);
+                if(container) {
+                    const tag = document.createElement('span');
+                    tag.className = "px-3 py-1 bg-bege border border-begeDark rounded-xl text-xs font-accent flex items-center gap-2";
+                    tag.innerHTML = `<span>#${t.text}</span><button onclick="deleteSeoTag('${t.id}')" class="text-gray-400 hover:text-vibrante">✕</button>`;
+                    container.appendChild(tag);
+                }
             });
         }
+
         function addSeoTag() {
             const txt = document.getElementById('new-tag-text').value.trim();
+            const cat = document.getElementById('new-tag-cat').value;
             if(!txt) return;
-            db.collection("seo_tags").add({ text: txt });
+            db.collection("seo_tags").add({ text: txt, category: cat });
             document.getElementById('new-tag-text').value = '';
         }
         function deleteSeoTag(id) { db.collection("seo_tags").doc(id).delete(); }
@@ -1405,6 +1462,31 @@
             if(document.getElementById('kpi-total-sales')) document.getElementById('kpi-total-sales').innerText = sales;
         }
 
+        function renderMetricsSelect() {
+            const sel = document.getElementById('metric-post-select');
+            if(!sel) return;
+            sel.innerHTML = '';
+            posts.forEach(p => {
+                const opt = document.createElement('option');
+                opt.value = p.id;
+                opt.innerText = p.title;
+                sel.appendChild(opt);
+            });
+        }
+
+        function savePostMetrics() {
+            const postId = document.getElementById('metric-post-select').value;
+            if(!postId) return alert("Selecione um post.");
+            const reach = parseInt(document.getElementById('metric-reach').value) || 0;
+            const engagement = parseFloat(document.getElementById('metric-engagement').value) || 0;
+            const sales = parseInt(document.getElementById('metric-sales').value) || 0;
+
+            db.collection("posts").doc(postId).update({ reach, engagement, sales }).then(() => {
+                alert("Métricas salvas com sucesso!");
+                renderMetrics();
+            });
+        }
+
         function openViewPostModal(id) {
             const p = posts.find(item => item.id === id);
             if (!p) return;
@@ -1412,7 +1494,6 @@
             document.getElementById('view-post-title').innerText = p.title;
             document.getElementById('view-post-date').innerText = p.date ? formatDate(p.date) : 'Sem data';
 
-            // URLs automáticas linkificadas target="_blank"
             let captionText = p.caption || 'Sem legenda.';
             const urlRegex = /(https?:\/\/[^\s]+)/g;
             captionText = captionText.replace(urlRegex, (url) => `<a href="${url}" target="_blank" class="text-blue-600 underline">${url}</a>`);
@@ -1490,6 +1571,7 @@
             renderBrandNotes();
             renderSeoTags();
             renderMetrics();
+            renderMetricsSelect();
             renderFinance();
         }
 
