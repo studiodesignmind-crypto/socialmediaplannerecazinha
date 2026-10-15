@@ -620,9 +620,15 @@
 
         <!-- TAB DATAS SAZONAIS -->
         <section id="tab-seasonal" class="hidden space-y-6">
-            <div>
-                <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Datas Sazonais & Comemorativas</h2>
-                <p class="text-sm text-gray-500">Planeje conteúdos estratégicos vinculados a eventos importantes do ano</p>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Datas Sazonais & Comemorativas</h2>
+                    <p class="text-sm text-gray-500">Planeje conteúdos estratégicos vinculados a eventos importantes do ano</p>
+                </div>
+                <button onclick="openModal(null, null, true)" class="bg-vibrante hover:bg-bordo text-white font-semibold py-2.5 px-5 rounded-xl transition shadow flex items-center gap-2 self-start md:self-auto font-accent text-xs">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    Adicionar Post Sazonal
+                </button>
             </div>
 
             <div class="bg-white p-6 rounded-2xl border border-begeDark space-y-4">
@@ -805,7 +811,7 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 border-t border-begeDark">
+               <div class="grid grid-cols-1 md:grid-cols-4 gap-3 pt-2 border-t border-begeDark">
                     <div>
                         <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Objetivo</label>
                         <select id="post-goal" class="w-full px-3 py-2 rounded-xl border border-begeDark text-xs bg-white font-semibold">
@@ -832,6 +838,15 @@
                             <option value="Em Edição">Em Edição</option>
                             <option value="Mídia Pronta">Mídia Pronta</option>
                         </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1 font-accent">Sazonal?</label>
+                        <div class="flex items-center h-10">
+                            <label class="flex items-center gap-2 text-xs font-accent cursor-pointer bg-bege px-3 py-2 rounded-xl border border-begeDark w-full">
+                                <input type="checkbox" id="post-seasonal" class="accent-bordo"> Marcar Sazonal
+                            </label>
+                        </div>
                     </div>
                 </div>
 
@@ -2028,7 +2043,7 @@
             }
         }
 
-        function openModal(post = null, defaultDate = null) {
+        function openModal(post = null, defaultDate = null, forceSeasonal = false) {
             const modal = document.getElementById('modal');
             const form = document.getElementById('post-form');
             modal.classList.remove('hidden');
@@ -2046,6 +2061,7 @@
                 document.getElementById('post-pillar').value = post.pillar || 'Educacional';
                 document.getElementById('post-caption').value = post.caption || '';
                 document.getElementById('post-media-status').value = post.mediaStatus || 'A Gravar';
+                document.getElementById('post-seasonal').checked = post.isSeasonal || false;
 
                 document.getElementById('metric-reach').value = post.metricReach || '';
                 document.getElementById('metric-interactions').value = post.metricInteractions || '';
@@ -2062,6 +2078,7 @@
                 document.querySelector('input[name="platform"][value="Instagram"]').checked = true;
                 document.getElementById('post-goal').value = 'Conexão';
                 document.getElementById('post-pillar').value = 'Educacional';
+                document.getElementById('post-seasonal').checked = forceSeasonal;
                 if (defaultDate) {
                     document.getElementById('post-date').value = defaultDate;
                     document.getElementById('post-status').value = 'agendado';
@@ -2092,6 +2109,7 @@
                 pillar: document.getElementById('post-pillar').value,
                 caption: document.getElementById('post-caption').value,
                 mediaStatus: document.getElementById('post-media-status').value,
+                isSeasonal: document.getElementById('post-seasonal').checked,
                 metricReach: document.getElementById('metric-reach').value,
                 metricInteractions: document.getElementById('metric-interactions').value,
                 metricSales: document.getElementById('metric-sales').value,
