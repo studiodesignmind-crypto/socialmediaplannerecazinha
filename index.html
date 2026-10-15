@@ -61,9 +61,9 @@
         }
         @media (min-width: 768px) {
             .kanban-col-collapsed {
-                width: 7rem !important;
-                min-width: 7rem !important;
-                max-width: 7rem !important;
+                width: 12rem !important;
+                min-width: 12rem !important;
+                max-width: 12rem !important;
                 flex-grow: 0 !important;
                 overflow: hidden;
                 padding: 1rem 0.5rem !important;
@@ -123,10 +123,6 @@
             <button onclick="switchTab('orders')" id="nav-orders" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
                 Pedidos & Encomendas
-            </button>
-            <button onclick="switchTab('calendar')" id="nav-calendar" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                Calendário Mensal
             </button>
             <button onclick="switchTab('platforms')" id="nav-platforms" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium text-sm transition text-gray-500 hover:bg-bege">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
@@ -197,9 +193,9 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
             <span class="text-[9px] font-medium font-accent">Pedidos</span>
         </button>
-        <button onclick="switchTab('calendar')" id="mob-nav-calendar" class="flex flex-col items-center gap-1 text-gray-400 px-2">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-            <span class="text-[9px] font-medium font-accent">Agenda</span>
+        <button onclick="switchTab('platforms')" id="mob-nav-platforms" class="flex flex-col items-center gap-1 text-gray-400 px-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            <span class="text-[9px] font-medium font-accent">Plataformas</span>
         </button>
         <button onclick="switchTab('brandmural')" id="mob-nav-brandmural" class="flex flex-col items-center gap-1 text-gray-400 px-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
@@ -218,14 +214,23 @@
     <!-- Área Principal de Conteúdo -->
     <main class="flex-1 p-4 md:p-8 overflow-y-auto max-w-7xl mx-auto w-full">
 
-        <!-- TAB 1: KANBAN BOARD -->
+        <!-- TAB 1: KANBAN BOARD & CALENDÁRIO ALTERNÁVEL -->
         <section id="tab-kanban" class="space-y-6">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Fluxo de Produção</h2>
-                    <p class="text-sm text-gray-500">Gerencie o progresso das suas publicações</p>
+                    <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Planejamento de Conteúdo</h2>
+                    <p class="text-sm text-gray-500">Gerencie o fluxo de produção e o calendário de postagens</p>
                 </div>
 
+                <!-- Botão de Alternância de Visão (Kanban / Calendário Mensal) -->
+                <div class="flex items-center gap-1 bg-white p-1 rounded-xl border border-begeDark text-xs font-accent self-start md:self-auto">
+                    <button onclick="switchKanbanSubView('board')" id="btn-subview-board" class="px-3 py-1.5 rounded-lg font-bold bg-white text-bordo shadow-2xs">Visão Kanban</button>
+                    <button onclick="switchKanbanSubView('calendar')" id="btn-subview-calendar" class="px-3 py-1.5 rounded-lg font-medium text-gray-500">Calendário Mensal</button>
+                </div>
+            </div>
+
+            <!-- SUB-VISÃO 1: KANBAN BOARD -->
+            <div id="subview-board" class="space-y-6">
                 <!-- Controles de Filtro -->
                 <div class="flex flex-wrap items-center gap-2 font-accent">
                     <input type="text" id="kanban-search" oninput="renderKanban()" placeholder="🔍 Buscar por título..." class="px-3 py-1.5 text-xs rounded-xl border border-begeDark bg-white focus:outline-none">
@@ -269,69 +274,95 @@
                         📄 Visão Compacta
                     </button>
                 </div>
+
+                <!-- Grade do Kanban -->
+                <div class="flex flex-col md:flex-row gap-4 items-start">
+                    <!-- Coluna 1: Ideias -->
+                    <div id="wrapper-col-ideia" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0">
+                        <div class="col-header-inner flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-amarelo flex-shrink-0"></span>
+                                <span class="col-title-text font-bold text-sm text-gray-700 font-title">Ideias</span>
+                            </div>
+                            <div class="flex items-center gap-2 font-accent">
+                                <span id="count-ideia" class="col-counter bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
+                                <button onclick="toggleColumnCollapse('ideia')" class="text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher" id="btn-col-ideia">[−]</button>
+                            </div>
+                        </div>
+                        <div id="col-ideia" class="col-content space-y-3 flex-1 min-h-[150px]"></div>
+                    </div>
+
+                    <!-- Coluna 2: Em Produção -->
+                    <div id="wrapper-col-producao" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0">
+                        <div class="col-header-inner flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-azul flex-shrink-0"></span>
+                                <span class="col-title-text font-bold text-sm text-gray-700 font-title">Em Produção</span>
+                            </div>
+                            <div class="flex items-center gap-2 font-accent">
+                                <span id="count-producao" class="col-counter bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
+                                <button onclick="toggleColumnCollapse('producao')" class="text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher" id="btn-col-producao">[−]</button>
+                            </div>
+                        </div>
+                        <div id="col-producao" class="col-content space-y-3 flex-1 min-h-[150px]"></div>
+                    </div>
+
+                    <!-- Coluna 3: Agendado -->
+                    <div id="wrapper-col-agendado" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0">
+                        <div class="col-header-inner flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-rosa flex-shrink-0"></span>
+                                <span class="col-title-text font-bold text-sm text-gray-700 font-title">Agendado</span>
+                            </div>
+                            <div class="flex items-center gap-2 font-accent">
+                                <span id="count-agendado" class="col-counter bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
+                                <button onclick="toggleColumnCollapse('agendado')" class="text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher" id="btn-col-agendado">[−]</button>
+                            </div>
+                        </div>
+                        <div id="col-agendado" class="col-content space-y-3 flex-1 min-h-[150px]"></div>
+                    </div>
+
+                    <!-- Coluna 4: Publicado -->
+                    <div id="wrapper-col-publicado" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0">
+                        <div class="col-header-inner flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-verde flex-shrink-0"></span>
+                                <span class="col-title-text font-bold text-sm text-gray-700 font-title">Publicado</span>
+                            </div>
+                            <div class="flex items-center gap-1 font-accent">
+                                <span id="count-publicado" class="col-counter bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
+                                <button onclick="toggleShowAllPublished()" class="col-content text-[10px] text-bordo underline font-bold ml-1">Ver todos</button>
+                                <button onclick="toggleColumnCollapse('publicado')" class="text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher" id="btn-col-publicado">[−]</button>
+                            </div>
+                        </div>
+                        <div id="col-publicado" class="col-content space-y-3 flex-1 min-h-[150px]"></div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Grade do Kanban -->
-            <div class="flex flex-col md:flex-row gap-4 items-start">
-                <!-- Coluna 1: Ideias -->
-                <div id="wrapper-col-ideia" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0">
-                    <div class="col-header-inner flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
-                        <div class="flex items-center gap-2">
-                            <span class="w-3 h-3 rounded-full bg-amarelo flex-shrink-0"></span>
-                            <span class="col-title-text font-bold text-sm text-gray-700 font-title">Ideias</span>
-                        </div>
-                        <div class="flex items-center gap-2 font-accent">
-                            <span id="count-ideia" class="col-counter bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
-                            <button onclick="toggleColumnCollapse('ideia')" class="text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher" id="btn-col-ideia">[+]</button>
-                        </div>
+            <!-- SUB-VISÃO 2: CALENDÁRIO MENSAL -->
+            <div id="subview-calendar" class="hidden space-y-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-bordo font-title">Calendário Mensal de Publicações</h3>
+                        <p class="text-xs text-gray-500">Clique em qualquer dia para ver os posts ou agendar novo conteúdo</p>
                     </div>
-                    <div id="col-ideia" class="col-content space-y-3 flex-1 min-h-[150px]"></div>
+                    <div class="flex items-center gap-3 bg-white px-4 py-2 rounded-xl border border-begeDark self-start">
+                        <button onclick="changeMonth(-1)" class="text-bordo hover:bg-bege p-1 rounded-lg">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                        </button>
+                        <span id="calendar-month-title" class="font-bold text-bordo text-sm min-w-[120px] text-center font-title">Outubro 2026</span>
+                        <button onclick="changeMonth(1)" class="text-bordo hover:bg-bege p-1 rounded-lg">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </button>
+                    </div>
                 </div>
 
-                <!-- Coluna 2: Em Produção -->
-                <div id="wrapper-col-producao" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0 kanban-col-collapsed-mobile">
-                    <div class="col-header-inner flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
-                        <div class="flex items-center gap-2">
-                            <span class="w-3 h-3 rounded-full bg-azul flex-shrink-0"></span>
-                            <span class="col-title-text font-bold text-sm text-gray-700 font-title">Em Produção</span>
-                        </div>
-                        <div class="flex items-center gap-2 font-accent">
-                            <span id="count-producao" class="col-counter bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
-                            <button onclick="toggleColumnCollapse('producao')" class="text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher" id="btn-col-producao">[+]</button>
-                        </div>
+                <div class="bg-white rounded-2xl p-4 md:p-6 border border-begeDark shadow-sm">
+                    <div class="grid grid-cols-7 gap-1 md:gap-2 mb-2 text-center text-xs font-bold text-bordo uppercase font-accent">
+                        <div>Dom</div><div>Seg</div><div>Ter</div><div>Qua</div><div>Qui</div><div>Sex</div><div>Sáb</div>
                     </div>
-                    <div id="col-producao" class="col-content space-y-3 flex-1 min-h-[150px]"></div>
-                </div>
-
-                <!-- Coluna 3: Agendado -->
-                <div id="wrapper-col-agendado" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0 kanban-col-collapsed-mobile">
-                    <div class="col-header-inner flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
-                        <div class="flex items-center gap-2">
-                            <span class="w-3 h-3 rounded-full bg-rosa flex-shrink-0"></span>
-                            <span class="col-title-text font-bold text-sm text-gray-700 font-title">Agendado</span>
-                        </div>
-                        <div class="flex items-center gap-2 font-accent">
-                            <span id="count-agendado" class="col-counter bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
-                            <button onclick="toggleColumnCollapse('agendado')" class="text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher" id="btn-col-agendado">[+]</button>
-                        </div>
-                    </div>
-                    <div id="col-agendado" class="col-content space-y-3 flex-1 min-h-[150px]"></div>
-                </div>
-
-                <!-- Coluna 4: Publicado -->
-                <div id="wrapper-col-publicado" class="bg-white/70 rounded-2xl p-4 border border-begeDark flex flex-col transition-all duration-300 w-full md:flex-1 min-w-0 kanban-col-collapsed-mobile">
-                    <div class="col-header-inner flex items-center justify-between mb-4 border-b border-begeDark/40 pb-2">
-                        <div class="flex items-center gap-2">
-                            <span class="w-3 h-3 rounded-full bg-verde flex-shrink-0"></span>
-                            <span class="col-title-text font-bold text-sm text-gray-700 font-title">Publicado</span>
-                        </div>
-                        <div class="flex items-center gap-1 font-accent">
-                            <span id="count-publicado" class="col-counter bg-bege text-xs font-semibold px-2 py-0.5 rounded-full text-gray-600">0</span>
-                            <button onclick="toggleShowAllPublished()" class="col-content text-[10px] text-bordo underline font-bold ml-1">Ver todos</button>
-                            <button onclick="toggleColumnCollapse('publicado')" class="text-gray-400 hover:text-bordo font-bold text-sm px-1" title="Expandir/Recolher" id="btn-col-publicado">[+]</button>
-                        </div>
-                    </div>
-                    <div id="col-publicado" class="col-content space-y-3 flex-1 min-h-[150px]"></div>
+                    <div id="calendar-grid" class="grid grid-cols-7 gap-1 md:gap-2"></div>
                 </div>
             </div>
         </section>
@@ -443,32 +474,6 @@
                     </h3>
                     <div id="order-col-Concluído" class="space-y-3 flex-1 min-h-[150px]"></div>
                 </div>
-            </div>
-        </section>
-
-        <!-- TAB CALENDÁRIO -->
-        <section id="tab-calendar" class="hidden space-y-6">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                    <h2 class="text-xl md:text-2xl font-bold text-bordo font-title">Calendário do Mês</h2>
-                    <p class="text-sm text-gray-500">Clique em qualquer dia para ver os posts ou agendar novo conteúdo</p>
-                </div>
-                <div class="flex items-center gap-3 bg-white px-4 py-2 rounded-xl border border-begeDark self-start">
-                    <button onclick="changeMonth(-1)" class="text-bordo hover:bg-bege p-1 rounded-lg">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                    </button>
-                    <span id="calendar-month-title" class="font-bold text-bordo text-sm min-w-[120px] text-center font-title">Outubro 2026</span>
-                    <button onclick="changeMonth(1)" class="text-bordo hover:bg-bege p-1 rounded-lg">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                    </button>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-2xl p-4 md:p-6 border border-begeDark shadow-sm">
-                <div class="grid grid-cols-7 gap-1 md:gap-2 mb-2 text-center text-xs font-bold text-bordo uppercase font-accent">
-                    <div>Dom</div><div>Seg</div><div>Ter</div><div>Qua</div><div>Qui</div><div>Sex</div><div>Sáb</div>
-                </div>
-                <div id="calendar-grid" class="grid grid-cols-7 gap-1 md:gap-2"></div>
             </div>
         </section>
 
@@ -1083,13 +1088,15 @@
         let currentCalendarDate = new Date();
         let currentViewingPostId = null;
 
-        let collapsedColumns = new Set(['producao', 'agendado', 'publicado']);
+        // Todas as colunas abertas por padrão
+        let collapsedColumns = new Set();
         let isCompactMode = false;
         let isMediaReadyOnly = false;
         let showAllPublished = false;
 
         let currentMuralFilter = 'ALL';
         let currentOrderView = 'table';
+        let currentKanbanSubView = 'board';
 
         db.collection("posts").onSnapshot((snapshot) => {
             posts = [];
@@ -1137,7 +1144,7 @@
         });
 
         function switchTab(tab) {
-            ['kanban', 'orders', 'calendar', 'platforms', 'brandmural', 'seasonal', 'strategy', 'metrics'].forEach(t => {
+            ['kanban', 'orders', 'platforms', 'brandmural', 'seasonal', 'strategy', 'metrics'].forEach(t => {
                 const el = document.getElementById(`tab-${t}`);
                 if (el) el.classList.add('hidden');
 
@@ -1158,6 +1165,23 @@
 
             const target = document.getElementById(`tab-${tab}`);
             if (target) target.classList.remove('hidden');
+        }
+
+        function switchKanbanSubView(view) {
+            currentKanbanSubView = view;
+            document.getElementById('subview-board').classList.toggle('hidden', view !== 'board');
+            document.getElementById('subview-calendar').classList.toggle('hidden', view !== 'calendar');
+
+            document.getElementById('btn-subview-board').className = view === 'board' 
+                ? "px-3 py-1.5 rounded-lg font-bold bg-white text-bordo shadow-2xs" 
+                : "px-3 py-1.5 rounded-lg font-medium text-gray-500";
+            document.getElementById('btn-subview-calendar').className = view === 'calendar' 
+                ? "px-3 py-1.5 rounded-lg font-bold bg-white text-bordo shadow-2xs" 
+                : "px-3 py-1.5 rounded-lg font-medium text-gray-500";
+            
+            if (view === 'calendar') {
+                renderMonthlyCalendar();
+            }
         }
 
         function switchOrderView(view) {
@@ -1550,18 +1574,15 @@
             });
 
             // Ordenação dos posts:
-            // - Coluna 'ideia': por data de adição (createdAt) mais recente
-            // - Outras colunas: por data agendada (date) mais próxima
+            // - Coluna 'ideia': por data de adição/criação mais recente
+            // - Demais colunas: por data agendada (date) mais próxima
             let sortedPosts = [...posts].sort((a, b) => {
                 if (a.status === 'ideia' && b.status === 'ideia') {
                     return (b.createdAt || '').localeCompare(a.createdAt || '');
                 }
-                if (a.status !== 'ideia' && b.status !== 'ideia') {
-                    if (!a.date) return 1;
-                    if (!b.date) return -1;
-                    return a.date.localeCompare(b.date);
-                }
-                return 0;
+                const dateA = a.date || '9999-99-99';
+                const dateB = b.date || '9999-99-99';
+                return dateA.localeCompare(dateB);
             });
 
             sortedPosts.forEach(post => {
