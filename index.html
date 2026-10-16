@@ -1207,6 +1207,7 @@
                 posts.push({ id: doc.id, ...doc.data() });
             });
             renderAllViews();
+            renderMetricsDashboard();
         });
 
         db.collection("orders").onSnapshot((snapshot) => {
