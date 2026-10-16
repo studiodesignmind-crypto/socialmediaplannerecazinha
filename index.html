@@ -2381,34 +2381,53 @@
             const goalData = {};
             const pillarData = {};
 
+           // Encontrar o Post com melhor performance (views ou interações)
+            let topPost = filteredPosts[0];
+            let maxValue = Number(topPost.metricViews || topPost.metricInteractions || 0);
+
             filteredPosts.forEach(post => {
                 const views = Number(post.metricViews || 0);
                 const reach = Number(post.metricReach || 0);
                 const interactions = Number(post.metricInteractions || 0);
+                const postVal = views > 0 ? views : interactions;
 
                 sumViews += views;
                 sumReach += reach;
                 sumInteractions += interactions;
 
+                if (postVal > maxValue) {
+                    maxValue = postVal;
+                    topPost = post;
+                }
+
+                // Agrupando por Formato
                 const fmt = post.format || 'Não definido';
                 if (!formatData[fmt]) formatData[fmt] = { count: 0, views: 0 };
                 formatData[fmt].count++;
                 formatData[fmt].views += views;
 
+                // Agrupando por Objetivo
                 const goal = post.goal || 'Não definido';
                 if (!goalData[goal]) goalData[goal] = { count: 0, views: 0 };
                 goalData[goal].count++;
                 goalData[goal].views += views;
 
+                // Agrupando por Pilar
                 const pillar = post.pillar || 'Não definido';
                 if (!pillarData[pillar]) pillarData[pillar] = { count: 0, views: 0 };
                 pillarData[pillar].count++;
                 pillarData[pillar].views += views;
             });
 
+            // Atualiza os cards gerais de resumo
             document.getElementById('stat-avg-views').innerText = Math.round(sumViews / totalPosts);
             document.getElementById('stat-avg-reach').innerText = Math.round(sumReach / totalPosts);
             document.getElementById('stat-total-interactions').innerText = sumInteractions;
+
+            // Atualiza o Card de Top Performance Geral com o post campeão
+            const bestVal = Number(topPost.metricViews || topPost.metricInteractions || 0);
+            document.getElementById('stat-top-post-title').innerText = topPost.title || 'Sem título';
+            document.getElementById('stat-top-post-stats').innerText = `${bestVal} ${topPost.metricViews > 0 ? 'views' : 'interações'} • ${topPost.format || 'Post'}`;
 
             renderRankingList('ranking-format', formatData, 'format');
             renderRankingList('ranking-goal', goalData, 'goal');
