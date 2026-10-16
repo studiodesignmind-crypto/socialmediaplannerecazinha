@@ -727,7 +727,7 @@
             </div>
 
             <!-- Cards Gerais de Resumo no Período -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
                 <div class="bg-white p-4 rounded-2xl border border-begeDark shadow-sm space-y-1">
                     <span class="text-xs text-gray-500 font-accent block">Total de Posts Analisados</span>
                     <h3 id="stat-total-posts" class="text-2xl font-bold text-bordo font-title">0</h3>
@@ -743,6 +743,12 @@
                 <div class="bg-white p-4 rounded-2xl border border-begeDark shadow-sm space-y-1">
                     <span class="text-xs text-gray-500 font-accent block">Total de Interações</span>
                     <h3 id="stat-total-interactions" class="text-2xl font-bold text-vibrante font-title">0</h3>
+                </div>
+                <!-- Card Novo: Top Performance Geral -->
+                <div class="bg-gradient-to-br from-bege/60 to-white p-4 rounded-2xl border border-vibrante/40 shadow-sm space-y-1 md:col-span-1">
+                    <span class="text-[10px] font-bold text-vibrante font-accent block">🏆 TOP PERFORMANCE GERAL</span>
+                    <h3 id="stat-top-post-title" class="text-xs font-bold text-bordo line-clamp-1 font-title">Nenhum post</h3>
+                    <span id="stat-top-post-stats" class="text-[10px] text-gray-500 block">0 views • --</span>
                 </div>
             </div>
 
@@ -2404,12 +2410,12 @@
             document.getElementById('stat-avg-reach').innerText = Math.round(sumReach / totalPosts);
             document.getElementById('stat-total-interactions').innerText = sumInteractions;
 
-            renderRankingList('ranking-format', formatData);
-            renderRankingList('ranking-goal', goalData);
-            renderRankingList('ranking-pillar', pillarData);
+            renderRankingList('ranking-format', formatData, 'format');
+            renderRankingList('ranking-goal', goalData, 'goal');
+            renderRankingList('ranking-pillar', pillarData, 'pillar');
         }
 
-        function renderRankingList(containerId, dataObj) {
+        function renderRankingList(containerId, dataObj, categoryType) {
             const container = document.getElementById(containerId);
             const sortedKeys = Object.keys(dataObj).sort((a, b) => (dataObj[b].views / dataObj[b].count) - (dataObj[a].views / dataObj[a].count));
 
@@ -2425,12 +2431,12 @@
                 const badgeColor = index === 0 ? 'bg-vibrante text-white font-bold' : 'bg-bege/50 text-gray-700';
 
                 html += `
-                    <div class="flex items-center justify-between p-2.5 rounded-xl border border-begeDark/40 bg-white shadow-2xs">
+                    <div onclick="showCategoryPosts('${categoryType}', '${key}')" class="flex items-center justify-between p-2.5 rounded-xl border border-begeDark/40 bg-white shadow-2xs hover:border-vibrante/60 hover:bg-bege/10 cursor-pointer transition">
                         <div class="flex items-center gap-2">
                             <span class="w-5 h-5 flex items-center justify-center rounded-full text-[10px] ${badgeColor}">${index + 1}</span>
                             <div>
                                 <span class="font-semibold text-gray-800 block text-xs">${key}</span>
-                                <span class="text-[10px] text-gray-400">${item.count} post(s)</span>
+                                <span class="text-[10px] text-gray-400">${item.count} post(s) • Ver posts 🔍</span>
                             </div>
                         </div>
                         <div class="text-right">
@@ -2441,6 +2447,37 @@
                 `;
             });
             container.innerHTML = html;
+        }
+
+        function showCategoryPosts(type, categoryValue) {
+            const startDate = document.getElementById('metrics-start-date').value;
+            const endDate = document.getElementById('metrics-end-date').value;
+
+            const matchingPosts = posts.filter(post => {
+                if (!post.date) return false;
+                if (startDate && post.date < startDate) return false;
+                if (endDate && post.date > endDate) return false;
+
+                if (type === 'format') return (post.format || 'Não definido') === categoryValue;
+                if (type === 'goal') return (post.goal || 'Não definido') === categoryValue;
+                if (type === 'pillar') return (post.pillar || 'Não definido') === categoryValue;
+                return false;
+            }).sort((a, b) => Number(b.metricViews || 0) - Number(a.metricViews || 0));
+
+            if (matchingPosts.length === 0) {
+                alert(`Nenhum post encontrado para "${categoryValue}" no período selecionado.`);
+                return;
+            }
+
+            let msg = `📱 Posts da categoria: ${categoryValue}\n(Ordenados por visualizações)\n\n`;
+            matchingPosts.forEach((p, i) => {
+                const views = p.metricViews || 0;
+                const title = p.title || 'Sem título';
+                const date = p.date || 'Sem data';
+                msg += `${i + 1}. [${views} views] ${title} (${date})\n`;
+            });
+
+            alert(msg);
         }
     </script>
 </body>
