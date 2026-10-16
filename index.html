@@ -2357,6 +2357,7 @@
             const endDate = document.getElementById('metrics-end-date').value;
 
             const filteredPosts = posts.filter(post => {
+                if (post.status !== 'publicado') return false;
                 if (!post.date) return false;
                 if (startDate && post.date < startDate) return false;
                 if (endDate && post.date > endDate) return false;
