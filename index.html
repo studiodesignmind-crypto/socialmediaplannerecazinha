@@ -2329,31 +2329,22 @@
                         parsed.forEach(p => { delete p.id; db.collection("posts").add(p); });
                         alert("Posts salvos na nuvem!");
                     }
-                } catch(e) { alert("Erro ao importar."); }
-            } else { alert("Nenhum dado antigo encontrado neste navegador."); }
-        }
-    function importOldData() {
-            const oldData = localStorage.getItem('social_media_planner_posts') || localStorage.getItem('planner_posts');
-            if (oldData) {
-                try {
-                    const parsed = JSON.parse(oldData);
-                    if (Array.isArray(parsed) && parsed.length > 0 && confirm(`Encontrados ${parsed.length} posts salvos no navegador. Enviar para a nuvem?`))
-                        parsed.forEach(p => { delete p.id; db.collection("posts").add(p); });
-                        alert("Posts salvos na nuvem!");
-                    }
-                } catch(e) { alert("Erro ao importar."); }
-            } else { alert("Nenhum dado antigo encontrado neste navegador."); }
+                } catch(e) { 
+                    alert("Erro ao importar."); 
+                }
+            } else { 
+                alert("Nenhum dado antigo encontrado neste navegador."); 
+            }
         }
 
-        // --- COLE AS FUNÇÕES DE MÉTRICAS AQUI (A PARTIR DA LINHA 2335) ---
-        // Limpar filtro de datas das métricas
+        // --- Limpar filtro de datas das métricas ---
         function clearMetricsDateFilter() {
             document.getElementById('metrics-start-date').value = '';
             document.getElementById('metrics-end-date').value = '';
             renderMetricsDashboard();
         }
 
-        // Função principal de cálculo e renderização das métricas e rankings
+        // --- Função principal de cálculo e renderização das métricas e rankings ---
         function renderMetricsDashboard() {
             const startDate = document.getElementById('metrics-start-date').value;
             const endDate = document.getElementById('metrics-end-date').value;
