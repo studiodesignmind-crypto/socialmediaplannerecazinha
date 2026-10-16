@@ -1595,6 +1595,11 @@
                 if (a.status === 'ideia' && b.status === 'ideia') {
                     return (b.createdAt || '').localeCompare(a.createdAt || '');
                 }
+                if (a.status === 'publicado' && b.status === 'publicado') {
+                    const dateA = a.date || '0000-00-00';
+                    const dateB = b.date || '0000-00-00';
+                    return dateB.localeCompare(dateA); // Invertido: mais recente primeiro
+                }
                 const dateA = a.date || '9999-99-99';
                 const dateB = b.date || '9999-99-99';
                 return dateA.localeCompare(dateB);
